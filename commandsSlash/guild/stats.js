@@ -20,6 +20,6 @@ module.exports = {
     .addField("STATUS", client.user.presence.status, true)
     .addField("TOTAL MEMBERS", client.users.cache.size)
  console.log(client.user.presence)
-    message.channel.send({embed: [embed]})
+    message.channel.send({embeds: [embed]})
   }
 };

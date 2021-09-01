@@ -23,7 +23,7 @@ module.exports = {
     if (!args.length) {
       //IF AUTHOR DIDENT GIVE URL OR NAME
       embed.setAuthor("WRONG SYNTAX : Type `play <URL> or text`")
-      return message.channel.send({embed: [embed]});
+      return message.channel.send({embeds: [embed]});
     }
 
     const { channel } = message.member.voice;
@@ -31,7 +31,7 @@ module.exports = {
     if (!channel) {
       //IF AUTHOR IS NOT IN VOICE CHANNEL
       embed.setAuthor("Enter a voice channel first")
-      return message.channel.send({embed: [embed]});
+      return message.channel.send({embeds: [embed]});
     }
 
     //WE WILL ADD PERMS ERROR LATER :(
@@ -43,7 +43,7 @@ module.exports = {
 
     if (!videoPattern.test(args[0]) && playlistPattern.test(args[0])) {
       embed.setAuthor("I am Unable To Play Playlist for now")
-      return message.channel.send({embed: [embed]});
+      return message.channel.send({embeds: [embed]});
     }
 
     const serverQueue = message.client.queue.get(message.guild.id);
@@ -137,7 +137,7 @@ module.exports = {
         await channel.leave();
         return message.channel
           .send({
-            embed: {
+            embeds: {
               description: `😭 | Could not join the channel: ${error}`,
               color: "#ff2050"
             }

@@ -1,6 +1,8 @@
 const client = require("../../main");
 
 module.exports (message) = {
+    name: 'help',
+    description: 'List info for each slash command',
     async execute(client, message, args,) {
         message.channel.send();
     }

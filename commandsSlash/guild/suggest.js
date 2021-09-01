@@ -8,9 +8,9 @@ const { Message, Client } = require("discord.js");
  */
 
 module.exports = {
-    name: 'suggestions',
-    aliases: ['suggest', 'suggestion'],
-    description: 'Suggest',
+    name: 'suggest',
+    aliases: ['suggestions', 'suggestion'],
+    description: 'Create a suggestion',
     permissions: ["VIEW_CHANNEL"],
     run: async (message, args, client) => {
         const channel = message.guild.channels.cache.find(c => c.name === 'suggestions');

@@ -15,7 +15,7 @@ module.exports = {
     if (!channel) {
       //IF AUTHOR IS NOT IN VOICE CHANNEL
       embed.setAuthor("YOU NEED TO BE IN VOICE CHANNEL :/")
-      return message.channel.send({embed: [embed]});
+      return message.channel.send({embeds: [embed]});
     }
 
     const serverQueue = message.client.queue.get(message.guild.id);
@@ -24,10 +24,10 @@ module.exports = {
       serverQueue.connection.dispatcher.resume()
   embed.setAuthor("✅ | Resumed the Paused Song")
    embed.setThumbnail(client.user.displayAvatarURL())
-  return message.channel.send({embed: [embed]});
+  return message.channel.send({embeds: [embed]});
  }
     embed.setDescription("There is nothing paused that i can resume")
-    message.channel.send({embed: [embed]});
+    message.channel.send({embeds: [embed]});
     
   }
 }

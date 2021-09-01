@@ -21,13 +21,13 @@ let embed = new MessageEmbed()
     if (!channel) {
       //IF AUTHOR IS NOT IN VOICE CHANNEL
       embed.setAuthor("YOU NEED TO BE IN VOICE CHANNEL :/")
-      return message.channel.send({embed: [embed]});
+      return message.channel.send({embeds: [embed]});
     }
     const serverQueue = message.client.queue.get(message.guild.id);
 const vote = message.client.vote.get(message.guild.id)
     if (!serverQueue) {
       embed.setAuthor("There is nothing playing that i could skip")
-      return message.channel.send({embed: [embed]});
+      return message.channel.send({embeds: [embed]});
     }
     
     const vcvote = Math.floor(message.guild.me.voice.channel.members.size / 2)
@@ -38,7 +38,7 @@ const vote = message.client.vote.get(message.guild.id)
          serverQueue.connection.dispatcher.end();
     embed.setDescription("VOTE - SKIP | Skipping The Song")
     embed.setThumbnail(client.user.displayAvatarURL())
-    return message.channel.send({embed: [embed]});
+    return message.channel.send({embeds: [embed]});
        }
        
        if(vote.voters.includes(message.author.id)) {
@@ -49,7 +49,7 @@ const vote = message.client.vote.get(message.guild.id)
           serverQueue.connection.dispatcher.end();
     embed.setDescription("✔ | Skipping The Song")
     embed.setThumbnail(client.user.displayAvatarURL())
-    return message.channel.send({embed: [embed]});
+    return message.channel.send({embeds: [embed]});
        }
        
        
@@ -66,6 +66,6 @@ vote.vote++
     serverQueue.connection.dispatcher.end();
     embed.setDescription("✔ | Skipping The Song")
     embed.setThumbnail(client.user.displayAvatarURL())
-    message.channel.send({embed: [embed]});
+    message.channel.send({embeds: [embed]});
   }
 };

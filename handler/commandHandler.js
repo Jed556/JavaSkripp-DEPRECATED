@@ -27,18 +27,6 @@ module.exports = async (client) => {
     const eventFiles = await globPromise(`${process.cwd()}/events/*.js`);
     eventFiles.map((value) => require(value));
 
-    /* // Music player events 
-    fs.readdir('./player-events/', (err, files) => {
-        if (err) return console.error(err);
-        files.forEach(file => {
-            const event = require(`../player-events/${file}`);
-            let eventName = file.split(".")[0];
-            console.log(`Loading player event ${eventName}`);
-            client.player.on(eventName, event.bind(null, client));
-        });
-    });
-    */
-
     // Slash Commands
     const slashCommands = await globPromise(
         `${process.cwd()}/commandsSlash/*/*.js`
@@ -54,6 +42,19 @@ module.exports = async (client) => {
         arrayOfSlashCommands.push(file);
     });
 
+
+    /* // Music player events 
+    fs.readdir('./player-events/', (err, files) => {
+        if (err) return console.error(err);
+        files.forEach(file => {
+            const event = require(`../player-events/${file}`);
+            let eventName = file.split(".")[0];
+            console.log(`Loading player event ${eventName}`);
+            client.player.on(eventName, event.bind(null, client));
+        });
+    });
+    */
+
     client.on("ready", async () => {
         // Reset then register for a single guild
         // await client.guilds.cache.get('guildid').commands.set([]);
@@ -62,7 +63,7 @@ module.exports = async (client) => {
         //    .commands.set(arrayOfSlashCommands);
 
         // Reset then register for all the guilds the bot is in
-        await client.application.commands.set([]);
+        //await client.application.commands.set([]);
         await client.application.commands.set(arrayOfSlashCommands);
     });
 }

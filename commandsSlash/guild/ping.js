@@ -1,17 +1,17 @@
-const { Interaction, Client } = require("discord.js");
+const { CommandInteraction, Client } = require("discord.js");
 tLog = new Date();
 
 /**
  *
  * @param {Client} client
- * @param {Interaction} interaction
+ * @param {CommandInteraction} interaction
  * @param {String[]} args
  */
 
 module.exports = {
     name: "ping",
     aliases: ['p'],
-    description: 'Websocket ping',
+    description: 'Check websocket ping',
 
 
     run: async (client, interaction, args) => {

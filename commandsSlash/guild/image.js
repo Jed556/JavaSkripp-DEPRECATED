@@ -1,4 +1,4 @@
-const { Interaction } = require('discord.js');
+const { CommandInteraction } = require('discord.js');
 var Scraper = require('images-scraper');
 
 const google = new Scraper({
@@ -9,14 +9,14 @@ const google = new Scraper({
 
 /**
  * 
- * @param {Interaction} interaction
+ * @param {CommandInteraction} interaction
  */
 
 
 module.exports = {
     image: 'image',
     aliases: ['i'],
-    description: 'Sends image to a channel',
+    description: 'Send an image to a channel',
     run: async (client, message, args) => {
         const image_query = args.join(' ');
         if(!image_query) return interaction.editReply({content: 'Enter an image name'});

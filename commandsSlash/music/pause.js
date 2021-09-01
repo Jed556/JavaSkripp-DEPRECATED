@@ -14,7 +14,7 @@ module.exports = {
     if (!channel) {
       //IF AUTHOR IS NOT IN VOICE CHANNEL
       embed.setAuthor("YOU NEED TO BE IN VOICE CHANNEL :/")
-      return message.channel.send({embed: [embed]});
+      return message.channel.send({embeds: [embed]});
     }
     
     
@@ -22,7 +22,7 @@ module.exports = {
 
     if (!serverQueue) {
       embed.setAuthor("There is nothing playing that i could pause")
-      return message.channel.send({embed: [embed]});
+      return message.channel.send({embeds: [embed]});
     }
     
     if(serverQueue && serverQueue.playing) {
@@ -31,7 +31,7 @@ module.exports = {
       
       embed.setDescription("✅ | Paused The Current Playing Song")
       embed.setThumbnail(client.user.displayAvatarURL())
-      return message.channel.send({embed: [embed]})
+      return message.channel.send({embeds: [embed]})
   }  
   }
 }
