@@ -1,35 +1,30 @@
-const client = require("../main");
+const { Client, CommandInteraction, MessageEmbed} = require('discord.js');
 
-client.on("interactionCreate", async (interaction) => {
-    // Slash Command Handling
-    if (interaction.isCommand()) {
-        await interaction.deferReply({ ephemeral: false }).catch(() => {});
+/**
+*
+* @param {Client} client
+* @param {CommandInteraction} interaction
+*/
 
-        const cmd = client.slashCommands.get(interaction.commandName);
-        if (!cmd){
-            interaction.followUp({ content: "An error has occured" });
-            
+module.exports = {
+    name: 'interactionCreate',
+    async execute(interaction, client) {
+        if (interaction.isCommand()) {
+            const command = client.commands.get(interaction.commandName)
+            if (!command) return interaction.followUp({content: "Command no longer exists"}) && client.commands.delete(interaction.commandName);
+
+            const args = [];
+
+            for (let option of interaction.options.data) {
+                if (option.type === 'SUB_COMMAND'){
+                    option.options?.forEach((x) => {
+                        if (x.value) args.push(option.value);
+                    })
+                } else if (option.value) args.push(option.value);
+            }
+
+
+            command.execute(client, interaction, args)
         }
-
-        const args = [];
-
-        for (let option of interaction.options.data) {
-            if (option.type === "SUB_COMMAND") {
-                if (option.name) args.push(option.name);
-                option.options?.forEach((x) => {
-                    if (x.value) args.push(x.value);
-                });
-            } else if (option.value) args.push(option.value);
-        }
-        interaction.member = interaction.guild.members.cache.get(interaction.user.id);
-
-        cmd.run(client, interaction, args);
     }
-
-    // Context Menu Handling
-    if (interaction.isContextMenu()) {
-        await interaction.deferReply({ ephemeral: false });
-        const command = client.slashCommands.get(interaction.commandName);
-        if (command) command.run(client, interaction);
-    }
-});
+}

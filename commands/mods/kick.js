@@ -2,7 +2,6 @@ const client = require('../../main');
 
 module.exports = {
     name: 'kick',
-    aliases: ['k'],
     description: 'Kick a member',
     permissions: ["ADMINISTRATOR", "KICK_MEMBERS", "MANAGE_GUILD"],
     run: async (client, message, args) => {

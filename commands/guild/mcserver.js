@@ -2,7 +2,6 @@ const util = require('minecraft-server-util')
 
 module.exports = {
     name: 'mcserver',
-    aliases: ['mc', 'mccheck', 'minecraft'],
     cooldown: 3,
     description: 'Get minecraft server info',
     permissions: ["CONNECT"],

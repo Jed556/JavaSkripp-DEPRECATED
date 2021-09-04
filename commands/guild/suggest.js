@@ -1,28 +1,33 @@
-const { Message, Client } = require("discord.js");
+const { Message, Client, CommandInteraction} = require("discord.js");
 
 /**
  *
  * @param {Client} client
  * @param {Message} message
  * @param {String[]} args
+ * @param {CommandInteraction} interaction
  */
 
 module.exports = {
     name: 'suggest',
-    aliases: ['suggestions', 'suggestion'],
     description: 'Create a suggestion',
-    permissions: ["VIEW_CHANNEL"],
-    run: async (message, args, client) => {
+    options: [{
+        name: "suggestion",
+        description: "Your suggestion",
+        type: "STRING",
+        required: true
+    }],
+    async execute (interaction, message, args, client) {
         const channel = message.guild.channels.cache.find(c => c.name === 'suggestions');
-        if(!channel) return message.channel.send({content: `**suggestions** channel does not exist`});
+        if(!channel) return interaction.reply({content: `**suggestions** channel does not exist`});
 
-        let messageArgs = args.join(' ');
+        const messageArgs = interaction.options.getUser("suggestion")
         const embed = new client.MessageEmbed()
         .setColor('#FADF2E')
         .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
         .setDescription(messageArgs);
         
-        channel.send({embed: [embed]}).then((msg) =>{
+        interaction.reply({embeds: [embed]}).then((msg) =>{
             msg.react('👍🏻');
             msg.react('👎🏻');
             message.delete();

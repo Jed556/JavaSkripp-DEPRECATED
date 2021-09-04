@@ -4,7 +4,7 @@ const { COLOR } = require("../../config.json");
 
 module.exports = {
   name: "queue",
-  description: "Get all the song name which are in queue",
+  description: "List all songs in queue",
   run: async (client, message, args) => {
     let embed = new MessageEmbed().setColor(COLOR);
     const { channel } = message.member.voice;

@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 const { COLOR } = require("../../config.json");
 module.exports = {
   name: "volume",
-  description: "Manage the volume of the song",
+  description: "Adjust the volume of the music",
   run: async (client, message, args) => {
     
     if(!message.member.hasPermission("ADMINISTRATOR")) {

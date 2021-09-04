@@ -7,7 +7,7 @@ const discord = require("discord.js");
 
 module.exports = {
   name: "stop",
-  description: "Stop the music and take rest ;)",
+  description: "Stop the music",
   run: async (client, message, args) => {
     
     

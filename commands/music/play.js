@@ -1,9 +1,6 @@
 const { MessageEmbed, Interaction} = require("discord.js")
 
-
-
 const ms = require("ms")
-
 
 const { Util } = require("discord.js");
 const { YOUTUBE_API_KEY, QUEUE_LIMIT, COLOR } = require("../../config.json");
@@ -11,9 +8,10 @@ const ytdl = require("ytdl-core");
 const YoutubeAPI = require("simple-youtube-api");
 const youtube = new YoutubeAPI(YOUTUBE_API_KEY);
 const { play } = require("./system/music.js");
+
 module.exports = {
   name: "play",
-  description: "Play the music",
+  description: "Play a song",
   run: async (client, message, args) => {
     let embed = new MessageEmbed()
 .setColor(COLOR);
@@ -21,7 +19,7 @@ module.exports = {
 
     //FIRST OF ALL WE WILL ADD ERROR MESSAGE AND PERMISSION MESSSAGE
     if (!args.length) {
-      //IF AUTHOR DIDENT GIVE URL OR NAME
+      //IF AUTHOR DIDN'T GIVE URL OR NAME
       embed.setAuthor("WRONG SYNTAX : Type `play <URL> or text`")
       return message.channel.send({embeds: [embed]});
     }

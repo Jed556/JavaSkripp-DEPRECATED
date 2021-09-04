@@ -8,6 +8,7 @@
     "ffmpeg-static": "^4.4.0",
     "fs": "^0.0.1-security",
     "glob": "^7.1.7",
+    "google-tts-api": "^2.0.2",
     "images-scraper": "^6.4.0",
     "minecraft-server-util": "^3.6.0",
     "ms": "^2.1.3",

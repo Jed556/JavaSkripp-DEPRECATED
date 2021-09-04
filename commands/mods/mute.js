@@ -1,8 +1,8 @@
 const ms = require('ms');
 const client = require('../../main');
+
 module.exports = {
     name: 'mute',
-    aliases: ['m'],
     description: 'Mute a member',
     permissions: ["ADMINISTRATOR", "MUTE_MEMBERS", "DEAFEN_MEMBERS", "MANAGE_ROLES", "MANAGE_GUILD"],
     run: async (client, message, args) => {
