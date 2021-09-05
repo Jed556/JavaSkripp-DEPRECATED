@@ -1,30 +1,29 @@
-const { CommandInteraction } = require('discord.js');
-var Scraper = require('images-scraper');
+const { Client, CommandInteraction } = require('discord.js');
+const Scraper = require('images-scraper');
 
 /**
- * 
+ *
+ * @param {Client} client
  * @param {CommandInteraction} interaction
  */
 
-
 module.exports = {
     image: 'image',
-    description: 'Send an image to a channel',
+    description: "Send an image to a channel",
     options: [{
-        name: "search",
+        name: 'search',
         description: "Image to search",
-        type: "STRING",
+        type: 'STRING',
         required: true
     }],
-    execute(interaction, args) {
+    async execute(client, interaction) {
         const google = new Scraper({
             puppeteer: {
                 headless: true
             }
         })
         
-        const imageQuery = interaction.options.getUser("image")
-        if(!imageQuery) return interaction.reply({content: 'Enter an image name'});
+        const imageQuery = interaction.options.getString('search')
 
         const imageResults = google.scrape(imageQuery, 1);
         interaction.reply(imageResults[0].url)

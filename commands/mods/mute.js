@@ -1,38 +1,74 @@
+const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
+const { MUTED_ID } = require("../../config.json");
 const ms = require('ms');
-const client = require('../../main');
+
+/**
+*
+* @param {Client} client
+* @param {CommandInteraction} interaction
+*/
 
 module.exports = {
     name: 'mute',
-    description: 'Mute a member',
-    permissions: ["ADMINISTRATOR", "MUTE_MEMBERS", "DEAFEN_MEMBERS", "MANAGE_ROLES", "MANAGE_GUILD"],
-    run: async (client, message, args) => {
-        const target = message.mentions.users.first();
-        if(target && message.member.roles.cache.has(client.config.MOD_ID)){
+    description: "Mute a member",
+    Perms: "ADMINISTRATOR",
+    options: [{
+            name: 'target',
+            description: "Member to mute",
+            type: 'USER',
+            required: true,
+        },
+        {
+            name: 'reason',
+            description: "Provide a reason",
+            type: 'STRING',
+            required: true,
+        },
+        {
+            name: 'preset-time',
+            description: "Preset mute duration",
+            type: 'STRING',
+            required: false,
+            choices: [
+                {
+                    name: "1 Hour",
+                    value: "1h"
+                },
+                {
+                    name: "1 Day",
+                    value: "1d"
+                },
+            ]
+        },
+        {
+            name: 'time',
+            description: "Mute duration (1s/1m/1h/1d)",
+            type: 'STRING',
+            required: false,
+        },
+    ],
+    async execute(client, interaction, args) {
+        const Target = interaction.options.getMember('target');
+        const Reason = interaction.options.getUser('reason') || "No reason specified";
+        const Time = interaction.options.getString('preset-time') || interaction.options.getString('time') || "1d";
+        
+        if (!interaction.guild.roles.cache.get(MUTED_ID))
+        return interaction.reply({embeds: [
+            new MessageEmbed()
+            .setColor('RED')
+            .setDescription('Mute role does not exist')
+        ]})
 
-            //message.guild.roles.create({name: 'Muted', reason: "Role for muted members"})
-            let mainRole = message.guild.roles.cache.find(role => role.name === 'Member');
-            let muteRole = message.guild.roles.cache.find(role => role.name === 'Muted');
+        await Target.roles.add(MUTED_ID);
+        setTimeout( async () => {
+            if(!Target.roles.cache.has(MUTED_ID)) return;
+            await Target.roles.remove(MUTED_ID);
+        }, (ms(Time)))
 
-            let memberTarget = message.guild.members.cache.get(target.id);
-
-            if(!args[1]){
-                memberTarget.roles.remove(mainRole.id);
-                memberTarget.roles.add(muteRole.id);
-                message.channel.send({content: `Muted <@${memberTarget.user.id}>`});
-                return  
-            }
-            
-            memberTarget.roles.remove(mainRole.id);
-            memberTarget.roles.add(muteRole.id);
-            message.channel.send({content: `Muted <@${memberTarget.user.id}> for ${ms(ms(args[1]))}`});
-
-            setTimeout(function () {
-                memberTarget.roles.remove(muteRole.id);
-                memberTarget.roles.add(mainRole.id);
-                message.channel.send({content: `Unmuted <@${memberTarget.user.id}>`});
-            }, ms(args[1]));
-        } else {
-            message.channel.send({content: "Can't find that member"});
-        }
+        interaction.reply({embeds: [
+            new MessageEmbed()
+            .setColor('GREEN')
+            .setDescription(`${Target} muted for ${Time}, Reason: ${Reason}`)
+        ]})
     }
 }

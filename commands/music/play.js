@@ -1,4 +1,4 @@
-const { MessageEmbed, Interaction} = require("discord.js")
+const { MessageEmbed, CommandInteraction, Message} = require("discord.js")
 
 const ms = require("ms")
 
@@ -9,19 +9,31 @@ const YoutubeAPI = require("simple-youtube-api");
 const youtube = new YoutubeAPI(YOUTUBE_API_KEY);
 const { play } = require("./system/music.js");
 
+/**
+ * 
+ * @param {CommandInteraction} interaction
+ * @param {Message} message
+ */
+
 module.exports = {
   name: "play",
   description: "Play a song",
-  run: async (client, message, args) => {
+  options: [{
+    name: 'search',
+    description: "Music to search",
+    type: 'STRING',
+    required: true
+  }],
+  async execute(client, interaction, message) {
     let embed = new MessageEmbed()
-.setColor(COLOR);
-
+.setColor('GREEN');
 
     //FIRST OF ALL WE WILL ADD ERROR MESSAGE AND PERMISSION MESSSAGE
-    if (!args.length) {
+    const targetsong = interaction.options.getString('search');
+    if (!targetsong.length) {
       //IF AUTHOR DIDN'T GIVE URL OR NAME
       embed.setAuthor("WRONG SYNTAX : Type `play <URL> or text`")
-      return message.channel.send({embeds: [embed]});
+      return interaction.reply({embeds: [embed]});
     }
 
     const { channel } = message.member.voice;
@@ -29,19 +41,18 @@ module.exports = {
     if (!channel) {
       //IF AUTHOR IS NOT IN VOICE CHANNEL
       embed.setAuthor("Enter a voice channel first")
-      return message.channel.send({embeds: [embed]});
+      return interaction.reply({embeds: [embed]});
     }
 
     //WE WILL ADD PERMS ERROR LATER :(
 
-    const targetsong = args.join(" ");
     const videoPattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
     const playlistPattern = /^.*(youtu.be\/|list=)([^#\&\?]*).*/gi;
     const urlcheck = videoPattern.test(args[0]);
 
     if (!videoPattern.test(args[0]) && playlistPattern.test(args[0])) {
       embed.setAuthor("I am Unable To Play Playlist for now")
-      return message.channel.send({embeds: [embed]});
+      return interaction.reply({embeds: [embed]});
     }
 
     const serverQueue = message.client.queue.get(message.guild.id);

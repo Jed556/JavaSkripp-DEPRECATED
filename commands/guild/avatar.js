@@ -1,4 +1,4 @@
-const { Client, CommandInteraction, MessageEmbed, CommandInteractionOptionResolver} = require('discord.js');
+const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
 tLog = new Date();
 
 /**
@@ -11,13 +11,13 @@ module.exports = {
    name: 'avatar',
    description: "Displays mentioned user's or command user's avatar",
    options: [{
-        name: "target",
+        name: 'target',
         description: "Select a user",
-        type: "USER",
+        type: 'USER',
         required: true
     }],
     
-    execute(client, interaction, message, args){
+    execute(client, interaction){
         const Target = interaction.options.getUser("target")
 
         const Response = new MessageEmbed()
