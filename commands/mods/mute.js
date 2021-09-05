@@ -49,7 +49,7 @@ module.exports = {
     ],
     async execute(client, interaction, args) {
         const Target = interaction.options.getMember('target');
-        const Reason = interaction.options.getUser('reason') || "No reason specified";
+        const Reason = interaction.options.getString('reason') || "No reason specified";
         const Time = interaction.options.getString('preset-time') || interaction.options.getString('time') || "1d";
         
         if (!interaction.guild.roles.cache.get(MUTED_ID))
@@ -57,6 +57,13 @@ module.exports = {
             new MessageEmbed()
             .setColor('RED')
             .setDescription('Mute role does not exist')
+        ]})
+
+        if (Target.roles.cache.has(MUTED_ID))
+        return interaction.reply({embeds: [
+            new MessageEmbed()
+            .setColor('RED')
+            .setDescription('Member is already muted')
         ]})
 
         await Target.roles.add(MUTED_ID);

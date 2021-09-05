@@ -23,13 +23,13 @@ module.exports = {
         .setAuthor(`${Target.user.username}`, Target.user.displayAvatarURL({dynamic: true}))
         .setThumbnail(Target.user.displayAvatarURL({dynamic: true}))
         .setColor('RANDOM')
-        .addField(`Server member since ${moment(Target.joinedAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.joinedAt).startOf('day').fromNow()}`)
-        .addField(`Discord user since ${moment(Target.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.joinedAt).startOf('day').fromNow()}`)
+        .addField("Server member since", `${moment(Target.joinedAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.joinedAt).startOf('day').fromNow()}`)
+        .addField("Discord user since", `${moment(Target.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.joinedAt).startOf('day').fromNow()}`)
 
         if (Target.roles.cache.size > 1) {
-            Info.addField(`Roles: ${Target.roles.cache.map(r => r).join(' ').replace("@everyone", " ")}`)
+            Info.addField("Roles", `${Target.roles.cache.map(r => r).join(' ').replace("@everyone", " ")}`)
         } else {
-            Response.addField("Roles: No roles to display")
+            Response.addField("Roles", "No roles to display")
         }
 
         interaction.reply({embeds: [Info]})

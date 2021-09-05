@@ -20,7 +20,7 @@ module.exports = {
     async execute(client, interaction) {
         const Target = interaction.options.getMember('target');
 
-        if (!interaction.guild.roles.cache.has(MUTED_ID))
+        if (!Target.roles.cache.has(MUTED_ID))
         return interaction.reply({embeds: [
             new MessageEmbed()
             .setColor('RED')
