@@ -1,0 +1,1 @@
+heroku logs -s app -a djsbot-556 -t

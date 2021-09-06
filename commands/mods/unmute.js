@@ -10,7 +10,7 @@ const { MUTED_ID } = require("../../config.json");
 module.exports = {
     name: 'unmute',
     description: "Unmute a member",
-    permission: 'ADMINISTRATOR',
+    Perms: 'ADMINISTRATOR',
     options: [{
         name: 'target',
         description: "Member to unmute",

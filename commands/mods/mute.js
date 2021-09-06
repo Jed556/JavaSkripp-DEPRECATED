@@ -38,11 +38,23 @@ module.exports = {
                     name: "1 Day",
                     value: "1d"
                 },
+                {
+                    name: "1 Week",
+                    value: "1w"
+                },
+                {
+                    name: "1 Month",
+                    value: "30d"
+                },
+                {
+                    name: "1 Year",
+                    value: "1y"
+                },
             ]
         },
         {
             name: 'time',
-            description: "Mute duration (1s/1m/1h/1d)",
+            description: "Mute duration (1s/1m/1h/1d/1w/1y)",
             type: 'STRING',
             required: false,
         },
@@ -52,6 +64,20 @@ module.exports = {
         const Reason = interaction.options.getString('reason') || "No reason specified";
         const Time = interaction.options.getString('preset-time') || interaction.options.getString('time') || "1d";
         
+        if (Target.id === interaction.member.id)
+        return interaction.reply({embeds: [
+           new MessageEmbed()
+           .setColor('RED')
+           .setDescription(`You can't mute yourself`)
+        ]})
+
+        if (Target.permissions.has('ADMINISTRATOR'))
+        return interaction.reply({embeds: [
+           new MessageEmbed()
+           .setColor('RED')
+           .setDescription(`You can't mute an administrator or moderator`)
+        ]})
+
         if (!interaction.guild.roles.cache.get(MUTED_ID))
         return interaction.reply({embeds: [
             new MessageEmbed()

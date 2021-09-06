@@ -9,14 +9,12 @@ Slash commands available for all guild members
 |Command|Use|
 |-------|---|
 |help|List info for each slash command|
-|image|Send an image to a channel|
-|mcserver|Get minecraft server info|
 |ping|Check websocket ping|
-|stats|Get the detailed information of bot|
-|suggest|Create a suggestion in the syggestions channel|
+|stats|Display detailed information of a member|
+|avatar|Display member avatar|
 
 ### Music
-Music slash commands for all guild members
+Music slash commands for all guild members (WIP)
 
 |Command|Use|
 |-------|---|
@@ -35,7 +33,12 @@ Slash commands for moderators only
 |-------|---|
 |clear|Clear messages|
 |ban|Ban a member|
-|kick|Kick a member|
 |mute|Mute a member|
 |unmute|Unmute a member|
-|reload|Reload slash commands|
+
+### Context Menus
+Context menu available for all guild members (WIP)
+
+|Command|Use|
+|-------|---|
+|getAvatae|Get user avatar|
