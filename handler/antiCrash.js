@@ -1,4 +1,4 @@
-module.exports = client => {
+module.exports = async (client) => {
    process.on('unhandledRejection', (reason, p) => {
         console.log(' [antiCrash] :: Unhandled Rejection/Catch');
         console.log(reason, p);

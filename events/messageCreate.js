@@ -1,5 +1,4 @@
 const {Client, Message, MessageEmbed} = require('discord.js');
-const PREFIX = require('../config.json');
 const { commands } = require('../main');
 
 /**
@@ -15,11 +14,11 @@ module.exports = {
         if (
             message.author.bot ||
             !message.guild ||
-            !message.content.toLowerCase().startsWith(PREFIX)
+            !message.content.toLowerCase().startsWith(process.env.PREFIX)
         )
             return;
 
-        const args = message.content.slice(PREFIX.length).trim().split(/ +/);
+        const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/);
         const commandName = args.shift().toLowerCase();
         const command = client.commands.get(commandName.toLowerCase()) ||
         client.commands.find(cmd => cmd.aliases?.includes(commandName));
