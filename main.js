@@ -10,4 +10,4 @@ module.exports = client;
     require(`./handler/${handler}`)(client);
 })
 
-client.login(TOKEN);
+client.login(process.env.TOKEN);

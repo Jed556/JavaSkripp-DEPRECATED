@@ -1,5 +1,4 @@
 const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
-const { MUTED_ID } = require("../../config.json");
 const ms = require('ms');
 
 /**
@@ -78,24 +77,24 @@ module.exports = {
            .setDescription(`You can't mute an administrator or moderator`)
         ]})
 
-        if (!interaction.guild.roles.cache.get(MUTED_ID))
+        if (!interaction.guild.roles.cache.get(process.env.MUTED_ID))
         return interaction.reply({embeds: [
             new MessageEmbed()
             .setColor('RED')
             .setDescription('Mute role does not exist')
         ]})
 
-        if (Target.roles.cache.has(MUTED_ID))
+        if (Target.roles.cache.has(process.env.MUTED_ID))
         return interaction.reply({embeds: [
             new MessageEmbed()
             .setColor('RED')
             .setDescription('Member is already muted')
         ]})
 
-        await Target.roles.add(MUTED_ID);
+        await Target.roles.add(process.env.MUTED_ID);
         setTimeout( async () => {
-            if(!Target.roles.cache.has(MUTED_ID)) return;
-            await Target.roles.remove(MUTED_ID);
+            if(!Target.roles.cache.has(process.env.MUTED_ID)) return;
+            await Target.roles.remove(process.env.MUTED_ID);
         }, (ms(Time)))
 
         interaction.reply({embeds: [

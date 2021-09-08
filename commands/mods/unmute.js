@@ -1,5 +1,4 @@
 const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
-const { MUTED_ID } = require("../../config.json");
 
 /**
 *
@@ -20,14 +19,14 @@ module.exports = {
     async execute(client, interaction) {
         const Target = interaction.options.getMember('target');
 
-        if (!Target.roles.cache.has(MUTED_ID))
+        if (!Target.roles.cache.has(process.env.MUTED_ID))
         return interaction.reply({embeds: [
             new MessageEmbed()
             .setColor('RED')
             .setDescription('Member is not muted')
         ]})
 
-        Target.roles.remove(MUTED_ID);
+        Target.roles.remove(process.env.MUTED_ID);
 
         interaction.reply({embeds: [
             new MessageEmbed()
