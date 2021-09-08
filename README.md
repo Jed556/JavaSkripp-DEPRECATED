@@ -16,16 +16,6 @@ Slash commands available for all guild members
 ### Music
 Music slash commands for all guild members (WIP)
 
-|Command|Use|
-|-------|---|
-|pause|Pause music|
-|play|Play music|
-|queue|List all songs in queue|
-|resume|Resume music|
-|skip|Skip music|
-|stop|Stop music|
-|volume|Adjust music volume|
-
 ### Mods
 Slash commands for moderators only
 
@@ -38,7 +28,3 @@ Slash commands for moderators only
 
 ### Context Menus
 Context menu available for all guild members (WIP)
-
-|Command|Use|
-|-------|---|
-|getAvatae|Get user avatar|

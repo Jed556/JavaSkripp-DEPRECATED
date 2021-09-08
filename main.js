@@ -6,7 +6,7 @@ client.commands = new Collection();
 
 module.exports = client;
 
-['command', 'event'].forEach(handler => {
+['command', 'event', 'antiCrash'].forEach(handler => {
     require(`./handler/${handler}`)(client);
 })
 

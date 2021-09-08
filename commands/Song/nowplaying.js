@@ -9,9 +9,9 @@ const {
 	check_if_dj
 } = require("../../handlers/functions")
 module.exports = {
-	name: "skip", //the command name for the Slash Command
-	description: "Skips the Current Track", //the command description for Slash Command Overview
-	cooldown: 5,
+	name: "grab", //the command name for the Slash Command
+	description: "Shows the current Playing Song", //the command description for Slash Command Overview
+	cooldown: 2,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
 	async execute(client, interaction) {
@@ -38,7 +38,7 @@ module.exports = {
 			} = member.voice;
 			if (!channel) return interaction.reply({
 				embeds: [
-					new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "my" : "a"} VoiceChannel First!**`)
+					new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!**`)
 				],
 				ephemeral: true
 			})
@@ -61,20 +61,31 @@ module.exports = {
 					],
 					ephemeral: true
 				})
-				if (check_if_dj(client, member, newQueue.songs[0])) {
-					return interaction.reply({
-						embeds: [new MessageEmbed()
-							.setColor(ee.wrongcolor)
-							.setFooter(ee.footertext, ee.footericon)
-							.setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
-							.setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
-						],
-						ephemeral: true
-					});
-				}
-				await newQueue.skip();
+				let newTrack = newQueue.songs[0];
 				interaction.reply({
-					content: `⏭ **Skipped to the next Song!**\n> 💢 **Action by**: \`${member.user.tag}\``
+					content: `${client.settings.get(guild.id, "prefix")}play ${newTrack.url}`,
+					embeds: [
+						new MessageEmbed().setColor(ee.color)
+						.setTitle(newTrack.name)
+						.setURL(newTrack.url)
+						.addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)
+						.addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
+						.addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song(s)\`\n\`${newQueue.formattedDuration}\``, true)
+						.addField(`🔊 Volume:`, `>>> \`${newQueue.volume} %\``, true)
+						.addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check_mark} \`Queue\`` : `${client.allEmojis.check_mark} \`Song\`` : `${client.allEmojis.x}`}`, true)
+						.addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check_mark}` : `${client.allEmojis.x}`}`, true)
+						.addField(`❔ Download Song:`, `>>> [\`Click here\`](${newTrack.streamURL})`, true)
+						.addField(`❔ Filter${newQueue.filters.length > 0 ? "s": ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f=>`\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
+						.addField(`<:Youtube:840260133686870036>  View${newTrack.views > 0 ? "s": ""}:`, `>>> \`${newTrack.views}\``, true)
+						.addField(`:thumbsup: Like${newTrack.likes > 0 ? "s": ""}:`, `>>> \`${newTrack.likes}\``, true)
+						.addField(`:thumbsdown: Dislike${newTrack.dislikes > 0 ? "s": ""}:`, `>>> \`${newTrack.dislikes}\``, true)
+						.setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
+						.setFooter(`Played in: ${guild.name}`, guild.iconURL({
+							dynamic: true
+						})).setTimestamp()
+					]
+				}).catch((e) => {
+					onsole.log(e.stack ? e.stack : e)
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

@@ -9,9 +9,9 @@ const {
 	check_if_dj
 } = require("../../handlers/functions")
 module.exports = {
-	name: "stop", //the command name for the Slash Command
-	description: "Stops playing and leaves the Channel!", //the command description for Slash Command Overview
-	cooldown: 5,
+	name: "shuffle", //the command name for the Slash Command
+	description: "Shuffles (Mixes) The Queue", //the command description for Slash Command Overview
+	cooldown: 10,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
 	async execute(client, interaction) {
@@ -38,7 +38,7 @@ module.exports = {
 			} = member.voice;
 			if (!channel) return interaction.reply({
 				embeds: [
-					new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "my" : "a"} VoiceChannel First!**`)
+					new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!**`)
 				],
 				ephemeral: true
 			})
@@ -55,13 +55,12 @@ module.exports = {
 			}
 			try {
 				let newQueue = client.distube.getQueue(guildId);
-				if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) {
-					await newQueue.stop()
-					//Reply with a Message
-					interaction.reply({
-						content: `⏹ **Stopped playing and left the Channel**\n> 💢 **Action by**: \`${member.user.tag}\``
-					})
-				}
+				if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
+					embeds: [
+						new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **I am nothing Playing right now!**`)
+					],
+					ephemeral: true
+				})
 				if (check_if_dj(client, member, newQueue.songs[0])) {
 					return interaction.reply({
 						embeds: [new MessageEmbed()
@@ -73,12 +72,10 @@ module.exports = {
 						ephemeral: true
 					});
 				}
-				await newQueue.stop()
-				//Reply with a Message
+				await newQueue.shuffle(volume);
 				interaction.reply({
-					content: `⏹ **Stopped playing and left the Channel**\n> 💢 **Action by**: \`${member.user.tag}\``
+					content: `🔀 **Suffled ${newQueue.songs.length} Songs!**\n> 💢 **Action by**: \`${member.user.tag}\``
 				})
-				return
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
 				interaction.editReply({

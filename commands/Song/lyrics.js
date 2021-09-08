@@ -2,16 +2,21 @@ const {
 	MessageEmbed,
 	Message
 } = require("discord.js");
-const config = require("../../botconfig/config.json");
+const {
+    KSoftClient
+} = require('@ksoft/api');
+const config = require(`../../botconfig/config.json`);
+const ksoft = new KSoftClient(config.ksoftapi);
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const {
+	lyricsEmbed,
 	check_if_dj
-} = require("../../handlers/functions")
+} = require("../../handlers/functions");
 module.exports = {
-	name: "stop", //the command name for the Slash Command
-	description: "Stops playing and leaves the Channel!", //the command description for Slash Command Overview
-	cooldown: 5,
+	name: "lyrics", //the command name for the Slash Command
+	description: "Shows the Lyrics of the current Song", //the command description for Slash Command Overview
+	cooldown: 25,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
 	async execute(client, interaction) {
@@ -38,7 +43,7 @@ module.exports = {
 			} = member.voice;
 			if (!channel) return interaction.reply({
 				embeds: [
-					new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "my" : "a"} VoiceChannel First!**`)
+					new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!**`)
 				],
 				ephemeral: true
 			})
@@ -55,30 +60,32 @@ module.exports = {
 			}
 			try {
 				let newQueue = client.distube.getQueue(guildId);
-				if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) {
-					await newQueue.stop()
-					//Reply with a Message
-					interaction.reply({
-						content: `⏹ **Stopped playing and left the Channel**\n> 💢 **Action by**: \`${member.user.tag}\``
-					})
-				}
-				if (check_if_dj(client, member, newQueue.songs[0])) {
+				if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
+					embeds: [
+						new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **I am nothing Playing right now!**`)
+					],
+					ephemeral: true
+				})
+				let embeds = [];
+				await ksoft.lyrics.get(newQueue.songs[0].name).then(
+					async track => {
+						if (!track.lyrics) return interaction.reply({
+							content: `${client.allEmojis.x} **No Lyrics Found!** :cry:`,
+							ephemeral: true
+						});
+						lyrics = track.lyrics;
+						embeds = lyricsEmbed(lyrics, newQueue.songs[0]);
+					}).catch(e => {
+					console.log(e)
 					return interaction.reply({
-						embeds: [new MessageEmbed()
-							.setColor(ee.wrongcolor)
-							.setFooter(ee.footertext, ee.footericon)
-							.setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
-							.setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
-						],
+						content: `${client.allEmojis.x} **No Lyrics Found!** :cry:\n${String(e).substr(0, 1800)}`,
 						ephemeral: true
 					});
-				}
-				await newQueue.stop()
-				//Reply with a Message
-				interaction.reply({
-					content: `⏹ **Stopped playing and left the Channel**\n> 💢 **Action by**: \`${member.user.tag}\``
 				})
-				return
+				interaction.reply({
+					embeds: embeds,
+					ephemeral: true
+				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
 				interaction.editReply({

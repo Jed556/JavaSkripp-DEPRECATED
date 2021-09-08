@@ -9,9 +9,9 @@ const {
 	check_if_dj
 } = require("../../handlers/functions")
 module.exports = {
-	name: "stop", //the command name for the Slash Command
-	description: "Stops playing and leaves the Channel!", //the command description for Slash Command Overview
-	cooldown: 5,
+	name: "addend", //the command name for the Slash Command
+	description: "Adds this Song back to the end of the Queue!", //the command description for Slash Command Overview
+	cooldown: 15,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
 	async execute(client, interaction) {
@@ -38,7 +38,7 @@ module.exports = {
 			} = member.voice;
 			if (!channel) return interaction.reply({
 				embeds: [
-					new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "my" : "a"} VoiceChannel First!**`)
+					new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!**`)
 				],
 				ephemeral: true
 			})
@@ -55,30 +55,13 @@ module.exports = {
 			}
 			try {
 				let newQueue = client.distube.getQueue(guildId);
-				if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) {
-					await newQueue.stop()
-					//Reply with a Message
-					interaction.reply({
-						content: `⏹ **Stopped playing and left the Channel**\n> 💢 **Action by**: \`${member.user.tag}\``
-					})
-				}
-				if (check_if_dj(client, member, newQueue.songs[0])) {
-					return interaction.reply({
-						embeds: [new MessageEmbed()
-							.setColor(ee.wrongcolor)
-							.setFooter(ee.footertext, ee.footericon)
-							.setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
-							.setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
-						],
-						ephemeral: true
-					});
-				}
-				await newQueue.stop()
-				//Reply with a Message
-				interaction.reply({
-					content: `⏹ **Stopped playing and left the Channel**\n> 💢 **Action by**: \`${member.user.tag}\``
+				if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
+					embeds: [
+						new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **I am nothing Playing right now!**`)
+					],
+					ephemeral: true
 				})
-				return
+				await client.distube.playVoiceChannel(channel, newQueue.songs[0].url)
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
 				interaction.editReply({
