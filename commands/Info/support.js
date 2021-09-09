@@ -16,7 +16,7 @@ module.exports = {
   memberpermissions: [], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]
   requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
   alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
-  run: async (client, message, args) => {
+  async execute(client, message, args) {
     try {
       //things u can directly access in an interaction!
       const {
