@@ -18,7 +18,7 @@ module.exports = async (client) => {
 
         const splitted = file.split("/");
         const directory = splitted[splitted.length - 2];
-        console.log(`\x1b[36m [${tLog.toLocaleString("en-US")}]\x1b[32m Loaded \x1b[1m ${command.name}\x1b[0m\x1b[32m from ${directory}\x1b[0m`);
+        console.log(`\x1b[36m [${tLog.toLocaleString("en-US")}]\x1b[32m Loaded \x1b[1m${command.name}\x1b[0m\x1b[32m from ${directory}\x1b[0m`);
 
         await client.commands.set(command.name, command);
         commandArray.push(command);
