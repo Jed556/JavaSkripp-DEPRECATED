@@ -25,7 +25,7 @@ module.exports = async (client) => {
     });
 
     client.on("ready", async () => {
-
+        await client.application.commands.set([]);
         const Guilds = client.guilds.cache.map((guild) => guild.id);
 
         Guilds.forEach(async (guild) => {
