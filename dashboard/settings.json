@@ -1,7 +1,7 @@
 {
     "website" : {
-      "support": "",
-      "domain": ""
+      "support": "Jed556#4147",
+      "domain": "https://djs-javaskripp.herokuapp.com/"
     },
     "config": {
         "http": {
@@ -16,7 +16,7 @@
             "enabled": false,
             "port": 443
         },
-        "callback": "",
+        "callback": "https://djs-javaskripp.herokuapp.com/",
         "clientID": "881308119383302165",
         "secret": "v8t2SgA6fK3AHDj9he7S-hN4Q3jq02Oq"
     }
