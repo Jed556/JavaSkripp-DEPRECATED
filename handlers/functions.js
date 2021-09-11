@@ -780,9 +780,20 @@ function onCoolDown(message, command) {
    */
   function change_status(client) {
     try {
-      client.user.setActivity(`commands | ${client.guilds.cache.size} Guilds | ${Math.ceil(client.users.cache.size/1000)}k Members`, {
-        type: "LISTENING",
-      });
+      //client.user.setActivity(`commands | ${client.guilds.cache.size} Guilds | ${Math.ceil(client.users.cache.size/1000)}k Members`, {
+      //  type: "LISTENING",
+      //});
+
+      if (client.guilds.cache.size > 1) {
+        client.user.setActivity(`commands | ${client.guilds.cache.size} Guilds | ${Math.ceil(client.users.cache.size)} Members`, {
+          type: "LISTENING",
+        });
+      } else {
+        client.user.setActivity(`commands | ${client.guilds.cache.size} Guild | ${Math.ceil(client.users.cache.size)} Member`, {
+          type: "LISTENING",
+        });
+      }
+
     } catch (e) {
       console.log(String(e.stack).bgRed)
     }

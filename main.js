@@ -39,8 +39,8 @@ const client = new Discord.Client({
     ],
     presence: {
       activity: {
-        name: "commands", 
-        type: "LISTENING", 
+        name: "server deploy", 
+        type: "WATCHING", 
       },
       status: "online"
     }
