@@ -1,7 +1,7 @@
 {
     "website" : {
-      "support": "https://discord.gg/milrato",
-      "domain": "http://your-domain.com"
+      "support": "",
+      "domain": ""
     },
     "config": {
         "http": {
@@ -16,8 +16,8 @@
             "enabled": false,
             "port": 443
         },
-        "callback": "http://your-domain.com/callback",
-        "clientID": "",
-        "secret": ""
+        "callback": "",
+        "clientID": "881308119383302165",
+        "secret": "v8t2SgA6fK3AHDj9he7S-hN4Q3jq02Oq"
     }
   }
