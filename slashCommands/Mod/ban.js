@@ -9,7 +9,7 @@ const {Client, CommandInteraction, MessageEmbed} = require('discord.js')
 module.exports = {
     name: "ban",
     description: "Ban a member",
-    memberpermissions: ["MANAGE_GUILD "]
+    memberpermissions: ["MANAGE_GUILD "],
     options: [{
             name: 'target',
             description: "Member to ban",
