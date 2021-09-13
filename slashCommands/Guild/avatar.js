@@ -15,7 +15,7 @@ module.exports = {
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
 	options: [ 
 		{
-			"String": {
+			"User": {
 				name: "target",
 				description: "Select a user",
 				required: true
