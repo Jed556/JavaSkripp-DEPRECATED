@@ -20,8 +20,8 @@ const dirSetup = [{
 			"Folder": "Filter", "CmdName": "filter",
 			"CmdDescription": "Add Music Filters"
 	},{     
-			"Folder": "Mod", "CmdName": "mod",
-			"CmdDescription": "Mod Commands"
+			"Folder": "Guild", "CmdName": "guild",
+			"CmdDescription": "Guild Commands"
 }];
 module.exports = (client) => {
     try {
