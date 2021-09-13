@@ -31,7 +31,7 @@ module.exports = {
         guild
       } = member;
       client.settings.ensure(guild.id, {
-        defaultvolume: 50,
+        defaultvolume: 100,
         defaultautoplay: false,
         defaultfilters: [`bassboost6`, `clear`]
       });

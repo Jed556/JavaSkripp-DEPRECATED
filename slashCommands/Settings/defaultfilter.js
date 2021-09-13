@@ -51,7 +51,7 @@ module.exports = {
       let args = options.getString("filters").split(" ");
       if (!args) args = [options.getString("filters")]
       client.settings.ensure(guild.id, {
-        defaultvolume: 50,
+        defaultvolume: 100,
         defaultautoplay: false,
         defaultfilters: [`bassboost6`, `clear`]
       });

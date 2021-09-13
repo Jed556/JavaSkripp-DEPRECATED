@@ -48,7 +48,7 @@ module.exports = {
       } = member;
       let volume = options.getInteger("volume");
       client.settings.ensure(guild.id, {
-        defaultvolume: 50
+        defaultvolume: 100
       });
 
       if (!volume || (volume > 150 || volume < 1)) {

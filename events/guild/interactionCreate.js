@@ -8,7 +8,7 @@ module.exports = (client, interaction) => {
 	const CategoryName = interaction.commandName;
   client.settings.ensure(interaction.guildId, {
     prefix: config.prefix,
-    defaultvolume: 50,
+    defaultvolume: 100,
     defaultautoplay: false,
     defaultfilters: [`bassboost6`, `clear`],
     djroles: [],
