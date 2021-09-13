@@ -143,7 +143,7 @@ module.exports = (client) => {
 			}
         });
         
-		//Once the Bot is ready, add all Slas Commands to each guild
+		//Once the Bot is ready, add all Slash Commands to each guild
 		client.on("ready", () => {
 			if(config.loadSlashsGlobal){
 				client.application.commands.set(allCommands)
