@@ -22,6 +22,9 @@ const dirSetup = [{
 	},{     
 			"Folder": "Mod", "CmdName": "mod",
 			"CmdDescription": "Mod Commands"
+	},{     
+			"Folder": "Guild", "CmdName": "guild",
+			"CmdDescription": "Guild Commands"
 }];
 module.exports = (client) => {
     try {
