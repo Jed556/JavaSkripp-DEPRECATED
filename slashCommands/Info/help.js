@@ -4,7 +4,6 @@ const {
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
-const websiteSettings = require("../../dashboard/settings.json");
 module.exports = {
   name: "help", //the command name for execution & for helpcmd [OPTIONAL]
   cooldown: 1, //the command cooldown for execution & for helpcmd [OPTIONAL]
@@ -77,7 +76,7 @@ module.exports = {
           .setColor(ee.color)
           .setThumbnail(client.user.displayAvatarURL())
           .setTitle("HELP MENU 🔰 Commands")
-          .setDescription(`**[Invite me with __Slash Commands__ Permissions](https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands), cause all of my Commands are available as Slash Commands too!**\n\n> Check out the [**Dashboard**](${websiteSettings.website.domain}/dashboard/${guild.id}) or the [**Live Music Queue**](${websiteSettings.website.domain}/queue/${guild.id})`)
+          .setDescription(`[**Click here to invite me!**]( https://tinyurl.com/JavaSkripp )`)
           .setFooter(`To see command Descriptions and Information, type: ${prefix}help [CMD NAME]`, client.user.displayAvatarURL());
         const commands = (category) => {
           return client.commands.filter((cmd) => cmd.category === category).map((cmd) => `\`${cmd.name}\``);
