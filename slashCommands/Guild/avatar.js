@@ -1,5 +1,4 @@
 const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
-tLog = new Date();
 
 /**
 *
@@ -34,7 +33,7 @@ module.exports = {
 			.setFooter(`Requested by ${interaction.user.tag}`)
 
 			interaction.reply({embeds: [Response], ephemeral: true});
-			console.log(`\x1b[36m [${tLog.toLocaleString("en-US")}]\x1b[0m ${Target.tag}'s Avatar`)
+			console.log(`Sent ${Target.tag}'s Avatar`)
 		}catch (e) {
 			console.log(String(e.stack).bgRed)
    		}
