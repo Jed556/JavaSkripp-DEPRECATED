@@ -13,6 +13,6 @@ module.exports = client => {
     });
     process.on('multipleResolves', (type, promise, reason) => {
         console.log(' [antiCrash] :: Multiple Resolves');
-        //console.log(type, promise, reason);
+        console.log(type, promise, reason);
     });
 }
