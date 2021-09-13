@@ -508,7 +508,7 @@ module.exports = (client) => {
       .on(`initQueue`, queue => {
         try {
           client.settings.ensure(queue.id, {
-            defaultvolume: 50,
+            defaultvolume: 100,
             defaultautoplay: false,
             defaultfilters: [`bassboost6`, `clear`]
           })

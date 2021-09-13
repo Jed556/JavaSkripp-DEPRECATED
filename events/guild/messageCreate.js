@@ -10,7 +10,7 @@ module.exports = async (client, message) => {
     if(message.partial) await message.fetch();
     client.settings.ensure(message.guild.id, {
       prefix: config.prefix,
-      defaultvolume: 50,
+      defaultvolume: 100,
       defaultautoplay: false,
       defaultfilters: [`bassboost6`, `clear`],
       djroles: [],

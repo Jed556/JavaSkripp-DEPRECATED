@@ -203,7 +203,7 @@ module.exports = client => {
       }
       client.settings.ensure(guild.id, {
         prefix: BotConfig.prefix,      
-        defaultvolume: 50,
+        defaultvolume: 100,
         defaultautoplay: false,
         defaultfilters: [`bassboost6`, `clear`],
         djroles: [],
