@@ -8,7 +8,7 @@
 
     "messages": {
         "ping_message": "To see all Commands type: `%{prefix}%help`",
-        "cooldown": "❌ Please wait %{timeleft}% Second(s) before using `%{commandname}%` command.",
+        "cooldown": "❌ Please wait %{timeleft}% more Second(s) before reusing the `%{commandname}%` command.",
         "notallowed_to_exec_cmd": {
             "title": "❌ You are not allowed to run this command!",
             "description": {

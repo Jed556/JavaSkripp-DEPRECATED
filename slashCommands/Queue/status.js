@@ -66,7 +66,7 @@ module.exports = {
 				else djs.slice(0, 15).join(", ");
 				let newTrack = newQueue.songs[0];
 				let embed = new MessageEmbed().setColor(ee.color)
-					.setDescription(`**DASHBOARD**`)
+					.setDescription(`See the [Queue on the **DASHBOARD** Live!](http://dashboard.musicium.eu/queue/${newQueue.id})`)
 					.addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)
 					.addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
 					.addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song(s)\`\n\`${newQueue.formattedDuration}\``, true)

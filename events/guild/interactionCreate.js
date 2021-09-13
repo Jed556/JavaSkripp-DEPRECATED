@@ -25,7 +25,6 @@ module.exports = (client, interaction) => {
    	    }
 	}
 	if(command) {
-    console.log(client.settings.get(interaction.guildId, `botchannel`))
     if (client.settings.get(interaction.guildId, `botchannel`).length > 0) {
         if (!client.settings.get(interaction.guildId, `botchannel`).includes(interaction.channelId) && !interaction.member.permissions.has("ADMINISTRATOR")) {
            return interaction.reply({ ephemeral: true,

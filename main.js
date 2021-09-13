@@ -95,6 +95,7 @@ client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 client.slashCommands = new Discord.Collection();
 client.aliases = new Discord.Collection();
+client.categories = require("fs").readdirSync(`./commands`);
 client.allEmojis = require("./botconfig/emojis.json");
 
 client.setMaxListeners(100); require('events').defaultMaxListeners = 100;
@@ -104,10 +105,17 @@ client.infos = new Enmap({ name: "infos", dataDir: "./databases/infos"});
 
 
 //Require the Handlers                  Add the antiCrash file too, if its enabled
-["events", "slashCommands", settings.antiCrash ? "antiCrash" : null, "distubeEvent"]
+["events", "commands", "slashCommands", settings.antiCrash ? "antiCrash" : null, "distubeEvent"]
     .filter(Boolean)
     .forEach(h => {
         require(`./handlers/${h}`)(client);
     })
 //Start the Bot
 client.login(config.token)
+
+/**
+ * @LOAD_THE_DASHBOARD - Loading the Dashbaord Module with the BotClient into it!
+ */
+//client.on("ready", () => {
+//  require("./dashboard/index.js")(client);
+//})
