@@ -461,7 +461,7 @@ module.exports = (client) => {
           new MessageEmbed()
           .setColor(ee.color)
           .setThumbnail(playlist.thumbnail.url ? playlist.thumbnail.url : `https://img.youtube.com/vi/${playlist.songs[0].id}/mqdefault.jpg`)
-          .setFooter("💯" + playlist.user.tag, playlist.user.displayAvatarURL({
+          .setFooter(playlist.user.tag, playlist.user.displayAvatarURL({
             dynamic: true
           }))
           .setTitle(`${client.allEmojis.check_mark} **Playlist added to the Queue!**`)

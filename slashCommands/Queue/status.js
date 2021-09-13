@@ -78,7 +78,7 @@ module.exports = {
 					.addField(`🎧 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s": ""}:`, `>>> ${djs}`, client.settings.get(newQueue.id, "djroles").length > 1 ? false : true)
 					.setAuthor(`${newTrack.name}`, `https://images-ext-1.discordapp.net/external/DkPCBVBHBDJC8xHHCF2G7-rJXnTwj_qs78udThL8Cy0/%3Fv%3D1/https/cdn.discordapp.com/emojis/859459305152708630.gif`, newTrack.url)
 					.setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
-					.setFooter(`💯 ${newTrack.user.tag}`, newTrack.user.displayAvatarURL({
+					.setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({
 						dynamic: true
 					}));
 				interaction.reply({
