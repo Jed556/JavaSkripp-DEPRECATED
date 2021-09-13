@@ -95,7 +95,6 @@ client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 client.slashCommands = new Discord.Collection();
 client.aliases = new Discord.Collection();
-client.categories = require("fs").readdirSync(`./commands`);
 client.allEmojis = require("./botconfig/emojis.json");
 
 client.setMaxListeners(100); require('events').defaultMaxListeners = 100;
@@ -105,7 +104,7 @@ client.infos = new Enmap({ name: "infos", dataDir: "./databases/infos"});
 
 
 //Require the Handlers                  Add the antiCrash file too, if its enabled
-["events", "commands", "slashCommands", settings.antiCrash ? "antiCrash" : null, "distubeEvent"]
+["events", "slashCommands", settings.antiCrash ? "antiCrash" : null, "distubeEvent"]
     .filter(Boolean)
     .forEach(h => {
         require(`./handlers/${h}`)(client);

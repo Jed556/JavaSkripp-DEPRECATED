@@ -19,10 +19,8 @@ const dirSetup = [{
 	},{     
 			"Folder": "Filter", "CmdName": "filter",
 			"CmdDescription": "Add Music Filters"
-	},{     
-			"Folder": "Guild", "CmdName": "guild",
-			"CmdDescription": "Guild Commands"
-}];
+	}
+];
 module.exports = (client) => {
     try {
 		let allCommands = [];
