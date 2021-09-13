@@ -26,7 +26,8 @@ module.exports = {
         embeds: [
           new MessageEmbed()
           .setColor(ee.color)
-          .setDescription(`> **Website:** ${websiteSettings.website.domain}/\n\n> **Dashboard:** ${websiteSettings.website.domain}/dashboard\n\n> **ServerQueues:** ${websiteSettings.website.domain}/queuedashboard\n\n> **Current Queue:** ${websiteSettings.website.domain}/queue/${guild.id}`)
+          .setDescription("Dashboard is not yet supported")
+          //.setDescription(`> **Website:** ${websiteSettings.website.domain}/\n\n> **Dashboard:** ${websiteSettings.website.domain}/dashboard\n\n> **ServerQueues:** ${websiteSettings.website.domain}/queuedashboard\n\n> **Current Queue:** ${websiteSettings.website.domain}/queue/${guild.id}`)
         ]
       });
     } catch (e) {
