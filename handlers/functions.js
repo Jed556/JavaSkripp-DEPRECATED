@@ -785,15 +785,15 @@ function onCoolDown(message, command) {
       //});
 
       if (client.guilds.cache.size > 1 && client.users.cache.size > 1) {
-        client.user.setActivity(`${client.guilds.cache.size} Guilds | ${Math.ceil(client.users.cache.size)} Members`, {
+        client.user.setActivity(`${client.guilds.cache.size} Guilds • ${Math.ceil(client.users.cache.size)} Members`, {
           type: "LISTENING",
         });
       } else if (client.users.cache.size > 1) {
-        client.user.setActivity(`${client.guilds.cache.size} Guild | ${Math.ceil(client.users.cache.size)} Members`, {
+        client.user.setActivity(`${client.guilds.cache.size} Guild • ${Math.ceil(client.users.cache.size)} Members`, {
           type: "LISTENING",
         });
       } else {
-        client.user.setActivity(`${client.guilds.cache.size} Guild | ${Math.ceil(client.users.cache.size)} Member`, {
+        client.user.setActivity(`${client.guilds.cache.size} Guild • ${Math.ceil(client.users.cache.size)} Member`, {
           type: "LISTENING",
         });
       }
