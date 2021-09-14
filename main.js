@@ -74,7 +74,7 @@ client.distube = new DisTube(client, {
   emptyCooldown: 25,
   ytdlOptions: {
     //requestOptions: {
-    //  agent //ONLY USE ONE IF YOU KNOW WHAT YOU DO!
+    //  agent //ONLY USE ONE IF YOU KNOW WHAT YOU DO
     //},
     highWaterMark: 1024 * 1024 * 64,
     quality: "highestaudio",
@@ -90,7 +90,8 @@ client.distube = new DisTube(client, {
     new SoundCloudPlugin()
   ]
 })
-//Define some Global Collections
+
+//Define Global Collections
 client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 client.slashCommands = new Discord.Collection();
@@ -104,17 +105,18 @@ client.settings = new Enmap({ name: "settings",dataDir: "./databases/settings"})
 client.infos = new Enmap({ name: "infos", dataDir: "./databases/infos"});
 
 
-//Require the Handlers                  Add the antiCrash file too, if its enabled
+//Require the Handlers                  Add the antiCrash file if enabled
 ["events", "commands", "slashCommands", settings.antiCrash ? "antiCrash" : null, "distubeEvent"]
     .filter(Boolean)
     .forEach(h => {
         require(`./handlers/${h}`)(client);
     })
+
 //Start the Bot
 client.login(config.token)
 
 /**
- * @LOAD_THE_DASHBOARD - Loading the Dashbaord Module with the BotClient into it!
+ * @LOAD_THE_DASHBOARD - Loading the Dashbaord Module with the BotClient into it
  */
 //client.on("ready", () => {
 //  require("./dashboard/index.js")(client);
