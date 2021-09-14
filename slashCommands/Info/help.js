@@ -51,7 +51,7 @@ module.exports = {
       let args = options.getString("specific_cmd");
       if (args && args.length > 0) {
         const embed = new MessageEmbed();
-        const cmd = client.commands.get(args.toLowerCase()) || client.commands.get(client.aliases.get(args.toLowerCase()));
+        const cmd = client.slashCommands.get(args.toLowerCase()) || client.slashCommands.get(client.aliases.get(args.toLowerCase()));
         if (!cmd) {
           return interaction.reply({
             ephemeral: true,
@@ -80,11 +80,11 @@ module.exports = {
           .setDescription(`[**Click here to invite me!**]( https://tinyurl.com/JavaSkripp )`)
           .setFooter(`To see command Descriptions and Information, type: ${prefix}help [CMD NAME]`, client.user.displayAvatarURL());
         const commands = (category) => {
-          return client.commands.filter((cmd) => cmd.category === category).map((cmd) => `\`${cmd.name}\``);
+          return client.slashCommands.filter((cmd) => cmd.category === category).map((cmd) => `\`${cmd.name}\``);
         };
         try {
-          for (let i = 0; i < client.categories.length; i += 1) {
-            const current = client.categories[i];
+          for (let i = 0; i < client.slashCategories.length; i += 1) {
+            const current = client.slashCategories[i];
             const items = commands(current);
             embed.addField(`**${current.toUpperCase()} [${items.length}]**`, `> ${items.join(", ")}`);
           }
