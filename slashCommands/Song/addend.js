@@ -14,7 +14,7 @@ module.exports = {
 	usage: "addend",
 	aliases: ["adde"],
 	description: "Adds this Song back to the end of the Queue!", //the command description for Slash Command Overview
-	cooldown: 15,
+	cooldown: 1,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
 	run: async (client, message, args) => {

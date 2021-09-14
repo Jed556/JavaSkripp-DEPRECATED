@@ -10,8 +10,8 @@ const { Client, CommandInteraction, MessageEmbed} = require('discord.js');
 module.exports = {
    name: "clear",
    description: "Clear messages",
-   cooldown: 1,
-   memberpermissions: ["MANAGE_GUILD "],
+   cooldown: 2,
+   memberpermissions: ["MANAGE_MESSAGES"],
    options: [
     {
         "Integer": {

@@ -7,7 +7,7 @@ const settings = require("../../botconfig/settings.json");
 const filters = require("../../botconfig/filters.json")
 module.exports = {
   name: "defaultfilter", //the command name for execution & for helpcmd [OPTIONAL]
-  cooldown: 10, //the command cooldown for execution & for helpcmd [OPTIONAL]
+  cooldown: 3, //the command cooldown for execution & for helpcmd [OPTIONAL]
   usage: "defaultfilter", //the command usage for helpcmd [OPTIONAL]
   description: "Defines the Default Filter(s)", //the command description for helpcmd [OPTIONAL]
   memberpermissions: ["MANAGE_GUILD "], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]

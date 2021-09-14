@@ -19,7 +19,7 @@ module.exports = {
 	usage: "lyrics",
 	aliases: ["ly", "songtext"],
 	description: "Sends the Song Lyrics", //the command description for Slash Command Overview
-	cooldown: 25,
+	cooldown: 10,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
 	run: async (client, message, args) => {

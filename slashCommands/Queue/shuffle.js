@@ -11,7 +11,7 @@ const {
 module.exports = {
 	name: "shuffle", //the command name for the Slash Command
 	description: "Shuffles (Mixes) The Queue", //the command description for Slash Command Overview
-	cooldown: 10,
+	cooldown: 3,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
 	run: async (client, interaction) => {

@@ -14,7 +14,7 @@ module.exports = {
 	usage: "forward <TimeinSec>",
 	aliases: ["fwd"],
 	description: "Forwards for X Seconds", //the command description for Slash Command Overview
-	cooldown: 10,
+	cooldown: 1,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
 	run: async (client, message, args) => {

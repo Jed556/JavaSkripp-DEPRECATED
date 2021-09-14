@@ -14,7 +14,7 @@ module.exports = {
 	usage: "replay",
 	aliases: ["restart"],
 	description: "Replays the current song!", //the command description for Slash Command Overview
-	cooldown: 10,
+	cooldown: 3,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
 	run: async (client, message, args) => {
