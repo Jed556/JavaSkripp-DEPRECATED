@@ -784,7 +784,11 @@ function onCoolDown(message, command) {
       //  type: "LISTENING",
       //});
 
-      if (client.guilds.cache.size > 1 && client.users.cache.size > 1) {
+      if (client.guilds.cache.size > 1 && client.users.cache.size > 999) {
+        client.user.setActivity(`${client.guilds.cache.size} Guilds • ${Math.ceil(client.users.cache.size/1000)}K Members`, {
+          type: "LISTENING",
+        });
+      } else if (client.guilds.cache.size > 1 && client.users.cache.size > 1) {
         client.user.setActivity(`${client.guilds.cache.size} Guilds • ${Math.ceil(client.users.cache.size)} Members`, {
           type: "LISTENING",
         });
