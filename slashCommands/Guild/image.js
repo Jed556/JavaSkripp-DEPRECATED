@@ -26,7 +26,8 @@ module.exports = {
     run: async (client, interaction) => {
         const google = new Scraper({
             puppeteer: {
-                headless: true
+                headless: true,
+                args: ["--no-sandbox"]
             }
         })
         
