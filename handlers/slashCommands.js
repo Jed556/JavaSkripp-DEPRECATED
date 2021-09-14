@@ -6,7 +6,7 @@ const dirSetup = [{
 			"CmdDescription": "Grant specific Information about something!"
 	},{
 			"Folder": "Settings", "CmdName": "settings",
-			"CmdDescription": "Adjust the Settings of the Bot!"
+			"CmdDescription": "Bot Configuration"
 	},{
 			"Folder": "Music", "CmdName": "music",
 			"CmdDescription": "Playing/Queuing Music"
@@ -21,7 +21,7 @@ const dirSetup = [{
 			"CmdDescription": "Add Music Filters"
 	},{     
 			"Folder": "Mod", "CmdName": "mod",
-			"CmdDescription": "Mod Commands"
+			"CmdDescription": "Moderator Commands"
 	},{     
 			"Folder": "Guild", "CmdName": "guild",
 			"CmdDescription": "Guild Commands"
