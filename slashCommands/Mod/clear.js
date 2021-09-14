@@ -27,7 +27,7 @@ module.exports = {
             required: false
         }
     }],
-    async execute(client, interaction) {
+    run: async (client, interaction) => {
         const Amount = interaction.options.getNumber('amount');
         const Target = interaction.options.getMember('target');
         const Channel = interaction.channel;
