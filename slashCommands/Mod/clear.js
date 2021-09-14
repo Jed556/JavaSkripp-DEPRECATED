@@ -8,23 +8,25 @@ const { Client, CommandInteraction, MessageEmbed} = require('discord.js');
 */
 
 module.exports = {
-   name: 'clear',
-   description: 'Clear messages',
-   Perms: "ADMINISTRATOR",
+   name: "clear",
+   description: "Clear messages",
+   cooldown: 1,
+   memberpermissions: ["MANAGE_GUILD "],
    options: [
-        {
-        name: 'amount',
-        description: 'Amount of messages to delete',
-        type: 'NUMBER',
-        required: true
-        },
-        {
-        name: 'target',
-        description: 'Clear mentioned user messages',
-        type: 'USER',
-        required: false
+    {
+        "Integer": {
+            name: "amount",
+            description: "Amount of messages to delete",
+            required: true
         }
-    ],
+    },
+    {
+        "User": {
+            name: "target",
+            description: "Clear mentioned user messages",
+            required: false
+        }
+    }],
     async execute(client, interaction) {
         const Amount = interaction.options.getNumber('amount');
         const Target = interaction.options.getMember('target');
