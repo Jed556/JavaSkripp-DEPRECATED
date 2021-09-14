@@ -8,15 +8,21 @@ const moment = require('moment')
 */
 
 module.exports = {
-    name: 'stats',
-    description: "Display mentioned user or command user's information",
-    options: [{
-        name: 'target',
-        description: "Select member",
-        type: 'USER',
-        required: true
-    }],
-    async execute(client, interaction) {
+    name: "stats", //the command name for the Slash Command
+	description: "Display mentioned user or command user's information", //the command description for Slash Command Overview
+	cooldown: 1,
+	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
+	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+	options: [ 
+		{
+			"User": {
+				name: "target",
+				description: "Select a user",
+				required: true
+			}
+		}, 
+	],
+    run: async (client, interaction) => {
         const Target = interaction.options.getMember('target')
 
         const Info = new MessageEmbed()
