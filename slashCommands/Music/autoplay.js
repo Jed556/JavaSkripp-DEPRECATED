@@ -74,7 +74,7 @@ module.exports = {
 				}
 				await newQueue.toggleAutoplay();
 				interaction.reply({
-					content: `**${newQueue.autoplay ? `${client.allEmojis.check_mark} Enabled` :`${client.allEmojis.x} Disabled`} Autoplay!**\n> 💢 **Action by**: \`${member.user.tag}\``
+					content: `**${newQueue.autoplay ? `${client.allEmojis.check_mark} Enabled` :`${client.allEmojis.x} Disabled`} Autoplay!**\n> **Action by**: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

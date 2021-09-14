@@ -90,7 +90,7 @@ module.exports = {
 				}
 				await newQueue.seek(seektime);
 				message.reply({
-					content: `⏩ **Forwarded the song for \`${seekNumber} Seconds\`!**\n> 💢 **Action by**: \`${member.user.tag}\``
+					content: `⏩ **Forwarded the song for \`${seekNumber} Seconds\`!**\n> **Action by**: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

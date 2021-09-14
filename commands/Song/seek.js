@@ -94,7 +94,7 @@ module.exports = {
 				}
 				await newQueue.seek(seekNumber);
 				message.reply({
-					content: `⏺ **Seeked to \`${seekNumber} Seconds\`!**\n> 💢 **Action by**: \`${member.user.tag}\``
+					content: `⏺ **Seeked to \`${seekNumber} Seconds\`!**\n> **Action by**: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

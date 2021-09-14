@@ -74,7 +74,7 @@ module.exports = {
 				await newQueue.stop()
 				//Reply with a Message
 				interaction.reply({
-					content: `⏹ **Stopped playing and left the Channel**\n> 💢 **Action by**: \`${member.user.tag}\``
+					content: `⏹ **Stopped playing and left the Channel**\n> **Action by**: \`${member.user.tag}\``
 				})
 				return
 			} catch (e) {

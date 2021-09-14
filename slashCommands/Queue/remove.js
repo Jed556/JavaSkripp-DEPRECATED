@@ -120,7 +120,7 @@ module.exports = {
 				})
 				newQueue.songs.splice(songIndex, amount);
 				interaction.reply({
-					content: `🗑 **Removed ${amount} Song${amount > 1 ?"s": ""} out of the Queue!**\n> 💢 **Action by**: \`${member.user.tag}\``
+					content: `🗑 **Removed ${amount} Song${amount > 1 ?"s": ""} out of the Queue!**\n> **Action by**: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

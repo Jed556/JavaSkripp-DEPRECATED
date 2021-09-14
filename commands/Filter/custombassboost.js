@@ -95,7 +95,7 @@ module.exports = {
 				}
 				await newQueue.setFilter(["custombassboost"]);
 				message.reply({
-					content: `♨️ **Set a Bassboost to ${bass_gain}!**\n> 💢 **Action by**: \`${member.user.tag}\``
+					content: `♨️ **Set a Bassboost to ${bass_gain}!**\n> **Action by**: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

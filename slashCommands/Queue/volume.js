@@ -97,7 +97,7 @@ module.exports = {
 				})
 				await newQueue.setVolume(volume);
 				interaction.reply({
-					content: `🔊 **Changed the Volume to \`${volume}\`!**\n> 💢 **Action by**: \`${member.user.tag}\``
+					content: `🔊 **Changed the Volume to \`${volume}\`!**\n> **Action by**: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

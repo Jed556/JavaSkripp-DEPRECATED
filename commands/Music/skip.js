@@ -77,7 +77,7 @@ module.exports = {
 				}
 				await newQueue.skip();
 				message.reply({
-					content: `⏭ **Skipped to the next Song!**\n> 💢 **Action by**: \`${member.user.tag}\``
+					content: `⏭ **Skipped to the next Song!**\n> **Action by**: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

@@ -117,7 +117,7 @@ module.exports = {
 				}
 				await newQueue.setFilter(toAdded);
 				interaction.reply({
-					content: `♨️ **Added ${toAdded.length} ${toAdded.length == filters.length ? "Filters": `of ${filters.length} Filters! The Rest was already a part of the Filters!`} **\n> 💢 **Action by**: \`${member.user.tag}\``
+					content: `♨️ **Added ${toAdded.length} ${toAdded.length == filters.length ? "Filters": `of ${filters.length} Filters! The Rest was already a part of the Filters!`} **\n> **Action by**: \`${member.user.tag}\``
 				})
 
 			} catch (e) {
