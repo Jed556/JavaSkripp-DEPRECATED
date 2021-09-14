@@ -28,8 +28,8 @@ module.exports = {
         }
     }],
     run: async (client, interaction) => {
-        const Amount = interaction.options.getNumber('amount');
-        const Target = interaction.options.getMember('target');
+        const Amount = interaction.options.getInteger('amount');
+        const Target = interaction.options.getUser('target');
         const Channel = interaction.channel;
         const Messages = Channel.messages.fetch();
 
