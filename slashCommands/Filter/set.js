@@ -125,7 +125,7 @@ module.exports = {
 				}
 				await newQueue.setFilter(filters);
 				interaction.reply({
-					content: `♨️ **Set ${amount} Filters!**\n> **Action by**: \`${member.user.tag}\``
+					content: `♨️ **Set ${amount} Filters!**\n> Action by: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

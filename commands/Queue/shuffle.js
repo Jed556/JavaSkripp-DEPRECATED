@@ -77,7 +77,7 @@ module.exports = {
 				}
 				await newQueue.shuffle(volume);
 				message.reply({
-					content: `🔀 **Suffled ${newQueue.songs.length} Songs!**\n> **Action by**: \`${member.user.tag}\``
+					content: `🔀 **Suffled ${newQueue.songs.length} Songs!**\n> Action by: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

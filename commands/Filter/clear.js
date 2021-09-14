@@ -65,7 +65,7 @@ module.exports = {
 				}
 				await newQueue.setFilter(false);
 				message.reply({
-					content: `🗑 **Cleared all Filters!**\n> **Action by**: \`${member.user.tag}\``
+					content: `🗑 **Cleared all Filters!**\n> Action by: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

@@ -110,7 +110,7 @@ module.exports = (client) => {
               if (newQueue.songs.length == 0) {
                 //if its on autoplay mode, then do autoplay before leaving...
                   i.reply({
-                    content: `⏹ **Stopped playing and left the Channel**\n> **Action by**: \`${member.user.tag}\``
+                    content: `⏹ **Stopped playing and left the Channel**\n> Action by: \`${member.user.tag}\``
                   })
                   clearInterval(songEditInterval);
                   collector.stop()
@@ -122,7 +122,7 @@ module.exports = (client) => {
               //skip the track
               await client.distube.skip(i.guild.id)
               i.reply({
-                content: `⏭ **Skipped to the next Song!**\n> **Action by**: \`${member.user.tag}\``,
+                content: `⏭ **Skipped to the next Song!**\n> Action by: \`${member.user.tag}\``,
               })
               collector.stop();
             }
@@ -147,7 +147,7 @@ module.exports = (client) => {
               //if ther is nothing more to skip then stop music and leave the Channel
               if (newQueue.songs.length == 0) {
                 i.reply({
-                  content: `⏹ **Stopped playing and left the Channel**\n> **Action by**: \`${member.user.tag}\``
+                  content: `⏹ **Stopped playing and left the Channel**\n> Action by: \`${member.user.tag}\``
                 })
                 clearInterval(songEditInterval);
                 collector.stop()
@@ -157,7 +157,7 @@ module.exports = (client) => {
               } else {
                 //skip the track
                 i.reply({
-                  content: `⏹ **Stopped playing and left the Channel**\n> **Action by**: \`${member.user.tag}\``
+                  content: `⏹ **Stopped playing and left the Channel**\n> Action by: \`${member.user.tag}\``
                 })
                 clearInterval(songEditInterval);
                 collector.stop()
@@ -190,7 +190,7 @@ module.exports = (client) => {
                   //console.log(e.stack ? String(e.stack).grey : String(e).grey)
                 })
                 i.reply({
-                  content: `⏸ **Paused!**\n> **Action by**: \`${member.user.tag}\``
+                  content: `⏸ **Paused!**\n> Action by: \`${member.user.tag}\``
                 })
               } else {
                 //pause the player
@@ -200,7 +200,7 @@ module.exports = (client) => {
                   //console.log(e.stack ? String(e.stack).grey : String(e).grey)
                 })
                 i.reply({
-                  content: `▶️ **Resumed!**\n> **Action by**: \`${member.user.tag}\``,
+                  content: `▶️ **Resumed!**\n> Action by: \`${member.user.tag}\``,
                 })
               }
             }
@@ -236,7 +236,7 @@ module.exports = (client) => {
               }
               //Send Success Message
               i.reply({
-                content: `${newQueue.autoplay ? `${client.allEmojis.check_mark} **Enabled Autoplay**`: `${client.allEmojis.x} **Disabled Autoplay**`}\n> **Action by**: \`${member.user.tag}\``
+                content: `${newQueue.autoplay ? `${client.allEmojis.check_mark} **Enabled Autoplay**`: `${client.allEmojis.x} **Disabled Autoplay**`}\n> Action by: \`${member.user.tag}\``
               })
             }
             //Shuffle
@@ -260,7 +260,7 @@ module.exports = (client) => {
               await newQueue.shuffle()
               //Send Success Message
               i.reply({
-                content: `🔀 **Shuffled ${newQueue.songs.length} Songs**\n> **Action by**: \`${member.user.tag}\``
+                content: `🔀 **Shuffled ${newQueue.songs.length} Songs**\n> Action by: \`${member.user.tag}\``
               })
             }
             //Songloop
@@ -289,7 +289,7 @@ module.exports = (client) => {
                 await newQueue.setRepeatMode(1)
               }
               i.reply({
-                content: `${newQueue.repeatMode == 1 ? `${client.allEmojis.check_mark} **Enabled Song-Loop**`: `${client.allEmojis.x} **Disabled Song-Loop**`}\n> **Action by**: \`${member.user.tag}\``
+                content: `${newQueue.repeatMode == 1 ? `${client.allEmojis.check_mark} **Enabled Song-Loop**`: `${client.allEmojis.x} **Disabled Song-Loop**`}\n> Action by: \`${member.user.tag}\``
               })
               var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
               currentSongPlayMsg.edit(data).catch((e) => {
@@ -322,7 +322,7 @@ module.exports = (client) => {
                 await newQueue.setRepeatMode(2)
               }
               i.reply({
-                content: `${newQueue.repeatMode == 2 ? `${client.allEmojis.check_mark} **Enabled Queue-Loop**`: `${client.allEmojis.x} **Disabled Queue-Loop**`}\n> **Action by**: \`${member.user.tag}\``
+                content: `${newQueue.repeatMode == 2 ? `${client.allEmojis.check_mark} **Enabled Queue-Loop**`: `${client.allEmojis.x} **Disabled Queue-Loop**`}\n> Action by: \`${member.user.tag}\``
               })
               var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
               currentSongPlayMsg.edit(data).catch((e) => {
@@ -351,7 +351,7 @@ module.exports = (client) => {
               await newQueue.seek(Number(seektime))
               collector.resetTimer({time: (newQueue.songs[0].duration - newQueue.currentTime) * 1000})
               i.reply({
-                content: `⏩ **Forwarded the song for \`10 Seconds\`**\n> **Action by**: \`${member.user.tag}\``
+                content: `⏩ **Forwarded the song for \`10 Seconds\`**\n> Action by: \`${member.user.tag}\``
               })
               var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
               currentSongPlayMsg.edit(data).catch((e) => {
@@ -381,7 +381,7 @@ module.exports = (client) => {
               await newQueue.seek(Number(seektime))
               collector.resetTimer({time: (newQueue.songs[0].duration - newQueue.currentTime) * 1000})
               i.reply({
-                content: `⏪ **Rewinded the song for \`10 Seconds\`**\n> **Action by**: \`${member.user.tag}\``
+                content: `⏪ **Rewinded the song for \`10 Seconds\`**\n> Action by: \`${member.user.tag}\``
               })
               var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
               currentSongPlayMsg.edit(data).catch((e) => {

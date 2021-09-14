@@ -94,7 +94,7 @@ module.exports = {
 				}
 				await newQueue.setFilter(["customspeed"]);
 				message.reply({
-					content: `♨️ **Sets the Speed to ${speed_amount}!**\n> **Action by**: \`${member.user.tag}\``
+					content: `♨️ **Sets the Speed to ${speed_amount}!**\n> Action by: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

@@ -96,7 +96,7 @@ module.exports = {
 				}
 				await newQueue.setFilter(toAdded);
 				message.reply({
-					content: `♨️ **Added ${toAdded.length} ${toAdded.length == filters.length ? "Filters": `of ${filters.length} Filters! The Rest was already a part of the Filters!`} **\n> **Action by**: \`${member.user.tag}\``
+					content: `♨️ **Added ${toAdded.length} ${toAdded.length == filters.length ? "Filters": `of ${filters.length} Filters! The Rest was already a part of the Filters!`} **\n> Action by: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

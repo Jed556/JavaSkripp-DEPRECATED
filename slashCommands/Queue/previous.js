@@ -80,7 +80,7 @@ module.exports = {
 				}
 				await newQueue.previous();
 				interaction.reply({
-					content: `▶️ **Now Playing the Previous Played Track!**\n> **Action by**: \`${member.user.tag}\``
+					content: `▶️ **Now Playing the Previous Played Track!**\n> Action by: \`${member.user.tag}\``
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)

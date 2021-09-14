@@ -97,15 +97,15 @@ module.exports = {
 				await newQueue.setRepeatMode(loop);
 				if (newQueue.repeatMode == 0) {
 					interaction.reply({
-						content: `${client.allEmojis.x} **Disabled the Loop Mode!**\n> **Action by**: \`${member.user.tag}\``
+						content: `${client.allEmojis.x} **Disabled the Loop Mode!**\n> Action by: \`${member.user.tag}\``
 					})
 				} else if (newQueue.repeatMode == 1) {
 					interaction.reply({
-						content: `🔁 **Enabled the __Song__-Loop** ||(Disabled the **Queue-Loop**)||\n> **Action by**: \`${member.user.tag}\``
+						content: `🔁 **Enabled the __Song__-Loop** ||(Disabled the **Queue-Loop**)||\n> Action by: \`${member.user.tag}\``
 					})
 				} else {
 					interaction.reply({
-						content: `🔂 **Enabled the __Queue__-Loop!** ||(Disabled the **Song-Loop**)||\n> **Action by**: \`${member.user.tag}\``
+						content: `🔂 **Enabled the __Queue__-Loop!** ||(Disabled the **Song-Loop**)||\n> Action by: \`${member.user.tag}\``
 					})
 				}
 			} catch (e) {
