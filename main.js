@@ -39,10 +39,10 @@ const client = new Discord.Client({
     ],
     presence: {
       activity: {
-        name: "server deploy", 
+        name: "Server Deploy", 
         type: "WATCHING", 
       },
-      status: "online"
+      status: "busy"
     }
 });
 
