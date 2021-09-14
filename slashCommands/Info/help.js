@@ -78,14 +78,14 @@ module.exports = {
           .setThumbnail(client.user.displayAvatarURL())
           .setTitle("HELP MENU 🔰 Commands")
           .setDescription(`[**Click here to invite me!**]( https://tinyurl.com/JavaSkripp )`)
-          .setFooter(`To see command Descriptions and Information, type: ${prefix}help [CMD NAME]`, client.user.displayAvatarURL());
-        const commands = (category) => {
+          .setFooter(`To see command Descriptions and Information, type: /info help [CMD NAME]`, client.user.displayAvatarURL());
+        const slashCommands = (category) => {
           return client.slashCommands.filter((cmd) => cmd.category === category).map((cmd) => `\`${cmd.name}\``);
         };
         try {
           for (let i = 0; i < client.slashCategories.length; i += 1) {
             const current = client.slashCategories[i];
-            const items = commands(current);
+            const items = slashCommands(current);
             embed.addField(`**${current.toUpperCase()} [${items.length}]**`, `> ${items.join(", ")}`);
           }
         } catch (e) {
