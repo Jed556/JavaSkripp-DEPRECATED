@@ -85,8 +85,13 @@ module.exports = {
 					embeds.push(embed);
 					k += 10; //Raise k to 10
 				}
-				embeds[embeds.length - 1] = embeds[embeds.length - 1]
-					.setFooter(ee.footertext + `\n${theSongs.length} Songs in the Queue | Duration: ${newQueue.formattedDuration}`, ee.footericon)
+				if (theSongs.length > 1){
+					embeds[embeds.length - 1] = embeds[embeds.length - 1]
+						.setFooter(ee.footertext + `\n${theSongs.length} Songs in Queue | Duration: ${newQueue.formattedDuration}`, ee.footericon)
+				} else {
+					embeds[embeds.length - 1] = embeds[embeds.length - 1]
+						.setFooter(ee.footertext + `\n${theSongs.length} Song in Queue | Duration: ${newQueue.formattedDuration}`, ee.footericon)
+				}
 				let pages = []
 				for (let i = 0; i < embeds.length; i += 3) {
 					pages.push(embeds.slice(i, i + 3));
