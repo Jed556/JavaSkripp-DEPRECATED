@@ -47,7 +47,6 @@ module.exports = {
       const {
         guild
       } = member;
-      let prefix = client.settings.get(guild.id, "prefix")
       let args = options.getString("specific_cmd");
       if (args && args.length > 0) {
         const embed = new MessageEmbed();
@@ -65,7 +64,7 @@ module.exports = {
         if (cmd.cooldown) embed.addField("**Cooldown**", `\`${cmd.cooldown} Seconds\``);
         else embed.addField("**Cooldown**", `\`${settings.default_cooldown_in_sec} Second\``);
         if (cmd.usage) {
-          embed.addField("**Usage**", `\`${prefix}${cmd.usage}\``);
+          embed.addField("**Usage**", `\`/${cmd.usage}\``);
           embed.setFooter("Syntax: <> = required, [] = optional");
         }
         return interaction.reply({

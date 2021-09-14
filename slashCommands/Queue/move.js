@@ -11,6 +11,7 @@ const {
 module.exports = {
 	name: "move", //the command name for the Slash Command
 	description: "Moves one Song to another Place", //the command description for Slash Command Overview
+	category: "Queue",
 	cooldown: 3,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]

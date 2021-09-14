@@ -11,6 +11,7 @@ const {
 module.exports = {
 	name: "clear", //the command name for the Slash Command
 	description: "Clears all Filters", //the command description for Slash Command Overview
+	category: "Filter",
 	cooldown: 5,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]

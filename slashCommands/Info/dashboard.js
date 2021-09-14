@@ -9,6 +9,7 @@ module.exports = {
   name: "dashboard", //the command name for execution & for helpcmd [OPTIONAL]
   cooldown: 1, //the command cooldown for execution & for helpcmd [OPTIONAL]
   description: "Sends a Link of the Dashboard", //the command description for helpcmd [OPTIONAL]
+  category: "Info",
   memberpermissions: [], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]
   requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
   alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]

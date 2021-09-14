@@ -27,6 +27,7 @@ module.exports = {
 			"Integer": {
 				name: "how_many",
 				description: "How many Songs from there do you want to remove? (Default: 1)",
+				category: "Queue",
 				required: false
 			}
 		}, //to use in the code: interacton.getInteger("ping_amount")

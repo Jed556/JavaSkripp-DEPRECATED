@@ -8,6 +8,7 @@ module.exports = {
   name: "defaultautoplay", //the command name for execution & for helpcmd [OPTIONAL]
   cooldown: 3, //the command cooldown for execution & for helpcmd [OPTIONAL]
   description: "Defines if Autoplay should be enabled on default or not!", //the command description for helpcmd [OPTIONAL]
+  category: "Settings",
   memberpermissions: ["MANAGE_GUILD "], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]
   requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
   alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]

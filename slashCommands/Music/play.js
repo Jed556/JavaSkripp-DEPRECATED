@@ -8,6 +8,7 @@ const settings = require("../../botconfig/settings.json");
 module.exports = {
 	name: "play", //the command name for the Slash Command
 	description: "Plays a Song/Playlist in your VoiceChannel", //the command description for Slash Command Overview
+	category: "Music",
 	cooldown: 2,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]

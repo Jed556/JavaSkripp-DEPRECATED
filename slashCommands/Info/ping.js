@@ -7,6 +7,7 @@ const settings = require("../../botconfig/settings.json");
 module.exports = {
 	name: "ping", //the command name for the Slash Command
 	description: "Gives you information on how fast the Bot is", //the command description for Slash Command Overview
+	category: "Info",
 	cooldown: 1,
 	memberpermissions: [], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]

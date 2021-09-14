@@ -12,6 +12,7 @@ const FiltersSettings = require("../../botconfig/filters.json");
 module.exports = {
 	name: "set", //the command name for the Slash Command
 	description: "Sets (Overwrides) all Filters", //the command description for Slash Command Overview
+	category: "Filter",
 	cooldown: 5,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]

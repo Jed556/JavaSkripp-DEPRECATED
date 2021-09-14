@@ -10,6 +10,7 @@ module.exports = {
   cooldown: 3, //the command cooldown for execution & for helpcmd [OPTIONAL]
   usage: "defaultfilter", //the command usage for helpcmd [OPTIONAL]
   description: "Defines the Default Filter(s)", //the command description for helpcmd [OPTIONAL]
+  category: "Settings",
   memberpermissions: ["MANAGE_GUILD "], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]
   requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
   alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL], //Only allow specific Users to execute a Command [OPTIONAL]

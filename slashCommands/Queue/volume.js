@@ -11,6 +11,7 @@ const {
 module.exports = {
 	name: "volume", //the command name for the Slash Command
 	description: "Adjusts the Volume of the Music", //the command description for Slash Command Overview
+	category: "Queue",
 	cooldown: 1,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]

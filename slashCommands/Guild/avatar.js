@@ -9,6 +9,7 @@ const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
 module.exports = {
     name: "avatar", //the command name for the Slash Command
 	description: "Displays mentioned user's or command user's avatar", //the command description for Slash Command Overview
+	category: "Guild",
 	cooldown: 1,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
