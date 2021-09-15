@@ -24,7 +24,7 @@ module.exports = {
 		}, 
 	],
 	
-    run: async (interaction) => {
+    run: async (client, interaction) => {
         const google = new Scraper({
             puppeteer: {
                 headless: true,
@@ -32,7 +32,7 @@ module.exports = {
             }
         })
         
-        const imageQuery = interaction.options.getString("search");
+        const imageQuery = await interaction.options.getString("search");
 
         const imageResults = google.scrape(imageQuery, 1);
         interaction.reply(imageResults[0].url)
