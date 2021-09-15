@@ -1,3 +1,6 @@
+const {
+    MessageEmbed
+} = require(`discord.js`);
 const ee = require("../../botconfig/embed.json");
 
 module.exports = {
