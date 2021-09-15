@@ -1,6 +1,5 @@
 const { Client, CommandInteraction } = require('discord.js');
 const Scraper = require('images-scraper');
-const puppeteer = require('puppeteer');
 
 /**
  *
@@ -24,6 +23,7 @@ module.exports = {
 			}
 		}, 
 	],
+	
     run: async (interaction) => {
         const google = new Scraper({
             puppeteer: {
@@ -32,7 +32,7 @@ module.exports = {
             }
         })
         
-        const imageQuery = interaction.options.getString('search')
+        const imageQuery = interaction.options.getString("search");
 
         const imageResults = google.scrape(imageQuery, 1);
         interaction.reply(imageResults[0].url)
