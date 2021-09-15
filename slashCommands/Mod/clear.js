@@ -9,7 +9,7 @@ const { Client, CommandInteraction, MessageEmbed} = require('discord.js');
 
 module.exports = {
    name: "clear",
-   description: "Clear messages",
+   description: "Bulk delete messages",
    category: "Mod",
    cooldown: 2,
    memberpermissions: ["MANAGE_MESSAGES"],
@@ -17,7 +17,7 @@ module.exports = {
     {
         "Integer": {
             name: "amount",
-            description: "Amount of messages to delete",
+            description: "Amount of messages to delete (Max: 100)",
             required: true
         }
     },
@@ -33,6 +33,8 @@ module.exports = {
         const Target = interaction.options.getUser('target');
         const Channel = interaction.channel;
         const Messages = Channel.messages.fetch();
+
+        if (Amount > 100) return interaction.reply({embeds: [new MessageEmbed().setColor('RED').setDescription(`Exceeded max amount of 100 messages`)]})
 
         if (Target) {
             const TargetMessages = (await Messages).filter((m) => m.author.id === Target.id);
