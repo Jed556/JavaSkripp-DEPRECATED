@@ -35,7 +35,6 @@ module.exports = {
         const imageQuery = await interaction.options.getString("search");
 
         const results = await google.scrape(imageQuery, 1);
-		console.log(results);
-        interaction.reply(results.url);
+        interaction.reply(results[0].url)
     }
 }
