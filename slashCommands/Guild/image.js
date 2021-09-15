@@ -1,5 +1,6 @@
 const { Client, CommandInteraction } = require('discord.js');
-const fotology = require('fotology');
+const Scraper = require('images-scraper');
+const puppeteer = require('puppeteer');
 
 /**
  *
@@ -23,20 +24,17 @@ module.exports = {
 			}
 		}, 
 	],
-    run: async (client, interaction) => {
-        const config = {
-			size: "large",
-			language: "en",
-			safe: true,
-			rights: "cc_publicdomain"
-		}
+    run: async (interaction) => {
+        const google = new Scraper({
+            puppeteer: {
+                headless: true,
+                args: ["--no-sandbox"]
+            }
+        })
+        
+        const imageQuery = interaction.options.getString('search')
 
-		const imageQuery = interaction.options.getString('search')
-
-		fotology(imageQuery, config)
-		.then(function (imageURLs) {
-			for (i in imageURLs)
-				interaction.reply(imageURLs[i])
-		})
+        const imageResults = google.scrape(imageQuery, 1);
+        interaction.reply(imageResults[0].url)
     }
 }

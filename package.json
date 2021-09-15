@@ -14,7 +14,6 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "ffmpeg-static": "^4.4.0",
-    "fotology": "^1.2.2",
     "http": "^0.0.1-security",
     "images-scraper": "^6.4.0",
     "libsodium-wrappers": "^0.7.9",
@@ -24,6 +23,7 @@
     "os": "^0.1.2",
     "passport": "^0.4.1",
     "passport-discord": "^0.1.4",
+    "puppeteer": "^10.2.0",
     "session": "^0.1.0",
     "url": "^0.11.0"
   },
