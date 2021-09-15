@@ -1,11 +1,4 @@
-const { channel } = require('diagnostics_channel');
-const { Client, CommandInteraction, MessageEmbed} = require('discord.js');
-
-/**
-*
-* @param {Client} client
-* @param {CommandInteraction} interaction
-*/
+const ee = require("../../botconfig/embed.json");
 
 module.exports = {
    name: "clear",
@@ -43,6 +36,6 @@ module.exports = {
                 Channel.bulkDelete(Amount, true);
                 interaction.reply({embeds: [new MessageEmbed().setColor('GREEN').setDescription(`Deleted ${Amount} messages in ${Channel}`)]})
             }
-        } else interaction.reply({embeds: [new MessageEmbed().setColor('RED').setDescription(`Exceeded max amount of 100 messages`)]})
+        } else interaction.reply({embeds: [new MessageEmbed().setColor(ee.wrongcolor).setDescription(`${client.allEmojis.x} Exceeded max amount of 100 messages`)]})
    }
 }
