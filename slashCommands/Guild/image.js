@@ -36,6 +36,6 @@ module.exports = {
 
         const results = await google.scrape(imageQuery, 1);
 		console.log(results);
-        await interaction.reply(results.url);
+        interaction.reply(results.url);
     }
 }
