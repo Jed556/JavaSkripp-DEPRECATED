@@ -33,10 +33,9 @@ module.exports = {
         })
 
         const search = interaction.options.getString("search");
-		const query = search.join(" ")
-
 		interaction.reply(`🔍 Searching... \`\`\`${search}\`\`\``)
-        const results = await google.scrape(query, 1);
+		
+        const results = await google.scrape(search, 1);
         interaction.editReply(results[0].url);
     }
 }
