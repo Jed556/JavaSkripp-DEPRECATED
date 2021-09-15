@@ -34,7 +34,8 @@ module.exports = {
         const Channel = interaction.channel;
         const Messages = Channel.messages.fetch();
 
-        if (Target) {
+        if (Amount <= 100) {
+            if (Target) {
                 const TargetMessages = (await Messages).filter((m) => m.author.id === Target.id);
                 await Channel.bulkDelete(TargetMessages, true);
                 interaction.reply({embeds: [new MessageEmbed().setColor('GREEN').setDescription(`Deleted ${Amount} messages sent by ${Target}`)]})
@@ -42,5 +43,6 @@ module.exports = {
                 Channel.bulkDelete(Amount, true);
                 interaction.reply({embeds: [new MessageEmbed().setColor('GREEN').setDescription(`Deleted ${Amount} messages in ${Channel}`)]})
             }
+        } else interaction.reply({embeds: [new MessageEmbed().setColor('RED').setDescription(`Exceeded max amount of 100 messages`)]})
    }
 }
