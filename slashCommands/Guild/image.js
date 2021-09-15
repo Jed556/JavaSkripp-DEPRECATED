@@ -31,10 +31,12 @@ module.exports = {
                 args: ["--no-sandbox"]
             }
         })
-        
-        const imageQuery = await interaction.options.getString("search");
 
-        const results = await google.scrape(imageQuery, 1);
-        interaction.reply(results[0].url)
+        const search = interaction.options.getString("search");
+		const query = search.join(" ")
+
+		interaction.reply(`🔍 Searching... \`\`\`${search}\`\`\``)
+        const results = await google.scrape(query, 1);
+        interaction.editReply(results[0].url);
     }
 }
