@@ -107,8 +107,8 @@ client.infos = new Enmap({ name: "infos", dataDir: "./databases/infos"});
 
 
 //Require the Handlers
-//          Add the commands file if enabled                         Add the antiCrash file if enabled
-["events",  settings.commands ? "commands" : null , "slashCommands", settings.antiCrash ? "antiCrash" : null, "distubeEvent"]
+//         Add the commands file if enabled                         Add the antiCrash file if enabled
+["events", settings.commands ? "commands" : null , "slashCommands", settings.antiCrash ? "antiCrash" : null, "distubeEvent"]
     .filter(Boolean)
     .forEach(h => {
         require(`./handlers/${h}`)(client);
