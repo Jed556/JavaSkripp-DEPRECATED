@@ -4,13 +4,13 @@ module.exports = async (client) => {
     try {
         try {
             const stringlength = 30;
-            console.log("\n")
-            console.log(`┏━━━━━━━━━━━━━━━━━┓`.bold.brightGreen)
-            console.log(`┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen)
-            console.log(`┃ `.bold.brightGreen + `COMMAND HANDLER`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - `COMMAND HANDLER`.length) + "┃".bold.brightGreen)
-            console.log(`┃ `.bold.brightGreen + `/-/ Discord: Jed556#4147 /-/`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - `/-/ By Discord: Jed556#4147 /-/`.length) + "   ┃".bold.brightGreen)
-            console.log(`┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen)
-            console.log(`┗━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
+            console.log("\n" +
+            `┏━━━━━━━━━━━━━━━━━┓`.bold.brightGreen+ "\n" +
+            `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
+            `┃ `.bold.brightGreen + `COMMAND HANDLER`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - `COMMAND HANDLER`.length) + "┃".bold.brightGreen + "\n" +
+            `┃ `.bold.brightGreen + `/-/ Discord: Jed556#4147 /-/`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - `/-/ By Discord: Jed556#4147 /-/`.length) + "   ┃".bold.brightGreen + "\n" +
+            `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
+            `┗━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
         } catch {
             /* */ }
         let amount = 0;
@@ -32,12 +32,12 @@ module.exports = async (client) => {
         console.log(`\n${amount} Events Loaded`.brightGreen);
         try {
             const stringlength2 = 31;
-            console.log("\n")
-            console.log(`┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓`.bold.yellow)
-            console.log(`┃ `.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length) + "┃".bold.yellow)
-            console.log(`┃ `.bold.yellow + `Logging into the BOT...`.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length - `Logging into the BOT...`.length) + "┃".bold.yellow)
-            console.log(`┃ `.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length) + "┃".bold.yellow)
-            console.log(`┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.yellow)
+            console.log("\n" +
+            `┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓`.bold.yellow + "\n" +
+            `┃ `.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length) + "┃".bold.yellow + "\n" +
+            `┃ `.bold.yellow + `Logging into the BOT...`.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length - `Logging into the BOT...`.length) + "┃".bold.yellow + "\n" +
+            `┃ `.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length) + "┃".bold.yellow + "\n" +
+            `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.yellow)
         } catch {
             /* */ }
     } catch (e) {
