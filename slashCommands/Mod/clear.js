@@ -28,20 +28,24 @@ module.exports = {
         }
     }],
     run: async (client, interaction) => {
-        const Amount = interaction.options.getInteger("amount");
-        const Target = interaction.options.getUser("target");
-        const Channel = interaction.channel;
-        const Messages = Channel.messages.fetch();
+        try {
+            const Amount = interaction.options.getInteger("amount");
+            const Target = interaction.options.getUser("target");
+            const Channel = interaction.channel;
+            const Messages = Channel.messages.fetch();
 
-        if (Amount <= 100) {
-            if (Target) {
-                const TargetMessages = (await Messages).filter((m) => m.author.id === Target.id);
-                await Channel.bulkDelete(TargetMessages, true);
-                interaction.reply({embeds: [new MessageEmbed().setColor(ee.color).setDescription(`Deleted ${Amount} messages sent by ${Target}`)]})
-            } else {
-                Channel.bulkDelete(Amount, true);
-                interaction.reply({embeds: [new MessageEmbed().setColor(ee.color).setDescription(`Deleted ${Amount} messages in ${Channel}`)]})
-            }
-        } else interaction.reply({embeds: [new MessageEmbed().setColor(ee.wrongcolor).setDescription(`${client.allEmojis.x} Exceeded max amount of 100 messages`)]})
+            if (Amount <= 100) {
+                if (Target) {
+                    const TargetMessages = (await Messages).filter((m) => m.author.id === Target.id);
+                    await Channel.bulkDelete(TargetMessages, true);
+                    interaction.reply({embeds: [new MessageEmbed().setColor(ee.color).setDescription(`Deleted ${Amount} messages sent by ${Target}`)]})
+                } else {
+                    Channel.bulkDelete(Amount, true);
+                    interaction.reply({embeds: [new MessageEmbed().setColor(ee.color).setDescription(`Deleted ${Amount} messages in ${Channel}`)]})
+                }
+            } else interaction.reply({embeds: [new MessageEmbed().setColor(ee.wrongcolor).setDescription(`${client.allEmojis.x} Exceeded max amount of 100 messages`)]})
+        }catch (e) {
+			console.log(String(e.stack).bgRed)
+   		}
    }
 }

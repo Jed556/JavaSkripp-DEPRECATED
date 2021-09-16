@@ -25,17 +25,21 @@ module.exports = {
 	],
 	
     run: async (client, interaction) => {
-        const google = new Scraper({
-            puppeteer: {
-                headless: true,
-                args: ["--no-sandbox"]
-            }
-        })
+		try {
+			const google = new Scraper({
+				puppeteer: {
+					headless: true,
+					args: ["--no-sandbox"]
+				}
+			})
 
-        const search = interaction.options.getString("search");
-		interaction.reply(`🔍 Searching... \`\`\`${search}\`\`\``)
-		
-        const results = await google.scrape(search, 1);
-        interaction.editReply(results[0].url);
+			const search = interaction.options.getString("search");
+			interaction.reply(`🔍 Searching... \`\`\`${search}\`\`\``)
+			
+			const results = await google.scrape(search, 1);
+			interaction.editReply(results[0].url);
+		}catch (e) {
+			console.log(String(e.stack).bgRed)
+	   }
     }
 }
