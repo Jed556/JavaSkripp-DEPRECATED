@@ -30,13 +30,14 @@ module.exports = {
 				puppeteer: {
 					headless: true,
 					args: ["--no-sandbox"]
-				}
+				},
+				safe: true
 			})
 
 			const search = interaction.options.getString("search");
 			interaction.reply(`🔍 Searching... \`\`\`${search}\`\`\``)
 			
-			const results = await google.scrape(search, 1);
+			const results = await google.scrape(search, 20);
 			interaction.editReply(results[0].url);
 		}catch (e) {
 			console.log(String(e.stack).bgRed)
