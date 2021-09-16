@@ -29,8 +29,7 @@ module.exports = async (client) => {
             }
         }
         await ["client", "guild"].forEach(e => load_dir(e));
-        console.log("\n")
-        console.log(`${amount} Events Loaded`.brightGreen);
+        console.log(`\n${amount} Events Loaded`.brightGreen);
         try {
             const stringlength2 = 31;
             console.log("\n")

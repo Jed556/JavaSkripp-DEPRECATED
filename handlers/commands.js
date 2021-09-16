@@ -20,7 +20,7 @@ module.exports = (client) => {
                 if (pull.aliases && Array.isArray(pull.aliases)) pull.aliases.forEach((alias) => client.aliases.set(alias, pull.name));
             }
         });
-        console.log(`${amount} Commands Loaded`.brightGreen);
+        console.log(`\n${amount} Commands Loaded`.brightGreen);
     } catch (e) {
         console.log(String(e.stack).bgRed)
     }
