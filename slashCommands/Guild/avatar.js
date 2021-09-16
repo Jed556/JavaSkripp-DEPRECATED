@@ -1,4 +1,9 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, CommandInteraction } = require('discord.js');
+
+/**
+ * 
+ * @param {CommandInteraction} interaction
+ */
 
 module.exports = {
     name: "avatar", //the command name for the Slash Command

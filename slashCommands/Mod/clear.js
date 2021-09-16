@@ -1,5 +1,10 @@
-const { MessageEmbed } = require(`discord.js`);
+const { MessageEmbed, CommandInteraction } = require(`discord.js`);
 const ee = require("../../botconfig/embed.json");
+
+/**
+ * 
+ * @param {CommandInteraction} interaction
+ */
 
 module.exports = {
    name: "clear",
@@ -32,10 +37,10 @@ module.exports = {
             if (Target) {
                 const TargetMessages = (await Messages).filter((m) => m.author.id === Target.id);
                 await Channel.bulkDelete(TargetMessages, true);
-                interaction.reply({embeds: [new MessageEmbed().setColor('GREEN').setDescription(`Deleted ${Amount} messages sent by ${Target}`)]})
+                interaction.reply({embeds: [new MessageEmbed().setColor(ee.color).setDescription(`Deleted ${Amount} messages sent by ${Target}`)]})
             } else {
                 Channel.bulkDelete(Amount, true);
-                interaction.reply({embeds: [new MessageEmbed().setColor('GREEN').setDescription(`Deleted ${Amount} messages in ${Channel}`)]})
+                interaction.reply({embeds: [new MessageEmbed().setColor(ee.color).setDescription(`Deleted ${Amount} messages in ${Channel}`)]})
             }
         } else interaction.reply({embeds: [new MessageEmbed().setColor(ee.wrongcolor).setDescription(`${client.allEmojis.x} Exceeded max amount of 100 messages`)]})
    }

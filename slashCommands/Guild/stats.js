@@ -1,5 +1,10 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, CommandInteraction } = require('discord.js');
 const moment = require('moment')
+
+/**
+ * 
+ * @param {CommandInteraction} interaction
+ */
 
 module.exports = {
     name: "stats", //the command name for the Slash Command
