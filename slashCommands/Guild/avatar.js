@@ -1,9 +1,10 @@
-const { MessageEmbed, CommandInteraction } = require('discord.js');
+const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
 
 /**
- * 
- * @param {CommandInteraction} interaction
- */
+*
+* @param {Client} client
+* @param {CommandInteraction} interaction
+*/
 
 module.exports = {
     name: "avatar", //the command name for the Slash Command
@@ -22,9 +23,8 @@ module.exports = {
 		}, 
 	],
     
-    run: async (interaction) => {
+    run: async (client, interaction) => {
 		try {
-			
 			const Target = interaction.options.getUser("target")
 
 			const Response = new MessageEmbed()

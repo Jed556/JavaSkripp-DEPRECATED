@@ -1,10 +1,11 @@
-const { MessageEmbed, CommandInteraction } = require('discord.js');
+const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
 const moment = require('moment')
 
 /**
- * 
- * @param {CommandInteraction} interaction
- */
+*
+* @param {Client} client
+* @param {CommandInteraction} interaction
+*/
 
 module.exports = {
     name: "stats", //the command name for the Slash Command
@@ -22,8 +23,8 @@ module.exports = {
 			}
 		}, 
 	],
-    run: async (interaction) => {
-        const Target = interaction.options.getUser("target")
+    run: async (client, interaction) => {
+        const Target = interaction.options.getMember('target')
 
         const Info = new MessageEmbed()
         .setAuthor(`${Target.user.username}`, Target.user.displayAvatarURL({dynamic: true}))
