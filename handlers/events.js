@@ -11,8 +11,8 @@ module.exports = async (client) => {
             `┃ `.bold.brightGreen + `/-/ Discord: Jed556#4147 /-/`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - `/-/ By Discord: Jed556#4147 /-/`.length) + "   ┃".bold.brightGreen + "\n" +
             `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
             `┗━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
-        } catch {
-            /* */ }
+        } catch (e) {
+            console.log(e)}
         let amount = 0;
         const load_dir = (dir) => {
             const event_files = fs.readdirSync(`./events/${dir}`).filter((file) => file.endsWith(".js"));
