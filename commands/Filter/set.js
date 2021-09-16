@@ -98,7 +98,11 @@ module.exports = {
 				}
 				await newQueue.setFilter(filters);
 				message.reply({
-					content: `♨️ **Set ${amount} Filters!**\n> Action by: \`${member.user.tag}\``
+					embeds: [new MessageEmbed()
+					  .setColor(ee.color)
+					  .setTimestamp()
+					  .setTitle(`♨️ **Set ${amount} Filters!**`)
+					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
@@ -116,4 +120,3 @@ module.exports = {
 		}
 	}
 }
-

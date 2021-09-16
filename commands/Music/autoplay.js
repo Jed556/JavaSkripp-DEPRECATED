@@ -77,7 +77,11 @@ module.exports = {
 				}
 				await newQueue.toggleAutoplay();
 				message.reply({
-					content: `**${newQueue.autoplay ? `${client.allEmojis.check_mark} Enabled` :`${client.allEmojis.x} Disabled`} Autoplay!**\n> Action by: \`${member.user.tag}\``
+					embeds: [new MessageEmbed()
+					  .setColor(ee.color)
+					  .setTimestamp()
+					  .setTitle(`**${newQueue.autoplay ? `${client.allEmojis.check_mark} Enabled` :`${client.allEmojis.x} Disabled`} Autoplay!**`)
+					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
@@ -95,4 +99,3 @@ module.exports = {
 		}
 	}
 }
-

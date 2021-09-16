@@ -11,6 +11,7 @@ const {
 module.exports = {
 	name: "remove", //the command name for the Slash Command
 	description: "Removes one+ Song(s)", //the command description for Slash Command Overview
+	category: "Queue",
 	cooldown: 1,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
@@ -27,7 +28,6 @@ module.exports = {
 			"Integer": {
 				name: "how_many",
 				description: "How many Songs from there do you want to remove? (Default: 1)",
-				category: "Queue",
 				required: false
 			}
 		}, //to use in the code: interacton.getInteger("ping_amount")
@@ -121,7 +121,11 @@ module.exports = {
 				})
 				newQueue.songs.splice(songIndex, amount);
 				interaction.reply({
-					content: `🗑 **Removed ${amount} Song${amount > 1 ?"s": ""} out of the Queue!**\n> Action by: \`${member.user.tag}\``
+					embeds: [new MessageEmbed()
+					  .setColor(ee.color)
+					  .setTimestamp()
+					  .setTitle(`🗑 **Removed ${amount} Song${amount > 1 ?"s": ""} out of the Queue!**`)
+					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
@@ -139,4 +143,3 @@ module.exports = {
 		}
 	}
 }
-

@@ -82,7 +82,11 @@ module.exports = {
 				}
 				await newQueue.previous();
 				message.reply({
-					content: `▶️ **Now Playing the Previous Played Track!**\n> Action by: \`${member.user.tag}\``
+					embeds: [new MessageEmbed()
+					  .setColor(ee.color)
+					  .setTimestamp()
+					  .setTitle(`▶️ **Now Playing the Previous Played Track!**`)
+					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
@@ -100,4 +104,3 @@ module.exports = {
 		}
 	}
 }
-

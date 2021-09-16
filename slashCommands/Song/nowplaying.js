@@ -11,13 +11,11 @@ const {
 module.exports = {
 	name: "nowplaying", //the command name for the Slash Command
 	category: "Song",
-	usage: "nowplaying",
-	aliases: ["np", "current"],
 	description: "Shows the current Playing Song", //the command description for Slash Command Overview
-	cooldown: 1,
+	cooldown: 2,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
-	run: async (client, message, args) => {
+	run: async (client, interaction) => {
 		try {
 			//things u can directly access in an interaction!
 			const {
@@ -32,39 +30,40 @@ module.exports = {
 				options,
 				id,
 				createdTimestamp
-			} = message;
+			} = interaction;
 			const {
 				guild
 			} = member;
 			const {
 				channel
 			} = member.voice;
-			if (!channel) return message.reply({
+			if (!channel) return interaction.reply({
 				embeds: [
 					new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!**`)
 				],
-
+				ephemeral: true
 			})
 			if (channel.guild.me.voice.channel && channel.guild.me.voice.channel.id != channel.id) {
-				return message.reply({
+				return interaction.reply({
 					embeds: [new MessageEmbed()
 						.setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
 						.setTitle(`${client.allEmojis.x} Join __my__ Voice Channel!`)
 						.setDescription(`<#${guild.me.voice.channel.id}>`)
 					],
+					ephemeral: true
 				});
 			}
 			try {
 				let newQueue = client.distube.getQueue(guildId);
-				if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return message.reply({
+				if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
 					embeds: [
 						new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **I am nothing Playing right now!**`)
 					],
-
+					ephemeral: true
 				})
 				let newTrack = newQueue.songs[0];
-				message.reply({
+				interaction.reply({
 					content: `${client.settings.get(guild.id, "prefix")}play ${newTrack.url}`,
 					embeds: [
 						new MessageEmbed().setColor(ee.color)
@@ -76,8 +75,8 @@ module.exports = {
 						.addField(`🔊 Volume:`, `>>> \`${newQueue.volume} %\``, true)
 						.addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check_mark} \`Queue\`` : `${client.allEmojis.check_mark} \`Song\`` : `${client.allEmojis.x}`}`, true)
 						.addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check_mark}` : `${client.allEmojis.x}`}`, true)
-						.addField(`❔ Download Song:`, `>>> [\`Click here\`](${newTrack.streamURL})`, true)
-						.addField(`❔ Filter${newQueue.filters.length > 0 ? "s": ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f=>`\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
+						.addField(`⬇ Download Song:`, `>>> [\`Click here\`](${newTrack.streamURL})`, true)
+						.addField(`🎙 Filter${newQueue.filters.length > 0 ? "s": ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f=>`\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
 						.addField(`<:Youtube:840260133686870036>  View${newTrack.views > 0 ? "s": ""}:`, `>>> \`${newTrack.views}\``, true)
 						.addField(`:thumbsup: Like${newTrack.likes > 0 ? "s": ""}:`, `>>> \`${newTrack.likes}\``, true)
 						.addField(`:thumbsdown: Dislike${newTrack.dislikes > 0 ? "s": ""}:`, `>>> \`${newTrack.dislikes}\``, true)
@@ -91,13 +90,13 @@ module.exports = {
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
-				message.reply({
+				interaction.editReply({
 					content: `${client.allEmojis.x} | Error: `,
 					embeds: [
 						new MessageEmbed().setColor(ee.wrongcolor)
 						.setDescription(`\`\`\`${e}\`\`\``)
 					],
-
+					ephemeral: true
 				})
 			}
 		} catch (e) {
@@ -105,4 +104,3 @@ module.exports = {
 		}
 	}
 }
-

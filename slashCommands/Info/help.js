@@ -48,6 +48,8 @@ module.exports = {
       const {
         guild
       } = member;
+      
+      let prefix = client.settings.get(guild.id, "prefix")
       let args = options.getString("specific_cmd");
       if (args && args.length > 0) {
         const embed = new MessageEmbed();
@@ -110,4 +112,3 @@ module.exports = {
     }
   }
 }
-

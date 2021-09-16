@@ -94,7 +94,11 @@ module.exports = {
 				}
 				await newQueue.setFilter(["customspeed"]);
 				message.reply({
-					content: `♨️ **Sets the Speed to ${speed_amount}!**\n> Action by: \`${member.user.tag}\``
+					embeds: [new MessageEmbed()
+					  .setColor(ee.color)
+					  .setTimestamp()
+					  .setTitle(`♨️ **Set the Speed to ${speed_amount}!**`)
+					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
@@ -112,4 +116,3 @@ module.exports = {
 		}
 	}
 }
-

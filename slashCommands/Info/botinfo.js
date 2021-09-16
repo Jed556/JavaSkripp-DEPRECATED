@@ -34,7 +34,7 @@ module.exports = {
                         .setAuthor(client.user.username, client.user.displayAvatarURL())
                         .setTitle("__**Stats:**__")
                         .setColor(ee.color)
-                        .addField("⏳ Memory Usage", `\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(os.totalmem() / 1024 / 1024).toFixed(2)}MB\``, true)
+                        .addField("⏳ Memory Usage", `\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}/ ${(os.totalmem() / 1024 / 1024).toFixed(2)}MB\``, true)
                         .addField("⌚️ Uptime ", `${duration(client.uptime).map(i=>`\`${i}\``).join(", ")}`, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("📁 Users", `\`Total: ${client.users.cache.size} Users\``, true)
@@ -52,7 +52,7 @@ module.exports = {
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
                         .addField("API Latency", `\`${client.ws.ping}ms\``, true)
-                        .setFooter("Coded by: Jed556#4147", "https://cdn.discordapp.com/avatars/839430747088617472/2c0949a1f43172e7735381dfb0000dbb.png");
+                        .setFooter("Coded by: Tomato#6966", "https://cdn.discordapp.com/avatars/442355791412854784/a_d5591ce201b3018a7aa06c3f77d4b6f0.gif?size=512");
                     interaction.reply({
                         embeds: [botinfo]
                     });

@@ -78,7 +78,11 @@ module.exports = {
 				let amount = newQueue.songs.length - 2;
 				newQueue.songs = [newQueue.songs[0]];
 				message.reply({
-					content: `🗑 **Cleared the Queue and deleted ${amount} Songs!**\n> Action by: \`${member.user.tag}\``
+					embeds: [new MessageEmbed()
+					  .setColor(ee.color)
+					  .setTimestamp()
+					  .setTitle(`🗑 **Cleared the Queue and deleted ${amount} Songs!**`)
+					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
@@ -96,4 +100,3 @@ module.exports = {
 		}
 	}
 }
-

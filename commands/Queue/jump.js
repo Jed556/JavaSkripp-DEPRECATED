@@ -95,7 +95,11 @@ module.exports = {
 				})
 				await newQueue.jump(Position);
 				message.reply({
-					content: `👌 **Jumped to the \`${Position}th\` Song in the Queue!**\n> Action by: \`${member.user.tag}\``
+					embeds: [new MessageEmbed()
+					  .setColor(ee.color)
+					  .setTimestamp()
+					  .setTitle(`👌 **Jumped to the \`${Position}th\` Song in the Queue!**`)
+					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
@@ -113,4 +117,3 @@ module.exports = {
 		}
 	}
 }
-

@@ -76,7 +76,11 @@ module.exports = {
 				}
 				await newQueue.seek(seekNumber);
 				message.reply({
-					content: `🔃 **Replaying the current Song!**\n> Action by: \`${member.user.tag}\``
+					embeds: [new MessageEmbed()
+					  .setColor(ee.color)
+					  .setTimestamp()
+					  .setTitle(`🔃 **Replaying the current Song!**`)
+					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
@@ -94,4 +98,3 @@ module.exports = {
 		}
 	}
 }
-

@@ -120,7 +120,11 @@ module.exports = {
 				})
 				newQueue.songs.splice(songIndex, amount);
 				message.reply({
-					content: `🗑 **Removed ${amount} Song${amount > 1 ?"s": ""} out of the Queue!**\n> Action by: \`${member.user.tag}\``
+					embeds: [new MessageEmbed()
+					  .setColor(ee.color)
+					  .setTimestamp()
+					  .setTitle(`🗑 **Removed ${amount} Song${amount > 1 ?"s": ""} out of the Queue!**`)
+					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
@@ -138,4 +142,3 @@ module.exports = {
 		}
 	}
 }
-

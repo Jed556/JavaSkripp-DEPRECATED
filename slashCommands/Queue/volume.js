@@ -98,7 +98,11 @@ module.exports = {
 				})
 				await newQueue.setVolume(volume);
 				interaction.reply({
-					content: `🔊 **Changed the Volume to \`${volume}\`!**\n> Action by: \`${member.user.tag}\``
+					embeds: [new MessageEmbed()
+					  .setColor(ee.color)
+					  .setTimestamp()
+					  .setTitle(`🔊 **Changed the Volume to \`${volume}\`!**`)
+					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
@@ -116,4 +120,3 @@ module.exports = {
 		}
 	}
 }
-

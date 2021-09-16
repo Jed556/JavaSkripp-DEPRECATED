@@ -25,4 +25,3 @@ module.exports = client => {
     console.log(String(e.stack).grey.italic.dim.bgRed)
   }
 }
-

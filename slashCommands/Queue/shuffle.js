@@ -73,9 +73,13 @@ module.exports = {
 						ephemeral: true
 					});
 				}
-				await newQueue.shuffle(volume);
+				await newQueue.shuffle();
 				interaction.reply({
-					content: `🔀 **Suffled ${newQueue.songs.length} Songs!**\n> Action by: \`${member.user.tag}\``
+					embeds: [new MessageEmbed()
+					  .setColor(ee.color)
+					  .setTimestamp()
+					  .setTitle(`🔀 **Suffled ${newQueue.songs.length} Songs!**`)
+					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
 				})
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
@@ -93,4 +97,3 @@ module.exports = {
 		}
 	}
 }
-
