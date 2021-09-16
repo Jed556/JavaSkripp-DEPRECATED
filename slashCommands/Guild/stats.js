@@ -1,9 +1,8 @@
-const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
+const { CommandInteraction, MessageEmbed } = require('discord.js');
 const moment = require('moment')
 
 /**
 *
-* @param {Client} client
 * @param {CommandInteraction} interaction
 */
 
@@ -23,8 +22,22 @@ module.exports = {
 			}
 		}, 
 	],
-    run: async (client, interaction) => {
-        const Target = interaction.options.getMember('target')
+    run: async (interaction) => {
+        const {
+            member,
+            channelId,
+            guildId,
+            applicationId,
+            commandName,
+            deferred,
+            replied,
+            ephemeral,
+            options,
+            id,
+            createdTimestamp
+        } = interaction;
+
+        const Target = options.getUser("target")
 
         const Info = new MessageEmbed()
         .setAuthor(`${Target.user.username}`, Target.user.displayAvatarURL({dynamic: true}))
