@@ -36,8 +36,8 @@ module.exports = {
         embeds: [new MessageEmbed()
           .setColor(ee.color)
           .setFooter(ee.footertext, ee.footericon)
-          .setTitle(`:gear: **[${client.commands.size + client.slashCommands.size}] Commands Loaded**`)
-          .setDescription(`:gear: **[${client.commands.size}] \n:gear: **[${client.categories.length}] Categories**\n\n:gear: **[${client.slashCommands.size + client.slashCommands.map(d => d.options).flat().length}] Slash Commands\n:gear: **[${client.slashCategories.length}] Categories**\n`)
+          .setTitle(`:gear: **[${client.commands.size + client.slashCommands.size}] Total Commands Loaded**`)
+          .setDescription(`:gear: **[${client.commands.size}] Commands**\n:gear: **[${client.categories.length}] Categories**\n\n:gear: **[${client.slashCommands.size + client.slashCommands.map(d => d.options).flat().length}] Slash Commands\n:gear: **[${client.slashCategories.length}] Categories**\n`)
         ]
       });
     } catch (e) {
