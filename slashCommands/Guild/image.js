@@ -1,11 +1,5 @@
-const { Client, CommandInteraction } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const Scraper = require('images-scraper');
-
-/**
- *
- * @param {Client} client
- * @param {CommandInteraction} interaction
- */
 
 module.exports = {
     name: "image", //the command name for the Slash Command
@@ -24,7 +18,7 @@ module.exports = {
 		}, 
 	],
 	
-    run: async (client, interaction) => {
+    run: async (interaction) => {
         const google = new Scraper({
             puppeteer: {
                 headless: true,

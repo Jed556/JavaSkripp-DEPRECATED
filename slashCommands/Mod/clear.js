@@ -1,6 +1,4 @@
-const {
-    MessageEmbed
-} = require(`discord.js`);
+const { MessageEmbed } = require(`discord.js`);
 const ee = require("../../botconfig/embed.json");
 
 module.exports = {
@@ -40,7 +38,7 @@ module.exports = {
         } = interaction;
 
         const Amount = options.getInteger("amount");
-        const Target = options.getUser("target");
+        const Target = options.getMember("target");
         const Channel = channelId;
         const Messages = Channel.messages.fetch();
 

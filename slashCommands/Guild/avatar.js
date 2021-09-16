@@ -1,10 +1,4 @@
-const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
-
-/**
-*
-* @param {Client} client
-* @param {CommandInteraction} interaction
-*/
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: "avatar", //the command name for the Slash Command
@@ -23,7 +17,7 @@ module.exports = {
 		}, 
 	],
     
-    run: async (client, interaction) => {
+    run: async (interaction) => {
 		try {
 			const {
 				member,
@@ -39,7 +33,7 @@ module.exports = {
 				createdTimestamp
 			} = interaction;
 
-			const Target = options.getUser("target")
+			const Target = options.getMember("target")
 
 			const Response = new MessageEmbed()
 			.setColor('RANDOM')
