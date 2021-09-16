@@ -23,23 +23,9 @@ module.exports = {
         }
     }],
     run: async (client, interaction) => {
-        const {
-            member,
-            channelId,
-            guildId,
-            applicationId,
-            commandName,
-            deferred,
-            replied,
-            ephemeral,
-            options,
-            id,
-            createdTimestamp
-        } = interaction;
-
-        const Amount = options.getInteger("amount");
-        const Target = options.getMember("target");
-        const Channel = channelId;
+        const Amount = interaction.options.getInteger("amount");
+        const Target = interaction.options.getUser("target");
+        const Channel = interaction.channel;
         const Messages = Channel.messages.fetch();
 
         if (Amount <= 100) {

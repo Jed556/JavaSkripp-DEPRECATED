@@ -19,21 +19,8 @@ module.exports = {
     
     run: async (interaction) => {
 		try {
-			const {
-				member,
-				channelId,
-				guildId,
-				applicationId,
-				commandName,
-				deferred,
-				replied,
-				ephemeral,
-				options,
-				id,
-				createdTimestamp
-			} = interaction;
-
-			const Target = options.getMember("target")
+			
+			const Target = interaction.options.getUser("target")
 
 			const Response = new MessageEmbed()
 			.setColor('RANDOM')

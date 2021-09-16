@@ -18,21 +18,7 @@ module.exports = {
 		}, 
 	],
     run: async (interaction) => {
-        const {
-            member,
-            channelId,
-            guildId,
-            applicationId,
-            commandName,
-            deferred,
-            replied,
-            ephemeral,
-            options,
-            id,
-            createdTimestamp
-        } = interaction;
-
-        const Target = options.getMember("target")
+        const Target = interaction.options.getUser("target")
 
         const Info = new MessageEmbed()
         .setAuthor(`${Target.user.username}`, Target.user.displayAvatarURL({dynamic: true}))
