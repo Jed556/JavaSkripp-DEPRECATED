@@ -1,8 +1,7 @@
 const {
     readdirSync
 } = require("fs");
-console.log("\n")
-console.log("COMMAND HANDLER LAUNCHED".yellow);
+console.log("\nCOMMAND HANDLER LAUNCHED".yellow);
 module.exports = (client) => {
     try {
         let amount = 0;

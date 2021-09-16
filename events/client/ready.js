@@ -10,7 +10,7 @@ module.exports = client => {
       console.log("\n" +
       `┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓`.bold.brightGreen + "\n" +
       `┃ `.bold.brightGreen + " ".repeat(-1+stringlength-` ┃ `.length)+ "┃".bold.brightGreen + "\n" +
-      `┃ `.bold.brightGreen + ` Discord Bot is online!`.bold.brightGreen + " ".repeat(-1+stringlength-` ┃ `.length-` Discord Bot is online!`.length)+ "┃".bold.brightGreen + "\n" +
+      `┃ `.bold.brightGreen + `  Discord Bot is online`.bold.brightGreen + " ".repeat(-1+stringlength-` ┃ `.length-`  Discord Bot is online`.length)+ "┃".bold.brightGreen + "\n" +
       `┃ `.bold.brightGreen + `/--/ ${client.user.tag} /--/`.bold.brightGreen+ " ".repeat(-1+stringlength-` ┃ `.length-`/--/ ${client.user.tag} /--/`.length)+ "┃".bold.brightGreen + "\n" +
       `┃ `.bold.brightGreen + " ".repeat(-1+stringlength-` ┃ `.length)+ "┃".bold.brightGreen + "\n" +
       `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)

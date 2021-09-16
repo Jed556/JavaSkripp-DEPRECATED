@@ -153,8 +153,8 @@ module.exports = (client) => {
 				client.application.commands.set(allCommands)
 				.then(slashCommandsData => {
 					client.slashCommandsData = slashCommandsData;
-					console.log(`${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for all: ${`All possible Guilds`.underline}`.brightGreen); 
-					console.log(`Using Global Settings, it can take up to 1 hour for Commands to update`.bold.yellow)
+					console.log(`\n${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for all possible guilds`.brightGreen + 
+								`\nLoading Globally (Might take up to 1 hour for Commands to update)\n`.bold.yellow)
 				}).catch((e)=>{});
 			} else {
 				client.guilds.cache.map(g => g).forEach(async (guild) => {
@@ -163,7 +163,7 @@ module.exports = (client) => {
 						guild.commands.set(allCommands)
 						.then(slashCommandsData => {
 							client.slashCommandsData = slashCommandsData;
-							console.log(`\n${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for: ${`${guild.name}`.underline}`.brightGreen); 
+							console.log(`\n${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for: ${`${guild.name}`.underline}\n`.brightGreen); 
 						}).catch((e)=>{});
 					}catch (e){
 						console.log(String(e).grey)
@@ -178,7 +178,7 @@ module.exports = (client) => {
 					await guild.commands.set([]).catch((e)=>{});
 					guild.commands.set(allCommands)
 						.then(slashCommandsData => {
-							console.log(`\n${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for: ${`${guild.name}`.underline}`.brightGreen); 
+							console.log(`\n${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for: ${`${guild.name}`.underline}\n`.brightGreen); 
 						}).catch((e)=>{});
 				}
 			}catch (e){
