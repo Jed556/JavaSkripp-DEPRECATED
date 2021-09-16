@@ -2,7 +2,7 @@
     "ownerIDS": ["839430747088617472"],
     "default_cooldown_in_sec" : 1,
     "antiCrash": true,
-    "commands": true,
+    "commands": false,
     "ping_message": true,
     "delete_commands": true,
     "somethingwentwrong_cmd": true,
