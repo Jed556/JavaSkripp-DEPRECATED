@@ -5,7 +5,7 @@ module.exports = async (client) => {
         try {
             const stringlength = 30;
             console.log("\n" +
-            `┏━━━━━━━━━━━━━━━━━┓`.bold.brightGreen+ "\n" +
+            `┏━━━━━━━━━━━━━━━━━┓`.bold.brightGreen + "\n" +
             `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
             `┃ `.bold.brightGreen + ` COMMAND HANDLER`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - ` COMMAND HANDLER`.length) + "┃".bold.brightGreen + "\n" +
             `┃ `.bold.brightGreen + `/-/ Discord: Jed556#4147 /-/`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - `/-/ By Discord: Jed556#4147 /-/`.length) + "   ┃".bold.brightGreen + "\n" +
