@@ -9,7 +9,7 @@ module.exports = async (client) => {
             `┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓`.bold.brightGreen + "\n" +
             `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
             `┃ `.bold.brightGreen + ` COMMAND HANDLER`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - ` COMMAND HANDLER`.length) + "┃".bold.brightGreen + "\n" +
-            `┃ `.bold.brightGreen + ` /-/ Discord: ${ee.owner} /-/`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - ` /-/ By Discord: ${ee.owner} /-/`.length) + "   ┃".bold.brightGreen + "\n" +
+            `┃ `.bold.brightGreen + ` /-/ Discord: ${ee.owner} /-/`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - ` /-/ By Discord: ${ee.owner} /-/`.length) + "┃".bold.brightGreen + "\n" +
             `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
             `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen);
         } catch {
