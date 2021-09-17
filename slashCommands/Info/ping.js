@@ -59,32 +59,27 @@ module.exports = {
 			if (StringOption) {
 				if (StringOption == "botping") {
 					await interaction.reply({
-						ephemeral: true,
 						content: `${client.allEmojis.loading} Getting the Bot Ping...`,
 						ephemeral: true
 					});
 					interaction.editReply({
-						ephemeral: true,
 						content: `${client.allEmojis.ping} Bot Ping: \`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))} ms\``,
 						ephemeral: true
 					})
 				}
-				//Other Option is API so we are alright
+				//Other Option: API
 				else {
 					interaction.reply({
-						ephemeral: true,
 						content: `${client.allEmojis.ping} Api Ping: \`${Math.floor(client.ws.ping)} ms\``,
 						ephemeral: true
 					})
 				}
 			} else {
 				await interaction.reply({
-					ephemeral: true,
 					content: `${client.allEmojis.loading} Getting the Bot Ping...`,
 					ephemeral: true
 				});
 				interaction.editReply({
-					ephemeral: true,
 					content: `${client.allEmojis.ping} Bot Ping: \`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))} ms\`\n\n${client.allEmojis.ping} Api Ping: \`${Math.floor(client.ws.ping)} ms\``,
 					ephemeral: true
 				})
