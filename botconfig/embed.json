@@ -1,7 +1,10 @@
 {
   "color": "#5865F1",
-  "oldcolor": "#C219D8",
   "wrongcolor": "#e01e01",
+  "oldcolor": "#C219D8",
   "footertext": "JavaSkripp",
-  "footericon": "https://cdn.discordapp.com/avatars/881308119383302165/7dce2017f33191fc9b8c6d87fb35bb1e.webp"
+  "footericon": "https://cdn.discordapp.com/avatars/881308119383302165/7dce2017f33191fc9b8c6d87fb35bb1e.webp",
+  "owner": "Gatorade#4147",
+  "ownericon": "https://cdn.discordapp.com/avatars/839430747088617472/2c0949a1f43172e7735381dfb0000dbb.webp",
+  "invite": ""
 }

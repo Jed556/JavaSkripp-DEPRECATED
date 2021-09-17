@@ -1,16 +1,17 @@
 const fs = require("fs");
+const ee = require("../botconfig/embed.json");
 const allevents = [];
 module.exports = async (client) => {
     try {
         try {
-            const stringlength = 30;
+            const stringlength = 32;
             console.log("\n" +
-            `┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓`.bold.brightGreen + "\n" +
+            `┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓`.bold.brightGreen + "\n" +
             `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
             `┃ `.bold.brightGreen + ` COMMAND HANDLER`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - ` COMMAND HANDLER`.length) + "┃".bold.brightGreen + "\n" +
-            `┃ `.bold.brightGreen + `/-/ Discord: Jed556#4147 /-/`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - `/-/ By Discord: Jed556#4147 /-/`.length) + "   ┃".bold.brightGreen + "\n" +
+            `┃ `.bold.brightGreen + ` /-/ Discord: ${ee.owner} /-/`.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length - ` /-/ By Discord: ${ee.owner} /-/`.length) + "   ┃".bold.brightGreen + "\n" +
             `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
-            `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
+            `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen);
         } catch {
             /* */ }
         let amount = 0;

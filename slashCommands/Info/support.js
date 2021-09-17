@@ -7,7 +7,7 @@ const settings = require("../../botconfig/settings.json");
 module.exports = {
   name: "support", //the command name for execution & for helpcmd [OPTIONAL]
   cooldown: 1, //the command cooldown for execution & for helpcmd [OPTIONAL]
-  description: "Sends a Link of the Support Server", //the command description for helpcmd [OPTIONAL]
+  description: "Sends Contacts for Bot Support", //the command description for helpcmd [OPTIONAL]
   category: "Info",
   memberpermissions: [], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]
   requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
@@ -33,7 +33,7 @@ module.exports = {
       } = member;
       interaction.reply({
         ephemeral: true,
-        content: "jguiriba11@gmail.com | Jed556#4147"
+        content: `jguiriba11@gmail.com | ${ee.owner}`
       });
     } catch (e) {
       console.log(String(e.stack).bgRed)

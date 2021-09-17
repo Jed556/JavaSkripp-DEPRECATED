@@ -36,7 +36,7 @@ module.exports = {
         embeds: [
           new MessageEmbed().setColor(ee.color)
           .setFooter(ee.footertext, ee.footericon)
-          .setDescription(`[**Click here to invite me!**]( https://tinyurl.com/JavaSkripp )`)
+          .setDescription(`[**Click here to invite me!**]( ${ee.invite} )`)
         ]
       });
     } catch (e) {

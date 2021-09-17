@@ -19,7 +19,7 @@ module.exports = {
     {
       "String": {
         name: "specific_cmd",
-        description: "Want details of a Specific Command?",
+        description: "Details of a Specific Command?",
         required: false
       }
     }, //to use in the code: interacton.getString("ping_amount")
@@ -49,7 +49,6 @@ module.exports = {
         guild
       } = member;
       
-      let prefix = client.settings.get(guild.id, "prefix")
       let args = options.getString("specific_cmd");
       if (args && args.length > 0) {
         const embed = new MessageEmbed();
@@ -79,7 +78,7 @@ module.exports = {
           .setColor(ee.color)
           .setThumbnail(client.user.displayAvatarURL())
           .setTitle("HELP MENU 🔰 Commands")
-          .setDescription(`[**Click here to invite me!**]( https://tinyurl.com/JavaSkripp )`)
+          .setDescription(`[**Click here to invite me!**]( ${ee.invite} )`)
           .setFooter(`To see command Descriptions and Information, type: /info help [CMD NAME]`, client.user.displayAvatarURL());
         const slashCommands = (category) => {
           return client.slashCommands.filter((cmd) => cmd.category === category).map((cmd) => `\`${cmd.name}\``);
