@@ -137,7 +137,7 @@ blues, oldgaming, pop, remixes, rock, strange-fruits-gaming
 				await client.distube.playVoiceChannel(channel, link, options)
 				//Edit the reply
 				interaction.editReply({
-					content: `${queue?.songs?.length > 0 ? "👍 Loaded" : "🎶 Now Playing"}: the **'${args[0] ? args[0] : "Default"}'**`,
+					content: `${queue?.songs?.length > 0 ? `${client.allEmojis.check_mark} Loaded` : "🎶 Now Playing"}: the **'${args[0] ? args[0] : "Default"}'**`,
 					ephemeral: true
 				});
 			} catch (e) {

@@ -460,7 +460,7 @@ module.exports = (client) => {
             dynamic: true
           }))
           .setTitle(`${client.allEmojis.check_mark} **Song added to the Queue!**`)
-          .setDescription(`👍 Song: [\`${song.name}\`](${song.url})  -  \`${song.formattedDuration}\``)
+          .setDescription(`${client.allEmojis.check_mark} Song: [\`${song.name}\`](${song.url})  -  \`${song.formattedDuration}\``)
           .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - 1} song${queue.songs.length > 0 ? "s" : ""}\` - \`${(Math.floor((queue.duration - song.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
           .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
         ]
@@ -474,7 +474,7 @@ module.exports = (client) => {
             dynamic: true
           }))
           .setTitle(`${client.allEmojis.check_mark} **Playlist added to the Queue!**`)
-          .setDescription(`👍 Playlist: [\`${playlist.name}\`](${playlist.url ? playlist.url : ""})  -  \`${playlist.songs.length} Song${playlist.songs.length > 0 ? "s" : ""}\``)
+          .setDescription(`${client.allEmojis.check_mark} Playlist: [\`${playlist.name}\`](${playlist.url ? playlist.url : ""})  -  \`${playlist.songs.length} Song${playlist.songs.length > 0 ? "s" : ""}\``)
           .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - - playlist.songs.length} song${queue.songs.length > 0 ? "s" : ""}\` - \`${(Math.floor((queue.duration - playlist.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
           .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
         ]
