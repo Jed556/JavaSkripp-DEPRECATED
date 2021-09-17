@@ -495,7 +495,7 @@ module.exports = (client) => {
       .on(`finishSong`, (queue, song) => {
         var embed = new MessageEmbed().setColor(ee.color)
         .setAuthor(`DASHBOARD`)
-        .setDescription(`${song.name}`, "https://cdn.discordapp.com/attachments/883978730261860383/883978741892649000/847032838998196234.png", song.url)
+        .setDescription(`${song.name}`, ee.songended, song.url)
         .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
         .setFooter(`${song.user.tag}\n⛔️ SONG ENDED!`, song.user.displayAvatarURL({
           dynamic: true
@@ -555,7 +555,7 @@ module.exports = (client) => {
       .addField(`⬇ Download Song:`, `>>> [\`Click here\`](${newTrack.streamURL})`, true)
       .addField(`🎙 Filter${newQueue.filters.length > 0 ? "s": ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f=>`\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
 			.addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s": ""}:`, `>>> ${djs}`, client.settings.get(newQueue.id, "djroles").length > 1 ? false : true)
-      .setAuthor(`DASHBOARD | NOW PLAYING`, `https://images-ext-1.discordapp.net/external/DkPCBVBHBDJC8xHHCF2G7-rJXnTwj_qs78udThL8Cy0/%3Fv%3D1/https/cdn.discordapp.com/emojis/859459305152708630.gif`, newTrack.url)
+      .setAuthor(`DASHBOARD | NOW PLAYING`, ee.discspin, newTrack.url)
       .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
       .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({
         dynamic: true
