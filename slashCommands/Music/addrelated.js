@@ -73,7 +73,7 @@ module.exports = {
 					ephemeral: true
 				});
 				await newQueue.addRelatedSong();
-				await interaction.reply({
+				await interaction.editReply({
 					content: `👍 Added: **${newQueue.songs[newQueue.songs.length - 1].name}**`,
 					ephemeral: true
 				});
