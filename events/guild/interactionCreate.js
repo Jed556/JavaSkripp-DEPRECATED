@@ -8,7 +8,7 @@ module.exports = (client, interaction) => {
 	const CategoryName = interaction.commandName;
 
   if(interaction.guildId == null) return interaction.reply({embeds: [
-    new MessageEmbed()
+    new Discord.MessageEmbed()
 						.setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
 						.setDescription(`"**HEY! You can't execute commands in a DM.**"`)
