@@ -25,18 +25,18 @@ module.exports = {
 	],
 	
     run: async (client, interaction) => {
+		const google = new Scraper({
+			puppeteer: {
+				headless: true,
+				args: ["--no-sandbox"]
+			},
+			safe: true
+		})
+		
+		const search = interaction.options.getString("search");
+		interaction.reply(`🔍 Searching... \`\`\`${search}\`\`\``)
+		
 		try {
-			const google = new Scraper({
-				puppeteer: {
-					headless: true,
-					args: ["--no-sandbox"]
-				},
-				safe: true
-			})
-
-			const search = interaction.options.getString("search");
-			interaction.reply(`🔍 Searching... \`\`\`${search}\`\`\``)
-			
 			const results = await google.scrape(search, 20);
 			interaction.editReply(results[Math.floor(Math.random()*results.length)].url);
 		}catch (e) {
