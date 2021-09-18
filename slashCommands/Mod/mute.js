@@ -12,6 +12,8 @@ module.exports = {
     name: "mute",
     description: "Mute a member",
     memberpermissions: ["MANAGE_GUILD"],
+    category: "Mod",
+    cooldown: 2,
     options: [
         {
             "User": {
@@ -67,7 +69,7 @@ module.exports = {
     run: async (client, interaction) => {
         const Target = interaction.options.getUser("target");
         const Reason = interaction.options.getString("reason") || "No reason specified";
-        const Time = interaction.options.getString("preset-time") || interaction.options.getString("time") || "1d";
+        const Time = interaction.options.getString("preset_time") || interaction.options.getString("time") || "1d";
         
         if (Target.id === interaction.member.id)
         return interaction.reply({embeds: [
@@ -80,7 +82,7 @@ module.exports = {
         return interaction.reply({embeds: [
            new MessageEmbed()
            .setColor(ee.wrongcolor)
-           .setDescription(`You can't mute a moderator`)
+           .setDescription("You can't mute a moderator")
         ]})
 
         if (!interaction.guild.roles.cache.get(process.env.MUTED_ID))

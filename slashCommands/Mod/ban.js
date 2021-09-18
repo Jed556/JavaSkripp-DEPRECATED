@@ -10,6 +10,8 @@ const ee = require("../../botconfig/embed.json");
 module.exports = {
     name: "ban",
     description: "Ban a member",
+    category: "Mod",
+    cooldown: 2,
     memberpermissions: ["MANAGE_GUILD"],
     options: [
         {
@@ -51,7 +53,7 @@ module.exports = {
         return interaction.reply({embeds: [
            new MessageEmbed()
            .setColor(ee.wrongcolor)
-           .setDescription(`You can't ban yourself`)
+           .setDescription("You can't ban yourself")
         ]})
 
         
@@ -59,7 +61,7 @@ module.exports = {
         return interaction.reply({embeds: [
            new MessageEmbed()
            .setColor(ee.wrongcolor)
-           .setDescription(`You can't ban a moderator`)
+           .setDescription("You can't ban a moderator")
         ]})
 
         const Reason = interaction.options.getString("reason");
@@ -68,7 +70,7 @@ module.exports = {
         return interaction.reply({embeds: [
             new MessageEmbed()
             .setColor(ee.wrongcolor)
-            .setDescription(`Reason exceeded 512 character limit`)
+            .setDescription("Reason exceeded 512 character limit")
          ]})
 
         const Amount = interaction.options.getString("messages");
@@ -81,7 +83,7 @@ module.exports = {
 
         interaction.reply({embeds: [
             new MessageEmbed()
-            .setColor("GREEN")
+            .setColor(ee.color)
             .setDescription(`Banned **${Target.user.username}**, Reason: ${Reason}`)
         ]})
     }
