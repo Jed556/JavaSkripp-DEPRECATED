@@ -37,7 +37,7 @@ module.exports = {
 			const search = interaction.options.getString("search");
 			interaction.reply(`🔍 Searching... \`\`\`${search}\`\`\``)
 			
-			const results = await google.scrape(search, 20);
+			const results = await google.scrape(search, 30);
 			interaction.editReply(results[Math.floor(Math.random()*results.length)].url);
 		}catch (e) {
 			console.log(String(e.stack).bgRed)
