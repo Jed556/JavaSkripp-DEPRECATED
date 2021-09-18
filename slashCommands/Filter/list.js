@@ -41,18 +41,18 @@ module.exports = {
         if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
           embeds: [
             new MessageEmbed()
-            .setColor(ee.wrongcolor)
+            .setColor(ee.color)
             .setFooter(ee.footertext, ee.footericon)
-            .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom are having there own Command, please use them to define what custom amount u want!*")
+            .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
           ],
           ephemeral: true
         })
         return interaction.reply({
           embeds: [
             new MessageEmbed()
-            .setColor(ee.wrongcolor)
+            .setColor(ee.color)
             .setFooter(ee.footertext, ee.footericon)
-            .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom are having there own Command, please use them to define what custom amount u want!*")
+            .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
             .addField("**All __current__ Filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
           ],
         })
