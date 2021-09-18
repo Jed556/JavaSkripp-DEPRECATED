@@ -70,7 +70,7 @@ module.exports = {
 				.setDescription(`**[${newTrack.name}](${newTrack.url})**`)
 				.addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)
 				.addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
-				.addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song(s)\`\n\`${newQueue.formattedDuration}\``, true)
+				.addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song${newQueue.songs.length > 1 ? "s": ""}\`\n\`${newQueue.formattedDuration}\``, true)
 				.addField(`🔊 Volume:`, `>>> \`${newQueue.volume} %\``, true)
 				.addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check_mark}\` Queue\`` : `${client.allEmojis.check_mark} \`Song\`` : `${client.allEmojis.x}`}`, true)
 				.addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check_mark}` : `${client.allEmojis.x}`}`, true)
