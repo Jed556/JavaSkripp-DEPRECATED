@@ -58,7 +58,7 @@ module.exports = {
 				let newQueue = client.distube.getQueue(guildId);
 				if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
 					embeds: [
-						new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **I am nothing Playing right now!**`)
+						new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **I am nothing Playing right now**`)
 					],
 					ephemeral: true
 				})
@@ -67,20 +67,20 @@ module.exports = {
 				else djs.slice(0, 15).join(", ");
 				let newTrack = newQueue.songs[0];
 				let embed = new MessageEmbed().setColor(ee.color)
-					.setDescription(`See the [Queue on the **DASHBOARD** Live!](http://dashboard.musicium.eu/queue/${newQueue.id})`)
-					.addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)
-					.addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
-					.addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song(s)\`\n\`${newQueue.formattedDuration}\``, true)
-					.addField(`🔊 Volume:`, `>>> \`${newQueue.volume} %\``, true)
-					.addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check_mark} \`Queue\`` : `${client.allEmojis.check_mark} \`Song\`` : `${client.allEmojis.x}`}`, true)
-					.addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check_mark}` : `${client.allEmojis.x}`}`, true)
-					.addField(`❔ Download Song:`, `>>> [\`Click here\`](${newTrack.streamURL})`, true)
-					.addField(`❔ Filter${newQueue.filters.length > 0 ? "s": ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f=>`\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
-					.addField(`🎧 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s": ""}:`, `>>> ${djs}`, client.settings.get(newQueue.id, "djroles").length > 1 ? false : true)
-					.setAuthor(`${newTrack.name}`, ee.discspin, newTrack.url)
-					.setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
-					.setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({
-						dynamic: true
+				.setDescription(`${newTrack.name}`)
+				.addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)
+				.addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
+				.addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song(s)\`\n\`${newQueue.formattedDuration}\``, true)
+				.addField(`🔊 Volume:`, `>>> \`${newQueue.volume} %\``, true)
+				.addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check_mark}\` Queue\`` : `${client.allEmojis.check_mark} \`Song\`` : `${client.allEmojis.x}`}`, true)
+				.addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check_mark}` : `${client.allEmojis.x}`}`, true)
+				.addField(`⬇ Download Song:`, `>>> [\`Click here\`](${newTrack.streamURL})`, true)
+				.addField(`🎙 Filter${newQueue.filters.length > 0 ? "s": ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f=>`\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
+					  .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s": ""}:`, `>>> ${djs}`, client.settings.get(newQueue.id, "djroles").length > 1 ? false : true)
+				.setAuthor(`DASHBOARD | NOW PLAYING`, ee.discspin, newTrack.url)
+				.setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
+				.setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({
+				  dynamic: true
 					}));
 				interaction.reply({
 					embeds: [embed]
