@@ -494,10 +494,10 @@ module.exports = (client) => {
       .on(`searchNoResult`, message => message.channel.send(`No result found!`).catch((e)=>console.log(e)))
       .on(`finishSong`, (queue, song) => {
         var embed = new MessageEmbed().setColor(ee.color)
-        .setAuthor(`DASHBOARD`)
-        .setDescription(`${song.name}`, ee.songended, song.url)
+        .setAuthor(`DASHBOARD | SONG ENDED`)
+        .setDescription(`[${song.name}](${song.url})`, `${ee.songended}`)
         .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
-        .setFooter(`${song.user.tag}\n⛔️ SONG ENDED!`, song.user.displayAvatarURL({
+        .setFooter(`${song.user.tag}`, song.user.displayAvatarURL({
           dynamic: true
         }));
         queue.textChannel.messages.fetch(PlayerMap.get(`currentmsg`)).then(currentSongPlayMsg=>{
@@ -545,7 +545,7 @@ module.exports = (client) => {
     else djs.slice(0, 15).join(", ");
     if(!newTrack) return new MessageEmbed().setColor(ee.wrongcolor).setTitle("NO SONG FOUND?!?!")
     var embed = new MessageEmbed().setColor(ee.color)
-    .setDescription(`**${newTrack.name}**`, newTrack.url)
+    .setDescription(`[**${newTrack.name}](${newTrack.url})**`)
     .addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)
     .addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
     .addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song(s)\`\n\`${newQueue.formattedDuration}\``, true)
