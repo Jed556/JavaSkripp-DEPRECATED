@@ -1,11 +1,4 @@
 const Discord = require('discord.js');
-const { Client, CommandInteraction } = require('discord.js');
-
-/**
- *
- * @param {Client} client
- * @param {CommandInteraction} interaction
- */
 
 module.exports =  {
     name: "tictactoe", //the command name for the Slash Command
@@ -16,6 +9,7 @@ module.exports =  {
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
     run: async (interaction) => {
         try {
+            /** @type interaction {Discord.CommandInteraction} */
             interaction.reply("Tic Tac Toe!", {
                 components: [
                     {type: 1, components: [
