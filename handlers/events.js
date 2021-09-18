@@ -4,7 +4,7 @@ const allevents = [];
 module.exports = async (client) => {
     try {
         try {
-            console.log("\nSTARTUP IN PROGRESS..".bold.yellow + `\nBy: ${ee.owner}`);
+            console.log(`\nSTARTUP IN PROGRESS..`.bold.yellow + `\nBy: ${ee.owner}`.yellow);
         } catch {
             /* */ }
         let amount = 0;
@@ -31,7 +31,7 @@ module.exports = async (client) => {
             `┃ `.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length) + "┃".bold.yellow + "\n" +
             `┃ `.bold.yellow + ` Logging into the BOT...`.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length - ` Logging into the BOT...`.length) + "┃".bold.yellow + "\n" +
             `┃ `.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length) + "┃".bold.yellow + "\n" +
-            `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.yellow)
+            `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.yellow + "\n")
         } catch {
             /* */ }
     } catch (e) {
