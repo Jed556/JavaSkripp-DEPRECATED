@@ -163,7 +163,7 @@ module.exports = (client) => {
 						guild.commands.set(allCommands)
 						.then(slashCommandsData => {
 							client.slashCommandsData = slashCommandsData;
-							console.log(`\n${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for: ${`${guild.name}`.underline}\n`.brightGreen); 
+							console.log("\n" + `${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for: ${`${guild.name}`.underline}\n`.brightGreen); 
 						}).catch((e)=>{});
 					}catch (e){
 						console.log(String(e).grey)
@@ -178,7 +178,7 @@ module.exports = (client) => {
 					await guild.commands.set([]).catch((e)=>{});
 					guild.commands.set(allCommands)
 						.then(slashCommandsData => {
-							console.log(`\n${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for: ${`${guild.name}`.underline}\n`.brightGreen); 
+							console.log("\n" + `${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for: ${`${guild.name}`.underline}\n`.brightGreen); 
 						}).catch((e)=>{console.log(String(e.stack).bgRed)});
 				}
 			}catch (e){

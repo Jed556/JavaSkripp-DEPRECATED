@@ -4,7 +4,7 @@ const allevents = [];
 module.exports = async (client) => {
     try {
         try {
-            console.log(`\nSTARTUP IN PROGRESS..`.bold.yellow + `\nBy: ${ee.owner}`.yellow);
+            console.log("\n" + `STARTUP IN PROGRESS..`.bold.yellow + "\n" + `By: ${ee.owner}`.yellow);
         } catch {
             /* */ }
         let amount = 0;
@@ -23,7 +23,7 @@ module.exports = async (client) => {
             }
         }
         await ["client", "guild"].forEach(e => load_dir(e));
-        console.log(`\n${amount} Events Loaded`.brightGreen);
+        console.log("\n" + `${amount} Events Loaded`.brightGreen);
         try {
             const stringlength2 = 30;
             console.log("\n" +

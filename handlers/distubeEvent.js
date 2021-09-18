@@ -1,4 +1,4 @@
-console.log(`\nDISTUBE HANDLER LAUNCHED`.yellow);
+console.log("\n" + `DISTUBE HANDLER LAUNCHED`.yellow);
 const PlayerMap = new Map()
 const Discord = require(`discord.js`);
 const {
