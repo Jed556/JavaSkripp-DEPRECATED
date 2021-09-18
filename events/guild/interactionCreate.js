@@ -11,7 +11,7 @@ module.exports = (client, interaction) => {
     new Discord.MessageEmbed()
 						.setColor(ee.wrongcolor)
 						.setFooter(ee.footertext, ee.footericon)
-						.setDescription(`"**HEY! You can't execute commands in a DM.**"`)
+						.setDescription(`**HEY! You can't execute commands in a DM.**`)
     ]});
 
   client.settings.ensure(interaction.guildId, {
