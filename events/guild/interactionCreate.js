@@ -16,6 +16,9 @@ module.exports = (client, interaction) => {
   let prefix = client.settings.get(interaction.guildId)
 	let command = false;
 	try{
+
+    if(interaction.guildId == null) return interaction.reply("You can´t execute commands in DM! 🙂");
+    
     	    if (client.slashCommands.has(CategoryName + interaction.options.getSubcommand())) {
       		command = client.slashCommands.get(CategoryName + interaction.options.getSubcommand());
     	    }
