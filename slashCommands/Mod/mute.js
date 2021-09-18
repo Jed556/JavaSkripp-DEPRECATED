@@ -64,8 +64,8 @@ module.exports = {
             }
         },
     ],
-    async execute(client, interaction) {
-        const Target = interaction.options.getMember("target");
+    run: async (client, interaction) => {
+        const Target = interaction.options.getUser("target");
         const Reason = interaction.options.getString("reason") || "No reason specified";
         const Time = interaction.options.getString("preset-time") || interaction.options.getString("time") || "1d";
         
