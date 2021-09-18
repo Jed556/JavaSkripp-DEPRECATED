@@ -44,7 +44,7 @@ module.exports = {
                     interaction.reply({embeds: [new MessageEmbed().setColor(ee.color).setDescription(`Deleted ${Amount} messages in ${Channel}`)]})
                 }
             } else interaction.reply({embeds: [new MessageEmbed().setColor(ee.wrongcolor).setDescription(`${client.allEmojis.x} Exceeded max amount of 100 messages`)]})
-        }catch (e) {
+        } catch (e) {
 			console.log(String(e.stack).bgRed)
    		}
    }

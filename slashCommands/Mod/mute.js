@@ -67,48 +67,52 @@ module.exports = {
         },
     ],
     run: async (client, interaction) => {
-        const Target = interaction.options.getUser("target");
-        const Reason = interaction.options.getString("reason") || "No reason specified";
-        const Time = interaction.options.getString("preset_time") || interaction.options.getString("time") || "1d";
-        
-        if (Target.id === interaction.member.id)
-        return interaction.reply({embeds: [
-           new MessageEmbed()
-           .setColor(ee.wrongcolor)
-           .setDescription(`You can't mute yourself`)
-        ]})
-
-        if (Target.permissions.has("MANAGE_GUILD"))
-        return interaction.reply({embeds: [
-           new MessageEmbed()
-           .setColor(ee.wrongcolor)
-           .setDescription("You can't mute a moderator")
-        ]})
-
-        if (!interaction.guild.roles.cache.get(process.env.MUTED_ID))
-        return interaction.reply({embeds: [
+        try {
+            const Target = interaction.options.getUser("target");
+            const Reason = interaction.options.getString("reason") || "No reason specified";
+            const Time = interaction.options.getString("preset_time") || interaction.options.getString("time") || "1d";
+            
+            if (Target.id === interaction.member.id)
+            return interaction.reply({embeds: [
             new MessageEmbed()
             .setColor(ee.wrongcolor)
-            .setDescription("Mute role does not exist")
-        ]})
+            .setDescription(`You can't mute yourself`)
+            ]})
 
-        if (Target.roles.cache.has(process.env.MUTED_ID))
-        return interaction.reply({embeds: [
+            if (Target.permissions.has("MANAGE_GUILD"))
+            return interaction.reply({embeds: [
             new MessageEmbed()
             .setColor(ee.wrongcolor)
-            .setDescription("Member is already muted")
-        ]})
+            .setDescription("You can't mute a moderator")
+            ]})
 
-        await Target.roles.add(process.env.MUTED_ID);
-        setTimeout( async () => {
-            if(!Target.roles.cache.has(process.env.MUTED_ID)) return;
-            await Target.roles.remove(process.env.MUTED_ID);
-        }, (ms(Time)))
+            if (!interaction.guild.roles.cache.get(process.env.MUTED_ID))
+            return interaction.reply({embeds: [
+                new MessageEmbed()
+                .setColor(ee.wrongcolor)
+                .setDescription("Mute role does not exist")
+            ]})
 
-        interaction.reply({embeds: [
-            new MessageEmbed()
-            .setColor(ee.color)
-            .setDescription(`${Target} muted for ${Time}, Reason: ${Reason}`)
-        ]})
+            if (Target.roles.cache.has(process.env.MUTED_ID))
+            return interaction.reply({embeds: [
+                new MessageEmbed()
+                .setColor(ee.wrongcolor)
+                .setDescription("Member is already muted")
+            ]})
+
+            await Target.roles.add(process.env.MUTED_ID);
+            setTimeout( async () => {
+                if(!Target.roles.cache.has(process.env.MUTED_ID)) return;
+                await Target.roles.remove(process.env.MUTED_ID);
+            }, (ms(Time)))
+
+            interaction.reply({embeds: [
+                new MessageEmbed()
+                .setColor(ee.color)
+                .setDescription(`${Target} muted for ${Time}, Reason: ${Reason}`)
+            ]})
+        } catch (e) {
+            console.log(String(e.stack).bgRed)
+        }
     }
 }
