@@ -64,7 +64,6 @@ module.exports = {
 				})
 				let newTrack = newQueue.songs[0];
 				member.send({
-					content: `${client.settings.get(guild.id, "prefix")}play ${newTrack.url}`,
 					embeds: [
 						new MessageEmbed().setColor(ee.color)
 						.setTitle(newTrack.name)

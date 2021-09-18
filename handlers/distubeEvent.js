@@ -103,7 +103,7 @@ module.exports = (client) => {
                   content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
                   ephemeral: true
                 })
-              //if ther is nothing more to skip then stop music and leave the Channel
+              //if there is nothing more to skip then stop music and leave the Channel
               if (newQueue.songs.length == 0) {
                 //if its on autoplay mode, then do autoplay before leaving...
                   i.reply({
@@ -545,7 +545,7 @@ module.exports = (client) => {
     else djs.slice(0, 15).join(", ");
     if(!newTrack) return new MessageEmbed().setColor(ee.wrongcolor).setTitle("NO SONG FOUND?!?!")
     var embed = new MessageEmbed().setColor(ee.color)
-    .setDescription(`${newTrack.name}`)
+    .setDescription(`**${newTrack.name}**`, newTrack.url)
     .addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)
     .addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
     .addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song(s)\`\n\`${newQueue.formattedDuration}\``, true)
@@ -555,7 +555,7 @@ module.exports = (client) => {
     .addField(`⬇ Download Song:`, `>>> [\`Download here\`](${newTrack.streamURL})`, true)
     .addField(`🎙 Filter${newQueue.filters.length > 0 ? "s": ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f=>`\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
     .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s": ""}:`, `>>> ${djs}`, client.settings.get(newQueue.id, "djroles").length > 1 ? false : true)
-    .setAuthor(`DASHBOARD | NOW PLAYING`, ee.discspin, newTrack.url)
+    .setAuthor(`DASHBOARD | NOW PLAYING`, ee.discspin)
     .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
     .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({
       dynamic: true

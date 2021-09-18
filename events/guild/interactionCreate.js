@@ -7,8 +7,13 @@ const Discord = require("discord.js");
 module.exports = (client, interaction) => {
 	const CategoryName = interaction.commandName;
 
-  if(interaction.guildId == null) return interaction.reply("You can´t execute commands in DM! 🙂");
-  
+  if(interaction.guildId == null) return interaction.reply({embeds: [
+    new MessageEmbed()
+						.setColor(ee.wrongcolor)
+						.setFooter(ee.footertext, ee.footericon)
+						.setDescription(`"**HEY! You can't execute commands in a DM.**"`)
+    ]});
+
   client.settings.ensure(interaction.guildId, {
     prefix: config.prefix,
     defaultvolume: 100,
