@@ -1,4 +1,5 @@
 const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
+const ee = require("../../botconfig/embed.json");
 
 /**
 *
