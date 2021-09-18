@@ -77,9 +77,8 @@ module.exports = {
 						.addField(`⬇ Download Song:`, `>>> [\`Download here\`](${newTrack.streamURL})`, true)
 						.addField(`🎙 Filter${newQueue.filters.length > 0 ? "s": ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f=>`\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
 						.setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
-						.setFooter(`Played in: ${guild.name}`, guild.iconURL({
-							dynamic: true
-						})).setTimestamp()
+						.setFooter(`Played in: ${guild.name}`, guild.iconURL({ dynamic: true }))
+						.setTimestamp()
 					]
 				}).then(() => {
 					interaction.reply({

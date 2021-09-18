@@ -495,11 +495,11 @@ module.exports = (client) => {
       .on(`finishSong`, (queue, song) => {
         var embed = new MessageEmbed().setColor(ee.color)
         .setAuthor(`DASHBOARD | SONG ENDED`)
-        .setDescription(`[${song.name}](${song.url})`, `${ee.songended}`)
+        .setDescription(`**[${song.name}](${song.url})**`, ee.songended)
         .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
-        .setFooter(`${song.user.tag}`, song.user.displayAvatarURL({
-          dynamic: true
-        }));
+        .setFooter(`${song.user.tag}`, song.user.displayAvatarURL({ dynamic: true }))
+        .setTimestamp();
+
         queue.textChannel.messages.fetch(PlayerMap.get(`currentmsg`)).then(currentSongPlayMsg=>{
           currentSongPlayMsg.edit({embeds: [embed], components: []}).catch((e) => {
             //console.log(e.stack ? String(e.stack).grey : String(e).grey)
@@ -557,9 +557,8 @@ module.exports = (client) => {
     .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s": ""}:`, `>>> ${djs}`, client.settings.get(newQueue.id, "djroles").length > 1 ? false : true)
     .setAuthor(`DASHBOARD | NOW PLAYING`, ee.discspin)
     .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
-    .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({
-      dynamic: true
-      }));
+    .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({ dynamic: true }));
+
     let skip = new MessageButton().setStyle('PRIMARY').setCustomId('1').setEmoji(`⏭`).setLabel(`Skip`)
     let stop = new MessageButton().setStyle('DANGER').setCustomId('2').setEmoji(`⏹`).setLabel(`Stop`)
     let pause = new MessageButton().setStyle('SECONDARY').setCustomId('3').setEmoji('⏸').setLabel(`Pause`)
