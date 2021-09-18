@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 module.exports =  {
-    name: "image", //the command name for the Slash Command
-	description: "Send an image to a channel", //the command description for Slash Command Overview
+    name: "tictactoe", //the command name for the Slash Command
+	description: "Play tic tac toe with someone", //the command description for Slash Command Overview
 	category: "Guild",
 	cooldown: 1,
 	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
