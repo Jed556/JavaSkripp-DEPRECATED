@@ -17,7 +17,7 @@
     "surrounding": "surround",
     "pulsator": "apulsator=hz=1",
     "subboost": "asubboost",
-    "karaoke": "stereotools=mlev=0.06",
+    "karaoke": "stereotools=mlev=0.01",
     "flanger": "flanger",
     "gate": "agate",
     "haas": "haas",
