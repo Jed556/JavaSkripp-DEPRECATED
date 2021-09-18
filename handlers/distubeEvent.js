@@ -494,8 +494,8 @@ module.exports = (client) => {
       .on(`searchNoResult`, message => message.channel.send(`No result found!`).catch((e)=>console.log(e)))
       .on(`finishSong`, (queue, song) => {
         var embed = new MessageEmbed().setColor(ee.color)
-        .setAuthor(`DASHBOARD | SONG ENDED`)
-        .setDescription(`**[${song.name}](${song.url})**`, ee.songended)
+        .setAuthor(`DASHBOARD | SONG ENDED`, ee.songended)
+        .setDescription(`**[${song.name}](${song.url})**`)
         .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
         .setFooter(`${song.user.tag}`, song.user.displayAvatarURL({ dynamic: true }))
         .setTimestamp();
