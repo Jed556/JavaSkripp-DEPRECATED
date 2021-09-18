@@ -73,15 +73,26 @@ module.exports = {
 						ephemeral: true
 					});
 				}
-				let amount = newQueue.songs.length - 2;
+				let amount = newQueue.songs.length - 1;
 				newQueue.songs = [newQueue.songs[0]];
-				interaction.reply({
-					embeds: [new MessageEmbed()
-					  .setColor(ee.color)
-					  .setTimestamp()
-					  .setTitle(`🗑 **Cleared the Queue and deleted ${amount} Songs!**`)
-					  .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
-				})
+				if (amount == 1) {
+					interaction.reply({
+						embeds: [new MessageEmbed()
+						.setColor(ee.color)
+						.setTimestamp()
+						.setTitle(`🗑 **Cleared the Queue and deleted ${amount} Songs**`)
+						.setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
+					})
+				} else {
+					interaction.reply({
+						embeds: [new MessageEmbed()
+						.setColor(ee.color)
+						.setTimestamp()
+						.setTitle(`🗑 **Cleared the Queue and deleted ${amount} Song**`)
+						.setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
+					})
+				}
+				
 			} catch (e) {
 				console.log(e.stack ? e.stack : e)
 				interaction.editReply({
