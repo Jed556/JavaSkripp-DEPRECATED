@@ -25,12 +25,12 @@ module.exports = {
 	],
     run: async (client, interaction) => {
         try {
-            const Target = interaction.options.getMember('target')
+            const Target = interaction.options.getUser("target")
 
             const Info = new MessageEmbed()
             .setAuthor(`${Target.user.username}`, Target.user.displayAvatarURL({dynamic: true}))
             .setThumbnail(Target.user.displayAvatarURL({dynamic: true}))
-            .setColor('RANDOM')
+            .setColor("RANDOM")
             .addField("Server member since", `${moment(Target.joinedAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.joinedAt).startOf('day').fromNow()}`)
             .addField("Discord user since", `${moment(Target.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.user.createdAt).startOf('day').fromNow()}`)
 
