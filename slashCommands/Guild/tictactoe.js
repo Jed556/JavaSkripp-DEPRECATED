@@ -1,4 +1,12 @@
 const Discord = require('discord.js');
+const { Client, CommandInteraction } = require('discord.js');
+
+/**
+ *
+ * @param {Client} client
+ * @param {CommandInteraction} interaction
+ */
+
 module.exports =  {
     name: "tictactoe", //the command name for the Slash Command
 	description: "Play tic tac toe with someone", //the command description for Slash Command Overview
