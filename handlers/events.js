@@ -4,7 +4,7 @@ const allevents = [];
 module.exports = async (client) => {
     try {
         try {
-            console.log("\n" + `STARTUP IN PROGRESS..`.bold.yellow + "\n" + `By: ${ee.owner}`.yellow);
+            console.log("\n" + `STARTUP IN PROGRESS`.bold.yellow + "\n" + `By: ${ee.owner}`.yellow);
         } catch {
             /* */ }
         let amount = 0;
