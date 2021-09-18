@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const { CommandInteraction, MessageComponentInteraction, Message} = require('discord.js');
 
 module.exports =  {
     name: "tictactoe", //the command name for the Slash Command
@@ -9,7 +9,12 @@ module.exports =  {
 	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
     run: async (interaction) => {
         try {
-            /** @type interaction {Discord.CommandInteraction} */
+            /**
+            * @param {CommandInteraction} interaction 
+            * @param {MessageComponentInteraction} interaction
+            * @param {Message} message
+            */
+           
             interaction.reply("Tic Tac Toe!", {
                 components: [
                     {type: 1, components: [
@@ -30,12 +35,8 @@ module.exports =  {
                 ]
             });
 
-            /**
-            *
-            * @param {Discord.MessageComponentInteraction} interaction
-            */
+
             async function updateGrid(interaction) {
-            /** @type {Discord.Message} message */
             const message = interaction.message;
 
             let xs = 0, os = 0;
