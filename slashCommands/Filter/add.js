@@ -94,7 +94,7 @@ module.exports = {
 							.setFooter(ee.footertext, ee.footericon)
 							.setTitle(`${client.allEmojis.x} **You added at least one Filter, which is invalid!**`)
 							.setDescription("**To define Multiple Filters add a SPACE (` `) in between!**")
-							.addField("**All Valid Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom are having there own Command, please use them to define what custom amount u want!*")
+							.addField("**All Valid Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
 						],
 					})
 				}
