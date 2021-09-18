@@ -6,6 +6,9 @@ const { onCoolDown, replacemsg } = require("../../handlers/functions");
 const Discord = require("discord.js");
 module.exports = (client, interaction) => {
 	const CategoryName = interaction.commandName;
+
+  if(interaction.guildId == null) return interaction.reply("You can´t execute commands in DM! 🙂");
+  
   client.settings.ensure(interaction.guildId, {
     prefix: config.prefix,
     defaultvolume: 100,
