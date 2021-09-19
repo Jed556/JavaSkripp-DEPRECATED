@@ -107,7 +107,7 @@ module.exports = {
 				await client.distube.playVoiceChannel(channel, Text, options)
 				//Edit the reply
 				newmsg.edit({
-					content: `${queue?.songs?.length > 0 ? "👍 Added to the Top of the Queue" : "🎶 Now Playing"}: \`\`\`css\n${Text}\n\`\`\``,
+					content: `${queue?.songs?.length > 0 ? "👍 Added to the Top of the Queue" : "🎶 Now Playing"}: \`\`\`\n${Text}\n\`\`\``,
 				}).catch(e => {
 					console.log(e)
 				})
