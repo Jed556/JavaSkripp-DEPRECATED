@@ -27,7 +27,7 @@ module.exports = {
 				required: false,
 				choices: [
 					["Bot", "botping"],
-					["Discord Api", "api"]
+					["Discord API", "api"]
 				]
 			}
 		}, //here the second array input MUST BE A STRING // TO USE IN THE CODE: interacton.getString("what_ping")
@@ -83,7 +83,7 @@ module.exports = {
 							.setColor(ee.color)
 							.setFooter(ee.footertext, ee.footericon)
 							.setTitle(`Ping`)
-							.addField(`${client.allEmojis.ping} **Api Ping:**`, `\`${Math.floor(client.ws.ping)} ms\``)
+							.addField(`${client.allEmojis.ping} **API Ping:**`, `\`${Math.floor(client.ws.ping)} ms\``)
 						],
 						ephemeral: true
 					})
@@ -103,6 +103,7 @@ module.exports = {
 						.setFooter(ee.footertext, ee.footericon)
 						.setTitle(`Ping`)
 						.addField(`${client.allEmojis.ping} **Bot Ping:**`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))} ms\``)
+						.addField(`${client.allEmojis.ping} **API Ping:**`, `\`${Math.floor(client.ws.ping)} ms\``)
 					],
 					ephemeral: true
 				})
