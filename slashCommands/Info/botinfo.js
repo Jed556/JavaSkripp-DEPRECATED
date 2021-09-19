@@ -34,7 +34,6 @@ module.exports = {
                         .setAuthor(client.user.username, client.user.displayAvatarURL())
                         .setTitle("__**Stats:**__")
                         .setColor(ee.color)
-                        .setTimestamp()
                         .addField("⏳ Memory Usage", `\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}/ ${(os.totalmem() / 1024 / 1024).toFixed(2)}MB\``, true)
                         .addField("⌚️ Uptime ", `${duration(client.uptime).map(i=>`\`${i}\``).join(", ")}`, true)
                         .addField("\u200b", `\u200b`, true)
@@ -52,7 +51,7 @@ module.exports = {
                         .addField("🤖 Arch", `\`${os.arch()}\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
-                        .addField("API Latency", `\`${client.ws.ping}ms\``, true)
+                        .addField("📶 API Latency", `\`${client.ws.ping}ms\``, true)
                         .setFooter(`Coded by: ${ee.owner}`, ee.ownericon);
                     interaction.reply({
                         embeds: [botinfo]
@@ -87,7 +86,7 @@ module.exports = {
                         .addField("🤖 Arch", `\`${os.arch()}\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
-                        .addField(":signal_strength: API Latency", `\`${client.ws.ping}ms\``, true)
+                        .addField("📶 API Latency", `\`${client.ws.ping}ms\``, true)
                         .setFooter(`Coded by: ${ee.owner}`, ee.ownericon);
                         interaction.reply({
                         embeds: [botinfo]
