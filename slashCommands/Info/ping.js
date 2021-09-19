@@ -59,28 +59,51 @@ module.exports = {
 			if (StringOption) {
 				if (StringOption == "botping") {
 					await interaction.reply({
-						content: `${client.allEmojis.loading} Getting the Bot Ping...`,
+						embeds: [new MessageEmbed()
+							.setColor(ee.color)
+							.setFooter(ee.footertext, ee.footericon)
+							.setTitle(`${client.allEmojis.loading} Getting the Bot Ping...`)
+						],
 						ephemeral: true
 					});
 					interaction.editReply({
-						content: `${client.allEmojis.ping} Bot Ping: \`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))} ms\``,
+						embeds: [new MessageEmbed()
+							.setColor(ee.color)
+							.setFooter(ee.footertext, ee.footericon)
+							.setTitle(`Ping`)
+							.addField(`${client.allEmojis.ping} **Bot Ping:**`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))} ms\``)
+						],
 						ephemeral: true
 					})
 				}
 				//Other Option: API
 				else {
 					interaction.reply({
-						content: `${client.allEmojis.ping} Api Ping: \`${Math.floor(client.ws.ping)} ms\``,
+						embeds: [new MessageEmbed()
+							.setColor(ee.color)
+							.setFooter(ee.footertext, ee.footericon)
+							.setTitle(`Ping`)
+							.addField(`${client.allEmojis.ping} **Api Ping:**`, `\`${Math.floor(client.ws.ping)} ms\``)
+						],
 						ephemeral: true
 					})
 				}
 			} else {
 				await interaction.reply({
-					content: `${client.allEmojis.loading} Getting the Bot Ping...`,
+					embeds: [new MessageEmbed()
+						.setColor(ee.color)
+						.setFooter(ee.footertext, ee.footericon)
+						.setTitle(`${client.allEmojis.loading} Getting the Bot Ping...`)
+					],
 					ephemeral: true
 				});
 				interaction.editReply({
-					content: `${client.allEmojis.ping} Bot Ping: \`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))} ms\`\n\n${client.allEmojis.ping} Api Ping: \`${Math.floor(client.ws.ping)} ms\``,
+					embeds: [new MessageEmbed()
+						.setColor(ee.color)
+						.setFooter(ee.footertext, ee.footericon)
+						.setTitle(`Ping`)
+						.addField(`${client.allEmojis.ping} **Bot Ping:**`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))} ms\``)
+					],
 					ephemeral: true
 				})
 			}
