@@ -52,6 +52,7 @@ module.exports = {
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
                         .addField("📶 API Latency", `\`${client.ws.ping}ms\``, true)
+                        .addField("\u200b", `\u200b`, true)
                         .setFooter(`Coded by: ${ee.owner}`, ee.ownericon);
                     interaction.reply({
                         embeds: [botinfo]
@@ -87,6 +88,7 @@ module.exports = {
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
                         .addField("📶 API Latency", `\`${client.ws.ping}ms\``, true)
+                        .addField("\u200b", `\u200b`, true)
                         .setFooter(`Coded by: ${ee.owner}`, ee.ownericon);
                         interaction.reply({
                         embeds: [botinfo]

@@ -71,7 +71,7 @@ module.exports = {
 							.setColor(ee.color)
 							.setFooter(ee.footertext, ee.footericon)
 							.setTitle(`${client.allEmojis.ping} Ping`)
-							.addField(`Bot Ping:`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))} ms\``, true)
+							.addField(`Bot Ping:`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)
 							.setTimestamp()
 						],
 						ephemeral: true
@@ -84,7 +84,7 @@ module.exports = {
 							.setColor(ee.color)
 							.setFooter(ee.footertext, ee.footericon)
 							.setTitle(`${client.allEmojis.ping} Ping`)
-							.addField(`API Ping:`, `\`${Math.floor(client.ws.ping)} ms\``, true)
+							.addField(`API Ping:`, `\`${Math.floor(client.ws.ping)}ms\``, true)
 							.setTimestamp()
 						],
 						ephemeral: true
@@ -104,8 +104,8 @@ module.exports = {
 						.setColor(ee.color)
 						.setFooter(ee.footertext, ee.footericon)
 						.setTitle(`${client.allEmojis.ping} Ping`)
-						.addField(`Bot Ping:`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))} ms\``, true)
-						.addField(`API Ping:`, `\`${Math.floor(client.ws.ping)} ms\``, true)
+						.addField(`Bot Ping:`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)
+						.addField(`API Ping:`, `\`${Math.floor(client.ws.ping)}ms\``, true)
 						.setTimestamp()
 					],
 					ephemeral: true
