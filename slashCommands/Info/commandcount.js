@@ -23,8 +23,9 @@ module.exports = {
                     .setColor(ee.color)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle(`**[${client.commands.size + client.slashCommands.size + client.slashCommands.map(d => d.options).flat().length}] Total Commands Loaded**`)
-                    .addField(`:gear: **[${client.commands.size}] Prefix Commands**`, `>>>**[${client.categories.length}] Categories**`)
-                    .addField(`:gear: **[${client.slashCommands.size + client.slashCommands.map(d => d.options).flat().length}] Slash Commands**`, `>>>**[${client.slashCategories.length}] Categories**\n`)
+                    .addField(`:gear: **[${client.commands.size}] Prefix Commands**`, `>>> **[${client.categories.length}] Categories**`)
+                    .addField(`:gear: **[${client.slashCommands.size + client.slashCommands.map(d => d.options).flat().length}] Slash Commands**`, `>>> **[${client.slashCategories.length}] Categories**\n`)
+                    .setTimestamp()
                 ]
             });
         } catch (e) {
