@@ -20,16 +20,16 @@ module.exports = {
     options: [
         {
             "User": {
-                name: "target",
+                name: "user",
                 description: "Select a user",
                 required: true
             }
         },
     ],
 
-    run: async (client, interaction) => {
+    run: async (interaction) => {
         try {
-            const Target = interaction.options.getUser("target")
+            const Target = interaction.options.getUser("user")
 
             const Info = new MessageEmbed()
                 .setAuthor(`${Target.user.username}`, Target.user.displayAvatarURL({ dynamic: true }))
