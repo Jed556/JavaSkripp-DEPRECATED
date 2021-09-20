@@ -41,7 +41,7 @@ module.exports = {
             if (Target.roles.cache.size > 1) {
                 Info.addField(`Role${Target.roles.cache != 1 ? "s" : ""}`, `${Target.roles.cache.map(r => r).join(' ').replace("@everyone", " ")}`)
             } else {
-                Response.addField("Roles", "No roles to display")
+                Info.addField("Roles", "No roles to display")
             }
 
             interaction.reply({ embeds: [Info] })
