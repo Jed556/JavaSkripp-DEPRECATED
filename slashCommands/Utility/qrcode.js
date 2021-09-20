@@ -1,8 +1,11 @@
-const { MessageAttachment } = require("discord.js")
+const { MessageAttachment } = require("discord.js");
+const config = require("../../botconfig/config.json");
+const ee = require("../../botconfig/embed.json");
+const settings = require("../../botconfig/settings.json");
 const qrc = require("qrcode");
 
 module.exports = {
-    name: "QR-code",
+    name: "qrcode",
     description: "Create a QR code.",
     category: "Utility",
     cooldown: 1,
@@ -17,14 +20,18 @@ module.exports = {
             }
         },
     ],
+
     run: async (interaction) => {
-        const queue = interaction.options.getString("text")
-        if (!queue) return interaction.reply("Please provide a text!")
+        try {
+            const queue = interaction.options.getString("text")
+            if (!queue) return interaction.reply("Please provide a text!")
 
-        interaction.reply(`🛠 Converting... \`\`\`${queue}\`\`\``)
-        let image = await qrc.toBuffer(queue)
-        
-
-        interaction.reply({ files: [new MessageAttachment(image, "qrcode.png")] })
+            interaction.reply(`🛠 Converting... \`\`\`${queue}\`\`\``)
+            
+            let image = await qrc.toBuffer(queue)
+            interaction.editReply({ files: [new MessageAttachment(image, "qrcode.png")] })
+        } catch (e) {
+            console.log(String(e.stack).bgRed)
+        }
     }
 };
