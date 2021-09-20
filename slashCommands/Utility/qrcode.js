@@ -1,8 +1,12 @@
-const { MessageAttachment } = require("discord.js");
+const { CommandInteraction, MessageAttachment } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
-const qrc = require("qrcode");
+
+/**
+ *
+ * @param {CommandInteraction} interaction
+ */
 
 module.exports = {
     name: "qrcode",
@@ -23,17 +27,13 @@ module.exports = {
 
     run: async (interaction) => {
         try {
-            const { member, channelId, guildId, applicationId, commandName,
-                deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
-            const { guild } = member;
-
-            const queue = options.getString("text");
-            if (!queue) return interaction.reply("Please provide a text!");
+            const convert = interaction.options.getString("text");
+            if (!convert) return interaction.reply("Please provide a text!");
             
-            interaction.reply(`🛠 Converting... \`\`\`${queue}\`\`\``);
+            interaction.reply({content: `🛠 Converting... \`\`\`${convert}\`\`\``});
             
-            let image = await qrc.toBuffer(queue)
-            interaction.editReply({ files: [new MessageAttachment(image, "qrcode.png")] })
+            let result = await qrc.toBuffer(convert)
+            interaction.editReply({ files: [new MessageAttachment(result, "qrcode.png")] })
         } catch (e) {
             console.log(String(e.stack).bgRed)
         }
