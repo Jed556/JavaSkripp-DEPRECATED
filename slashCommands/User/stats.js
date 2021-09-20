@@ -1,8 +1,14 @@
-const { MessageEmbed } = require('discord.js');
+const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const moment = require("moment");
+
+/**
+ *
+ * @param {Client} client
+ * @param {CommandInteraction} interaction
+ */
 
 module.exports = {
     name: "stats",

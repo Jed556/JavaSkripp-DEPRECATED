@@ -1,8 +1,13 @@
-const { MessageAttachment } = require("discord.js");
+const { Client, CommandInteraction, MessageAttachment } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
-const qrc = require("qrcode");
+const qrc = require("qrcode")
+
+/**
+ * @param {Client} client
+ * @param {CommandInteraction} interaction
+ */
 
 module.exports = {
     name: "qrcode",
@@ -26,10 +31,10 @@ module.exports = {
             const convert = interaction.options.getString("text");
             if (!convert) return interaction.reply("Please provide a text!");
 
-            interaction.reply({ content: `🛠 Converting... \`\`\`${convert}\`\`\``, ephemeral: true });
+            interaction.reply({ content: `🛠 Converting... \`\`\`${convert}\`\`\`` });
 
             let result = await qrc.toBuffer(convert)
-            interaction.editReply({ content: "", files: [new MessageAttachment(result, "qrcode.png")], ephemeral: false })
+            interaction.editReply({ files: [new MessageAttachment(result, "qrcode.png")] })
         } catch (e) {
             console.log(String(e.stack).bgRed)
         }
