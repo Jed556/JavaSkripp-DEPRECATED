@@ -26,7 +26,7 @@ module.exports = {
             const Target = interaction.options.getUser("user")
 
             const Info = new MessageEmbed()
-                .setAuthor(`${Target.user.tag}`, Target.user.displayAvatarURL({ dynamic: true }))
+                .setAuthor(`${Target.user}`, Target.user.displayAvatarURL({ dynamic: true }))
                 .setThumbnail(Target.user.displayAvatarURL({ dynamic: true }))
                 .setColor("RANDOM")
                 .addField("Server member since", `${moment(Target.joinedAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.joinedAt).startOf('day').fromNow()}`)
