@@ -23,10 +23,14 @@ module.exports = {
 
     run: async (interaction) => {
         try {
-            const queue = interaction.options.getString("text")
-            if (!queue) return interaction.reply("Please provide a text!")
+            const { member, channelId, guildId, applicationId, commandName,
+                deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
+            const { guild } = member;
 
-            interaction.reply(`🛠 Converting... \`\`\`${queue}\`\`\``)
+            const queue = options.getString("text");
+            if (!queue) return interaction.reply("Please provide a text!");
+            
+            interaction.reply(`🛠 Converting... \`\`\`${queue}\`\`\``);
             
             let image = await qrc.toBuffer(queue)
             interaction.editReply({ files: [new MessageAttachment(image, "qrcode.png")] })

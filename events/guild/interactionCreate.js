@@ -4,6 +4,8 @@ const ee = require(`../../botconfig/embed.json`);
 const settings = require(`../../botconfig/settings.json`);
 const { onCoolDown, replacemsg } = require("../../handlers/functions");
 const Discord = require("discord.js");
+const { CommandInteraction } = require("discord.js");
+
 module.exports = (client, interaction) => {
     const CategoryName = interaction.commandName;
 
@@ -102,6 +104,11 @@ module.exports = (client, interaction) => {
                     }))]
             });
         }
+
+        /**
+         * @param {CommandInteraction} interaction
+         * */
+
         //execute the Command
         command.run(client, interaction)
     }
