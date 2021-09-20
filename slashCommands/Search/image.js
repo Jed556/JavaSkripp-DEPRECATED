@@ -1,14 +1,7 @@
-const { Client, CommandInteraction } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const Scraper = require("images-scraper");
-
-/**
- *
- * @param {Client} client
- * @param {CommandInteraction} interaction
- */
 
 module.exports = {
     name: "image",

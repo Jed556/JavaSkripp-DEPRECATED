@@ -1,14 +1,8 @@
-const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const moment = require("moment");
-
-/**
- *
- * @param {Client} client
- * @param {CommandInteraction} interaction
- */
 
 module.exports = {
     name: "stats",
@@ -27,7 +21,7 @@ module.exports = {
         },
     ],
 
-    run: async (interaction) => {
+    run: async (client, interaction) => {
         try {
             const Target = interaction.options.getUser("target")
 
