@@ -1,12 +1,8 @@
-const { Client, CommandInteraction, MessageAttachment } = require("discord.js");
+const { MessageAttachment } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
-
-/**
- * @param {Client} client
- * @param {CommandInteraction} interaction
- */
+const qrc = require("qrcode");
 
 module.exports = {
     name: "qrcode",
