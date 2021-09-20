@@ -27,7 +27,7 @@ module.exports = {
         },
     ],
 
-    run: async (interaction) => {
+    run: async (client, interaction) => {
         try {
             const Target = interaction.options.getUser("target")
 
