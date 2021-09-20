@@ -54,12 +54,14 @@ let spotifyoptions = {
     parallel: true,
     emitEventsAfterFetching: true,
 }
+
 if (config.spotify_api.enabled) {
     spotifyoptions.api = {
         clientId: config.spotify_api.clientId,
         clientSecret: config.spotify_api.clientSecret,
     }
 }
+
 client.distube = new DisTube(client, {
     emitNewSongOnly: false,
     leaveOnEmpty: true,
@@ -104,7 +106,6 @@ client.setMaxListeners(100); require('events').defaultMaxListeners = 100;
 
 client.settings = new Enmap({ name: "settings", dataDir: "./databases/settings" });
 client.infos = new Enmap({ name: "infos", dataDir: "./databases/infos" });
-
 
 //Require the Handlers
 //         Add the commands file if enabled                         Add the antiCrash file if enabled
