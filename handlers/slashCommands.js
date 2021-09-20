@@ -3,13 +3,13 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const config = require("../botconfig/config.json");
 const dirSetup = [{
     "Folder": "Info", "CmdName": "info",
-    "CmdDescription": "Grant specific Information about something!"
+    "CmdDescription": "Get Bot, API or Command Information"
 }, {
     "Folder": "Settings", "CmdName": "settings",
     "CmdDescription": "Bot Configuration"
 }, {
     "Folder": "Music", "CmdName": "music",
-    "CmdDescription": "Playing/Queuing Music"
+    "CmdDescription": "Music Commands"
 }, {
     "Folder": "Queue", "CmdName": "queue",
     "CmdDescription": "Music Queue Commands"
@@ -18,13 +18,25 @@ const dirSetup = [{
     "CmdDescription": "Song Commands"
 }, {
     "Folder": "Filter", "CmdName": "filter",
-    "CmdDescription": "Add Music Filters"
+    "CmdDescription": "Modify Music Filters"
 }, {
     "Folder": "Mod", "CmdName": "mod",
-    "CmdDescription": "Moderator Commands"
+    "CmdDescription": "Moderating Commands"
 }, {
     "Folder": "Guild", "CmdName": "guild",
     "CmdDescription": "Guild Commands"
+}, {
+    "Folder": "User", "CmdName": "user",
+    "CmdDescription": "User Commands"
+}, {
+    "Folder": "Search", "CmdName": "search",
+    "CmdDescription": "Search Commands"
+}, {
+    "Folder": "Games", "CmdName": "game",
+    "CmdDescription": "Play Games"
+}, {
+    "Folder": "Utility", "CmdName": "util",
+    "CmdDescription": "Utility Commands"
 }];
 
 module.exports = (client) => {

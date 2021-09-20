@@ -2,7 +2,7 @@ const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
-const moment = require('moment');
+const moment = require("moment");
 
 /**
  *
@@ -13,7 +13,7 @@ const moment = require('moment');
 module.exports = {
     name: "stats",
     description: "Display mentioned user or command user's information",
-    category: "Guild",
+    category: "User",
     cooldown: 1,
     requiredroles: [],
     alloweduserids: [],

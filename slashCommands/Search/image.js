@@ -1,8 +1,8 @@
-const { Client, CommandInteraction } = require('discord.js');
+const { Client, CommandInteraction } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
-const Scraper = require('images-scraper');
+const Scraper = require("images-scraper");
 
 /**
  *
@@ -13,7 +13,7 @@ const Scraper = require('images-scraper');
 module.exports = {
     name: "image",
     description: "Send an image to a channel",
-    category: "Guild",
+    category: "Search",
     cooldown: 1,
     requiredroles: [],
     alloweduserids: [],
