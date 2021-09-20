@@ -6,7 +6,9 @@ module.exports = async (client) => {
         try {
             console.log("\n" + `STARTUP IN PROGRESS`.bold.yellow + "\n" + `By: ${ee.owner}`.yellow);
         } catch {
-            /* */ }
+            /* */
+        }
+
         let amount = 0;
         const load_dir = (dir) => {
             const event_files = fs.readdirSync(`./events/${dir}`).filter((file) => file.endsWith(".js"));
@@ -24,16 +26,18 @@ module.exports = async (client) => {
         }
         await ["client", "guild"].forEach(e => load_dir(e));
         console.log("\n" + `${amount} Events Loaded`.brightGreen);
+
         try {
             const stringlength2 = 30;
             console.log("\n" +
-            `┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓`.bold.yellow + "\n" +
-            `┃ `.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length) + "┃".bold.yellow + "\n" +
-            `┃ `.bold.yellow + ` Logging into the BOT...`.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length - ` Logging into the BOT...`.length) + "┃".bold.yellow + "\n" +
-            `┃ `.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length) + "┃".bold.yellow + "\n" +
-            `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.yellow + "\n")
+                `┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓`.bold.yellow + "\n" +
+                `┃ `.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length) + "┃".bold.yellow + "\n" +
+                `┃ `.bold.yellow + ` Logging into the BOT...`.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length - ` Logging into the BOT...`.length) + "┃".bold.yellow + "\n" +
+                `┃ `.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length) + "┃".bold.yellow + "\n" +
+                `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.yellow + "\n")
         } catch {
-            /* */ }
+            /* */
+        }
     } catch (e) {
         console.log(String(e.stack).bgRed)
     }

@@ -10,16 +10,16 @@ const {
 } = require("../../handlers/functions")
 const FiltersSettings = require("../../botconfig/filters.json");
 module.exports = {
-	name: "removefilter", //the command name for the Slash Command
+	name: "removefilter",
 
 	category: "Filter",
 	usage: "removefilter <Filter1 Filter2>",
 	aliases: ["removefilters", "remove", "removef"],
 
-	description: "Removes a Filter from the Queue", //the command description for Slash Command Overview
+	description: "Removes a Filter from the Queue",
 	cooldown: 5,
-	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+	requiredroles: [],
+	alloweduserids: [],
 	run: async (client, message, args) => {
 		try {
 			const {
@@ -107,8 +107,8 @@ module.exports = {
 				console.log(e.stack ? e.stack : e)
 				message.reply({
 					content: `${client.allEmojis.x} | Error: `,
-					embeds: [
-						new MessageEmbed().setColor(ee.wrongcolor)
+					embeds: [new MessageEmbed()
+						.setColor(ee.wrongcolor)
 						.setDescription(`\`\`\`${e}\`\`\``)
 					],
 

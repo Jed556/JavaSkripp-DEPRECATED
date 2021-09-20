@@ -7,6 +7,7 @@ module.exports = (client) => {
             console.log(`Message in ${guild.name} #${channel.name} from ${message.author.username}#${message.author.discriminator}: ${message.content}`);
         }
     });
+
     client.ws.on("INTERACTION_CREATE", async interaction => {
         const guild = client.guilds.cache.get(interaction.guild_id);
         const channel = client.channels.cache.get(interaction.channel_id);

@@ -1,16 +1,16 @@
 {
-  "color": "#5865F1",
-  "wrongcolor": "#e01e01",
-  "oldcolor": "#C219D8",
-  
-  "footertext": "JavaSkripp",
-  "footericon": "https://cdn.discordapp.com/avatars/881308119383302165/7dce2017f33191fc9b8c6d87fb35bb1e.webp",
-  
-  "owner": "Gatorade#4147",
-  "ownericon": "https://cdn.discordapp.com/avatars/839430747088617472/2c0949a1f43172e7735381dfb0000dbb.webp",
-  
-  "invite": "https://tinyurl.com/JavaSkripp",
+    "color": "#5865F1",
+    "wrongcolor": "#e01e01",
+    "oldcolor": "#C219D8",
 
-  "songended": "https://cdn.discordapp.com/attachments/883978730261860383/883978741892649000/847032838998196234.png",
-  "discspin": "https://images-ext-1.discordapp.net/external/DkPCBVBHBDJC8xHHCF2G7-rJXnTwj_qs78udThL8Cy0/%3Fv%3D1/https/cdn.discordapp.com/emojis/859459305152708630.gif"
+    "footertext": "JavaSkripp",
+    "footericon": "https://cdn.discordapp.com/avatars/881308119383302165/7dce2017f33191fc9b8c6d87fb35bb1e.webp",
+
+    "owner": "Gatorade#4147",
+    "ownericon": "https://cdn.discordapp.com/avatars/839430747088617472/2c0949a1f43172e7735381dfb0000dbb.webp",
+
+    "invite": "https://tinyurl.com/JavaSkripp",
+
+    "songended": "https://cdn.discordapp.com/attachments/883978730261860383/883978741892649000/847032838998196234.png",
+    "discspin": "https://images-ext-1.discordapp.net/external/DkPCBVBHBDJC8xHHCF2G7-rJXnTwj_qs78udThL8Cy0/%3Fv%3D1/https/cdn.discordapp.com/emojis/859459305152708630.gif"
 }

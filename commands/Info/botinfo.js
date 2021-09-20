@@ -8,15 +8,15 @@ const settings = require("../../botconfig/settings.json");
 let cpuStat = require("cpu-stat");
 let os = require("os");
 module.exports = {
-    name: "botinfo", //the command name for execution & for helpcmd [OPTIONAL]
+    name: "botinfo",
     category: "Info",
     usage: "botinfo",
     aliases: ["info",],
-    cooldown: 5, //the command cooldown for execution & for helpcmd [OPTIONAL]
-    description: "Shows Information about the Bot", //the command description for helpcmd [OPTIONAL]
-    memberpermissions: [], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]
-    requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-    alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+    cooldown: 5,
+    description: "Shows Information about the Bot",
+    memberpermissions: [],
+    requiredroles: [],
+    alloweduserids: [],
     run: async (client, message, args) => {
         try {
 

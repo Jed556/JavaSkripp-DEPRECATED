@@ -9,16 +9,16 @@ const {
 	check_if_dj
 } = require("../../handlers/functions")
 module.exports = {
-	name: "stop", //the command name for the Slash Command
+	name: "stop",
 
 	category: "Music",
 	aliases: ["leave", "break", "destroy", "dis", "disconnect"],
 	usage: "stop",
 
-	description: "Stops playing and leaves the Channel!", //the command description for Slash Command Overview
+	description: "Stops playing and leaves the Channel!",
 	cooldown: 5,
-	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+	requiredroles: [],
+	alloweduserids: [],
 	run: async (client, message, args) => {
 		try {
 			//things u can directly access in an interaction!
@@ -89,8 +89,8 @@ module.exports = {
 				console.log(e.stack ? e.stack : e)
 				message.reply({
 					content: `${client.allEmojis.x} | Error: `,
-					embeds: [
-						new MessageEmbed().setColor(ee.wrongcolor)
+					embeds: [new MessageEmbed()
+						.setColor(ee.wrongcolor)
 						.setDescription(`\`\`\`${e}\`\`\``)
 					],
 

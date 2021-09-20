@@ -8,16 +8,16 @@ const {
 } = require("../../handlers/functions")
 const settings = require("../../botconfig/settings.json");
 module.exports = {
-  name: "uptime", //the command name for execution & for helpcmd [OPTIONAL]
+  name: "uptime",
 
   category: "Info",
   usage: "uptime",
 
-  cooldown: 1, //the command cooldown for execution & for helpcmd [OPTIONAL]
-  description: "Returns the duration on how long the Bot is online", //the command description for helpcmd [OPTIONAL]
-  memberpermissions: [], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]
-  requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-  alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+  cooldown: 1,
+  description: "Returns the duration on how long the Bot is online",
+  memberpermissions: [],
+  requiredroles: [],
+  alloweduserids: [],
   run: async (client, message, args) => {
     try {
       //things u can directly access in an interaction!

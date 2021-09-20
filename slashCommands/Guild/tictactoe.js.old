@@ -1,12 +1,12 @@
 const { CommandInteraction, MessageComponentInteraction, Message} = require('discord.js');
 
 module.exports =  {
-    name: "tictactoe", //the command name for the Slash Command
-	description: "Play tic tac toe with someone", //the command description for Slash Command Overview
+    name: "tictactoe",
+	description: "Play tic tac toe with someone",
 	category: "Guild",
 	cooldown: 1,
-	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+	requiredroles: [],
+	alloweduserids: [],
     run: async (interaction) => {
         try {
             /**

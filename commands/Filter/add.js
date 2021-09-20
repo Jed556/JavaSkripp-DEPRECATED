@@ -11,16 +11,16 @@ const {
 } = require("../../handlers/functions")
 
 module.exports = {
-	name: "addfilter", //the command name for the Slash Command
+	name: "addfilter",
 
 	category: "Filter",
 	usage: "addfilter <Filter1 Filter2>",
 	aliases: ["addfilters", "add", "addf"],
 
-	description: "Add a Filter to the Filters", //the command description for Slash Command Overview
+	description: "Add a Filter to the Filters",
 	cooldown: 5,
-	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+	requiredroles: [],
+	alloweduserids: [],
 	run: async (client, message, args) => {
 		try {
 			const {
@@ -106,8 +106,8 @@ module.exports = {
 				console.log(e.stack ? e.stack : e)
 				message.reply({
 					content: `${client.allEmojis.x} | Error: `,
-					embeds: [
-						new MessageEmbed().setColor(ee.wrongcolor)
+					embeds: [new MessageEmbed()
+						.setColor(ee.wrongcolor)
 						.setDescription(`\`\`\`${e}\`\`\``)
 					],
 				})

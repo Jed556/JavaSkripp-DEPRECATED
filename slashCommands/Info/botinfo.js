@@ -1,24 +1,21 @@
-const {
-    MessageEmbed
-} = require("discord.js");
-const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-var ee = require("../../botconfig/embed.json");
+const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 let cpuStat = require("cpu-stat");
 let os = require("os");
-module.exports = {
 
-    name: "botinfo", //the command name for execution & for helpcmd [OPTIONAL]
-    cooldown: 1, //the command cooldown for execution & for helpcmd [OPTIONAL]
-    description: "Shows Bot Information", //the command description for helpcmd [OPTIONAL]
+module.exports = {
+    name: "bot",
+    cooldown: 1,
+    description: "Shows JavaSkripp's information",
     category: "Info",
-    memberpermissions: [], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]
-    requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-    alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+    memberpermissions: [],
+    requiredroles: [],
+    alloweduserids: [],
+
     run: async (client, interaction) => {
         try {
-
             cpuStat.usagePercent(function (e, percent, seconds) {
                 try {
                     if (e) return console.log(String(e.stack).red);
@@ -35,7 +32,7 @@ module.exports = {
                         .setTitle("__**Stats:**__")
                         .setColor(ee.color).setTimestamp()
                         .addField("⏳ Memory Usage", `\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}/ ${(os.totalmem() / 1024 / 1024).toFixed(2)}MB\``, true)
-                        .addField("⌚️ Uptime ", `${duration(client.uptime).map(i=>`\`${i}\``).join(", ")}`, true)
+                        .addField("⌚️ Uptime ", `${duration(client.uptime).map(i => `\`${i}\``).join(", ")}`, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("📁 Users", `\`Total: ${client.users.cache.size}\``, true)
                         .addField("📁 Servers", `\`Total: ${client.guilds.cache.size}\``, true)
@@ -71,7 +68,7 @@ module.exports = {
                         .setTitle("__**Stats:**__")
                         .setColor(ee.color).setTimestamp()
                         .addField("⏳ Memory Usage", `\`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}/ ${(os.totalmem() / 1024 / 1024).toFixed(2)}MB\``, true)
-                        .addField("⌚️ Uptime ", `${duration(client.uptime).map(i=>`\`${i}\``).join(", ")}`, true)
+                        .addField("⌚️ Uptime ", `${duration(client.uptime).map(i => `\`${i}\``).join(", ")}`, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("📁 Users", `\`Total: ${client.users.cache.size} Users\``, true)
                         .addField("📁 Servers", `\`Total: ${client.guilds.cache.size} Servers\``, true)
@@ -90,7 +87,7 @@ module.exports = {
                         .addField("📶 API Latency", `\`${client.ws.ping}ms\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .setFooter(`Coded by: ${ee.owner}`, ee.ownericon);
-                        interaction.reply({
+                    interaction.reply({
                         embeds: [botinfo]
                     });
                 }

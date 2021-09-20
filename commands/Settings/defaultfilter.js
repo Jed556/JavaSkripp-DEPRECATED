@@ -6,15 +6,15 @@ const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const filters = require("../../botconfig/filters.json")
 module.exports = {
-  name: "defaultfilter", //the command name for execution & for helpcmd [OPTIONAL]
+  name: "defaultfilter",
   aliases: ["dfilter"],
   usage: "defaultfilter <Filter1 Filter2>",
-  cooldown: 10, //the command cooldown for execution & for helpcmd [OPTIONAL]
-  usage: "defaultfilter", //the command usage for helpcmd [OPTIONAL]
-  description: "Defines the Default Filter(s)", //the command description for helpcmd [OPTIONAL]
-  memberpermissions: ["MANAGE_GUILD "], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]
-  requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-  alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL], //Only allow specific Users to execute a Command [OPTIONAL]
+  cooldown: 10,
+  usage: "defaultfilter",
+  description: "Defines the Default Filter(s)",
+  memberpermissions: ["MANAGE_GUILD "],
+  requiredroles: [],
+  alloweduserids: [],,
 
   run: async (client, message, args) => {
     try {

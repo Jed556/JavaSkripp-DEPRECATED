@@ -1,48 +1,52 @@
 const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
-const moment = require('moment')
+const config = require("../../botconfig/config.json");
+const ee = require("../../botconfig/embed.json");
+const settings = require("../../botconfig/settings.json");
+const moment = require('moment');
 
 /**
-*
-* @param {Client} client
-* @param {CommandInteraction} interaction
-*/
+ *
+ * @param {Client} client
+ * @param {CommandInteraction} interaction
+ */
 
 module.exports = {
-    name: "stats", //the command name for the Slash Command
-	description: "Display mentioned user or command user's information", //the command description for Slash Command Overview
+    name: "stats",
+    description: "Display mentioned user or command user's information",
     category: "Guild",
-	cooldown: 1,
-	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
-	options: [ 
-		{
-			"User": {
-				name: "target",
-				description: "Select a user",
-				required: true
-			}
-		}, 
-	],
-    run: async (client, interaction) => {
+    cooldown: 1,
+    requiredroles: [],
+    alloweduserids: [],
+    options: [
+        {
+            "User": {
+                name: "target",
+                description: "Select a user",
+                required: true
+            }
+        },
+    ],
+
+    run: async (interaction) => {
         try {
             const Target = interaction.options.getUser("target")
 
             const Info = new MessageEmbed()
-            .setAuthor(`${Target.user.username}`, Target.user.displayAvatarURL({dynamic: true}))
-            .setThumbnail(Target.user.displayAvatarURL({dynamic: true}))
-            .setColor("RANDOM")
-            .addField("Server member since", `${moment(Target.joinedAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.joinedAt).startOf('day').fromNow()}`)
-            .addField("Discord user since", `${moment(Target.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.user.createdAt).startOf('day').fromNow()}`)
+                .setAuthor(`${Target.user.username}`, Target.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(Target.user.displayAvatarURL({ dynamic: true }))
+                .setColor("RANDOM")
+                .addField("Server member since", `${moment(Target.joinedAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.joinedAt).startOf('day').fromNow()}`)
+                .addField("Discord user since", `${moment(Target.user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.user.createdAt).startOf('day').fromNow()}`)
 
             if (Target.roles.cache.size > 1) {
-                Info.addField("Roles", `${Target.roles.cache.map(r => r).join(' ').replace("@everyone", " ")}`)
+                Info.addField(`Role${Target.roles.cache != 1 ? "s" : ""}`, `${Target.roles.cache.map(r => r).join(' ').replace("@everyone", " ")}`)
             } else {
                 Response.addField("Roles", "No roles to display")
             }
 
-            interaction.reply({embeds: [Info]})
-        }catch (e) {
-			console.log(String(e.stack).bgRed)
-   		}
+            interaction.reply({ embeds: [Info] })
+        } catch (e) {
+            console.log(String(e.stack).bgRed)
+        }
     }
 }

@@ -5,17 +5,17 @@ const config = require("../../botconfig/config.json");
 var ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 module.exports = {
-  name: "invite", //the command name for execution & for helpcmd [OPTIONAL]
+  name: "invite",
 
   category: "Info",
   usage: "invite",
   aliases: ["inviteme", "addme", ],
 
-  cooldown: 5, //the command cooldown for execution & for helpcmd [OPTIONAL]
-  description: "Sends you an invite link", //the command description for helpcmd [OPTIONAL]
-  memberpermissions: [], //Only allow members with specific Permissions to execute a Commmand [OPTIONAL]
-  requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-  alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+  cooldown: 5,
+  description: "Sends you an invite link",
+  memberpermissions: [],
+  requiredroles: [],
+  alloweduserids: [],
   run: async (client, message, args) => {
     try {
       message.reply({

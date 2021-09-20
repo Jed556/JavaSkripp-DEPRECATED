@@ -6,16 +6,16 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 module.exports = {
-	name: "mix", //the command name for the Slash Command
+	name: "mix",
 
 	category: "Music",
 	aliases: ["musicmix", "playmix", "playlist", "playmusicmix"],
 	usage: "mix [MIXNAME]",
 
-	description: "Plays a defined Mix", //the command description for Slash Command Overview
+	description: "Plays a defined Mix",
 	cooldown: 2,
-	requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-	alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+	requiredroles: [],
+	alloweduserids: [],
 
 	run: async (client, message, args) => {
 		try {
@@ -114,8 +114,8 @@ module.exports = {
 				console.log(e.stack ? e.stack : e)
 				message.reply({
 					content: `${client.allEmojis.x} | Error: `,
-					embeds: [
-						new MessageEmbed().setColor(ee.wrongcolor)
+					embeds: [new MessageEmbed()
+						.setColor(ee.wrongcolor)
 						.setDescription(`\`\`\`${e}\`\`\``)
 					],
 

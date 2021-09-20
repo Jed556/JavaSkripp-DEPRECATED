@@ -11,16 +11,16 @@ const {
 } = require("../../handlers/functions")
 
 module.exports = {
-  name: "filters", //the command name for the Slash Command
+  name: "filters",
 
   category: "Filter",
   usage: "filters",
   aliases: ["listfilter", "listfilters", "allfilters"],
 
-  description: "List all active and possible Filters!", //the command description for Slash Command Overview
+  description: "List all active and possible Filters!",
   cooldown: 5,
-  requiredroles: [], //Only allow specific Users with a Role to execute a Command [OPTIONAL]
-  alloweduserids: [], //Only allow specific Users to execute a Command [OPTIONAL]
+  requiredroles: [],
+  alloweduserids: [],
   run: async (client, message, args) => {
     try {
       const {
