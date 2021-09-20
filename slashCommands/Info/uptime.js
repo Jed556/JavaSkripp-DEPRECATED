@@ -3,7 +3,6 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const { duration } = require("../../handlers/functions")
-const settings = require("../../botconfig/settings.json");
 
 module.exports = {
     name: "uptime",
