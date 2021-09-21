@@ -9,7 +9,7 @@ module.exports = client => {
         process.on('unhandledRejection', (reason, p) => {
             console.log('[antiCrash] :: Unhandled Rejection/Catch');
             console.log(reason, p);
-            embed = {
+            const embed = {
                 embeds: [new MessageEmbed()
                     .setColor(ee.wrongcolor)
                     .setTitle(`antiCrash] :: Unhandled Rejection/Catch`)
@@ -17,9 +17,11 @@ module.exports = client => {
                     .setTimestamp()
                 ]
             }
-            owner.send(embed).catch(e => {
-                console.log(e)
-              })
+            try {
+                owner.send(embed)
+            } catch (e) {
+                console.log(String(e.stack).bgRed)
+            }
         });
 
         process.on("uncaughtException", (err, origin) => {
@@ -33,9 +35,11 @@ module.exports = client => {
                     .setTimestamp()
                 ]
             }
-            owner.send(embed).catch(e => {
-                console.log(e)
-              })
+            try {
+                owner.send(embed)
+            } catch (e) {
+                console.log(String(e.stack).bgRed)
+            }
         })
 
         process.on('uncaughtExceptionMonitor', (err, origin) => {
@@ -49,9 +53,11 @@ module.exports = client => {
                     .setTimestamp()
                 ]
             }
-            owner.send(embed).catch(e => {
-                console.log(e)
-              })
+            try {
+                owner.send(embed)
+            } catch (e) {
+                console.log(String(e.stack).bgRed)
+            }
         });
 
         process.on('multipleResolves', (type, promise, reason) => {
@@ -63,9 +69,11 @@ module.exports = client => {
                     .setTimestamp()
                 ]
             }
-            owner.send(embed).catch(e => {
-                console.log(e)
-              })
+            try {
+                owner.send(embed)
+            } catch (e) {
+                console.log(String(e.stack).bgRed)
+            }
             //console.log(type, promise, reason);
         });
     } catch (e) {
