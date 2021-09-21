@@ -6,9 +6,9 @@ const { onCoolDown, replacemsg } = require(`../../handlers/functions`);
 const Discord = require(`discord.js`);
 
 module.exports = async (client, message) => {
-    client.on("messageCreate", message => {
+    client.on("messageCreate", async message => {
         if (message.channel.type === "DM") {
-            console.log(message)
+            console.log(message.content)
         }
     })
 }
