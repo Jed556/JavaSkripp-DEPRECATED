@@ -33,7 +33,7 @@ const client = new Discord.Client({
         //Discord.Intents.FLAGS.GUILD_PRESENCES,
         Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
         //Discord.Intents.FLAGS.GUILD_MESSAGE_TYPING,
-        //Discord.Intents.FLAGS.DIRECT_MESSAGES,
+        Discord.Intents.FLAGS.DIRECT_MESSAGES,
         Discord.Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
         //Discord.Intents.FLAGS.DIRECT_MESSAGE_TYPING
     ],
