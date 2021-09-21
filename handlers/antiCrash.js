@@ -23,7 +23,7 @@ module.exports = client => {
         process.on("uncaughtException", (err, origin) => {
             console.log('[antiCrash] :: Uncaught Exception/Catch');
             console.log(err, origin);
-            embed = {
+            const embed = {
                 embeds: [new MessageEmbed()
                     .setColor(ee.wrongcolor)
                     .setTitle(`[antiCrash] :: Unhandled Rejection/Catch`)
@@ -37,7 +37,7 @@ module.exports = client => {
         process.on('uncaughtExceptionMonitor', (err, origin) => {
             console.log('[antiCrash] :: Uncaught Exception/Catch (MONITOR)');
             console.log(err, origin);
-            embed = {
+            const embed = {
                 embeds: [new MessageEmbed()
                     .setColor(ee.wrongcolor)
                     .setTitle(`[antiCrash] :: Uncaught Exception/Catch (MONITOR)`)
@@ -50,7 +50,7 @@ module.exports = client => {
 
         process.on('multipleResolves', (type, promise, reason) => {
             console.log('[antiCrash] :: Multiple Resolves');
-            embed = {
+            const embed = {
                 embeds: [new MessageEmbed()
                     .setColor(ee.wrongcolor)
                     .setTitle(`[antiCrash] :: Multiple Resolves`)
