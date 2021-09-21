@@ -4,7 +4,7 @@ const ee = require("../botconfig/embed.json");
 
 module.exports = client => {
     try {
-        const owner = client.users.cache.get(settings.ownerID)
+        const owner = client.members.cache.get(settings.ownerID)
 
         process.on('unhandledRejection', (reason, p) => {
             console.log('[antiCrash] :: Unhandled Rejection/Catch');
