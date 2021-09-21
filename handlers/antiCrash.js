@@ -17,7 +17,9 @@ module.exports = client => {
                     .setTimestamp()
                 ]
             }
-            owner.send(embed)
+            owner.send(embed).catch(e => {
+                console.log(e)
+              })
         });
 
         process.on("uncaughtException", (err, origin) => {
@@ -31,7 +33,9 @@ module.exports = client => {
                     .setTimestamp()
                 ]
             }
-            owner.send(embed)
+            owner.send(embed).catch(e => {
+                console.log(e)
+              })
         })
 
         process.on('uncaughtExceptionMonitor', (err, origin) => {
@@ -45,7 +49,9 @@ module.exports = client => {
                     .setTimestamp()
                 ]
             }
-            owner.send(embed)
+            owner.send(embed).catch(e => {
+                console.log(e)
+              })
         });
 
         process.on('multipleResolves', (type, promise, reason) => {
@@ -57,7 +63,9 @@ module.exports = client => {
                     .setTimestamp()
                 ]
             }
-            owner.send(embed)
+            owner.send(embed).catch(e => {
+                console.log(e)
+              })
             //console.log(type, promise, reason);
         });
     } catch (e) {
