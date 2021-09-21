@@ -42,7 +42,7 @@ const client = new Discord.Client({
             name: "Server Deploy",
             type: "WATCHING",
         },
-        status: "busy"
+        status: "dnd"
     }
 });
 
