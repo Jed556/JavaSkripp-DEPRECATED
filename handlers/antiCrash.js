@@ -11,7 +11,7 @@ module.exports = client => {
         embed = {embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
             .setTitle(`antiCrash] :: Unhandled Rejection/Catch`)
-            .addField(reason, p)
+            .addField(`${reason}`, `${p}`)
             .setTimestamp()
         ]}
         owner.send(embed)
@@ -22,8 +22,8 @@ module.exports = client => {
         console.log(err, origin);
         embed = {embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
-            .setTitle(`antiCrash] :: Unhandled Rejection/Catch`)
-            .addField(err, origin)
+            .setTitle(`[antiCrash] :: Unhandled Rejection/Catch`)
+            .addField(`${err}`, `${origin}`)
             .setTimestamp()
         ]}
         owner.send(embed)
@@ -34,8 +34,8 @@ module.exports = client => {
         console.log(err, origin);
         embed = {embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
-            .setTitle(`antiCrash] :: Uncaught Exception/Catch (MONITOR)`)
-            .addField(err, origin)
+            .setTitle(`[antiCrash] :: Uncaught Exception/Catch (MONITOR)`)
+            .addField(`${err}`, `${origin}`)
             .setTimestamp()
         ]}
         owner.send(embed)
@@ -45,7 +45,7 @@ module.exports = client => {
         console.log('[antiCrash] :: Multiple Resolves');
         embed = {embeds: [new MessageEmbed()
             .setColor(ee.wrongcolor)
-            .setTitle(`antiCrash] :: Multiple Resolves`)
+            .setTitle(`[antiCrash] :: Multiple Resolves`)
             .setTimestamp()
         ]}
         owner.send(embed)
