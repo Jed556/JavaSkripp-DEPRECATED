@@ -32,8 +32,8 @@ module.exports = {
                 .addField("Server member since", `${moment(Target.joinedAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.joinedAt).startOf('day').fromNow()}`)
                 .addField("Discord user since", `${moment(Target.createdAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.createdAt).startOf('day').fromNow()}`)
 
-            if (Target.member.roles.cache.size > 1) {
-                Info.addField(`Role${Target.member.roles.cache != 1 ? "s" : ""}`, `${Target.member.roles.cache.map(r => r).join(' ').replace("@everyone", " ")}`)
+            if (Target.user.roles.cache.size > 1) {
+                Info.addField(`Role${Target.user.roles.cache != 1 ? "s" : ""}`, `${Target.user.roles.cache.map(r => r).join(' ').replace("@everyone", " ")}`)
             } else {
                 Info.addField("Roles", "No roles to display")
             }
