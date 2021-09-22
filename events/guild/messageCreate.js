@@ -7,6 +7,8 @@ const Discord = require(`discord.js`);
 
 module.exports = async (client, message) => {
     if (!message.guild || !message.channel || message.author.bot) {
+        //Direct Message handler
+        function DM() {
         if (!message.author.bot) {
             console.log(`[${message.author.tag}] Message: ${message.content}`);
             client.users.fetch(settings.ownerID, false).then((user) => {
@@ -18,9 +20,9 @@ module.exports = async (client, message) => {
                 const replyArray = ["Yoooo!", "Hey There!", "Hello There!", "Hello Friend!", "Heyyy!"]
                 const reply = messages[Math.floor(Math.random() * replyArray.length)];
                 message.reply(reply);
-            }
+            }}
         }
-        return
+        return DM();
     }
     if (message.channel.partial) await message.channel.fetch();
     if (message.partial) await message.fetch();
