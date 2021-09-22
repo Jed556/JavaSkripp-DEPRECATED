@@ -4,15 +4,15 @@ const settings = require(`../botconfig/settings.json`);
 const { MessageEmbed } = require(`discord.js`);
 
 module.exports = async (client) => {
-    function DM(reason, p, err, origin, monitor) {
-        if (p) {
+    function DM(reason, promise, err, origin, monitor) {
+        if (promise) {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Unhandled Rejection/Catch")
-                        .setDescription(`\`\`\`${reason}\`\`\`\n\`\`\`${p}\`\`\``)
+                        .setDescription(`Reason:\`\`\`${reason}\`\`\`Promise:\`\`\`${p}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
@@ -24,7 +24,7 @@ module.exports = async (client) => {
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("Uncaught Exception/Catch (MONITOR)")
-                        .setDescription(`\`\`\`${err}\`\`\`\n\`\`\`${origin}\`\`\``)
+                        .setDescription(`Error:\`\`\`${err}\`\`\`Origin:\`\`\`${origin}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
@@ -36,7 +36,7 @@ module.exports = async (client) => {
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Uncaught Exception/Catch")
-                        .setDescription(`\`\`\`${err}\`\`\`\n\`\`\`${origin}\`\`\``)
+                        .setDescription(`Error:\`\`\`${err}\`\`\`Origin:\`\`\`${origin}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
@@ -48,7 +48,7 @@ module.exports = async (client) => {
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Multiple Resolves")
-                        .setDescription(`\`\`\`${type}\`\`\`\n\`\`\`${promise}\`\`\`\n\`\`\`${reason}\`\`\``)
+                        .setDescription(`Type:\`\`\`${type}\`\`\`Promise:\`\`\`${promise}\`\`\`Reason:\`\`\`${reason}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
@@ -56,10 +56,10 @@ module.exports = async (client) => {
         }
     }
 
-    process.on('unhandledRejection', (reason, p) => {
+    process.on('unhandledRejection', (reason, promise) => {
         console.log('[antiCrash] :: Unhandled Rejection/Catch');
-        console.log(reason, p);
-        DM(reason, p);
+        console.log(reason, promise);
+        DM(reason, promise);
     });
 
     process.on('uncaughtExceptionMonitor', (err, origin) => {
