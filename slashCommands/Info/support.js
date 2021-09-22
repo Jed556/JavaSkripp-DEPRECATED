@@ -22,10 +22,11 @@ module.exports = {
                 ephemeral: true,
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
-                    .setAuthor("Support", client.user.displayAvatarURL())
+                    .setTitle("Support")
                     .addField(`Discord:`, `\`${ee.owner}\`, \`${client.user.tag}\``)
-                    .addField(`Email`, `\`${ee.email}\``)
-                    .addField(`Github`, "\`[JavaSkripp](https://tiny.one/JavaSkripp-git)\`")
+                    .addField(`Gmail:`, `\`${ee.email}\``)
+                    .addField(`Github:`, "[Jed556/JavaSkripp](https://tiny.one/JavaSkripp-git)")
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
                 ]
             });
         } catch (e) {
