@@ -11,8 +11,9 @@ module.exports = async (client) => {
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
-                        .setTitle("[antiCrash] :: Unhandled Rejection/Catch")
-                        .setDescription(`Reason:\`\`\`${reason}\`\`\`\nPromise:\`\`\`${promise}\`\`\``)
+                        .setAuthor("antiCrash.js", client.user.displayAvatarURL())
+                        .setTitle("Unhandled Rejection/Catch")
+                        .setDescription(`**Reason:**\`\`\`${reason}\`\`\`\n**Promise:**\`\`\`${promise}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
@@ -23,8 +24,9 @@ module.exports = async (client) => {
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
+                        .setAuthor("antiCrash.js", client.user.displayAvatarURL())
                         .setTitle("Uncaught Exception/Catch (MONITOR)")
-                        .setDescription(`Error:\`\`\`${err}\`\`\`\nOrigin:\`\`\`${origin}\`\`\``)
+                        .setDescription(`**Error:**\`\`\`${err}\`\`\`\n**Origin:**\`\`\`${origin}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
@@ -35,8 +37,9 @@ module.exports = async (client) => {
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
-                        .setTitle("[antiCrash] :: Uncaught Exception/Catch")
-                        .setDescription(`Error:\`\`\`${err}\`\`\`\nOrigin:\`\`\`${origin}\`\`\``)
+                        .setAuthor("antiCrash.js", client.user.displayAvatarURL())
+                        .setTitle("Uncaught Exception/Catch")
+                        .setDescription(`**Error:**\`\`\`${err}\`\`\`\n**Origin:**\`\`\`${origin}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
@@ -47,8 +50,9 @@ module.exports = async (client) => {
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
-                        .setTitle("[antiCrash] :: Multiple Resolves")
-                        .setDescription(`Type:\`\`\`${type}\`\`\`\nPromise:\`\`\`${promise}\`\`\`\nReason:\`\`\`${reason}\`\`\``)
+                        .setAuthor("antiCrash.js", client.user.displayAvatarURL())
+                        .setTitle("Multiple Resolves")
+                        .setDescription(`**Type:**\`\`\`${type}\`\`\`\n**Promise:**\`\`\`${promise}\`\`\`\n**Reason:**\`\`\`${reason}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
