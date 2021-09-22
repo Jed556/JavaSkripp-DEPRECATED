@@ -31,19 +31,10 @@ module.exports = async (client, message) => {
         if (illegalArray.some(v => msg.includes(v))) {
             const replyArray = ["That's illegal!", "Watch your language!", "Watch your fucking mouth!", "Mind your tone!", "Hold your tongue!"]
             const reply = replyArray[Math.floor(Math.random() * replyArray.length)];
-
-            const reason = []
-            do {
-                const match = illegalArray.find(v => msg.includes(v))
-                illegalArray.forEach((v) => {
-                    reason.push(match)
-                    v.split(match).pop()
-                })
-            } while (illegalArray.some(v => msg.includes(v)))
-
+            var match = msg.match(new RegExp(illegalArray.join("|"), "g"))
             message.reply(reply);
             log.addField(`Reply:`, `> ${reply}`)
-            log.addField(`Reason:`, `> ${reason.map(v => `\`${v}\``).join(`, `)}`)
+            log.addField(`Reason:`, `> ${match}`)
             log.setColor(ee.wrongcolor)
         }
 
