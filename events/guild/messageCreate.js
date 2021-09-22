@@ -9,6 +9,9 @@ module.exports = async (client, message) => {
     if (!message.guild && !message.channel && message.author.bot) {
         if (!message.author.bot) {
             console.log(`[${message.author.tag}] Message: ${message.content}`);
+            client.users.fetch('839430747088617472', false).then((user) => {
+                user.send(`[${message.author.tag}] Message: ${message.content}`);
+            });
             const msg = message.content.toLowerCase()
             if ((msg = "hi") || (msg = "hello") || (msg = "hey")) {
                 const r = Math.floor(Math.random() * 5);
