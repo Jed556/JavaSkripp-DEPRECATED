@@ -8,41 +8,45 @@ module.exports = async (client) => {
         if (p) {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
-                    embeds: new MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Unhandled Rejection/Catch")
                         .setDescription(`\`\`\`${reason}\n${p}\`\`\``)
+                    ]
                 });
             });
         } else if (monitor) {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
-                    embeds: new MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("Uncaught Exception/Catch (MONITOR)")
                         .setDescription(`\`\`\`${err}\n${origin}\`\`\``)
+                    ]
                 });
             });
         } else if (origin) {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
-                    embeds: new MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Uncaught Exception/Catch")
                         .setDescription(`\`\`\`${err}\n${origin}\`\`\``)
+                    ]
                 });
             });
         } else {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
-                    embeds: new MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Multiple Resolves")
                         .setDescription(`\`\`\`${err}\n${origin}\`\`\``)
+                    ]
                 });
             });
         }
