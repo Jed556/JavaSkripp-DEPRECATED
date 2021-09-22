@@ -14,7 +14,7 @@ module.exports = async (client) => {
                         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
                         .setTitle("Unhandled Rejection/Catch")
                         .setDescription(`**Reason:**\`\`\`${reason}\`\`\`\n**Promise:**\`\`\`${promise}\`\`\``)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                        .setFooter("Check logs for more details")
                     ]
                 });
             });
@@ -27,7 +27,7 @@ module.exports = async (client) => {
                         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
                         .setTitle("Uncaught Exception/Catch (MONITOR)")
                         .setDescription(`**Error:**\`\`\`${err}\`\`\`\n**Origin:**\`\`\`${origin}\`\`\``)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                        .setFooter("Check logs for more details")
                     ]
                 });
             });
@@ -40,7 +40,7 @@ module.exports = async (client) => {
                         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
                         .setTitle("Uncaught Exception/Catch")
                         .setDescription(`**Error:**\`\`\`${err}\`\`\`\n**Origin:**\`\`\`${origin}\`\`\``)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                        .setFooter("Check logs for more details")
                     ]
                 });
             });
@@ -53,7 +53,7 @@ module.exports = async (client) => {
                         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
                         .setTitle("Multiple Resolves")
                         .setDescription(`**Type:**\`\`\`${type}\`\`\`\n**Promise:**\`\`\`${promise}\`\`\`\n**Reason:**\`\`\`${reason}\`\`\``)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                        .setFooter("Check logs for more details")
                     ]
                 });
             });
