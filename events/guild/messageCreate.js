@@ -18,7 +18,7 @@ module.exports = async (client, message) => {
             const msg = message.content.toLowerCase()
             if ((msg == "hi") || (msg == "hello") || (msg == "hey")) {
                 const replyArray = ["Yoooo!", "Hey There!", "Hello There!", "Hello Friend!", "Heyyy!"]
-                const reply = messages[Math.floor(Math.random() * replyArray.length)];
+                const reply = replyArray[Math.floor(Math.random() * replyArray.length)];
                 message.reply(reply);
             }}
         }
