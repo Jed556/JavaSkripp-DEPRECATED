@@ -34,7 +34,7 @@ module.exports = async (client, message) => {
             var match = msg.match(new RegExp(illegalArray.join("|"), "g"))
             message.reply(reply);
             log.addField(`Reply:`, `> ${reply}`)
-            log.addField(`Reason:`, `> ${match}`)
+            log.addField(`Reason:`, `> ${match.map(m => `\`${m}\``).join(", ")}`)
             log.setColor(ee.wrongcolor)
         }
 
@@ -49,5 +49,5 @@ module.exports = async (client, message) => {
 
     const guild = message.guild.name;
     const channel = message.channel.name;
-    console.log(`[Guild ${guild} in #${channel} from ${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);
+    console.log(`[${guild} in #${channel} from ${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);
 }
