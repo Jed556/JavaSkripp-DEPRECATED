@@ -2,18 +2,21 @@
 const config = require(`../../botconfig/config.json`);
 const ee = require(`../../botconfig/embed.json`);
 const settings = require(`../../botconfig/settings.json`);
-const Discord = require(`discord.js`);
+const {MessageEmbed} = require(`discord.js`);
 
 module.exports = async (client, message) => {
     function DM() {
         if (!message.author.bot) {
-            console.log(`[${message.author.tag}] Message: ${message.content}`);
+            console.log(`[${message.author.tag}] Message: ${message.content} ${message.attachments ? `\nAttachment: ${message.attachments.first().url}` : ""}`);
             client.users.fetch(settings.ownerID, false).then((user) => {
-                if (message.attachments.size > 0) {
-                    user.send({ content: `**[${message.author.tag}] Message:** ${message.content}`, files: [message.attachments.first().url] });
-                } else {
-                    user.send({ content: `**[${message.author.tag}] Message:** ${message.content}` });
-                }
+                    user.send({ embeds: new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(ee.color)
+                        .setTitle(`**Message:**`)
+                        .setDescription(message.content)
+                        .setImage(message.attachments ? message.attachments.first().url : "")
+                        .setAuthor(message.author.tag, message.author.avatar({ dynamic: true }))
+                    });
             });
 
             const msg = message.content.toLowerCase()
