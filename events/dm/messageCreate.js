@@ -5,8 +5,10 @@ const settings = require(`../../botconfig/settings.json`);
 const { MessageEmbed } = require(`discord.js`);
 
 module.exports = async (client, message) => {
+    if (message.guild && message.channel) return;
+    
     function DM() {
-            console.log(`[${message.author.tag}] Message: ${message.content} ${message.attachments.size > 0 ? `\nAttachment: ${message.attachments.first().url}` : ""}`);
+            console.log(`[${message.author.tag}] Message: ${message.content}`);
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
                     embeds: new MessageEmbed()
@@ -26,5 +28,6 @@ module.exports = async (client, message) => {
                 message.reply(reply);
             }
         }
-    if (!message.guild || !message.channel || !message.author.bot) return DM();
+
+    if (!message.guild && !message.channel && !message.author.bot) return DM();
 }
