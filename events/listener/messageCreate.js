@@ -25,14 +25,32 @@ module.exports = async (client, message) => {
         if ((msg == "hi") || (msg == "hello") || (msg == "hey")) {
             const replyArray = ["Yoooo!", "Hey There!", "Hello There!", "Hello Friend!", "Heyyy!"]
             const reply = replyArray[Math.floor(Math.random() * replyArray.length)];
-            message.reply(reply);
+            message.reply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(ee.color)
+                    .setDescription(reply)
+                    .setAuthor(client.user.username.tag, client.user.displayAvatarURL({ dynamic: true }))
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ]
+            });
             log.addField(`Reply:`, `> ${reply}`)
         }
+
         if (illegalArray.some(v => msg.includes(v))) {
             const replyArray = ["That's illegal!", "Watch your language!", "Watch your fucking mouth!", "Mind your tone!", "Hold your tongue!"]
             const reply = replyArray[Math.floor(Math.random() * replyArray.length)];
             var match = msg.match(new RegExp(illegalArray.join("|"), "g"))
-            message.reply(reply);
+            message.reply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(ee.wrongcolor)
+                    .setDescription(reply)
+                    .addField(`Reason:`, `> ${match.map(m => `\`${m}\``).join(", ")}`)
+                    .setAuthor(client.user.username.tag, client.user.displayAvatarURL({ dynamic: true }))
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ]
+            });
             log.addField(`Reply:`, `> ${reply}`)
             log.addField(`Reason:`, `> ${match.map(m => `\`${m}\``).join(", ")}`)
             log.setColor(ee.wrongcolor)
