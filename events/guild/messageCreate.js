@@ -8,25 +8,20 @@ const Discord = require(`discord.js`);
 module.exports = async (client, message) => {
     if (!message.guild || !message.channel || message.author.bot) {
         if (!message.author.bot) {
-            console.log(`[${message.author.tag}] Message: ${message.content}`);
-            try {
-                client.users.fetch(settings.ownerID, false).then((user) => {
-                    user.send(`**[${message.author.tag}] Message:** ${message.content}`);
-                });
-            } catch (e) { console.log(String(e.stack).bgRed) }
+            console.log(`[${message.author.tag}] Message: `.blue.bold() + message.content);
+            client.users.fetch(settings.ownerID, false).then((user) => {
+                user.send(`**[${message.author.tag}] Message:** ${message.content}`);
+            });
+            
             const msg = message.content.toLowerCase()
             if ((msg == "hi") || (msg == "hello") || (msg == "hey")) {
-                const r = Math.floor(Math.random() * 5);
-                if (r == 4) return message.reply("Yoooo!");
-                if (r == 3) return message.reply("Hey There!");
-                if (r == 2) return message.reply("Hello There!");
-                if (r == 1) return message.reply("Hi There!");
-                if (r == 0) return message.reply("Hello Friend!");
+                const replyArray = ["Yoooo!", "Hey There!", "Hello There!", "Hello Friend!", "Heyyy!"]
+                const reply = messages[Math.floor(Math.random() * replyArray.length)];
+                message.reply(reply);
             }
         }
+        return
     }
-
-    if (!message.guild || !message.channel || message.author.bot) return;
     if (message.channel.partial) await message.channel.fetch();
     if (message.partial) await message.fetch();
     client.settings.ensure(message.guild.id, {
