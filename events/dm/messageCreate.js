@@ -31,15 +31,13 @@ module.exports = async (client, message) => {
         if (illegalArray.some(v => msg.includes(v))) {
             const replyArray = ["That's illegal!", "Watch your language!", "Watch your fucking mouth!", "Mind your tone!", "Hold your tongue!"]
             const reply = replyArray[Math.floor(Math.random() * replyArray.length)];
-            
+
             const reason = []
             do {
                 const match = illegalArray.find(v => msg.includes(v))
                 reason.forEach((v) => {
-                    if (!reason.includes(v)) {
-                        reason.push(match)
-                        illegalArray.split(match).pop()
-                    }
+                    reason.push(match)
+                    illegalArray.split(match).pop()
                 })
             } while (illegalArray.some(v => msg.includes(v)))
 
