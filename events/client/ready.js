@@ -17,10 +17,10 @@ module.exports = client => {
                 `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
         } catch { /* */ }
         change_status(client);
-        //loop through the status per each 10 minutes
+        //loop through the status per each 5 minutes
         setInterval(() => {
             change_status(client);
-        }, 15 * 1000);
+        }, 5 * 1000);
 
     } catch (e) {
         console.log(String(e.stack).grey.italic.dim.bgRed)
