@@ -58,5 +58,5 @@ module.exports = async (client, message) => {
 
     const guild = message.guild.id;
     const channel = message.channel.id;
-    console.log(`[Guild ${guild} in #${channel} from ${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);
+    console.log(`[Guild ${guild.name} in #${channel.name} from ${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);
 }
