@@ -13,6 +13,7 @@ module.exports = async (client) => {
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Unhandled Rejection/Catch")
                         .setDescription(`\`\`\`${reason}\n${p}\`\`\``)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
             });
@@ -24,6 +25,7 @@ module.exports = async (client) => {
                         .setColor(ee.wrongcolor)
                         .setTitle("Uncaught Exception/Catch (MONITOR)")
                         .setDescription(`\`\`\`${err}\n${origin}\`\`\``)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
             });
@@ -35,6 +37,7 @@ module.exports = async (client) => {
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Uncaught Exception/Catch")
                         .setDescription(`\`\`\`${err}\n${origin}\`\`\``)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
             });
@@ -46,6 +49,7 @@ module.exports = async (client) => {
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Multiple Resolves")
                         .setDescription(`\`\`\`${err}\n${origin}\`\`\``)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
             });
