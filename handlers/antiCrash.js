@@ -1,25 +1,49 @@
 const config = require(`../botconfig/config.json`);
 const ee = require(`../botconfig/embed.json`);
 const settings = require(`../botconfig/settings.json`);
-const Discord = require(`discord.js`);
+const { MessageEmbed } = require(`discord.js`);
 
 module.exports = async (client) => {
     function DM(reason, p, err, origin, monitor) {
         if (p) {
             client.users.fetch(settings.ownerID, false).then((user) => {
-                user.send({ content: `[antiCrash] :: Unhandled Rejection/Catch**]\n\`\`\`${reason}\n ${p}\`\`\`` });
+                user.send({
+                    embeds: new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(ee.wrongcolor)
+                        .setTitle("[antiCrash] :: Unhandled Rejection/Catch")
+                        .setDescription(`\`\`\`${reason}\n${p}\`\`\``)
+                });
             });
         } else if (monitor) {
             client.users.fetch(settings.ownerID, false).then((user) => {
-                user.send({ content: `**[antiCrash] :: Unhandled Rejection/Catch**]\n\`\`\`${err}\n${origin}\`\`\`` });
+                user.send({
+                    embeds: new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(ee.wrongcolor)
+                        .setTitle("Uncaught Exception/Catch (MONITOR)")
+                        .setDescription(`\`\`\`${err}\n${origin}\`\`\``)
+                });
             });
         } else if (origin) {
             client.users.fetch(settings.ownerID, false).then((user) => {
-                user.send({ content: `**[antiCrash] :: Unhandled Rejection/Catch**]\n\`\`\`${err}\n${origin}\`\`\`` });
+                user.send({
+                    embeds: new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(ee.wrongcolor)
+                        .setTitle("[antiCrash] :: Uncaught Exception/Catch")
+                        .setDescription(`\`\`\`${err}\n${origin}\`\`\``)
+                });
             });
         } else {
             client.users.fetch(settings.ownerID, false).then((user) => {
-                user.send({ content: `**[antiCrash] :: Multiple Resolves**` });
+                user.send({
+                    embeds: new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(ee.wrongcolor)
+                        .setTitle("[antiCrash] :: Multiple Resolves")
+                        .setDescription(`\`\`\`${err}\n${origin}\`\`\``)
+                });
             });
         }
     }
@@ -30,18 +54,18 @@ module.exports = async (client) => {
         DM(reason, p);
     });
 
-    process.on("uncaughtException", (err, origin) => {
-        console.log('[antiCrash] :: Uncaught Exception/Catch');
-        console.log(err, origin);
-        DM(err, origin);
-    })
-
     process.on('uncaughtExceptionMonitor', (err, origin) => {
         console.log('[antiCrash] :: Uncaught Exception/Catch (MONITOR)');
         console.log(err, origin);
         var monitor = true
         DM(err, origin, monitor);
     });
+
+    process.on("uncaughtException", (err, origin) => {
+        console.log('[antiCrash] :: Uncaught Exception/Catch');
+        console.log(err, origin);
+        DM(err, origin);
+    })
 
     process.on('multipleResolves', (type, promise, reason) => {
         console.log('[antiCrash] :: Multiple Resolves');
