@@ -12,7 +12,7 @@ module.exports = async (client) => {
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Unhandled Rejection/Catch")
-                        .setDescription(`Reason:\`\`\`${reason}\`\`\`Promise:\`\`\`${p}\`\`\``)
+                        .setDescription(`Reason:\`\`\`${reason}\`\`\`Promise:\`\`\`${promise}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
