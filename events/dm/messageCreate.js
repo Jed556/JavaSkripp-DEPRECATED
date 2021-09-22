@@ -13,7 +13,7 @@ module.exports = async (client, message) => {
                     .setTimestamp()
                     .setColor(ee.color)
                     .setTitle(`**Message:**`)
-                    .setDescription(message.content)
+                    .setDescription(`> ${message.content}`)
                     .setImage(`${message.attachments.size > 0 ? `${message.attachments.first().url}` : ""}`)
                     .setAuthor(message.author.tag, message.client.user.displayAvatarURL({ dynamic: true }))
                 ]
@@ -27,5 +27,7 @@ module.exports = async (client, message) => {
             message.reply(reply);
         }
     }
-    if (!message.guild || !message.channel || !message.author.bot) return DM();
+
+    if (message.author.bot) return;
+    if (!message.guild || !message.channel) return DM();
 }
