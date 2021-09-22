@@ -6,7 +6,11 @@ const { onCoolDown, replacemsg } = require(`../../handlers/functions`);
 const Discord = require(`discord.js`);
 
 module.exports = async (client, message) => {
-    if (!message.guild || !message.channel || message.author.bot) return console.log(message.content);
+    if (!message.guild || !message.channel || message.author.bot) {
+        console.log(`[${message.author}] Message: ${message.content}`);
+        if ("hi" || "hello" == message.content.toLowerCase()) message.reply("Hello There!")
+    }
+
     if (message.channel.partial) await message.channel.fetch();
     if (message.partial) await message.fetch();
     client.settings.ensure(message.guild.id, {
@@ -25,7 +29,12 @@ module.exports = async (client, message) => {
     const cmd = args.length > 0 ? args.shift().toLowerCase() : null;
     if (!cmd || cmd.length == 0) {
         if (mPrefix.includes(client.user.id)) {
-            message.reply({ embeds: [new Discord.MessageEmbed().setColor(ee.color).setFooter(ee.footertext, ee.footericon).setTitle(`:thumbsup: **My Prefix here, is __\`${prefix}\`__**`)] })
+            message.reply({
+                embeds: [new Discord.MessageEmbed()
+                    .setColor(ee.color)
+                    .setFooter(ee.footertext, ee.footericon)
+                    .setTitle(`:thumbsup: **My Prefix here, is __\`${prefix}\`__**`)]
+            })
         }
         return;
     }
