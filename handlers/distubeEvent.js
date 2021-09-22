@@ -483,7 +483,14 @@ module.exports = (client) => {
             // DisTubeOptions.searchSongs = true
             .on(`searchCancel`, message => message.channel.send(`Searching canceled`).catch((e) => console.log(e)))
             .on(`error`, (channel, e) => {
-                channel.send(`An error encountered: ${e}`).catch((e) => console.log(e))
+                channel.send({
+                    embeds: [new MessageEmbed()
+                        .setColor(ee.wrongcolor)
+                        .setTimestamp()
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                        .setDescription(`${client.allEmojis.x} An error occured:\`\`\`${e}\`\`\``)
+                    ]
+                }).catch((e) => console.log(e))
                 console.error(e)
             })
             .on(`empty`, channel => channel.send(`Voice channel is empty! Leaving the channel...`).catch((e) => console.log(e)))
