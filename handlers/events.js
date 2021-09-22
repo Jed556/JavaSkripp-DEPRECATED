@@ -24,7 +24,7 @@ module.exports = async (client) => {
                 }
             }
         }
-        await ["client", "guild", "dm"].forEach(e => load_dir(e));
+        await ["client", "guild", "listener"].forEach(e => load_dir(e));
         console.log("\n" + `${amount} Events Loaded`.brightGreen);
 
         try {
