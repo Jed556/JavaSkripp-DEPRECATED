@@ -16,7 +16,7 @@ module.exports = async (client, message) => {
                         .setTitle(`**Message:**`)
                         .setDescription(message.content)
                         .setImage(`${message.attachments.size > 0 ? `${message.attachments.first().url}` : ""}`)
-                        .setAuthor(message.author.tag, message.author.avatar({ dynamic: true }))
+                        .setAuthor(message.author.tag, message.client.user.displayAvatarURL({ dynamic: true }))
                 });
             });
 
