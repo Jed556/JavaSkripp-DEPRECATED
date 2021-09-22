@@ -12,7 +12,7 @@ module.exports = async (client) => {
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Unhandled Rejection/Catch")
-                        .setDescription(`Reason:\`\`\`${reason}\`\`\`Promise:\`\`\`${promise}\`\`\``)
+                        .setDescription(`Reason:\`\`\`${reason}\`\`\`\nPromise:\`\`\`${promise}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
@@ -24,7 +24,7 @@ module.exports = async (client) => {
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("Uncaught Exception/Catch (MONITOR)")
-                        .setDescription(`Error:\`\`\`${err}\`\`\`Origin:\`\`\`${origin}\`\`\``)
+                        .setDescription(`Error:\`\`\`${err}\`\`\`\nOrigin:\`\`\`${origin}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
@@ -36,7 +36,7 @@ module.exports = async (client) => {
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Uncaught Exception/Catch")
-                        .setDescription(`Error:\`\`\`${err}\`\`\`Origin:\`\`\`${origin}\`\`\``)
+                        .setDescription(`Error:\`\`\`${err}\`\`\`\nOrigin:\`\`\`${origin}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
@@ -48,7 +48,7 @@ module.exports = async (client) => {
                         .setTimestamp()
                         .setColor(ee.wrongcolor)
                         .setTitle("[antiCrash] :: Multiple Resolves")
-                        .setDescription(`Type:\`\`\`${type}\`\`\`Promise:\`\`\`${promise}\`\`\`Reason:\`\`\`${reason}\`\`\``)
+                        .setDescription(`Type:\`\`\`${type}\`\`\`\nPromise:\`\`\`${promise}\`\`\`\nReason:\`\`\`${reason}\`\`\``)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
