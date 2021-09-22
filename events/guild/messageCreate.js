@@ -7,8 +7,17 @@ const Discord = require(`discord.js`);
 
 module.exports = async (client, message) => {
     if (!message.guild || !message.channel || message.author.bot) {
-        console.log(`[${message.author}] Message: ${message.content}`);
-        if ("hi" || "hello" == message.content.toLowerCase()) message.reply("Hello There!")
+        if (!message.author.bot) {
+            console.log(`[${message.author}] Message: ${message.content}`);
+            if ("hi" || "hello" == message.content.toLowerCase()) {
+                const r = Math.floor(Math.random() * 5);
+                if (r == 4) return message.reply("Yoooo!");
+                if (r == 3) return message.reply("Hey There!");
+                if (r == 2) return message.reply("Hello There!");
+                if (r == 1) return message.reply("Hi There!");
+                if (r == 0) return message.reply("Hello Friend!");
+            }
+        }
     }
 
     if (message.channel.partial) await message.channel.fetch();
