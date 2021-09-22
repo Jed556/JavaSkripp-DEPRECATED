@@ -6,7 +6,7 @@ const { MessageEmbed } = require(`discord.js`);
 
 module.exports = async (client, message) => {
     function DM() {
-        console.log(`[${message.author.tag}] Message: ${message.content} ${message.attachments.size ? `\nAttachment: ${message.attachments.first().url}` : ""}`);
+        console.log(`[${message.author.tag}] ${message.content ? `MESSAGE: ${message.content}` : ""} ${message.attachments.size ? `ATTACHMENT: ${message.attachments.first().url}` : ""}`);
         client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [new MessageEmbed()
