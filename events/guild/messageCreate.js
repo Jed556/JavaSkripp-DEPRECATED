@@ -6,10 +6,11 @@ const { onCoolDown, replacemsg } = require(`../../handlers/functions`);
 const Discord = require(`discord.js`);
 
 module.exports = async (client, message) => {
-    if (!message.guild || !message.channel || message.author.bot) {
+    if (!message.guild && !message.channel && message.author.bot) {
         if (!message.author.bot) {
-            console.log(`[${message.author}] Message: ${message.content}`);
-            if ("hi" || "hello" == message.content.toLowerCase()) {
+            console.log(`[${message.author.tag}] Message: ${message.content}`);
+            const msg = message.content.toLowerCase()
+            if ((msg = "hi") || (msg = "hello") || (msg = "hey")) {
                 const r = Math.floor(Math.random() * 5);
                 if (r == 4) return message.reply("Yoooo!");
                 if (r == 3) return message.reply("Hey There!");
@@ -20,6 +21,7 @@ module.exports = async (client, message) => {
         }
     }
 
+    if (!message.guild || !message.channel || message.author.bot) return;
     if (message.channel.partial) await message.channel.fetch();
     if (message.partial) await message.fetch();
     client.settings.ensure(message.guild.id, {
