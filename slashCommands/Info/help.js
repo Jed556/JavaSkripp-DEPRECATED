@@ -68,7 +68,7 @@ module.exports = {
                     for (let i = 0; i < client.slashCategories.length; i += 1) {
                         const current = client.slashCategories[i];
                         const items = slashCommands(current);
-                        embed.addField(`**${current.toUpperCase()} [${items.length}]**`, `> ${items.join(", ")}`);
+                        embed.addField(`**${current.toUpperCase()} [${items.length}]**`, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
                     }
                 } catch (e) {
                     console.log(String(e.stack).red);
