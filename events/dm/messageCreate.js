@@ -6,7 +6,6 @@ const { MessageEmbed } = require(`discord.js`);
 
 module.exports = async (client, message) => {
     function DM() {
-        if (!message.author.bot) {
             console.log(`[${message.author.tag}] Message: ${message.content} ${message.attachments.size > 0 ? `\nAttachment: ${message.attachments.first().url}` : ""}`);
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
@@ -27,6 +26,5 @@ module.exports = async (client, message) => {
                 message.reply(reply);
             }
         }
-    }
-    if (!message.guild || !message.channel || message.author.bot) return DM();
+    if (!message.guild || !message.channel || !message.author.bot) return DM();
 }
