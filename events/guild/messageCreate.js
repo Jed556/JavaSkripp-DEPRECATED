@@ -6,14 +6,16 @@ const { onCoolDown, replacemsg } = require(`../../handlers/functions`);
 const Discord = require(`discord.js`);
 
 module.exports = async (client, message) => {
-    if (!message.guild && !message.channel && message.author.bot) {
+    if (!message.guild || !message.channel || message.author.bot) {
         if (!message.author.bot) {
             console.log(`[${message.author.tag}] Message: ${message.content}`);
-            client.users.fetch('839430747088617472', false).then((user) => {
-                user.send(`[${message.author.tag}] Message: ${message.content}`);
-            });
+            try {
+                client.users.fetch(settings.ownerID, false).then((user) => {
+                    user.send(`**[${message.author.tag}] Message:** ${message.content}`);
+                });
+            } catch (e) { console.log(String(e.stack).bgRed) }
             const msg = message.content.toLowerCase()
-            if ((msg = "hi") || (msg = "hello") || (msg = "hey")) {
+            if ((msg == "hi") || (msg == "hello") || (msg == "hey")) {
                 const r = Math.floor(Math.random() * 5);
                 if (r == 4) return message.reply("Yoooo!");
                 if (r == 3) return message.reply("Hey There!");
