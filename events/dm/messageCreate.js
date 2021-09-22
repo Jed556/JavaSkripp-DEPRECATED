@@ -15,7 +15,8 @@ module.exports = async (client, message) => {
                     .setTitle(`**Message from ${message.author.tag}**`)
                     .setDescription(`${message.content ? `> ${message.content}` : ""}`)
                     .setImage(`${message.attachments.size ? `${message.attachments.first().url}` : ""}`)
-                    .setAuthor(message.author.tag, message.client.user.displayAvatarURL({ dynamic: true }))
+                    .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
                 ]
             });
         });
