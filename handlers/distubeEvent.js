@@ -488,7 +488,8 @@ module.exports = (client) => {
                         .setColor(ee.wrongcolor)
                         .setTimestamp()
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setDescription(`${client.allEmojis.x} An error occured:\`\`\`${e}\`\`\``)
+                        .setTitle(`${client.allEmojis.x} An error occured`)
+                        .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\`\`\`\`${e}\`\`\``)
                     ]
                 }).catch((e) => console.log(e))
                 console.error(e)
