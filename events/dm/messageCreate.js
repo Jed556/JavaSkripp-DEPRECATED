@@ -15,7 +15,7 @@ module.exports = async (client, message) => {
                         .setColor(ee.color)
                         .setTitle(`**Message:**`)
                         .setDescription(message.content)
-                        .setImage(message.attachments ? message.attachments.first().url : "")
+                        .setImage(`${message.attachments ? `${message.attachments.first().url}` : ""}`)
                         .setAuthor(message.author.tag, message.author.avatar({ dynamic: true }))
                 });
             });
