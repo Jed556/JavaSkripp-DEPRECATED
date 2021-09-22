@@ -8,11 +8,11 @@ const Discord = require(`discord.js`);
 module.exports = async (client, message) => {
     if (!message.guild || !message.channel || message.author.bot) {
         if (!message.author.bot) {
-            console.log(`[${message.author.tag}] Message: `.blue.bold() + message.content);
+            console.log(`[${message.author.tag}] Message: ${message.content}`);
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send(`**[${message.author.tag}] Message:** ${message.content}`);
             });
-            
+
             const msg = message.content.toLowerCase()
             if ((msg == "hi") || (msg == "hello") || (msg == "hey")) {
                 const replyArray = ["Yoooo!", "Hey There!", "Hello There!", "Hello Friend!", "Heyyy!"]
