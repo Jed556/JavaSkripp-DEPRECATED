@@ -27,5 +27,5 @@ module.exports = async (client, message) => {
             message.reply(reply);
         }
     }
-    if (!message.guild && !message.channel && !message.author.bot) return DM();
+    if (!message.guild || !message.channel || !message.author.bot) return DM();
 }
