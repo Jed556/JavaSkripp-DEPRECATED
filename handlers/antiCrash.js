@@ -45,7 +45,7 @@ module.exports = async (client) => {
 
     process.on('multipleResolves', (type, promise, reason) => {
         console.log('[antiCrash] :: Multiple Resolves');
-        DM();
         //console.log(type, promise, reason);
+        //DM();
     });
 }
