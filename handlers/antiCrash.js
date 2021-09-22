@@ -1,11 +1,11 @@
-const config = require(`../../botconfig/config.json`);
-const ee = require(`../../botconfig/embed.json`);
-const settings = require(`../../botconfig/settings.json`);
+const config = require(`../botconfig/config.json`);
+const ee = require(`../botconfig/embed.json`);
+const settings = require(`../botconfig/settings.json`);
 const Discord = require(`discord.js`);
 
-module.exports = async (client, message) => {
+module.exports = async (client) => {
     function DM(reason, p, err, origin) {
-        if (p > 0) {
+        if (p) {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({ content: `[antiCrash] :: Unhandled Rejection/Catch**] ${reason}\n ${p}` });
             });
@@ -13,7 +13,7 @@ module.exports = async (client, message) => {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({ content: `**[antiCrash] :: Unhandled Rejection/Catch**]\n${err}\n${origin}` });
             });
-        } else if (origin > 0) {
+        } else if (origin) {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({ content: `**[antiCrash] :: Unhandled Rejection/Catch**]\n${err}\n${origin}` });
             });
