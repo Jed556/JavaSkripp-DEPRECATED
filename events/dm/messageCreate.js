@@ -37,7 +37,7 @@ module.exports = async (client, message) => {
                 const match = illegalArray.find(v => msg.includes(v))
                 reason.forEach((v) => {
                     reason.push(match)
-                    illegalArray.split(match).pop()
+                    msg.split(match).pop()
                 })
             } while (illegalArray.some(v => msg.includes(v)))
 
