@@ -25,7 +25,8 @@ module.exports = {
                     .setTitle("Support")
                     .addField(`Discord:`, `\`${ee.owner}\`, \`${client.user.tag}\``)
                     .addField(`Gmail:`, `\`${ee.email}\``)
-                    .addField(`Github:`, "[Jed556/JavaSkripp](https://tiny.one/JavaSkripp-git)")
+                    .addField(`Github:`, "[Jed556/JavaSkripp](https://github.com/Jed556/JavaSkripp-Public)")
+                    .addField(`Updates`, "[Project Updates](https://github.com/Jed556/JavaSkripp-Public/projects/1?fullscreen=true)")
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                 ]
             });
