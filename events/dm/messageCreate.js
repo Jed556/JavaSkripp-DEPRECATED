@@ -38,12 +38,16 @@ module.exports = async (client, message) => {
             log.setColor(ee.wrongcolor)
         }
 
-        console.log(`[${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);
         client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({ embeds: [log] });
         });
+        console.log(`[${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);
     }
 
     if (message.author.bot) return;
     if (!message.guild || !message.channel) return DM();
+    
+    const guild = client.guilds.cache.get(message.guild_id);
+    const channel = client.channels.cache.get(message.channel_id);
+    console.log(`[Guild ${guild.name} in #${channel.name} from ${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);
 }
