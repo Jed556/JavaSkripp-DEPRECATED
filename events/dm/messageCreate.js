@@ -12,7 +12,7 @@ module.exports = async (client, message) => {
                 embeds: [new MessageEmbed()
                     .setTimestamp()
                     .setColor(ee.color)
-                    .addField(`**Message:**`, `${message.content ? `> ${message.content}` : ""}`)
+                    .addField(`**Message:**`, `${message.content ? `> ${message.content}` : "\u200b"}`)
                     .setImage(`${message.attachments.size ? `${message.attachments.first().url}` : ""}`)
                     .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                     .setFooter(client.user.username, client.user.displayAvatarURL())
