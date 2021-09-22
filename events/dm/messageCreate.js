@@ -31,10 +31,21 @@ module.exports = async (client, message) => {
         if (illegalArray.some(v => msg.includes(v))) {
             const replyArray = ["That's illegal!", "Watch your language!", "Watch your fucking mouth!", "Mind your tone!", "Hold your tongue!"]
             const reply = replyArray[Math.floor(Math.random() * replyArray.length)];
-            const match = illegalArray.find(v => msg.includes(v))
+            
+            const reason = []
+            do {
+                const match = illegalArray.find(v => msg.includes(v))
+                reason.forEach((v) => {
+                    if (!reason.includes(v)) {
+                        reason.push(match)
+                        illegalArray.split(match).join("")
+                    }
+                })
+            } while (illegalArray.some(v => msg.includes(v)))
+
             message.reply(reply);
             log.addField(`Reply:`, `> ${reply}`)
-            log.addField(`Reason:`, `> ${match}`)
+            log.addField(`Reason:`, `> ${reason.map(v => `\`${v}\``).join(`, `)}`)
             log.setColor(ee.wrongcolor)
         }
 
@@ -46,7 +57,7 @@ module.exports = async (client, message) => {
 
     if (message.author.bot) return;
     if (!message.guild || !message.channel) return DM();
-    
+
     const guild = client.guilds.cache.get(message.guild_id);
     const channel = client.channels.cache.get(message.channel_id);
     console.log(`[Guild ${guild.name} in #${channel.name} from ${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);
