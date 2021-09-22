@@ -13,9 +13,9 @@ module.exports = async (client, message) => {
                 console.log(`[${message.author.tag}] Message: ${message.content}`);
                 client.users.fetch(settings.ownerID, false).then((user) => {
                     if (message.attachments.size > 0) {
-                        user.send({ content: `**[${message.author.tag}] Message:** ${message.content}` });
-                    } else {
                         user.send({ content: `**[${message.author.tag}] Message:** ${message.content}`, files: [message.attachments.first().url] });
+                    } else {
+                        user.send({ content: `**[${message.author.tag}] Message:** ${message.content}` });
                     }
                 });
 
