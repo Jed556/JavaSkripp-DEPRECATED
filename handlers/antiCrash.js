@@ -4,18 +4,18 @@ const settings = require(`../botconfig/settings.json`);
 const Discord = require(`discord.js`);
 
 module.exports = async (client) => {
-    function DM(reason, p, err, origin) {
+    function DM(reason, p, err, origin, monitor) {
         if (p) {
             client.users.fetch(settings.ownerID, false).then((user) => {
-                user.send({ content: `[antiCrash] :: Unhandled Rejection/Catch**] ${reason}\n ${p}` });
+                user.send({ content: `[antiCrash] :: Unhandled Rejection/Catch**]\n\`\`\`${reason}\n ${p}\`\`\`` });
             });
         } else if (monitor) {
             client.users.fetch(settings.ownerID, false).then((user) => {
-                user.send({ content: `**[antiCrash] :: Unhandled Rejection/Catch**]\n${err}\n${origin}` });
+                user.send({ content: `**[antiCrash] :: Unhandled Rejection/Catch**]\n\`\`\`${err}\n${origin}\`\`\`` });
             });
         } else if (origin) {
             client.users.fetch(settings.ownerID, false).then((user) => {
-                user.send({ content: `**[antiCrash] :: Unhandled Rejection/Catch**]\n${err}\n${origin}` });
+                user.send({ content: `**[antiCrash] :: Unhandled Rejection/Catch**]\n\`\`\`${err}\n${origin}\`\`\`` });
             });
         } else {
             client.users.fetch(settings.ownerID, false).then((user) => {
@@ -39,7 +39,7 @@ module.exports = async (client) => {
     process.on('uncaughtExceptionMonitor', (err, origin) => {
         console.log('[antiCrash] :: Uncaught Exception/Catch (MONITOR)');
         console.log(err, origin);
-        let monitor = true
+        var monitor = true
         DM(err, origin, monitor);
     });
 
