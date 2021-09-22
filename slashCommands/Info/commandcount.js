@@ -6,7 +6,7 @@ const settings = require("../../botconfig/settings.json");
 module.exports = {
     name: "cmdcount",
     cooldown: 1,
-    description: "Shows the amount of commands an categories loaded",
+    description: "Shows the amount of commands and categories loaded",
     category: "Info",
     memberpermissions: [],
     requiredroles: [],
@@ -22,9 +22,10 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
                     .setFooter(ee.footertext, ee.footericon)
-                    .setTitle(`**[${client.commands.size + client.slashCommands.size + client.slashCommands.map(d => d.options).flat().length}] Total Commands Loaded**`)
+                    .setTitle(`**[${client.commands.size + client.slashCommands.size + client.slashCommands.map(d => d.options).flat().length}] Modules Loaded**`)
+                    .addField(`:gear: **[18] Events**`, `>>> **[3] Categories**`)
                     .addField(`:gear: **[${client.commands.size}] Prefix Commands**`, `>>> **[${client.categories.length}] Categories**`)
-                    .addField(`:gear: **[${client.slashCommands.size + client.slashCommands.map(d => d.options).flat().length}] Slash Commands**`, `>>> **[${client.slashCategories.length}] Categories**\n`)
+                    .addField(`:gear: **[${client.slashCommands.size}] Slash Commands**`, `>>> **[${client.slashCategories.length}] Categories**\n`)
                     .setTimestamp()
                 ]
             });
