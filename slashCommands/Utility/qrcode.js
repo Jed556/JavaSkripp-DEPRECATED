@@ -28,8 +28,9 @@ module.exports = {
 
             interaction.reply({ content: `🛠 Converting... \`\`\`${convert}\`\`\`` });
 
-            let result = await qrc.toBuffer(convert)
-            interaction.editReply({ attachment: [new MessageAttachment(result, "qrcode.png")] })
+            await qrc.toDataURL(convert).then(url => {
+                interaction.editReply({ content: url })
+            })
         } catch (e) {
             console.log(String(e.stack).bgRed)
         }
