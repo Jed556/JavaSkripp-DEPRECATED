@@ -26,10 +26,10 @@ module.exports = {
             const convert = interaction.options.getString("text");
             if (!convert) return interaction.reply("Please provide a text!");
 
-            interaction.deferReply({ content: `🛠 Converting... \`\`\`${convert}\`\`\``, ephemeral: true });
+            interaction.reply({ content: `🛠 Converting... \`\`\`${convert}\`\`\``, ephemeral: true });
 
             let result = await qrc.toBuffer(convert)
-            interaction.editReply({content: "", attachment: [new MessageAttachment(result, "qrcode.png")] })
+            interaction.editReply({attachments: [new MessageAttachment(result, "qrcode.png")], ephemeral: false })
         } catch (e) {
             console.log(String(e.stack).bgRed)
         }
