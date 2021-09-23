@@ -39,19 +39,20 @@ module.exports = {
         try {
             const Message = interaction.options.getString("message")
             const Target = interaction.options.getString("user")
-            const File = interaction.options.getString("image")
+            const Image = interaction.options.getString("image")
             const tag = ["#", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
+            const userID = client.users.cache.find(u => u.tag === Target).id
+            const avatar = await client.users.fetch(userID).catch(console.error);
+
             if (tag.some(v => Target.includes(v))) {
-                const userID = client.users.cache.find(u => u.tag === Target).id
-                const user = client.users.cache.find(u => u.tag === Target)
                 client.users.fetch(userID, false).then((user) => {
                     user.send({
                         embeds: [new MessageEmbed()
                             .setTimestamp()
                             .setColor(ee.color)
                             .addField(`Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
-                            .setImage(`${File ? `${File}` : ""}`)
+                            .setImage(`${Image ? `${Image}` : ""}`)
                             .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({ dynamic: true }))
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                         ]
@@ -62,8 +63,8 @@ module.exports = {
                         .setTimestamp()
                         .setColor(ee.color)
                         .addField(`Sent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
-                        .setImage(`${File ? `${File}` : ""}`)
-                        .setAuthor(Target, user.displayAvatarURL({ dynamic: true }))
+                        .setImage(`${Image ? `${Image}` : ""}`)
+                        .setAuthor(Target, avatar.displayAvatarURL({ dynamic: true }))
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ], ephemeral: true
                 })
