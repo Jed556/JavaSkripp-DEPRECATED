@@ -41,11 +41,10 @@ module.exports = {
             const Target = interaction.options.getString("user")
             const File = interaction.options.getString("file")
             const tag = ["#", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+            const { displayAvatarURL } = await client.fetchUser(Target).catch(console.error);
 
             if (tag.some(v => Target.includes(v))) {
-                const userID = await client.users.cache.find(u => u.tag === Target).id
-                const displayAvatarURL = await client.users.fetch(userID).catch(console.error);
-                
+                const userID = client.users.cache.find(u => u.tag === Target).id
                 client.users.fetch(userID, false).then((user) => {
                     user.send({
                         embeds: [new MessageEmbed()
@@ -64,8 +63,8 @@ module.exports = {
                         .setColor(ee.color)
                         .addField(`Sent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
                         .setImage(`${File ? `${File}` : ""}`)
-                        .setAuthor(Target, displayAvatarURL({ dynamic: true }))
-                        .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
+                        .setAuthor(Target, displayAvatarURL())
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ], ephemeral: true
                 })
 
