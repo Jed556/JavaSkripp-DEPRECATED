@@ -37,6 +37,9 @@ const dirSetup = [{
 }, {
     "Folder": "Utility", "CmdName": "util",
     "CmdDescription": "Utility Commands"
+}, {
+    "Folder": "Message", "CmdName": "msg",
+    "CmdDescription": "Messaging Commands"
 }];
 
 module.exports = (client) => {
