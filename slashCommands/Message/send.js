@@ -54,7 +54,7 @@ module.exports = {
                             .addField(`Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
                             .setImage(`${File ? `${File}` : ""}`)
                             .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({ dynamic: true }))
-                            .setFooter(client.user.username, client.user.displayAvatarURL())
+                            .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
                         ]
                     });
                 });
@@ -64,8 +64,8 @@ module.exports = {
                         .setColor(ee.color)
                         .addField(`Sent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
                         .setImage(`${File ? `${File}` : ""}`)
-                        .setAuthor(Target, avatar.displayAvatarURL.displayAvatarURL({ dynamic: true }))
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                        .setAuthor(Target, avatar.displayAvatarURL({ dynamic: true }))
+                        .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
                     ], ephemeral: true
                 })
 
