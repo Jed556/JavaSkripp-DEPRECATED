@@ -28,8 +28,8 @@ module.exports = {
         },
         {
             "String": {
-                name: "file",
-                description: "Enter file url",
+                name: "image",
+                description: "Enter image url",
                 required: false
             }
         },
@@ -39,12 +39,12 @@ module.exports = {
         try {
             const Message = interaction.options.getString("message")
             const Target = interaction.options.getString("user")
-            const File = interaction.options.getString("file")
+            const File = interaction.options.getString("image")
             const tag = ["#", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-            const userID = client.users.cache.find(u => u.tag === Target).id
-
             if (tag.some(v => Target.includes(v))) {
+                const userID = client.users.cache.find(u => u.tag === Target).id
+                const user = client.users.cache.find(u => u.tag === Target)
                 client.users.fetch(userID, false).then((user) => {
                     user.send({
                         embeds: [new MessageEmbed()
@@ -53,20 +53,20 @@ module.exports = {
                             .addField(`Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
                             .setImage(`${File ? `${File}` : ""}`)
                             .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({ dynamic: true }))
-                            .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
+                            .setFooter(client.user.username, client.user.displayAvatarURL())
                         ]
                     });
-                    interaction.reply({
-                        embeds: [new MessageEmbed()
-                            .setTimestamp()
-                            .setColor(ee.color)
-                            .addField(`Sent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
-                            .setImage(`${File ? `${File}` : ""}`)
-                            .setAuthor(Target)
-                            .setFooter(client.user.username, client.user.displayAvatarURL())
-                        ], ephemeral: true
-                    })
                 });
+                interaction.reply({
+                    embeds: [new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(ee.color)
+                        .addField(`Sent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
+                        .setImage(`${File ? `${File}` : ""}`)
+                        .setAuthor(Target, user.displayAvatarURL({ dynamic: true }))
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                    ], ephemeral: true
+                })
 
             } else return interaction.reply("Please enter the user tag (ex. Gatorade#4147)");
 
