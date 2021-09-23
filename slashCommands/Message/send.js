@@ -30,7 +30,7 @@ module.exports = {
             "String": {
                 name: "file",
                 description: "Enter file url",
-                required: true
+                required: false
             }
         },
     ],
@@ -41,6 +41,7 @@ module.exports = {
             const Target = interaction.options.getString("user")
             const File = interaction.options.getString("file")
             const tag = ["#", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+            const { displayAvatarURL } = await client.fetchUser(Target).catch(console.error);
 
             if (tag.some(v => Target.includes(v))) {
                 const userID = client.users.cache.find(u => u.tag === Target).id
@@ -62,7 +63,7 @@ module.exports = {
                         .setColor(ee.color)
                         .addField(`Sent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
                         .setImage(`${File ? `${File}` : ""}`)
-                        .setAuthor(Target.tag, Target.displayAvatarURL({ dynamic: true }))
+                        .setAuthor(Target, displayAvatarURL)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ], ephemeral: true
                 })
