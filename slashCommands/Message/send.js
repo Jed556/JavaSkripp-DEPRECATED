@@ -62,7 +62,7 @@ module.exports = {
                             .setColor(ee.color)
                             .addField(`Sent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
                             .setImage(`${File ? `${File}` : ""}`)
-                            .setAuthor(Target, user.displayAvatarURL())
+                            .setAuthor(Target)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                         ], ephemeral: true
                     })
