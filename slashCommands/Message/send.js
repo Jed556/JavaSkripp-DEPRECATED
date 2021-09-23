@@ -13,7 +13,7 @@ module.exports = {
     alloweduserids: [settings.ownerID],
     options: [
         {
-            "User": {
+            "String": {
                 name: "user",
                 description: "Enter user tag (ex. Gatorade#4147)",
                 required: true
@@ -31,7 +31,7 @@ module.exports = {
     run: async (client, interaction) => {
         try {
             const Message = interaction.options.getString("message")
-            const Target = interaction.options.getUser("user")
+            const Target = interaction.options.getString("user")
             const userID = client.users.cache.find(u => u.tag === Target).id
 
             interaction.reply(userID, Message);
