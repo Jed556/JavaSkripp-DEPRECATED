@@ -41,7 +41,8 @@ module.exports = {
             const Target = interaction.options.getString("user")
             const File = interaction.options.getString("file")
             const tag = ["#", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-            const { displayAvatarURL } = await client.fetchUser(Target).catch(console.error);
+            const { displayAvatarURL } = await client.fetch(Target).catch(console.error);
+            console.log(displayAvatarURL)
 
             if (tag.some(v => Target.includes(v))) {
                 const userID = client.users.cache.find(u => u.tag === Target).id
