@@ -23,11 +23,11 @@ module.exports = {
 
     run: async (client, interaction) => {
         try {
-            const Target = interaction.options.getMember("user")
+            const Target = interaction.options.getUser("user")
 
             const Info = new MessageEmbed()
-                .setAuthor(`${Target.tag}`, Target.displayAvatarURL({ dynamic: true }))
-                .setThumbnail(Target.displayAvatarURL({ dynamic: true }))
+                .setAuthor(`${Target.tag}`, Target.displayAvatarURL)
+                .setThumbnail(Target.displayAvatarURL)
                 .setColor("RANDOM")
                 .addField("Server member since", `${moment(Target.joinedAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.joinedAt).startOf('day').fromNow()}`)
                 .addField("Discord user since", `${moment(Target.createdAt).format('MMMM Do YYYY, h:mm:ss a')}\n**-** ${moment(Target.createdAt).startOf('day').fromNow()}`)
