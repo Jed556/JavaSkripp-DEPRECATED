@@ -5,6 +5,7 @@
     "@distube/soundcloud": "^0.2.2",
     "@distube/spotify": "^0.6.3",
     "@ksoft/api": "^3.1.9",
+    "canvacord": "^5.2.3",
     "colors": "^1.4.0",
     "cpu-stat": "^2.0.1",
     "discord.js": "^13.1.0",
@@ -23,7 +24,6 @@
     "os": "^0.1.2",
     "passport": "^0.4.1",
     "passport-discord": "^0.1.4",
-    "qrcode": "^1.4.4",
     "session": "^0.1.0",
     "url": "^0.11.0"
   },

@@ -2,7 +2,7 @@ const { MessageAttachment } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
-const qrc = require("qrcode")
+const canva = require("canvacord")
 
 module.exports = {
     name: "qrcode",
@@ -28,8 +28,8 @@ module.exports = {
 
             interaction.reply({ content: `🛠 Converting... \`\`\`${convert}\`\`\``, ephemeral: true });
 
-            let result = await qrc.toBuffer(convert)
-            interaction.editReply({attachments: [new MessageAttachment(result, "qrcode.png")], ephemeral: false })
+            let result = await canva.createQRCode(convert)
+            interaction.editReply({ attachments: [new MessageAttachment(result, "qrcode.png")], ephemeral: false })
         } catch (e) {
             console.log(String(e.stack).bgRed)
         }
