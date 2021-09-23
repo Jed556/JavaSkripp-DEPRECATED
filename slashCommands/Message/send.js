@@ -43,8 +43,6 @@ module.exports = {
             const tag = ["#", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
             const userID = client.users.cache.find(u => u.tag === Target).id
-            const { displayAvatarURL } = await client.users.fetch(userID).catch(console.error);
-            console.log(displayAvatarURL)
 
             if (tag.some(v => Target.includes(v))) {
                 client.users.fetch(userID, false).then((user) => {
@@ -58,17 +56,17 @@ module.exports = {
                             .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
                         ]
                     });
+                    interaction.reply({
+                        embeds: [new MessageEmbed()
+                            .setTimestamp()
+                            .setColor(ee.color)
+                            .addField(`Sent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
+                            .setImage(`${File ? `${File}` : ""}`)
+                            .setAuthor(Target, user.displayAvatarURL())
+                            .setFooter(client.user.username, client.user.displayAvatarURL())
+                        ], ephemeral: true
+                    })
                 });
-                interaction.reply({
-                    embeds: [new MessageEmbed()
-                        .setTimestamp()
-                        .setColor(ee.color)
-                        .addField(`Sent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
-                        .setImage(`${File ? `${File}` : ""}`)
-                        .setAuthor(Target, displayAvatarURL())
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ], ephemeral: true
-                })
 
             } else return interaction.reply("Please enter the user tag (ex. Gatorade#4147)");
 
