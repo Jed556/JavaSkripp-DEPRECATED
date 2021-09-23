@@ -30,7 +30,7 @@ module.exports = async (client, message) => {
                     .setTimestamp()
                     .setColor(ee.color)
                     .setDescription(reply)
-                    .setAuthor(client.user.username.tag, client.user.displayAvatarURL({ dynamic: true }))
+                    .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                 ]
             });
@@ -47,7 +47,7 @@ module.exports = async (client, message) => {
                     .setColor(ee.wrongcolor)
                     .setDescription(reply)
                     .addField(`Reason:`, `> ${match.map(m => `\`${m}\``).join(", ")}`)
-                    .setAuthor(client.user.username.tag, client.user.displayAvatarURL({ dynamic: true }))
+                    .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                 ]
             });
