@@ -6,7 +6,7 @@ const { check_if_dj } = require("../../handlers/functions");
 
 module.exports = {
     name: "seek",
-    category: "Song",
+    category: "Music",
     description: "Jumps to a specific position of the song",
     cooldown: 1,
     requiredroles: [],

@@ -6,7 +6,7 @@ const { check_if_dj } = require("../../handlers/functions");
 
 module.exports = {
     name: "nowplaying",
-    category: "Song",
+    category: "Music",
     description: "Displays the current playing song",
     cooldown: 2,
     requiredroles: [],

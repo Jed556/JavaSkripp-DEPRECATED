@@ -6,7 +6,7 @@ const { check_if_dj } = require("../../handlers/functions");
 
 module.exports = {
     name: "grab",
-    category: "Song",
+    category: "Music",
     description: "Grabs the current song and sends it to your DMs",
     cooldown: 1,
     requiredroles: [],

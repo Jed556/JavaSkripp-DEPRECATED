@@ -6,7 +6,7 @@ const { check_if_dj } = require("../../handlers/functions");
 
 module.exports = {
     name: "replay",
-    category: "Song",
+    category: "Music",
     description: "Replays the current song",
     cooldown: 3,
     requiredroles: [],

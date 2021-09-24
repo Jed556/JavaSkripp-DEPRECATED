@@ -8,6 +8,7 @@ const { lyricsEmbed, check_if_dj } = require("../../handlers/functions");
 
 module.exports = {
     name: "lyrics",
+    category: "Music",
     description: "Shows the Lyrics of the current song",
     cooldown: 10,
     requiredroles: [],

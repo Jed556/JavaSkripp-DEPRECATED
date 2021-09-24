@@ -6,7 +6,7 @@ const { check_if_dj } = require("../../handlers/functions");
 
 module.exports = {
     name: "forward",
-    category: "Song",
+    category: "Music",
     description: "Forwards for X Seconds",
     cooldown: 10,
     requiredroles: [],

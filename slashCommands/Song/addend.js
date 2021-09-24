@@ -6,7 +6,7 @@ const { check_if_dj } = require("../../handlers/functions");
 
 module.exports = {
     name: "addend",
-    category: "Song",
+    category: "Music",
     description: "Adds current song back to the end of the queue",
     cooldown: 1,
     requiredroles: [],

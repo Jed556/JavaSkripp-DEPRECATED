@@ -6,7 +6,7 @@ const { check_if_dj } = require("../../handlers/functions");
 
 module.exports = {
     name: "rewind",
-    category: "Song",
+    category: "Music",
     description: "Rewinds for X seconds",
     cooldown: 1,
     requiredroles: [],
