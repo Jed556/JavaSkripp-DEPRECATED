@@ -78,25 +78,25 @@ module.exports = async (client) => {
     process.on('unhandledRejection', (reason, promise) => {
         console.log('[antiCrash] :: Unhandled Rejection/Catch');
         console.log(reason, promise);
-        DM(reason, promise);
+        errDM(reason, promise);
     });
 
     process.on('uncaughtExceptionMonitor', (err, origin) => {
         console.log('[antiCrash] :: Uncaught Exception/Catch (MONITOR)');
         console.log(err, origin);
         var monitor = true
-        DM(err, origin, monitor);
+        errDM(err, origin, monitor);
     });
 
     process.on("uncaughtException", (err, origin) => {
         console.log('[antiCrash] :: Uncaught Exception/Catch');
         console.log(err, origin);
-        DM(err, origin);
+        errDM(err, origin);
     })
 
     process.on('multipleResolves', (type, promise, reason) => {
         console.log('[antiCrash] :: Multiple Resolves');
         //console.log(type, promise, reason);
-        //DM();
+        //errDM();
     });
 }
