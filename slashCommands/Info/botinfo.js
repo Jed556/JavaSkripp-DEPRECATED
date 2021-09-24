@@ -18,7 +18,7 @@ module.exports = {
     run: async (client, interaction) => {
         try {
             const { createdTimestamp } = interaction;
-            const ping = Math.floor((Date.now() - createdTimestamp) * Math.floor(client.ws.ping))
+            const ping = Math.floor((Date.now() - createdTimestamp) - 1 * Math.floor(client.ws.ping))
             cpuStat.usagePercent(function (e, percent, seconds) {
                 try {
                     if (e) return console.log(String(e.stack).red);
