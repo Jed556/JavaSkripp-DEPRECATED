@@ -517,7 +517,7 @@ module.exports = (client) => {
                     embeds: [
                         new MessageEmbed().setColor(ee.color).setFooter(ee.footertext, ee.footericon)
                             .setTitle("⛔️ LEFT THE CHANNEL")
-                            .setDescription(":headphones: **There are no more songs left**")
+                            .setDescription("🎧 **There are no more songs left**")
                             .setTimestamp()
                     ]
                 })
