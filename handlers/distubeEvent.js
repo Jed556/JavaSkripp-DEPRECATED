@@ -38,7 +38,7 @@ module.exports = (client) => {
                     let lastEdited = false;
 
                     /**
-                     * @INFORMATION - EDIT THE SONG MESSAGE EVERY 10 SECONDS!
+                     * @INFORMATION - EDIT THE SONG MESSAGE EVERY 1 SECOND!
                      */
                     try { clearInterval(songEditInterval) } catch (e) { }
                     songEditInterval = setInterval(async () => {
@@ -54,7 +54,7 @@ module.exports = (client) => {
                                 clearInterval(songEditInterval)
                             }
                         }
-                    }, 10000)
+                    }, 1000)
 
                     collector.on('collect', async i => {
                         if (i.customId != `10` && check_if_dj(client, i.member, client.distube.getQueue(i.guild.id).songs[0])) {
