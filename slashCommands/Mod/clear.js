@@ -11,7 +11,7 @@ const settings = require("../../botconfig/settings.json");
 module.exports = {
     name: "clear",
     description: "Bulk deletes messages",
-    category: "Mod",
+    category: "Moderation",
     cooldown: 2,
     memberpermissions: ["MANAGE_MESSAGES"],
     options: [
