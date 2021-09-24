@@ -225,7 +225,7 @@ function isValidURL(string) {
  * @returns BOOLEAN/DISCORDUSER
  */
 function GetUser(message, arg) {
-    var errormessage = ":x: I failed finding that User...";
+    var errormessage = `${client.allEmojis.x} I failed finding that User...`;
     return new Promise(async (resolve, reject) => {
         var args = arg, client = message.client;
         if (!client || !message) return reject("CLIENT IS NOT DEFINED")
@@ -264,7 +264,7 @@ function GetUser(message, arg) {
  * @returns BOOLEAN/GUILDROLE
  */
 function GetRole(message, arg) {
-    var errormessage = ":x: I failed finding that Role...";
+    var errormessage = "${client.allEmojis.x} I failed finding that Role...";
     return new Promise(async (resolve, reject) => {
         var args = arg, client = message.client;
         if (!client || !message) return reject("CLIENT IS NOT DEFINED")
@@ -298,7 +298,7 @@ function GetRole(message, arg) {
  * @returns BOOLEAN/DISCORDUSER
  */
 function GetGlobalUser(message, arg) {
-    var errormessage = ":x: I failed finding that User...";
+    var errormessage = "${client.allEmojis.x} I failed finding that User...";
     return new Promise(async (resolve, reject) => {
         var args = arg, client = message.client;
         if (!client || !message) return reject("CLIENT IS NOT DEFINED")
@@ -677,7 +677,7 @@ async function swap_pages(client, message, description, TITLE) {
     //array of all embeds, here simplified just 10 embeds with numbers 0 - 9
     collector.on('collect', async b => {
         if (b.user.id !== message.author.id)
-            return b.reply(`:x: **Only the one who typed ${prefix}help is allowed to react!**`, true)
+            return b.reply(`${client.allEmojis.x} **Only the one who typed ${prefix}help is allowed to react!**`, true)
         //page forward
         if (b.customId == "1") {
             //b.reply("***Swapping a PAGE FORWARD***, *please wait 2 Seconds for the next Input*", true)
@@ -741,7 +741,7 @@ async function swap_pages2(client, message, embeds) {
     //array of all embeds, here simplified just 10 embeds with numbers 0 - 9
     collector.on('collect', async b => {
         if (b.user.id !== message.author.id)
-            return b.reply(`:x: **Only the one who typed ${prefix}help is allowed to react!**`, true)
+            return b.reply(`${client.allEmojis.x} **Only the one who typed ${prefix}help is allowed to react!**`, true)
         //page forward
         if (b.customId == "1") {
             //b.reply("***Swapping a PAGE FORWARD***, *please wait 2 Seconds for the next Input*", true)

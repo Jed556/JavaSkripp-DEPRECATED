@@ -58,7 +58,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
-                        .setTitle(`:x: Your Voice Channel is full, I can't join!`)
+                        .setTitle(`${client.allEmojis.x} Your Voice Channel is full, I can't join!`)
                     ],
                     ephemeral: true
                 });
@@ -68,7 +68,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
-                        .setTitle(`:x: I am already connected somewhere else`)
+                        .setTitle(`${client.allEmojis.x} I am already connected somewhere else`)
                     ],
                     ephemeral: true
                 });
