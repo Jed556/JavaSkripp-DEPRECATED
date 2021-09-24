@@ -43,7 +43,7 @@ module.exports = {
             const tag = ["#", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
             if (tag.some(v => Target.includes(v))) {
-                const userID = client.users.cache.find(u => u.tag === Target).id
+                const userID = await client.users.cache.find(u => u.tag === Target).id
                 const avatar = await client.users.fetch(userID).catch(console.error);
 
                 client.users.fetch(userID, false).then((user) => {
