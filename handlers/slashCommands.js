@@ -17,7 +17,7 @@ const dirSetup = [{
     "Folder": "Filter", "CmdName": "filter",
     "CmdDescription": "Modify Music Filters"
 }, {
-    "Folder": "Mod", "CmdName": "mod",
+    "Folder": "Moderation", "CmdName": "mod",
     "CmdDescription": "Moderating Commands"
 }, {
     "Folder": "Guild", "CmdName": "guild",
@@ -34,9 +34,6 @@ const dirSetup = [{
 }, {
     "Folder": "Utility", "CmdName": "util",
     "CmdDescription": "Utility Commands"
-}, {
-    "Folder": "Message", "CmdName": "msg",
-    "CmdDescription": "Messaging Commands"
 }];
 
 module.exports = (client) => {

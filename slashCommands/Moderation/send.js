@@ -7,7 +7,7 @@ const moment = require("moment");
 module.exports = {
     name: "send",
     description: "Send a direct message to a user",
-    category: "Message",
+    category: "Moderation",
     cooldown: 1,
     requiredroles: [],
     alloweduserids: [settings.ownerID],
