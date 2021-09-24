@@ -4,7 +4,7 @@ const settings = require(`../botconfig/settings.json`);
 const { MessageEmbed } = require(`discord.js`);
 module.exports.errDM = errDM;
 
-function errDM(reason, promise, err, origin, monitor, e) {
+function errDM(client, reason, promise, err, origin, monitor, e) {
     if (e) {
         client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
