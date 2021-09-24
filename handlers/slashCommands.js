@@ -14,9 +14,6 @@ const dirSetup = [{
     "Folder": "Queue", "CmdName": "queue",
     "CmdDescription": "Music Queue Commands"
 }, {
-    "Folder": "Song", "CmdName": "music",
-    "CmdDescription": "Song Commands"
-}, {
     "Folder": "Filter", "CmdName": "filter",
     "CmdDescription": "Modify Music Filters"
 }, {
