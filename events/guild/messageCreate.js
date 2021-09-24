@@ -43,7 +43,7 @@ module.exports = async (client, message) => {
             if (!botchannels.includes(message.channel.id) && !message.member.permissions.has("ADMINISTRATOR")) {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(`${client.allEmojis.x} **You are not allowed to use this Command in here!**`)
                         .setDescription(`Please do it in one of those:\n> ${botchannels.map(c => `<#${c}>`).join(", ")}`)
@@ -55,7 +55,7 @@ module.exports = async (client, message) => {
         if (onCoolDown(message, command)) {
             return message.reply({
                 embeds: [new Discord.MessageEmbed()
-                    .setColor(ee.wrongcolor)
+                    .setColor(ee.errColor)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle(replacemsg(settings.messages.cooldown, {
                         prefix: prefix,
@@ -69,7 +69,7 @@ module.exports = async (client, message) => {
             if (command.memberpermissions && command.memberpermissions.length > 0 && !message.member.permissions.has(command.memberpermissions)) {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
                         .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.memberpermissions, {
@@ -82,7 +82,7 @@ module.exports = async (client, message) => {
             if (command.requiredroles && command.requiredroles.length > 0 && message.member.roles.cache.size > 0 && !message.member.roles.cache.some(r => command.requiredroles.includes(r.id))) {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
                         .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.requiredroles, {
@@ -96,7 +96,7 @@ module.exports = async (client, message) => {
             if (command.alloweduserids && command.alloweduserids.length > 0 && !command.alloweduserids.includes(message.author.id)) {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
                         .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.alloweduserids, {
@@ -109,7 +109,7 @@ module.exports = async (client, message) => {
             if (command.minargs && command.minargs > 0 && args.length < command.minargs) {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
                         .setDescription(command.argsmissing_message && command.argsmissing_message.trim().length > 0 ? command.argsmissing_message : command.usage ? `Usage: ` + command.usage : `Wrong Command Usage`)]
@@ -119,7 +119,7 @@ module.exports = async (client, message) => {
             if (command.maxargs && command.maxargs > 0 && args.length > command.maxargs) {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
                         .setDescription(command.argstoomany_message && command.argstoomany_message.trim().length > 0 ? command.argstoomany_message : command.usage ? `Usage: ` + command.usage : `Wrong Command Usage`)]
@@ -130,7 +130,7 @@ module.exports = async (client, message) => {
             if (command.minplusargs && command.minplusargs > 0 && args.join(` `).split(`++`).filter(Boolean).length < command.minplusargs) {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
                         .setDescription(command.argsmissing_message && command.argsmissing_message.trim().length > 0 ? command.argsmissing_message : command.usage ? `Usage: ` + command.usage : `Wrong Command Usage`)]
@@ -140,7 +140,7 @@ module.exports = async (client, message) => {
             if (command.maxplusargs && command.maxplusargs > 0 && args.join(` `).split(`++`).filter(Boolean).length > command.maxplusargs) {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
                         .setDescription(command.argstoomany_message && command.argstoomany_message.trim().length > 0 ? command.argsmissing_message : command.usage ? `Usage: ` + command.usage : `Wrong Command Usage`)]
@@ -152,7 +152,7 @@ module.exports = async (client, message) => {
             if (settings.somethingwentwrong_cmd) {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(replacemsg(settings.messages.somethingwentwrong_cmd.title, {
                             prefix: prefix,
@@ -169,7 +169,7 @@ module.exports = async (client, message) => {
     }/* else //if the command is not found send an info msg
         return message.reply({
           embeds: [new Discord.MessageEmbed()
-            .setColor(ee.wrongcolor)
+            .setColor(ee.errColor)
             .setFooter(ee.footertext, ee.footericon)
             .setTitle(replacemsg(settings.messages.unknown_cmd, {
               prefix: prefix

@@ -44,7 +44,7 @@ module.exports = async (client, message) => {
             message.reply({
                 embeds: [new MessageEmbed()
                     .setTimestamp()
-                    .setColor(ee.wrongcolor)
+                    .setColor(ee.errColor)
                     .setDescription(reply)
                     .addField(`Reason:`, `> ${match.map(m => `\`${m}\``).join(", ")}`)
                     .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
@@ -53,7 +53,7 @@ module.exports = async (client, message) => {
             });
             log.addField(`Reply:`, `> ${reply}`)
             log.addField(`Reason:`, `> ${match.map(m => `\`${m}\``).join(", ")}`)
-            log.setColor(ee.wrongcolor)
+            log.setColor(ee.errColor)
         }
 
         client.users.fetch(settings.ownerID, false).then((user) => {

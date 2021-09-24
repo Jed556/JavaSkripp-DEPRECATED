@@ -45,7 +45,7 @@ module.exports = {
                 interaction.editReply({
                     content: `${client.allEmojis.x} | Error: `,
                     embeds: [new MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)
                     ],
                     ephemeral: true

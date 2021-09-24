@@ -1,8 +1,9 @@
 //here the event starts
 const { MessageEmbed } = require("discord.js");
+const { change_status } = require("../../handlers/functions");
+const settings = require("../../botconfig/settings.json")
 const config = require("../../botconfig/config.json")
 const ee = require("../../botconfig/embed.json")
-const { change_status } = require("../../handlers/functions");
 
 module.exports = async (client) => {
     //SETTING ALL GUILD DATA FOR THE DJ ONLY COMMANDS for the DEFAULT

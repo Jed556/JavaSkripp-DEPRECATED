@@ -36,7 +36,7 @@ module.exports = {
                 return interaction.reply({
                     ephemeral: true,
                     embeds: [new MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(`${client.allEmojis.x} **The Volume __must__ be between \`1\` and \`150\`!**`)
                     ],

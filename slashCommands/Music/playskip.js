@@ -30,7 +30,7 @@ module.exports = {
 
             if (!channel) return interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(ee.wrongcolor)
+                    .setColor(ee.errColor)
                     .setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!**`)
                 ],
                 ephemeral: true
@@ -39,7 +39,7 @@ module.exports = {
             if (channel.userLimit != 0 && channel.full)
                 return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(`:x: Your Voice Channel is full, I can't join!`)
                     ],
@@ -49,7 +49,7 @@ module.exports = {
             if (channel.guild.me.voice.channel && channel.guild.me.voice.channel.id != channel.id) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(`:x: I am already connected somewhere else`)
                     ],
@@ -76,7 +76,7 @@ module.exports = {
                     if (check_if_dj(client, member, queue.songs[0])) {
                         return interaction.reply({
                             embeds: [new MessageEmbed()
-                                .setColor(ee.wrongcolor)
+                                .setColor(ee.errColor)
                                 .setFooter(ee.footertext, ee.footericon)
                                 .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
                                 .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, queue.songs[0])}`)
@@ -96,7 +96,7 @@ module.exports = {
                 interaction.editReply({
                     content: `${client.allEmojis.x} | Error: `,
                     embeds: [new MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)
                     ],
                     ephemeral: true

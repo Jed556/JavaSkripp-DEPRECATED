@@ -39,7 +39,7 @@ module.exports = {
             if (args.some(a => !filters[a])) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(`${client.allEmojis.x} **You added at least one Filter, which is invalid!**`)
                         .setDescription("**To define Multiple Filters add a SPACE (` `) in between!**")

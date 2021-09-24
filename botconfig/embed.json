@@ -1,7 +1,7 @@
 {
     "color": "#5865F1",
-    "wrongcolor": "#e01e01",
-    "oldcolor": "#C219D8",
+    "errColor": "#E01E01",
+    "okColor": "#00E500",
 
     "footertext": "JavaSkripp",
     "footericon": "https://cdn.discordapp.com/avatars/881308119383302165/7dce2017f33191fc9b8c6d87fb35bb1e.webp",

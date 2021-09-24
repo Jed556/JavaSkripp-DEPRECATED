@@ -10,7 +10,7 @@ module.exports = async (client) => {
                 user.send({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
                         .setTitle("Unhandled Rejection/Catch")
                         .setDescription(`**Reason:**\`\`\`${reason}\`\`\`\n**Promise:**\`\`\`${promise}\`\`\``)
@@ -23,7 +23,7 @@ module.exports = async (client) => {
                 user.send({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
                         .setTitle("Uncaught Exception/Catch (MONITOR)")
                         .setDescription(`**Error:**\`\`\`${err}\`\`\`\n**Origin:**\`\`\`${origin}\`\`\``)
@@ -36,7 +36,7 @@ module.exports = async (client) => {
                 user.send({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
                         .setTitle("Uncaught Exception/Catch")
                         .setDescription(`**Error:**\`\`\`${err}\`\`\`\n**Origin:**\`\`\`${origin}\`\`\``)
@@ -49,7 +49,7 @@ module.exports = async (client) => {
                 user.send({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
                         .setTitle("Multiple Resolves")
                         .setDescription(`**Type:**\`\`\`${type}\`\`\`\n**Promise:**\`\`\`${promise}\`\`\`\n**Reason:**\`\`\`${reason}\`\`\``)

@@ -10,7 +10,7 @@ module.exports = (client, interaction) => {
     if (interaction.guildId == null) return interaction.reply({
         embeds: [
             new Discord.MessageEmbed()
-                .setColor(ee.wrongcolor)
+                .setColor(ee.errColor)
                 .setFooter(ee.footertext, ee.footericon)
                 .setDescription(`**HEY! You can't execute commands in a DM.**`)
         ]
@@ -42,7 +42,7 @@ module.exports = (client, interaction) => {
                 return interaction.reply({
                     ephemeral: true,
                     embeds: [new Discord.MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(`${client.allEmojis.x} **You are not allowed to use this Command in here!**`)
                         .setDescription(`Please do it in one of those:\n> ${botchannels.map(c => `<#${c}>`).join(", ")}`)
@@ -54,7 +54,7 @@ module.exports = (client, interaction) => {
             return interaction.reply({
                 ephemeral: true,
                 embeds: [new Discord.MessageEmbed()
-                    .setColor(ee.wrongcolor)
+                    .setColor(ee.errColor)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle(replacemsg(settings.messages.cooldown, {
                         prefix: prefix,
@@ -67,7 +67,7 @@ module.exports = (client, interaction) => {
         if (command.memberpermissions && command.memberpermissions.length > 0 && !interaction.member.permissions.has(command.memberpermissions)) {
             return interaction.reply({
                 ephemeral: true, embeds: [new Discord.MessageEmbed()
-                    .setColor(ee.wrongcolor)
+                    .setColor(ee.errColor)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
                     .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.memberpermissions, {
@@ -80,7 +80,7 @@ module.exports = (client, interaction) => {
         if (command.requiredroles && command.requiredroles.length > 0 && interaction.member.roles.cache.size > 0 && !interaction.member.roles.cache.some(r => command.requiredroles.includes(r.id))) {
             return interaction.reply({
                 ephemeral: true, embeds: [new Discord.MessageEmbed()
-                    .setColor(ee.wrongcolor)
+                    .setColor(ee.errColor)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
                     .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.requiredroles, {
@@ -93,7 +93,7 @@ module.exports = (client, interaction) => {
         if (command.alloweduserids && command.alloweduserids.length > 0 && !command.alloweduserids.includes(interaction.member.id)) {
             return interaction.reply({
                 ephemeral: true, embeds: [new Discord.MessageEmbed()
-                    .setColor(ee.wrongcolor)
+                    .setColor(ee.errColor)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
                     .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.alloweduserids, {

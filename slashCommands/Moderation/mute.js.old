@@ -75,28 +75,28 @@ module.exports = {
             if (Target.id === interaction.member.id)
             return interaction.reply({embeds: [
             new MessageEmbed()
-            .setColor(ee.wrongcolor)
+            .setColor(ee.errColor)
             .setDescription(`You can't mute yourself`)
             ]})
 
             if (Target.permissions.has("MANAGE_GUILD"))
             return interaction.reply({embeds: [
             new MessageEmbed()
-            .setColor(ee.wrongcolor)
+            .setColor(ee.errColor)
             .setDescription("You can't mute a moderator")
             ]})
 
             if (!interaction.guild.roles.cache.get(process.env.MUTED_ID))
             return interaction.reply({embeds: [
                 new MessageEmbed()
-                .setColor(ee.wrongcolor)
+                .setColor(ee.errColor)
                 .setDescription("Mute role does not exist")
             ]})
 
             if (Target.roles.cache.has(process.env.MUTED_ID))
             return interaction.reply({embeds: [
                 new MessageEmbed()
-                .setColor(ee.wrongcolor)
+                .setColor(ee.errColor)
                 .setDescription("Member is already muted")
             ]})
 

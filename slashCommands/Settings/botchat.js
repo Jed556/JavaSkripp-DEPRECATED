@@ -47,7 +47,7 @@ module.exports = {
                     return interaction.reply({
                         ephemeral: true,
                         embeds: [new MessageEmbed()
-                            .setColor(ee.wrongcolor)
+                            .setColor(ee.errColor)
                             .setFooter(ee.footertext, ee.footericon)
                             .setTitle(`${client.allEmojis.x} **This Channel is already a whitelisted Bot-Channel!**`)
                         ],
@@ -71,7 +71,7 @@ module.exports = {
                     return interaction.reply({
                         ephemeral: true,
                         embeds: [new MessageEmbed()
-                            .setColor(ee.wrongcolor)
+                            .setColor(ee.errColor)
                             .setFooter(ee.footertext, ee.footericon)
                             .setTitle(`${client.allEmojis.x} **This Channel is not a whitelisted Bot-Channel yet!**`)
                         ],

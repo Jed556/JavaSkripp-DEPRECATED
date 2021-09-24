@@ -53,7 +53,7 @@ module.exports = {
             if (Target.id === interaction.member.id)
             return interaction.reply({embeds: [
             new MessageEmbed()
-            .setColor(ee.wrongcolor)
+            .setColor(ee.errColor)
             .setDescription("You can't ban yourself")
             ]})
 
@@ -61,7 +61,7 @@ module.exports = {
             if (Target.permissions.has("MANAGE_GUILD"))
             return interaction.reply({embeds: [
             new MessageEmbed()
-            .setColor(ee.wrongcolor)
+            .setColor(ee.errColor)
             .setDescription("You can't ban a moderator")
             ]})
 
@@ -70,7 +70,7 @@ module.exports = {
             if (Reason > 512)
             return interaction.reply({embeds: [
                 new MessageEmbed()
-                .setColor(ee.wrongcolor)
+                .setColor(ee.errColor)
                 .setDescription("Reason exceeded 512 character limit")
             ]})
 

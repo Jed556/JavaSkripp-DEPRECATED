@@ -57,7 +57,7 @@ module.exports = {
                 }
             } else interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(ee.wrongcolor)
+                    .setColor(ee.errColor)
                     .setDescription(`${client.allEmojis.x} Exceeded max amount of 100 messages`)]
             })
         } catch (e) {

@@ -60,7 +60,7 @@ module.exports = (client) => {
                         if (i.customId != `10` && check_if_dj(client, i.member, client.distube.getQueue(i.guild.id).songs[0])) {
                             return i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.wrongcolor)
+                                    .setColor(ee.errColor)
                                     .setFooter(ee.footertext, ee.footericon)
                                     .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
                                     .setDescription(`**DJ-ROLES:**\n${check_if_dj(client, i.member, client.distube.getQueue(i.guild.id).songs[0])}`)
@@ -485,7 +485,7 @@ module.exports = (client) => {
             .on(`error`, (channel, e) => {
                 channel.send({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setTimestamp()
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} An error occured`)
@@ -547,7 +547,7 @@ module.exports = (client) => {
         else djs = djs.map(r => `<@&${r}>`);
         if (djs.length == 0) djs = "`not setup`";
         else djs.slice(0, 15).join(", ");
-        if (!newTrack) return new MessageEmbed().setColor(ee.wrongcolor).setTitle("NO SONG FOUND?!?!")
+        if (!newTrack) return new MessageEmbed().setColor(ee.errColor).setTitle("NO SONG FOUND?!?!")
         var embed = new MessageEmbed().setColor(ee.color)
             .setDescription(`**[${newTrack.name}](${newTrack.url})**`)
             .addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)

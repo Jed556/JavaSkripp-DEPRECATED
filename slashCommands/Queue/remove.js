@@ -38,7 +38,7 @@ module.exports = {
 
             if (!channel) return interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(ee.wrongcolor)
+                    .setColor(ee.errColor)
                     .setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!**`)
                 ],
                 ephemeral: true
@@ -47,7 +47,7 @@ module.exports = {
             if (channel.guild.me.voice.channel && channel.guild.me.voice.channel.id != channel.id) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setFooter(ee.footertext, ee.footericon)
                         .setTitle(`${client.allEmojis.x} Join __my__ Voice Channel!`)
                         .setDescription(`<#${guild.me.voice.channel.id}>`)
@@ -60,7 +60,7 @@ module.exports = {
                 let newQueue = client.distube.getQueue(guildId);
                 if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setTitle(`${client.allEmojis.x} **I am nothing Playing right now**`)
                     ],
                     ephemeral: true
@@ -69,7 +69,7 @@ module.exports = {
                 if (check_if_dj(client, member, newQueue.songs[0])) {
                     return interaction.reply({
                         embeds: [new MessageEmbed()
-                            .setColor(ee.wrongcolor)
+                            .setColor(ee.errColor)
                             .setFooter(ee.footertext, ee.footericon)
                             .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
                             .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
@@ -84,7 +84,7 @@ module.exports = {
                 if (songIndex > newQueue.songs.length - 1) return interaction.reply({
                     embeds: [
                         new MessageEmbed()
-                            .setColor(ee.wrongcolor)
+                            .setColor(ee.errColor)
                             .setTitle(`${client.allEmojis.x} **This Song does not exist!**`)
                             .setDescription(`**The last Song in the Queue has the Index: \`${newQueue.songs.length}\`**`)
                     ],
@@ -92,7 +92,7 @@ module.exports = {
                 })
                 if (songIndex <= 0) return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setTitle(`${client.allEmojis.x} **You can't remove the current Song (0)!**`)
                         .setDescription(`**Use the \`${client.settings.get(guild.id, "prefix")}skip\` (Slash)Command instead!**`)
                     ],
@@ -100,7 +100,7 @@ module.exports = {
                 })
                 if (amount <= 0) return interaction.reply({
                     embeds: [
-                        new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **You need to at least remove 1 Song!**`)
+                        new MessageEmbed().setColor(ee.errColor).setTitle(`${client.allEmojis.x} **You need to at least remove 1 Song!**`)
                     ],
                     ephemeral: true
                 })
@@ -117,7 +117,7 @@ module.exports = {
                 interaction.editReply({
                     content: `${client.allEmojis.x} | Error: `,
                     embeds: [new MessageEmbed()
-                        .setColor(ee.wrongcolor)
+                        .setColor(ee.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)
                     ],
                     ephemeral: true

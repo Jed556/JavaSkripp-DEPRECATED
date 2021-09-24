@@ -36,7 +36,7 @@ module.exports = {
                 if (!cmd) {
                     return interaction.reply({
                         ephemeral: true,
-                        embeds: [embed.setColor(ee.wrongcolor).setDescription(`No Information found for command **${args.toLowerCase()}**`)]
+                        embeds: [embed.setColor(ee.errColor).setDescription(`No Information found for command **${args.toLowerCase()}**`)]
                     });
                 }
 
@@ -83,7 +83,7 @@ module.exports = {
             return interaction.reply({
                 ephemeral: true,
                 embeds: [new MessageEmbed()
-                    .setColor(ee.wrongcolor)
+                    .setColor(ee.errColor)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle(`${client.allEmojis.x} ERROR | An error occurred`)
                     .setDescription(`\`\`\`${e.message ? String(e.message).substr(0, 2000) : String(e).substr(0, 2000)}\`\`\``)
