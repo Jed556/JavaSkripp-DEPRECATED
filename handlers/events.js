@@ -5,9 +5,7 @@ module.exports = async (client) => {
     try {
         try {
             console.log("\n" + `STARTUP IN PROGRESS`.bold.yellow + "\n" + `By: ${ee.owner}`.yellow);
-        } catch {
-            /* */
-        }
+        } catch { }
 
         let amount = 0;
         const load_dir = (dir) => {
@@ -35,9 +33,7 @@ module.exports = async (client) => {
                 `┃ `.bold.yellow + ` Logging into the BOT...`.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length - ` Logging into the BOT...`.length) + "┃".bold.yellow + "\n" +
                 `┃ `.bold.yellow + " ".repeat(-1 + stringlength2 - ` ┃ `.length) + "┃".bold.yellow + "\n" +
                 `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.yellow + "\n")
-        } catch {
-            /* */
-        }
+        } catch { }
     } catch (e) {
         console.log(String(e.stack).bgRed)
     }

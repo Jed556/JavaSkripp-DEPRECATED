@@ -98,14 +98,9 @@ client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 client.slashCommands = new Discord.Collection();
 client.aliases = new Discord.Collection();
-
-try {
-    client.categories = require("fs").readdirSync(`./commands`);
-    client.slashCategories = require("fs").readdirSync(`./slashCommands`);
-    client.allEmojis = require("./botconfig/emojis.json");
-} catch (e) {
-    console.log(String(e.stack).bgRed)
-}
+try { client.categories = require("fs").readdirSync(`./commands`) } catch { };
+try { client.slashCategories = require("fs").readdirSync(`./slashCommands`) } catch { };
+client.allEmojis = require("./botconfig/emojis.json");
 
 client.setMaxListeners(100); require('events').defaultMaxListeners = 100;
 
