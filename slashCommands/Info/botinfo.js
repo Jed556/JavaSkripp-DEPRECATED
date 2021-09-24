@@ -5,7 +5,7 @@ const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 let cpuStat = require("cpu-stat");
 let os = require("os");
-const { DM } = require("../../handlers/antiCrash");
+const { errDM } = require("../../handlers/antiCrash");
 
 module.exports = {
     name: "bot",
@@ -158,7 +158,7 @@ module.exports = {
             return;
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            DM(e)
+            errDM(e)
         }
     }
 }

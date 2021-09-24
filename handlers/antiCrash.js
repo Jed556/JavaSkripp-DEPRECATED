@@ -2,9 +2,9 @@ const config = require(`../botconfig/config.json`);
 const ee = require(`../botconfig/embed.json`);
 const settings = require(`../botconfig/settings.json`);
 const { MessageEmbed } = require(`discord.js`);
-module.exports.DM = DM;
+module.exports.errDM = errDM;
 
-function DM(reason, promise, err, origin, monitor, e) {
+function errDM(reason, promise, err, origin, monitor, e) {
     if (e) {
         client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({

@@ -3,7 +3,7 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const websiteSettings = require("../../dashboard/settings.json");
-const { DM } = require("../../handlers/antiCrash");
+const { errDM } = require("../../handlers/antiCrash");
 
 module.exports = {
     name: "help",
@@ -81,7 +81,7 @@ module.exports = {
             }
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            DM(e)
+            errDM(e)
             return interaction.reply({
                 ephemeral: true,
                 embeds: [new MessageEmbed()

@@ -2,7 +2,7 @@ const { MessageAttachment } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
-const { DM } = require("../../handlers/antiCrash");
+const { errDM } = require("../../handlers/antiCrash");
 
 module.exports = {
     name: "qrcode",
@@ -32,7 +32,7 @@ module.exports = {
             interaction.editReply({ attachments: [new MessageAttachment(result, "qrcode.png")], ephemeral: false })
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            DM(e)
+            errDM(e)
         }
     }
 };

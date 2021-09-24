@@ -3,7 +3,7 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const moment = require("moment");
-const { DM } = require("../../handlers/antiCrash");
+const { errDM } = require("../../handlers/antiCrash");
 
 module.exports = {
     name: "send",
@@ -75,7 +75,7 @@ module.exports = {
 
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            DM(e)
+            errDM(e)
         }
     }
 }

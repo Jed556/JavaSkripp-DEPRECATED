@@ -3,7 +3,7 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const { check_if_dj } = require("../../handlers/functions");
-const { DM } = require("../../handlers/antiCrash");
+const { errDM } = require("../../handlers/antiCrash");
 
 module.exports = {
     name: "list",
@@ -123,7 +123,7 @@ module.exports = {
             }
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            DM(e)
+            errDM(e)
         }
     }
 }

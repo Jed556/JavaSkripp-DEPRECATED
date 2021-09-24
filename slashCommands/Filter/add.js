@@ -4,7 +4,7 @@ const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const FiltersSettings = require("../../botconfig/filters.json");
 const { check_if_dj } = require("../../handlers/functions");
-const { DM } = require("../../handlers/antiCrash");
+const { errDM } = require("../../handlers/antiCrash");
 
 module.exports = {
     name: "add",
@@ -126,7 +126,7 @@ module.exports = {
             }
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            DM(e)
+            errDM(e)
         }
     }
 }
