@@ -3,6 +3,7 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const filters = require("../../botconfig/filters.json");
+const { DM } = require("../../handlers/antiCrash");
 
 module.exports = {
     name: "defaultfilter",
@@ -59,6 +60,7 @@ module.exports = {
             })
         } catch (e) {
             console.log(String(e.stack).bgRed)
+            DM(e)
         }
     }
 }

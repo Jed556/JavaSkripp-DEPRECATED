@@ -2,6 +2,7 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const Scraper = require("images-scraper");
+const { DM } = require("../../handlers/antiCrash");
 
 module.exports = {
     name: "image",
@@ -37,6 +38,7 @@ module.exports = {
             interaction.editReply(results[Math.floor(Math.random() * results.length)].url);
         } catch (e) {
             console.log(String(e.stack).bgRed)
+            DM(e)
         }
     }
 }

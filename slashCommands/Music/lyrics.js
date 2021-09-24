@@ -5,6 +5,7 @@ const ksoft = new KSoftClient(config.ksoftapi);
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const { lyricsEmbed, check_if_dj } = require("../../handlers/functions");
+const { DM } = require("../../handlers/antiCrash");
 
 module.exports = {
     name: "lyrics",
@@ -90,6 +91,7 @@ module.exports = {
             }
         } catch (e) {
             console.log(String(e.stack).bgRed)
+            DM(e)
         }
     }
 }

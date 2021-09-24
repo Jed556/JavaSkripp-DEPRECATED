@@ -2,6 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
+const { DM } = require("../../handlers/antiCrash");
 
 module.exports = {
 	name: "ping",
@@ -99,6 +100,7 @@ module.exports = {
 			}
 		} catch (e) {
 			console.log(String(e.stack).bgRed)
+			DM(e)
 		}
 	}
 }

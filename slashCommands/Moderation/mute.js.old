@@ -1,6 +1,7 @@
 const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
 const ee = require("../../botconfig/embed.json");
 const ms = require('ms');
+const { DM } = require("../../handlers/antiCrash");
 
 /**
 *
@@ -113,6 +114,7 @@ module.exports = {
             ]})
         } catch (e) {
             console.log(String(e.stack).bgRed)
+            DM(e)
         }
     }
 }
