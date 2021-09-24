@@ -29,9 +29,8 @@ module.exports = async (client, message) => {
                 embeds: [new MessageEmbed()
                     .setTimestamp()
                     .setColor(ee.color)
-                    .setDescription(reply)
-                    .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
-                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                    .setTitle(reply)
+                    .setFooter(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
                 ]
             });
             log.addField(`Reply:`, `> ${reply}`)
@@ -45,10 +44,9 @@ module.exports = async (client, message) => {
                 embeds: [new MessageEmbed()
                     .setTimestamp()
                     .setColor(ee.errColor)
-                    .setDescription(reply)
+                    .setTitle(reply)
                     .addField(`Reason:`, `> ${match.map(m => `\`${m}\``).join(", ")}`)
-                    .setAuthor(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
-                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                    .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
                 ]
             });
             log.addField(`Reply:`, `> ${reply}`)
