@@ -40,7 +40,7 @@ module.exports = {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(client.user.username, ee.footericon)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} Join __my__ Voice Channel!`)
                         .setDescription(`<#${guild.me.voice.channel.id}>`)
                     ], ephemeral: true
@@ -65,7 +65,7 @@ module.exports = {
                     return interaction.reply({
                         embeds: [new MessageEmbed()
                             .setColor(ee.errColor)
-                            .setFooter(client.user.username, ee.footericon)
+                            .setFooter(client.user.username, client.user.displayAvatarURL())
                             .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
                             .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
                         ], ephemeral: true

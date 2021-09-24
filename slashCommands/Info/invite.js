@@ -23,7 +23,7 @@ module.exports = {
                 ephemeral: true,
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
-                    .setFooter(client.user.username, ee.footericon)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setDescription(`[**Click here to invite me!**]( ${ee.invite} )`)
                 ]
             });

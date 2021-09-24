@@ -41,7 +41,7 @@ module.exports = {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(client.user.username, ee.footericon)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} Your Voice Channel is full, I can't join!`)
                     ],
                     ephemeral: true
@@ -51,7 +51,7 @@ module.exports = {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(client.user.username, ee.footericon)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} I am already connected somewhere else`)
                     ],
                     ephemeral: true
@@ -78,7 +78,7 @@ module.exports = {
                         return interaction.reply({
                             embeds: [new MessageEmbed()
                                 .setColor(ee.errColor)
-                                .setFooter(client.user.username, ee.footericon)
+                                .setFooter(client.user.username, client.user.displayAvatarURL())
                                 .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
                                 .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, queue.songs[0])}`)
                             ],

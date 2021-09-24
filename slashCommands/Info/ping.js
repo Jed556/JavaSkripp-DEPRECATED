@@ -48,7 +48,7 @@ module.exports = {
 					await interaction.reply({
 						embeds: [new MessageEmbed()
 							.setColor(ee.color)
-							.setFooter(client.user.username, ee.footericon)
+							.setFooter(client.user.username, client.user.displayAvatarURL())
 							.setTitle(`${client.allEmojis.loading} Getting the Bot Ping...`)
 						],
 						ephemeral: true
@@ -56,7 +56,7 @@ module.exports = {
 					interaction.editReply({
 						embeds: [new MessageEmbed()
 							.setColor(ee.color)
-							.setFooter(client.user.username, ee.footericon)
+							.setFooter(client.user.username, client.user.displayAvatarURL())
 							.setTitle(`${client.allEmojis.ping} Ping`)
 							.addField(`Bot Ping:`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)
 							.setTimestamp()
@@ -69,7 +69,7 @@ module.exports = {
 					interaction.reply({
 						embeds: [new MessageEmbed()
 							.setColor(ee.color)
-							.setFooter(client.user.username, ee.footericon)
+							.setFooter(client.user.username, client.user.displayAvatarURL())
 							.setTitle(`${client.allEmojis.ping} Ping`)
 							.addField(`API Ping:`, `\`${Math.floor(client.ws.ping)}ms\``, true)
 							.setTimestamp()
@@ -81,7 +81,7 @@ module.exports = {
 				await interaction.reply({
 					embeds: [new MessageEmbed()
 						.setColor(ee.color)
-						.setFooter(client.user.username, ee.footericon)
+						.setFooter(client.user.username, client.user.displayAvatarURL())
 						.setTitle(`${client.allEmojis.loading} Getting the Bot Ping...`)
 					],
 					ephemeral: true
@@ -89,7 +89,7 @@ module.exports = {
 				interaction.editReply({
 					embeds: [new MessageEmbed()
 						.setColor(ee.color)
-						.setFooter(client.user.username, ee.footericon)
+						.setFooter(client.user.username, client.user.displayAvatarURL())
 						.setTitle(`${client.allEmojis.ping} Ping`)
 						.addField(`Bot Ping:`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)
 						.addField(`API Ping:`, `\`${Math.floor(client.ws.ping)}ms\``, true)

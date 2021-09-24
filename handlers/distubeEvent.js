@@ -61,7 +61,7 @@ module.exports = (client) => {
                             return i.reply({
                                 embeds: [new MessageEmbed()
                                     .setColor(ee.errColor)
-                                    .setFooter(client.user.username, ee.footericon)
+                                    .setFooter(client.user.username, client.user.displayAvatarURL())
                                     .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
                                     .setDescription(`**DJ-ROLES:**\n${check_if_dj(client, i.member, client.distube.getQueue(i.guild.id).songs[0])}`)
                                 ],
@@ -452,9 +452,7 @@ module.exports = (client) => {
                     new MessageEmbed()
                         .setColor(ee.color)
                         .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
-                        .setFooter(song.user.tag, song.user.displayAvatarURL({
-                            dynamic: true
-                        }))
+                        .setFooter(song.user.tag, song.user.displayAvatarURL({ dynamic: true }))
                         .setTitle(`${client.allEmojis.check} **Song added to the Queue!**`)
                         .setDescription(`${client.allEmojis.check} Song: [\`${song.name}\`](${song.url})  -  \`${song.formattedDuration}\``)
                         .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - 1} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - song.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
@@ -466,9 +464,7 @@ module.exports = (client) => {
                     new MessageEmbed()
                         .setColor(ee.color)
                         .setThumbnail(playlist.thumbnail.url ? playlist.thumbnail.url : `https://img.youtube.com/vi/${playlist.songs[0].id}/mqdefault.jpg`)
-                        .setFooter(playlist.user.tag, playlist.user.displayAvatarURL({
-                            dynamic: true
-                        }))
+                        .setFooter(playlist.user.tag, playlist.user.displayAvatarURL({ dynamic: true }))
                         .setTitle(`${client.allEmojis.check} **Playlist added to the Queue!**`)
                         .setDescription(`${client.allEmojis.check} Playlist: [\`${playlist.name}\`](${playlist.url ? playlist.url : ""})  -  \`${playlist.songs.length} Song${playlist.songs.length != 0 ? "s" : ""}\``)
                         .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - - playlist.songs.length} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - playlist.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
@@ -515,7 +511,7 @@ module.exports = (client) => {
             .on(`finish`, queue => {
                 queue.textChannel.send({
                     embeds: [
-                        new MessageEmbed().setColor(ee.color).setFooter(client.user.username, ee.footericon)
+                        new MessageEmbed().setColor(ee.color).setFooter(client.user.username, client.user.displayAvatarURL())
                             .setTitle("⛔️ LEFT THE CHANNEL")
                             .setDescription("🎧 **There are no more songs left**")
                             .setTimestamp()
