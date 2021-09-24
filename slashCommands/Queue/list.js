@@ -31,7 +31,7 @@ module.exports = {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(`${client.allEmojis.x} Join __my__ Voice Channel!`)
                         .setDescription(`<#${guild.me.voice.channel.id}>`)
                     ],
@@ -70,10 +70,10 @@ module.exports = {
                 }
                 if (theSongs.length > 1) {
                     embeds[embeds.length - 1] = embeds[embeds.length - 1]
-                        .setFooter(ee.footertext + `\n${theSongs.length} Songs in Queue | Duration: ${newQueue.formattedDuration}`, ee.footericon)
+                        .setFooter(client.user.username + `\n${theSongs.length} Songs in Queue | Duration: ${newQueue.formattedDuration}`, ee.footericon)
                 } else {
                     embeds[embeds.length - 1] = embeds[embeds.length - 1]
-                        .setFooter(ee.footertext + `\n${theSongs.length} Song in Queue | Duration: ${newQueue.formattedDuration}`, ee.footericon)
+                        .setFooter(client.user.username + `\n${theSongs.length} Song in Queue | Duration: ${newQueue.formattedDuration}`, ee.footericon)
                 }
                 let pages = []
                 for (let i = 0; i < embeds.length; i += 3) {

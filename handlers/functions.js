@@ -630,7 +630,7 @@ async function swap_pages(client, message, description, TITLE) {
                     .setDescription(current)
                     .setTitle(TITLE)
                     .setColor(ee.color)
-                    .setFooter(ee.footertext, ee.footericon)
+                    .setFooter(client.user.username, ee.footericon)
                 embeds.push(embed);
             }
             embeds;
@@ -645,7 +645,7 @@ async function swap_pages(client, message, description, TITLE) {
                     .setDescription(current)
                     .setTitle(TITLE)
                     .setColor(ee.color)
-                    .setFooter(ee.footertext, ee.footericon)
+                    .setFooter(client.user.username, ee.footericon)
                 embeds.push(embed);
             }
             embeds;
@@ -655,7 +655,7 @@ async function swap_pages(client, message, description, TITLE) {
         embeds: [new MessageEmbed()
             .setTitle(`${emoji.msg.ERROR} No Content added to the SWAP PAGES Function`)
             .setColor(ee.errColor)
-            .setFooter(ee.footertext, ee.footericon)]
+            .setFooter(client.user.username, ee.footericon)]
     }).catch(e => console.log("THIS IS TO PREVENT A CRASH"))
     if (embeds.length === 1) return message.channel.send({ embeds: [embeds[0]] }).catch(e => console.log("THIS IS TO PREVENT A CRASH"))
 

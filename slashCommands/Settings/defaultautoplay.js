@@ -28,7 +28,7 @@ module.exports = {
             return interaction.reply({
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
-                    .setFooter(ee.footertext, ee.footericon)
+                    .setFooter(client.user.username, ee.footericon)
                     .setTitle(`${client.allEmojis.check} **The Default-Autoplay got __\`${client.settings.get(guild.id, "defaultautoplay") ? "Enabled" : "Disabled"}\`__!**`)
                 ],
             })

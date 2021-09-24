@@ -25,7 +25,7 @@ module.exports = {
                     embeds: [
                         new MessageEmbed()
                             .setColor(ee.color)
-                            .setFooter(ee.footertext, ee.footericon)
+                            .setFooter(client.user.username, ee.footericon)
                             .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
                     ],
                     ephemeral: true
@@ -35,7 +35,7 @@ module.exports = {
                     embeds: [
                         new MessageEmbed()
                             .setColor(ee.color)
-                            .setFooter(ee.footertext, ee.footericon)
+                            .setFooter(client.user.username, ee.footericon)
                             .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
                             .addField("**All __current__ Filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
                     ],

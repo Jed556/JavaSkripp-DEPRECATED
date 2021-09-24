@@ -48,7 +48,7 @@ module.exports = {
                         ephemeral: true,
                         embeds: [new MessageEmbed()
                             .setColor(ee.errColor)
-                            .setFooter(ee.footertext, ee.footericon)
+                            .setFooter(client.user.username, ee.footericon)
                             .setTitle(`${client.allEmojis.x} **This Role is already a DJ-ROLE!**`)
                         ],
                     })
@@ -61,7 +61,7 @@ module.exports = {
                     ephemeral: true,
                     embeds: [new MessageEmbed()
                         .setColor(ee.color)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(`${client.allEmojis.check} **The Role \`${Role.name}\` got added to the ${client.settings.get(guild.id, "djroles").length - 1} DJ-Roles!**`)
                         .addField(`🎧 **DJ-Role${client.settings.get(guild.id, "djroles").length > 1 ? "s" : ""}:**`, `>>> ${djs}`, true)
                     ],
@@ -72,7 +72,7 @@ module.exports = {
                         ephemeral: true,
                         embeds: [new MessageEmbed()
                             .setColor(ee.errColor)
-                            .setFooter(ee.footertext, ee.footericon)
+                            .setFooter(client.user.username, ee.footericon)
                             .setTitle(`${client.allEmojis.x} **This Role is not a DJ-ROLE yet!**`)
                         ],
                     })
@@ -85,7 +85,7 @@ module.exports = {
                     ephemeral: true,
                     embeds: [new MessageEmbed()
                         .setColor(ee.color)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(`${client.allEmojis.check} **The Role \`${Role.name}\` got removed from the ${client.settings.get(guild.id, "djroles").length} DJ-Roles!**`)
                         .addField(`🎧 **DJ-Role${client.settings.get(guild.id, "djroles").length > 1 ? "s" : ""}:**`, `>>> ${djs}`, true)
                     ],

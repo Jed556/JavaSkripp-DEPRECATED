@@ -21,7 +21,7 @@ module.exports = {
                 ephemeral: true,
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
-                    .setFooter(ee.footertext, ee.footericon)
+                    .setFooter(client.user.username, ee.footericon)
                     .setTitle(`**[${client.commands.size + client.slashCommands.size + client.slashCommands.map(d => d.options).flat().length}] Modules Loaded**`)
                     .addField(`:gear: **[18] Events**`, `>>> **[3] Categories**`)
                     .addField(`:gear: **[${client.commands.size}] Prefix Commands**`, `>>> **[${client.categories.length}] Categories**`)

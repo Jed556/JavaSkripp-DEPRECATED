@@ -28,7 +28,7 @@ module.exports = async (client, message) => {
             message.reply({
                 embeds: [new Discord.MessageEmbed()
                     .setColor(ee.color)
-                    .setFooter(ee.footertext, ee.footericon)
+                    .setFooter(client.user.username, ee.footericon)
                     .setTitle(`:thumbsup: **My Prefix here, is __\`${prefix}\`__**`)]
             })
         }
@@ -44,7 +44,7 @@ module.exports = async (client, message) => {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(`${client.allEmojis.x} **You are not allowed to use this Command in here!**`)
                         .setDescription(`Please do it in one of those:\n> ${botchannels.map(c => `<#${c}>`).join(", ")}`)
                     ]
@@ -56,7 +56,7 @@ module.exports = async (client, message) => {
             return message.reply({
                 embeds: [new Discord.MessageEmbed()
                     .setColor(ee.errColor)
-                    .setFooter(ee.footertext, ee.footericon)
+                    .setFooter(client.user.username, ee.footericon)
                     .setTitle(replacemsg(settings.messages.cooldown, {
                         prefix: prefix,
                         command: command,
@@ -70,7 +70,7 @@ module.exports = async (client, message) => {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
                         .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.memberpermissions, {
                             command: command,
@@ -83,7 +83,7 @@ module.exports = async (client, message) => {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
                         .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.requiredroles, {
                             command: command,
@@ -97,7 +97,7 @@ module.exports = async (client, message) => {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
                         .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.alloweduserids, {
                             command: command,
@@ -110,7 +110,7 @@ module.exports = async (client, message) => {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
                         .setDescription(command.argsmissing_message && command.argsmissing_message.trim().length > 0 ? command.argsmissing_message : command.usage ? `Usage: ` + command.usage : `Wrong Command Usage`)]
                 }).then(msg => { setTimeout(() => { msg.delete().catch((e) => { console.log(String(e).grey) }) }, settings.timeout.minargs) }).catch((e) => { console.log(String(e).grey) });
@@ -120,7 +120,7 @@ module.exports = async (client, message) => {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
                         .setDescription(command.argstoomany_message && command.argstoomany_message.trim().length > 0 ? command.argstoomany_message : command.usage ? `Usage: ` + command.usage : `Wrong Command Usage`)]
                 }).then(msg => { setTimeout(() => { msg.delete().catch((e) => { console.log(String(e).grey) }) }, settings.timeout.maxargs) }).catch((e) => { console.log(String(e).grey) });
@@ -131,7 +131,7 @@ module.exports = async (client, message) => {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
                         .setDescription(command.argsmissing_message && command.argsmissing_message.trim().length > 0 ? command.argsmissing_message : command.usage ? `Usage: ` + command.usage : `Wrong Command Usage`)]
                 }).then(msg => { setTimeout(() => { msg.delete().catch((e) => { console.log(String(e).grey) }) }, settings.timeout.minplusargs) }).catch((e) => { console.log(String(e).grey) });
@@ -141,7 +141,7 @@ module.exports = async (client, message) => {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
                         .setDescription(command.argstoomany_message && command.argstoomany_message.trim().length > 0 ? command.argsmissing_message : command.usage ? `Usage: ` + command.usage : `Wrong Command Usage`)]
                 }).then(msg => { setTimeout(() => { msg.delete().catch((e) => { console.log(String(e).grey) }) }, settings.timeout.maxplusargs) }).catch((e) => { console.log(String(e).grey) });
@@ -153,7 +153,7 @@ module.exports = async (client, message) => {
                 return message.reply({
                     embeds: [new Discord.MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(replacemsg(settings.messages.somethingwentwrong_cmd.title, {
                             prefix: prefix,
                             command: command
@@ -170,7 +170,7 @@ module.exports = async (client, message) => {
         return message.reply({
           embeds: [new Discord.MessageEmbed()
             .setColor(ee.errColor)
-            .setFooter(ee.footertext, ee.footericon)
+            .setFooter(client.user.username, ee.footericon)
             .setTitle(replacemsg(settings.messages.unknown_cmd, {
               prefix: prefix
             }))]

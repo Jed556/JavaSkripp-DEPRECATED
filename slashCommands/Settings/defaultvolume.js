@@ -37,7 +37,7 @@ module.exports = {
                     ephemeral: true,
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
-                        .setFooter(ee.footertext, ee.footericon)
+                        .setFooter(client.user.username, ee.footericon)
                         .setTitle(`${client.allEmojis.x} **The Volume __must__ be between \`1\` and \`150\`!**`)
                     ],
                 })
@@ -47,7 +47,7 @@ module.exports = {
                 ephemeral: true,
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
-                    .setFooter(ee.footertext, ee.footericon)
+                    .setFooter(client.user.username, ee.footericon)
                     .setTitle(`${client.allEmojis.check} **The Default-Volume has been set to: \`${volume}\`!**`)
                 ],
             })

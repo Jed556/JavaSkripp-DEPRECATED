@@ -61,7 +61,7 @@ module.exports = (client) => {
                             return i.reply({
                                 embeds: [new MessageEmbed()
                                     .setColor(ee.errColor)
-                                    .setFooter(ee.footertext, ee.footericon)
+                                    .setFooter(client.user.username, ee.footericon)
                                     .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
                                     .setDescription(`**DJ-ROLES:**\n${check_if_dj(client, i.member, client.distube.getQueue(i.guild.id).songs[0])}`)
                                 ],
@@ -515,7 +515,7 @@ module.exports = (client) => {
             .on(`finish`, queue => {
                 queue.textChannel.send({
                     embeds: [
-                        new MessageEmbed().setColor(ee.color).setFooter(ee.footertext, ee.footericon)
+                        new MessageEmbed().setColor(ee.color).setFooter(client.user.username, ee.footericon)
                             .setTitle("⛔️ LEFT THE CHANNEL")
                             .setDescription("🎧 **There are no more songs left**")
                             .setTimestamp()
