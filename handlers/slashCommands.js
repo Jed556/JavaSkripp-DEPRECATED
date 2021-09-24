@@ -168,7 +168,7 @@ module.exports = (client) => {
                 client.application.commands.set(allCommands)
                     .then(slashCommandsData => {
                         client.slashCommandsData = slashCommandsData;
-                        console.log("\n" + `${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for all possible guilds`.brightGreen +
+                        console.log("\n" + `${slashCommandsData.size} Categories ${`(With ${slashCommandsData.map(d => d.options).flat().length} slashCommands)`.green} Loaded for all possible guilds`.brightGreen +
                             "\n" + `Loading Globally (Might take up to 1 hour for Commands to update)`.bold.yellow + "\n")
                     }).catch((e) => { });
             } else {
@@ -178,7 +178,7 @@ module.exports = (client) => {
                         guild.commands.set(allCommands)
                             .then(slashCommandsData => {
                                 client.slashCommandsData = slashCommandsData;
-                                console.log("\n" + `${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for: ${`${guild.name}`.underline}`.brightGreen + "\n");
+                                console.log("\n" + `${slashCommandsData.size} Categories ${`(With ${slashCommandsData.map(d => d.options).flat().length} slashCommands)`.green} Loaded for: ${`${guild.name}`.underline}`.brightGreen + "\n");
                             }).catch((e) => { });
                     } catch (e) {
                         console.log(String(e).grey)
@@ -194,7 +194,7 @@ module.exports = (client) => {
                     await guild.commands.set([]).catch((e) => { });
                     guild.commands.set(allCommands)
                         .then(slashCommandsData => {
-                            console.log("\n" + `${slashCommandsData.size} slashCommands ${`(With ${slashCommandsData.map(d => d.options).flat().length} Subcommands)`.green} Loaded for: ${`${guild.name}`.underline}`.brightGreen + "\n");
+                            console.log("\n" + `${slashCommandsData.size} Categories ${`(With ${slashCommandsData.map(d => d.options).flat().length} slashCommands)`.green} Loaded for: ${`${guild.name}`.underline}`.brightGreen + "\n");
                         }).catch((e) => { console.log(String(e.stack).bgRed) });
                 }
             } catch (e) {
