@@ -23,7 +23,7 @@ module.exports = async (client) => {
             user.send({ embeds: [new MessageEmbed()
                 .setTimestamp()
                 .setColor(ee.okColor)
-                .setDescription(`🟢 ${client.user.username} Online`)
+                .setTitle(`🟢 ${client.user.username} Online`)
                 .setFooter(client.user.username, client.user.displayAvatarURL())
             ] });
         });
