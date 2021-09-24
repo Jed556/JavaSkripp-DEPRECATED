@@ -17,6 +17,7 @@ module.exports = {
 
     run: async (client, interaction) => {
         try {
+            const { createdTimestamp } = interaction;
             cpuStat.usagePercent(function (e, percent, seconds) {
                 try {
                     if (e) return console.log(String(e.stack).red);
