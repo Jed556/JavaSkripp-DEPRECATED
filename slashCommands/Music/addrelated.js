@@ -65,7 +65,7 @@ module.exports = {
 
                 await newQueue.addRelatedSong();
                 await interaction.editReply({
-                    content: `${client.allEmojis.check_mark} Added: **${newQueue.songs[newQueue.songs.length - 1].name}**`,
+                    content: `${client.allEmojis.check} Added: **${newQueue.songs[newQueue.songs.length - 1].name}**`,
                     ephemeral: true
                 });
             } catch (e) {

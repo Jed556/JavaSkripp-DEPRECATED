@@ -24,7 +24,7 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
                     .setFooter(ee.footertext, ee.footericon)
-                    .setTitle(`:white_check_mark: **${client.user.username}** is since:\n ${duration(client.uptime).map(t => `\`${t}\``).join(", ")} online`)
+                    .setTitle(`${client.allEmojis.check} **${client.user.username}** is since:\n ${duration(client.uptime).map(t => `\`${t}\``).join(", ")} online`)
                 ]
             });
         } catch (e) {

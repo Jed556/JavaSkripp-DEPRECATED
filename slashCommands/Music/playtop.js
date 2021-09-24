@@ -89,7 +89,7 @@ module.exports = {
 
                 //Edit the reply
                 interaction.editReply({
-                    content: `${queue?.songs?.length > 0 ? `${client.allEmojis.check_mark} Added to the Top of the Queue` : "🎶 Now Playing"}: \`\`\`\n${Text}\n\`\`\``,
+                    content: `${queue?.songs?.length > 0 ? `${client.allEmojis.check} Added to the Top of the Queue` : "🎶 Now Playing"}: \`\`\`\n${Text}\n\`\`\``,
                     ephemeral: true
                 });
             } catch (e) {

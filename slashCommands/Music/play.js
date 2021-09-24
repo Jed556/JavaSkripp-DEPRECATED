@@ -73,7 +73,7 @@ module.exports = {
                 await client.distube.playVoiceChannel(channel, Text, options)
                 //Edit the reply
                 interaction.editReply({
-                    content: `${queue?.songs?.length > 0 ? `${client.allEmojis.check_mark} Added` : "🎶 Now Playing"}: \`\`\`\n${Text}\n\`\`\``,
+                    content: `${queue?.songs?.length > 0 ? `${client.allEmojis.check} Added` : "🎶 Now Playing"}: \`\`\`\n${Text}\n\`\`\``,
                     ephemeral: true
                 });
             } catch (e) {

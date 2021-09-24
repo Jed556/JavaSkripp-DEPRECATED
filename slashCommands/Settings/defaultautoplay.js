@@ -29,7 +29,7 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
                     .setFooter(ee.footertext, ee.footericon)
-                    .setTitle(`${client.allEmojis.check_mark} **The Default-Autoplay got __\`${client.settings.get(guild.id, "defaultautoplay") ? "Enabled" : "Disabled"}\`__!**`)
+                    .setTitle(`${client.allEmojis.check} **The Default-Autoplay got __\`${client.settings.get(guild.id, "defaultautoplay") ? "Enabled" : "Disabled"}\`__!**`)
                 ],
             })
         } catch (e) {

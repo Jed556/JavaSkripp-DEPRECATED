@@ -62,7 +62,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(ee.color)
                         .setFooter(ee.footertext, ee.footericon)
-                        .setTitle(`${client.allEmojis.check_mark} **The Role \`${Role.name}\` got added to the ${client.settings.get(guild.id, "djroles").length - 1} DJ-Roles!**`)
+                        .setTitle(`${client.allEmojis.check} **The Role \`${Role.name}\` got added to the ${client.settings.get(guild.id, "djroles").length - 1} DJ-Roles!**`)
                         .addField(`🎧 **DJ-Role${client.settings.get(guild.id, "djroles").length > 1 ? "s" : ""}:**`, `>>> ${djs}`, true)
                     ],
                 })
@@ -86,7 +86,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(ee.color)
                         .setFooter(ee.footertext, ee.footericon)
-                        .setTitle(`${client.allEmojis.check_mark} **The Role \`${Role.name}\` got removed from the ${client.settings.get(guild.id, "djroles").length} DJ-Roles!**`)
+                        .setTitle(`${client.allEmojis.check} **The Role \`${Role.name}\` got removed from the ${client.settings.get(guild.id, "djroles").length} DJ-Roles!**`)
                         .addField(`🎧 **DJ-Role${client.settings.get(guild.id, "djroles").length > 1 ? "s" : ""}:**`, `>>> ${djs}`, true)
                     ],
                 })

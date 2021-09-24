@@ -48,7 +48,7 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
                     .setFooter(ee.footertext, ee.footericon)
-                    .setTitle(`${client.allEmojis.check_mark} **The Default-Volume has been set to: \`${volume}\`!**`)
+                    .setTitle(`${client.allEmojis.check} **The Default-Volume has been set to: \`${volume}\`!**`)
                 ],
             })
         } catch (e) {

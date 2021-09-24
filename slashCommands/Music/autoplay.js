@@ -66,7 +66,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(ee.color)
                         .setTimestamp()
-                        .setTitle(`**${newQueue.autoplay ? `${client.allEmojis.check_mark} Enabled` : `${client.allEmojis.x} Disabled`} Autoplay!**`)
+                        .setTitle(`**${newQueue.autoplay ? `${client.allEmojis.check} Enabled` : `${client.allEmojis.x} Disabled`} Autoplay!**`)
                         .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                 })
             } catch (e) {

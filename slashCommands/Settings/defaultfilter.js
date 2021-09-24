@@ -53,7 +53,7 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
                     .setFooter(ee.footertext, ee.footericon)
-                    .setTitle(`${client.allEmojis.check_mark} **The new Default-Filter${args.length > 0 ? "s are" : " is"}:**`)
+                    .setTitle(`${client.allEmojis.check} **The new Default-Filter${args.length > 0 ? "s are" : " is"}:**`)
                     .setDescription(`${args.map(a => `\`${a}\``).join(", ")}`)
                 ],
             })

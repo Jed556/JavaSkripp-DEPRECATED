@@ -234,7 +234,7 @@ module.exports = (client) => {
                                 embeds: [new MessageEmbed()
                                     .setColor(ee.color)
                                     .setTimestamp()
-                                    .setTitle(`${newQueue.autoplay ? `${client.allEmojis.check_mark} **Enabled Autoplay**` : `${client.allEmojis.x} **Disabled Autoplay**`}`)
+                                    .setTitle(`${newQueue.autoplay ? `${client.allEmojis.check} **Enabled Autoplay**` : `${client.allEmojis.x} **Disabled Autoplay**`}`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                             })
                         }
@@ -295,7 +295,7 @@ module.exports = (client) => {
                                 embeds: [new MessageEmbed()
                                     .setColor(ee.color)
                                     .setTimestamp()
-                                    .setTitle(`${newQueue.repeatMode == 1 ? `${client.allEmojis.check_mark} **Enabled Song-Loop**` : `${client.allEmojis.x} **Disabled Song-Loop**`}`)
+                                    .setTitle(`${newQueue.repeatMode == 1 ? `${client.allEmojis.check} **Enabled Song-Loop**` : `${client.allEmojis.x} **Disabled Song-Loop**`}`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                             })
                             var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
@@ -332,7 +332,7 @@ module.exports = (client) => {
                                 embeds: [new MessageEmbed()
                                     .setColor(ee.color)
                                     .setTimestamp()
-                                    .setTitle(`${newQueue.repeatMode == 2 ? `${client.allEmojis.check_mark} **Enabled Queue-Loop**` : `${client.allEmojis.x} **Disabled Queue-Loop**`}`)
+                                    .setTitle(`${newQueue.repeatMode == 2 ? `${client.allEmojis.check} **Enabled Queue-Loop**` : `${client.allEmojis.x} **Disabled Queue-Loop**`}`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                             })
                             var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
@@ -455,8 +455,8 @@ module.exports = (client) => {
                         .setFooter(song.user.tag, song.user.displayAvatarURL({
                             dynamic: true
                         }))
-                        .setTitle(`${client.allEmojis.check_mark} **Song added to the Queue!**`)
-                        .setDescription(`${client.allEmojis.check_mark} Song: [\`${song.name}\`](${song.url})  -  \`${song.formattedDuration}\``)
+                        .setTitle(`${client.allEmojis.check} **Song added to the Queue!**`)
+                        .setDescription(`${client.allEmojis.check} Song: [\`${song.name}\`](${song.url})  -  \`${song.formattedDuration}\``)
                         .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - 1} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - song.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
                         .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
                 ]
@@ -469,8 +469,8 @@ module.exports = (client) => {
                         .setFooter(playlist.user.tag, playlist.user.displayAvatarURL({
                             dynamic: true
                         }))
-                        .setTitle(`${client.allEmojis.check_mark} **Playlist added to the Queue!**`)
-                        .setDescription(`${client.allEmojis.check_mark} Playlist: [\`${playlist.name}\`](${playlist.url ? playlist.url : ""})  -  \`${playlist.songs.length} Song${playlist.songs.length != 0 ? "s" : ""}\``)
+                        .setTitle(`${client.allEmojis.check} **Playlist added to the Queue!**`)
+                        .setDescription(`${client.allEmojis.check} Playlist: [\`${playlist.name}\`](${playlist.url ? playlist.url : ""})  -  \`${playlist.songs.length} Song${playlist.songs.length != 0 ? "s" : ""}\``)
                         .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - - playlist.songs.length} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - playlist.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
                         .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
                 ]
@@ -554,8 +554,8 @@ module.exports = (client) => {
             .addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
             .addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song${newQueue.songs.length != 1 ? "s" : ""}\`\n\`${newQueue.formattedDuration}\``, true)
             .addField(`🔊 Volume:`, `>>> \`${newQueue.volume} %\``, true)
-            .addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check_mark}\` Queue\`` : `${client.allEmojis.check_mark} \`Song\`` : `${client.allEmojis.x}`}`, true)
-            .addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check_mark}` : `${client.allEmojis.x}`}`, true)
+            .addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check}\` Queue\`` : `${client.allEmojis.check} \`Song\`` : `${client.allEmojis.x}`}`, true)
+            .addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check}` : `${client.allEmojis.x}`}`, true)
             .addField(`⬇ Download Song:`, `>>> [\`Download here\`](${newTrack.streamURL})`, true)
             .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
             .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s" : ""}:`, `>>> ${djs}`, client.settings.get(newQueue.id, "djroles").length > 1 ? false : true)
