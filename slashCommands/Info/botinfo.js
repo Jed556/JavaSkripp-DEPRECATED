@@ -50,7 +50,7 @@ module.exports = {
                         .addField("🤖 Arch", `\`${os.arch()}\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
-                        .addField("📶 Latency", `\`API: ${client.ws.ping}ms\`\`Bot: ${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)
+                        .addField("📶 Latency", `\`API: ${client.ws.ping}ms\` \`Bot: ${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .setFooter(`Coded by: ${ee.owner}`, ee.ownericon);
                     interaction.reply({
@@ -86,7 +86,7 @@ module.exports = {
                         .addField("🤖 Arch", `\`${os.arch()}\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
-                        .addField("📶 Latency", `\`API: ${client.ws.ping}ms\`\`Bot: ${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)
+                        .addField("📶 Latency", `\`API: ${client.ws.ping}ms\` \`Bot: ${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .setFooter(`Coded by: ${ee.owner}`, ee.ownericon);
                     interaction.reply({
