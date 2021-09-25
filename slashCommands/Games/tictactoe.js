@@ -22,6 +22,7 @@ module.exports = {
     ],
     run: async (client, interaction) => {
         try {
+            interaction.deferReply("Starting...")
 
             let opponent = interaction.options.getUser("opponent");
 
