@@ -348,7 +348,7 @@ module.exports = {
 
                         function press(b) {
                             if (b.user.id !== Args.userid) {
-                                b.reply({
+                                b.followUp({
                                     content: "You cant play now",
                                     ephemeral: true
                                 });
