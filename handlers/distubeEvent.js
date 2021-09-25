@@ -365,7 +365,7 @@ module.exports = (client) => {
                                 embeds: [new MessageEmbed()
                                     .setColor(ee.color)
                                     .setTimestamp()
-                                    .setTitle(`⏩ **Forwarded the song for \`10 Seconds\`!**`)
+                                    .setTitle(`⏩ **Forwarded the song for \`10\` Seconds**`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                             })
                             var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
@@ -399,7 +399,7 @@ module.exports = (client) => {
                                 embeds: [new MessageEmbed()
                                     .setColor(ee.color)
                                     .setTimestamp()
-                                    .setTitle(`⏪ **Rewinded the song for \`10 Seconds\`!**`)
+                                    .setTitle(`⏪ **Rewinded the song for \`10\` Seconds**`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                             })
                             var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])

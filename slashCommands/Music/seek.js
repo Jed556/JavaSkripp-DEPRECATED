@@ -84,7 +84,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(ee.color)
                         .setTimestamp()
-                        .setTitle(`⏺ **Seeked to \`${seekNumber} Seconds\`!**`)
+                        .setTitle(`⏺ **Seeked to \`${seekNumber}\` Seconds**`)
                         .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
                     ]
                 })

@@ -45,8 +45,8 @@ module.exports = {
                 if (cmd.name) embed.setTitle(`Detailed Information about:\`${cmd.name}\``);
                 if (cmd.description) embed.addField("**Description**", `\`${cmd.description}\``);
                 if (cmd.aliases) embed.addField("**Aliases**", `\`${cmd.aliases.map((a) => `${a}`).join("`, `")}\``);
-                if (cmd.cooldown) embed.addField("**Cooldown**", `\`${cmd.cooldown} Seconds\``);
-                else embed.addField("**Cooldown**", `\`${settings.default_cooldown_in_sec} Second\``);
+                if (cmd.cooldown) embed.addField("**Cooldown**", `\`${cmd.cooldown}\` Seconds`);
+                else embed.addField("**Cooldown**", `\`${settings.default_cooldown_in_sec}\` Second`);
                 if (cmd.usage) {
                     embed.addField("**Usage**", `\`/${cmd.usage}\``);
                     embed.setFooter("Syntax: <> = required, [] = optional");

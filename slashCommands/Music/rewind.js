@@ -77,7 +77,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(ee.color)
                         .setTimestamp()
-                        .setTitle(`⏪ **Rewinded the song for \`${seekNumber} Seconds\`!**`)
+                        .setTitle(`⏪ **Rewinded the song for \`${seekNumber}\` Seconds**`)
                         .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
                     ]
                 })
