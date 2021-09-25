@@ -15,7 +15,7 @@ module.exports = (client, interaction) => {
                 .setFooter(client.user.username, client.user.displayAvatarURL())
                 .setDescription(`**HEY! You can't execute commands in a DM.**`)
         ]
-    }), console.log(`[${interaction.user.tag}] Command: /${CategoryName + SubCommand}`)]
+    }), console.log(`[${interaction.user.tag}] Command: /${CategoryName} ${SubCommand}`)]
 
     const guild = interaction.guild.name;
     const channel = interaction.channel.name;
