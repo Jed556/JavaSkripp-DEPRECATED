@@ -331,8 +331,7 @@ module.exports = {
                         let buttons = { components: [a, b, c] };
 
                         m.edit({
-                            content: `Waiting for Input | <@!${Args.userid}> | Your Emoji: ${Args.user == 0 ? `${o_emoji}` : `${x_emoji}`
-                                }`,
+                            content: `Waiting for Input | <@!${Args.userid}> | Your Emoji: ${Args.user == 0 ? `${o_emoji}` : `${x_emoji}`}`,
                             components: [a, b, c]
                         });
 
