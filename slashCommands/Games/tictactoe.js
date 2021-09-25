@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
@@ -79,7 +79,6 @@ module.exports = {
                     return collector.stop("decline");
                 } else if (button.customId == "accepttt") {
                     collector.stop();
-                    button.delete();
 
                     let fighters = [interaction.user.id, opponent.id].sort(() =>
                         Math.random() > 0.5 ? 1 : -1
