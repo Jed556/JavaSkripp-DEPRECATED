@@ -27,12 +27,11 @@ module.exports = async (client) => {
                     .setTimestamp()
                     .setColor(ee.okColor)
                     .setTitle(`🟢 ${client.user.username} Online`)
-                    .setDescription("\u200b")
                     .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
                     .addField("🤖 Node", `\`${process.version}\``, true)
                     .addField("\u200b", `\u200b`, true)
                     .addField("💻 Platform", `\`${os.platform()}\` \`${os.arch()}\``, true)
-                    .addField(`⚙ Loaded ${client.slashCategories.length} Categories`, `\`${client.slashCommands.size} Slash Commands\``, true)
+                    .addField(`⚙ Loaded`, `\`${client.slashCommands.size} Slash Commands\``, true)
                     .addField("\u200b", `\u200b`, true)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                 ]
