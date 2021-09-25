@@ -14,13 +14,13 @@ module.exports = {
     requiredroles: [],
     alloweduserids: [],
     options: [
-        /*{
+        {
             "String": {
                 name: "command",
                 description: "Details of a Specific Command",
                 required: false
             }
-        },*/
+        },
     ],
 
     run: async (client, interaction) => {
@@ -32,7 +32,7 @@ module.exports = {
             let args = options.getString("command");
             if (args && args.length > 0) {
                 const embed = new MessageEmbed();
-                const cmd = client.slashCommands.get(args.toLowerCase()) || client.slashCommands.get(client.aliases.get(args.toLowerCase()));
+                const cmd = client.slashCommands.get(args.toLowerCase());
 
                 if (!cmd) {
                     return interaction.reply({
