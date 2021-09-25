@@ -142,7 +142,7 @@ module.exports = {
                     const xoemb = new MessageEmbed()
                         .setTitle("TicTacToe")
                         .setDescription(
-                            `**How to Play ?**\n*Wait for your turn.. If its your turn, Click one of the buttons from the table to draw your emoji at there.*`
+                            `**How to Play?**\n*Wait for your turn.. If its your turn, Click one of the buttons from the table to draw your emoji.*`
                         )
                         .setColor(ee.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
@@ -341,13 +341,10 @@ module.exports = {
                             max: 1,
                             time: 30000
                         });
-                        checkPress()
 
-                        function checkPress() {
-                            collector.on("collect", (b) => {
-                                press(b)
-                            });
-                        }
+                        collector.on("collect", (b) => {
+                            press(b)
+                        });
 
                         function press(b) {
                             if (b.user.id !== Args.userid) {
@@ -355,7 +352,9 @@ module.exports = {
                                     content: "You cant play now",
                                     ephemeral: true
                                 });
-                                checkPress()
+                                collector.on("collect", (b) => {
+                                    press(b)
+                                });
                             } else
                                 if (Args.user == 0) {
                                     Args.user = 1;
