@@ -341,14 +341,22 @@ module.exports = {
                             max: 1,
                             time: 30000
                         });
+                        checkPress()
 
-                        collector.on("collect", (b) => {
+                        function checkPress() {
+                            collector.on("collect", (b) => {
+                                press(b)
+                            });
+                        }
+
+                        function press(b) {
                             if (b.user.id !== Args.userid) {
                                 b.reply({
                                     content: "You cant play now",
                                     ephemeral: true
                                 });
-                            } else {
+                                checkPress()
+                            } else
                                 if (Args.user == 0) {
                                     Args.user = 1;
                                     Args[b.customId] = {
@@ -364,36 +372,36 @@ module.exports = {
                                         disabled: true
                                     };
                                 }
-                                b.deferUpdate();
-                                const map = (obj, fun) =>
-                                    Object.entries(obj).reduce(
-                                        (prev, [key, value]) => ({
-                                            ...prev,
-                                            [key]: fun(key, value)
-                                        }),
-                                        {}
-                                    );
-                                const objectFilter = (obj, predicate) =>
-                                    Object.keys(obj)
-                                        .filter((key) => predicate(obj[key]))
-                                        .reduce((res, key) => ((res[key] = obj[key]), res), {});
-                                let Brgs = objectFilter(
-                                    map(Args, (_, fruit) => fruit.emoji == dashmoji),
-                                    (num) => num == true
+                            b.deferUpdate();
+                            const map = (obj, fun) =>
+                                Object.entries(obj).reduce(
+                                    (prev, [key, value]) => ({
+                                        ...prev,
+                                        [key]: fun(key, value)
+                                    }),
+                                    {}
                                 );
-                                if (Object.keys(Brgs).length == 0)
-                                    return m.edit({ content: "It's a tie!", components: [] });
-                                tictactoe(m);
-                            }
-                        });
-                        collector.on("end", (collected) => {
-                            if (collected.size == 0)
-                                m.edit({
-                                    content: `<@!${Args.userid}> didn\'t react in time! (30s)`,
-                                    components: []
-                                });
-                        });
+                            const objectFilter = (obj, predicate) =>
+                                Object.keys(obj)
+                                    .filter((key) => predicate(obj[key]))
+                                    .reduce((res, key) => ((res[key] = obj[key]), res), {});
+                            let Brgs = objectFilter(
+                                map(Args, (_, fruit) => fruit.emoji == dashmoji),
+                                (num) => num == true
+                            );
+                            if (Object.keys(Brgs).length == 0)
+                                return m.edit({ content: "It's a tie!", components: [] });
+                            tictactoe(m);
+                        }
+
                     }
+                    collector.on("end", (collected) => {
+                        if (collected.size == 0)
+                            m.edit({
+                                content: `<@!${Args.userid}> didn\'t react in time! (30s)`,
+                                components: []
+                            });
+                    });
                 }
             });
 
@@ -410,6 +418,7 @@ module.exports = {
                         components: []
                     });
                 }
+
                 if (reason == "decline") {
                     let embed = new MessageEmbed()
                         .setTitle("Game Declined!")
