@@ -43,7 +43,7 @@ module.exports = {
             interaction.reply({ embeds: [Info] })
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            errDM(e)
+            errDM(client, e)
         }
     }
 }

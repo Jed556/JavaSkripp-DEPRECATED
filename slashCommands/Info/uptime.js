@@ -30,7 +30,7 @@ module.exports = {
             });
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            errDM(e)
+            errDM(client, e)
         }
     }
 }

@@ -87,7 +87,7 @@ module.exports = {
         } catch (e) {
             interaction.reply(`No users with tag \`${Target}\` found`)
             console.log(String(e.stack).bgRed)
-            errDM(e)
+            errDM(client, e)
         }
     }
 }

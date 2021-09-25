@@ -35,7 +35,7 @@ module.exports = {
             console.log(`Sent ${Target.tag}'s Avatar`)
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            errDM(e)
+            errDM(client, e)
         }
     }
 }

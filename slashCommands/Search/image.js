@@ -38,7 +38,7 @@ module.exports = {
             interaction.editReply(results[Math.floor(Math.random() * results.length)].url);
         } catch (e) {
             console.log(String(e.stack).bgRed)
-            errDM(e)
+            errDM(client, e)
         }
     }
 }
