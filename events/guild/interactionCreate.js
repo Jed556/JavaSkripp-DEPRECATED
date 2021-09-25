@@ -7,14 +7,7 @@ const Discord = require("discord.js");
 module.exports = (client, interaction) => {
     const CategoryName = interaction.commandName;
 
-    if (interaction.guildId == null) return interaction.reply({
-        embeds: [
-            new Discord.MessageEmbed()
-                .setColor(ee.errColor)
-                .setFooter(client.user.username, client.user.displayAvatarURL())
-                .setDescription(`**HEY! You can't execute commands in a DM.**`)
-        ]
-    });
+    if (interaction.guildId == null) return;
 
     client.settings.ensure(interaction.guildId, {
         prefix: config.prefix,
