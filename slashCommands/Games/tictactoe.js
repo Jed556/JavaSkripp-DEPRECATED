@@ -348,41 +348,43 @@ module.exports = {
                                     content: "You cant play now",
                                     ephemeral: true
                                 });
-                            } else if (Args.user == 0) {
-                                Args.user = 1;
-                                Args[b.customId] = {
-                                    style: "SUCCESS",
-                                    emoji: o_emoji,
-                                    disabled: true
-                                };
                             } else {
-                                Args.user = 0;
-                                Args[b.customId] = {
-                                    style: "DANGER",
-                                    emoji: x_emoji,
-                                    disabled: true
-                                };
-                            }
-                            b.deferUpdate();
-                            const map = (obj, fun) =>
-                                Object.entries(obj).reduce(
-                                    (prev, [key, value]) => ({
-                                        ...prev,
-                                        [key]: fun(key, value)
-                                    }),
-                                    {}
+                                if (Args.user == 0) {
+                                    Args.user = 1;
+                                    Args[b.customId] = {
+                                        style: "SUCCESS",
+                                        emoji: o_emoji,
+                                        disabled: true
+                                    };
+                                } else {
+                                    Args.user = 0;
+                                    Args[b.customId] = {
+                                        style: "DANGER",
+                                        emoji: x_emoji,
+                                        disabled: true
+                                    };
+                                }
+                                b.deferUpdate();
+                                const map = (obj, fun) =>
+                                    Object.entries(obj).reduce(
+                                        (prev, [key, value]) => ({
+                                            ...prev,
+                                            [key]: fun(key, value)
+                                        }),
+                                        {}
+                                    );
+                                const objectFilter = (obj, predicate) =>
+                                    Object.keys(obj)
+                                        .filter((key) => predicate(obj[key]))
+                                        .reduce((res, key) => ((res[key] = obj[key]), res), {});
+                                let Brgs = objectFilter(
+                                    map(Args, (_, fruit) => fruit.emoji == dashmoji),
+                                    (num) => num == true
                                 );
-                            const objectFilter = (obj, predicate) =>
-                                Object.keys(obj)
-                                    .filter((key) => predicate(obj[key]))
-                                    .reduce((res, key) => ((res[key] = obj[key]), res), {});
-                            let Brgs = objectFilter(
-                                map(Args, (_, fruit) => fruit.emoji == dashmoji),
-                                (num) => num == true
-                            );
-                            if (Object.keys(Brgs).length == 0)
-                                return m.edit({ content: "It's a tie!", components: [] });
-                            tictactoe(m);
+                                if (Object.keys(Brgs).length == 0)
+                                    return m.edit({ content: "It's a tie!", components: [] });
+                                tictactoe(m);
+                            }
                         });
                         collector.on("end", (collected) => {
                             if (collected.size == 0)
