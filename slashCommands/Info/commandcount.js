@@ -23,10 +23,9 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setTitle(`**[${client.commands.size + client.slashCommands.size + client.slashCommands.map(d => d.options).flat().length}] Modules Loaded**`)
+                    .setTitle(`**[${client.slashCommands.size}] Modules Loaded**`)
                     .addField(`⚙ **[18] Events**`, `>>> **[3] Categories**`)
-                    .addField(`⚙ **[${client.commands.size}] Prefix Commands**`, `>>> **[${client.categories.length}] Categories**`)
-                    .addField(`⚙ **[${client.slashCommands.size}] Slash Commands**`, `>>> **[${client.slashCategories.length}] Categories**\n`)
+                    .addField(`⚙ **[${client.slashCommands.size}] Slash Commands**`, `>>> **[${client.slashCategories.length || 0}] Categories**\n`)
                     .setTimestamp()
                 ]
             });
