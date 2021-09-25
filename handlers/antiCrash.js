@@ -13,7 +13,7 @@ function errDM(client, reason, promise, err, origin, monitor, e) {
                     .setColor(ee.errColor)
                     .setAuthor("antiCrash.js", client.user.displayAvatarURL())
                     .setTitle("Command Error")
-                    .setDescription(`**Error:**\`\`\`${String(e.stack)}\`\`\``)
+                    .setDescription(`**Error:**\`\`\`${e.stack ? String(e.stack) : String(e)}\`\`\``)
                     .setFooter("Check logs for more details")
                 ]
             });
