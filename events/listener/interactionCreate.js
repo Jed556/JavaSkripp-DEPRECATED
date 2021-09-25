@@ -8,8 +8,8 @@ module.exports = (client, interaction) => {
     const CategoryName = interaction.commandName;
     const guild = interaction.guild.name;
     const channel = interaction.channel.name;
-    
-    console.log(`[${guild} in #${channel} from${interaction.user.tag}] Command: ${CategoryName}`);
+
+    console.log(`[${guild ? `${guild} in #${channel} from ` : "" }${interaction.user.tag}] Command: /${CategoryName}`);
 
     if (interaction.guildId == null) return interaction.reply({
         embeds: [

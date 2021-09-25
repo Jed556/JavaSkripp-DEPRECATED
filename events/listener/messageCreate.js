@@ -57,13 +57,13 @@ module.exports = async (client, message) => {
         client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({ embeds: [log] });
         });
-        console.log(`[${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);
     }
 
     if (message.author.bot) return;
-    if (!message.guild || !message.channel) return DM();
 
     const guild = message.guild.name;
     const channel = message.channel.name;
-    console.log(`[${guild} in #${channel} from ${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);
+    console.log(`[${guild ? `${guild} in #${channel} from ` : "" }${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);
+    
+    if (!message.guild || !message.channel) return DM();
 }
