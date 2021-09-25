@@ -343,13 +343,12 @@ module.exports = {
                         });
 
                         collector.on("collect", (b) => {
-                            if (b.user.id !== Args.userid)
-                                return b.followUp({
+                            if (b.user.id !== Args.userid) {
+                                return b.reply({
                                     content: "You cant play now",
                                     ephemeral: true
                                 });
-
-                            if (Args.user == 0) {
+                            } else if (Args.user == 0) {
                                 Args.user = 1;
                                 Args[b.customId] = {
                                     style: "SUCCESS",
