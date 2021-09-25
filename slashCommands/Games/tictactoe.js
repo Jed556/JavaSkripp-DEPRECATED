@@ -79,7 +79,7 @@ module.exports = {
                     return collector.stop("decline");
                 } else if (button.customId == "accepttt") {
                     collector.stop();
-                    button.interaction.delete();
+                    button.delete();
 
                     let fighters = [interaction.user.id, opponent.id].sort(() =>
                         Math.random() > 0.5 ? 1 : -1
