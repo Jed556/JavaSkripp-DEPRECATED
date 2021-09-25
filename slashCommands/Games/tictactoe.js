@@ -344,7 +344,7 @@ module.exports = {
 
                         collector.on("collect", (b) => {
                             if (b.user.id !== Args.userid) {
-                                return b.reply({
+                                b.reply({
                                     content: "You cant play now",
                                     ephemeral: true
                                 });
