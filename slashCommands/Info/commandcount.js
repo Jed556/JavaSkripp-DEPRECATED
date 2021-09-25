@@ -24,9 +24,9 @@ module.exports = {
                     .setColor(ee.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setTitle(`**[${client.commands.size + client.slashCommands.size + client.slashCommands.map(d => d.options).flat().length}] Modules Loaded**`)
-                    .addField(`:gear: **[18] Events**`, `>>> **[3] Categories**`)
-                    .addField(`:gear: **[${client.commands.size}] Prefix Commands**`, `>>> **[${client.categories.length}] Categories**`)
-                    .addField(`:gear: **[${client.slashCommands.size}] Slash Commands**`, `>>> **[${client.slashCategories.length}] Categories**\n`)
+                    .addField(`⚙ **[18] Events**`, `>>> **[3] Categories**`)
+                    .addField(`⚙ **[${client.commands.size}] Prefix Commands**`, `>>> **[${client.categories.length}] Categories**`)
+                    .addField(`⚙ **[${client.slashCommands.size}] Slash Commands**`, `>>> **[${client.slashCategories.length}] Categories**\n`)
                     .setTimestamp()
                 ]
             });
