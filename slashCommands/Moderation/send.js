@@ -43,6 +43,18 @@ module.exports = {
             const Image = interaction.options.getString("image")
             const tag = ["#", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
+            if (Target == client.user.tag) return interaction.reply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(ee.errColor)
+                    .addField(`Unsent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
+                    .setImage(`${Image ? `${Image}` : ""}`)
+                    .addField(`Reason:`, `You can't use \`/send\` to ${client.user.tag} `)
+                    .setAuthor(Target, avatar.displayAvatarURL({ dynamic: true }))
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ], ephemeral: true
+            })
+            
             if (tag.some(v => Target.includes(v))) {
                 const userID = await client.users.cache.find(u => u.tag === Target).id
                 const avatar = await client.users.fetch(userID).catch(console.error);
