@@ -19,6 +19,6 @@ module.exports = (client, interaction) => {
 
     const guild = interaction.guild.name;
     const channel = interaction.channel.name;
-    console.log(`[${guild} in #${channel} from ${interaction.user.tag}] Command: /${CategoryName + SubCommand}`);
+    console.log(`[${guild} in #${channel} from ${interaction.user.tag}] Command: /${CategoryName} ${SubCommand}`);
 
 }
