@@ -23,13 +23,14 @@ module.exports = {
 
     run: async (client, interaction) => {
         try {
+            interaction.deferReply();
             const convert = interaction.options.getString("text");
-            if (!convert) return interaction.reply("Please provide a text!");
+            if (!convert) return interaction.followUp("Please provide a text!");
 
-            interaction.reply({ content: `🛠 Converting... \`\`\`${convert}\`\`\``, ephemeral: true });
+            interaction.followUp({ content: `🛠 Converting... \`\`\`${convert}\`\`\``, ephemeral: true });
 
-            let result = await canva.createQRCode(convert)
-            interaction.editReply({ attachments: [new MessageAttachment(result, "qrcode.png")], ephemeral: false })
+            let result = await qrc.toBuffer(convert)
+            interaction.editReply({attachments: [new MessageAttachment(result, "qrcode.png")], ephemeral: false })
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)
