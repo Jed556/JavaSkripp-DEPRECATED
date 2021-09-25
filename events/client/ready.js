@@ -31,7 +31,7 @@ module.exports = async (client) => {
                     .addField("🤖 Node", `\`${process.version}\``, true)
                     .addField("\u200b", `\u200b`, true)
                     .addField("💻 Platform", `\`${os.platform()}\` \`${os.arch()}\``, true)
-                    .addField(`⚙ Loaded`, `\`${client.slashCommands.size} Slash Commands\``, true)
+                    .addField(`⚙ Loaded`, `\`${client.slashCommands.size} Commands\``, true)
                     .addField("\u200b", `\u200b`, true)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                 ]
