@@ -1,9 +1,11 @@
 //here the event starts
 const { MessageEmbed } = require("discord.js");
+const Discord = require("discord.js");
 const { change_status } = require("../../handlers/functions");
 const settings = require("../../botconfig/settings.json")
 const config = require("../../botconfig/config.json")
 const ee = require("../../botconfig/embed.json")
+let os = require("os");
 
 module.exports = async (client) => {
     //SETTING ALL GUILD DATA FOR THE DJ ONLY COMMANDS for the DEFAULT
@@ -20,12 +22,17 @@ module.exports = async (client) => {
                 `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
         } catch { }
         client.users.fetch(settings.ownerID, false).then((user) => {
-            user.send({ embeds: [new MessageEmbed()
-                .setTimestamp()
-                .setColor(ee.okColor)
-                .setTitle(`🟢 ${client.user.username} Online`)
-                .setFooter(client.user.username, client.user.displayAvatarURL())
-            ] });
+            user.send({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(ee.okColor)
+                    .setTitle(`🟢 ${client.user.username} Online`)
+                    .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
+                    .addField("🤖 Node", `\`${process.version}\``, true)
+                    .addField("💻 Platform", `\`${os.platform()}\` \`${os.arch()}\``, true)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ]
+            });
         });
         change_status(client);
         //loop through the status per each 10 minutes
