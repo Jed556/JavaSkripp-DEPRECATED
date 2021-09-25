@@ -79,15 +79,16 @@ module.exports = {
                     return collector.stop("decline");
                 } else if (button.customId == "accepttt") {
                     collector.stop();
+                    button.update({ components: [] })
 
                     let fighters = [interaction.user.id, opponent.id].sort(() =>
                         Math.random() > 0.5 ? 1 : -1
                     );
 
-                    let x_emoji = options.xEmoji || "❌";
-                    let o_emoji = options.oEmoji || "⭕";
+                    let x_emoji = "❌";
+                    let o_emoji = "⭕";
 
-                    let dashmoji = options.idleEmoji || "➖";
+                    let dashmoji = "➖";
 
                     let Args = {
                         user: 0,
