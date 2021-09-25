@@ -8,7 +8,7 @@ const { errDM } = require("../../handlers/antiCrash");
 module.exports = {
     name: "volume",
     description: "Adjusts the volume of the music",
-    category: "Queue",
+    category: "Music",
     cooldown: 1,
     requiredroles: [],
     alloweduserids: [],

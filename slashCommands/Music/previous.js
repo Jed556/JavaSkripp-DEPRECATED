@@ -8,7 +8,7 @@ const { errDM } = require("../../handlers/antiCrash");
 module.exports = {
     name: "previous",
     description: "Plays the previous song",
-    category: "Queue",
+    category: "Music",
     cooldown: 1,
     requiredroles: [],
     alloweduserids: [],
