@@ -408,7 +408,7 @@ module.exports = {
                     let embed = new MessageEmbed()
                         .setTitle("Challenge Not Accepted in Time")
                         .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({ dynamic: true }))
-                        .setColor(0xc90000)
+                        .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
                         .setDescription("Ran out of time!\nTime limit: 30s");
                     m.edit({
@@ -421,7 +421,7 @@ module.exports = {
                     let embed = new MessageEmbed()
                         .setTitle("Game Declined!")
                         .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({ dynamic: true }))
-                        .setColor(0xc90000)
+                        .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
                         .setDescription(`${opponent.user.tag} has declined your game!`);
                     m.edit({
