@@ -798,7 +798,7 @@ async function swap_pages2(client, message, embeds) {
  * @param {*} client Discord Client
  * Function to send errors to DM
  */
-function errDM (client, reason, promise, err, origin, monitor, e) {
+function errDM (client, type, reason, promise, err, origin, monitor, e) {
     const report = new MessageEmbed()
         .setTimestamp()
         .setColor(ee.errColor)
