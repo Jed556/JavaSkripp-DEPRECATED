@@ -7,7 +7,7 @@ const ksoft = new KSoftClient(config.ksoftapi);
 const ee = require(`../botconfig/embed.json`);
 const { MessageButton, MessageActionRow, MessageEmbed } = require(`discord.js`);
 const { lyricsEmbed, check_if_dj } = require("./functions");
-const { errDM } = require("./antiCrash")
+const { errDM } = require("./functions")
 let songEditInterval = null;
 
 module.exports = (client) => {
