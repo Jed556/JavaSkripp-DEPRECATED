@@ -20,31 +20,11 @@ module.exports = {
             let button = new Array([], [], [], [], []);
             let row = [];
             let text = [
-                "Clear",
-                "(",
-                ")",
-                "/",
-                "⌫",
-                "7",
-                "8",
-                "9",
-                "*",
-                "!",
-                "4",
-                "5",
-                "6",
-                "-",
-                "^",
-                "1",
-                "2",
-                "3",
-                "+",
-                "π",
-                ".",
-                "0",
-                "00",
-                "=",
-                "Delete"
+                "Clear", "(", ")", "/", "⌫",
+                "7", "8", "9", "*", "!",
+                "4", "5", "6", "-", "^",
+                "1", "2", "3", "+", "π",
+                ".", "0", "00", "=", "Delete"
             ];
             let current = 0;
 
@@ -66,7 +46,7 @@ module.exports = {
                     embeds: [emb],
                     components: row
                 })
-                .then(async () => {
+                .then(async (interaction) => {
                     const fr = await interaction.fetchReply();
 
                     let isWrong = false;
