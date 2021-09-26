@@ -606,9 +606,9 @@ module.exports = (client) => {
         const row = new MessageActionRow().addComponents([skip, stop, pause, autoplay, shuffle]);
         const row2 = new MessageActionRow().addComponents([songloop, queueloop, forward, rewind, lyrics]);
         return {
+            files: [spindisc],
             embeds: [embed],
-            components: [row, row2],
-            files: [spindisc]
+            components: [row, row2]
         };
     }
 };
