@@ -17,6 +17,7 @@
     "http": "^0.0.1-security",
     "images-scraper": "^6.4.0",
     "libsodium-wrappers": "^0.7.9",
+    "mathjs": "^9.5.0",
     "memorystore": "^1.6.6",
     "moment": "^2.29.1",
     "ms": "^2.1.3",
