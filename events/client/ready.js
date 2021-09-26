@@ -26,7 +26,7 @@ module.exports = async (client) => {
                 embeds: [new MessageEmbed()
                     .setTimestamp()
                     .setColor(ee.okColor)
-                    .setTitle(`🟢 ${client.user.username} Online`)
+                    .setTitle(`${client.user.username} Online`, "https://github.com/Jed556/JavaSkripp-Public/blob/main/Online.png")
                     .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
                     .addField("🤖 Node", `\`${process.version}\``, true)
                     .addField("\u200b", `\u200b`, true)
