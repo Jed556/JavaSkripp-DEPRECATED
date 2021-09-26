@@ -805,7 +805,7 @@ function errDM (client, type, reason, promise, err, origin, monitor, e) {
         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
         .setFooter("Check logs for more details")
 
-    if (e) {
+    if (e > 0) {
         return client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
