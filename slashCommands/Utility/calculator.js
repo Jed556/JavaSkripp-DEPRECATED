@@ -45,7 +45,7 @@ module.exports = {
                     embeds: [emb],
                     components: row
                 })
-                .then(async (interaction) => {
+                .then(async () => {
                     let isWrong = false;
                     let time = 600000;
                     let value = "";
