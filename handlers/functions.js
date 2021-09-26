@@ -3,6 +3,7 @@ const Discord = require("discord.js")
 const config = require("../botconfig/config.json");
 const ee = require("../botconfig/embed.json");
 const settings = require("../botconfig/settings.json");
+const { errDM } = require("./antiCrash")
 
 //EXPORT ALL FUNCTIONS
 module.exports.nFormatter = nFormatter;
@@ -74,6 +75,7 @@ function customplaylistembed(lyrics, song) {
         return embeds;
     } catch (error) {
         console.log(error)
+        errDM(client, error)
     }
 }
 
@@ -96,6 +98,7 @@ function lyricsEmbed(lyrics, song) {
         return embeds;
     } catch (error) {
         console.log(error)
+        errDM(client, error)
     }
 }
 
@@ -351,6 +354,7 @@ function shuffle(array) {
         return array;
     } catch (e) {
         console.log(String(e.stack).bgRed)
+        errDM(client, e)
     }
 }
 
@@ -471,6 +475,7 @@ function delay(delayInms) {
         });
     } catch (e) {
         console.log(String(e.stack).bgRed)
+        errDM(client, e)
     }
 }
 
@@ -484,6 +489,7 @@ function getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
     } catch (e) {
         console.log(String(e.stack).bgRed)
+        errDM(client, e)
     }
 }
 
@@ -498,6 +504,7 @@ function getRandomNum(min, max) {
         return Math.floor(Math.random() * Math.floor((max - min) + min));
     } catch (e) {
         console.log(String(e.stack).bgRed)
+        errDM(client, e)
     }
 }
 
@@ -525,6 +532,7 @@ function createBar(total, current, size = 25, line = "▬", slider = "🔷") {
         }
     } catch (e) {
         console.log(String(e.stack).bgRed)
+        errDM(client, e)
     }
 }
 
@@ -542,6 +550,7 @@ function format(millis) {
         else return (h < 10 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s + " | " + (Math.floor(millis / 1000)) + " Seconds";
     } catch (e) {
         console.log(String(e.stack).bgRed)
+        errDM(client, e)
     }
 }
 
@@ -555,6 +564,7 @@ function escapeRegex(str) {
         return str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
     } catch (e) {
         console.log(String(e.stack).bgRed)
+        errDM(client, e)
     }
 }
 
@@ -577,6 +587,7 @@ function arrayMove(array, from, to) {
         return array;
     } catch (e) {
         console.log(String(e.stack).bgRed)
+        errDM(client, e)
     }
 }
 
@@ -813,5 +824,6 @@ function change_status(client) {
 
     } catch (e) {
         console.log(String(e.stack).bgRed)
+        errDM(client, e)
     }
 }

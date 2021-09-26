@@ -7,6 +7,7 @@ const ksoft = new KSoftClient(config.ksoftapi);
 const ee = require(`../botconfig/embed.json`);
 const { MessageButton, MessageActionRow, MessageEmbed } = require(`discord.js`);
 const { lyricsEmbed, check_if_dj } = require("./functions");
+const { errDM } = require("./antiCrash")
 let songEditInterval = null;
 
 module.exports = (client) => {
@@ -19,6 +20,7 @@ module.exports = (client) => {
                     })
                 } catch (error) {
                     console.log(error)
+                    errDM(client, error)
                 }
                 try {
                     var newQueue = client.distube.getQueue(queue.id)
@@ -445,6 +447,7 @@ module.exports = (client) => {
                     });
                 } catch (error) {
                     console.error(error)
+                    errDM(client, error)
                 }
             })
             .on(`addSong`, (queue, song) => queue.textChannel.send({
@@ -535,6 +538,7 @@ module.exports = (client) => {
             });
     } catch (e) {
         console.log(String(e.stack).bgRed)
+        errDM(e, client)
     }
 
     function receiveQueueData(newQueue, newTrack) {
