@@ -798,14 +798,14 @@ async function swap_pages2(client, message, embeds) {
  * @param {*} client Discord Client
  * Function to send errors to DM
  */
-function errDM (client, type, reason, promise, err, origin, monitor, e) {
+function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
     const report = new MessageEmbed()
         .setTimestamp()
         .setColor(ee.errColor)
         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
         .setFooter("Check logs for more details")
 
-    if (e > 0) {
+    if (e) {
         return client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
@@ -814,7 +814,16 @@ function errDM (client, type, reason, promise, err, origin, monitor, e) {
                 ]
             });
         });
-    } else if (promise) {
+    } else if (error) {
+        return client.users.fetch(settings.ownerID, false).then((user) => {
+            user.send({
+                embeds: [report
+                    .setTitle("Command Error")
+                    .setDescription(`**Error:**\`\`\`${error}\`\`\``)
+                ]
+            });
+        });
+    } else if (promise && reason) {
         return client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
@@ -825,7 +834,7 @@ function errDM (client, type, reason, promise, err, origin, monitor, e) {
                 ]
             });
         });
-    } else if (monitor) {
+    } else if (monitor && err && origin) {
         return client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
@@ -836,7 +845,7 @@ function errDM (client, type, reason, promise, err, origin, monitor, e) {
                 ]
             });
         });
-    } else if (origin) {
+    } else if (err && origin) {
         return client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [report

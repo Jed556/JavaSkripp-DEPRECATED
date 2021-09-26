@@ -492,6 +492,7 @@ module.exports = (client) => {
                     ]
                 }).catch((e) => console.log(e))
                 console.error(e)
+                errDM(client, e)
             })
             .on(`empty`, channel => channel.send(`Voice channel is empty! Leaving the channel...`).catch((e) => console.log(e)))
             .on(`searchNoResult`, message => message.channel.send(`No result found!`).catch((e) => console.log(e)))
@@ -538,7 +539,7 @@ module.exports = (client) => {
             });
     } catch (e) {
         console.log(String(e.stack).bgRed)
-        errDM(e, client)
+        errDM(client, e)
     }
 
     function receiveQueueData(newQueue, newTrack) {
