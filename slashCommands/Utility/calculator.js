@@ -66,7 +66,7 @@ module.exports = {
                     embeds: [emb],
                     components: row
                 })
-                .then(async (msg) => {
+                .then(async (args) => {
                     const msg = await interaction.fetchReply();
 
                     let isWrong = false;
