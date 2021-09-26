@@ -561,7 +561,7 @@ module.exports = (client) => {
             .addField(`⬇ Download Song:`, `>>> [\`Download here\`](${newTrack.streamURL})`, true)
             .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
             .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s" : ""}:`, `>>> ${djs}`, client.settings.get(newQueue.id, "djroles").length > 1 ? false : true)
-            .setAuthor(`DASHBOARD | NOW PLAYING`, "spindisc://spindisc.gif")
+            .setAuthor(`DASHBOARD | NOW PLAYING`, "attachment://spindisc.gif")
             .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
             .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({ dynamic: true }));
 
