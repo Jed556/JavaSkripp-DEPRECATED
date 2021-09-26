@@ -1,5 +1,5 @@
 //here the event starts
-const { MessageEmbed, MessageAttachment } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
 const { change_status } = require("../../handlers/functions");
 const settings = require("../../botconfig/settings.json")
@@ -21,13 +21,12 @@ module.exports = async (client) => {
                 `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
                 `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
         } catch { }
-        const attachment = new MessageAttachment("icon/online.png")
         client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [new MessageEmbed()
                     .setTimestamp()
                     .setColor(ee.okColor)
-                    .setAuthor(`${client.user.username} Online`, "attachment://online.png")
+                    .setTitle(`${client.user.username} Online`)
                     .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
                     .addField("🤖 Node", `\`${process.version}\``, true)
                     .addField("\u200b", `\u200b`, true)
