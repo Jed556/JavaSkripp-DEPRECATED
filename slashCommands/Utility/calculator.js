@@ -10,7 +10,7 @@ module.exports = {
     name: "calc",
     description: "Runs an interactive calculator",
     category: "Utility",
-    cooldown: 1,
+    cooldown: 5,
     requiredroles: [],
     alloweduserids: [],
     run: async (client, interaction) => {
