@@ -158,7 +158,7 @@ module.exports = {
                 }
             });
 
-            collect.on("end", (c, reason) => {
+            collector.on("end", (c, reason) => {
                 if (reason == "time") {
                     let embed = new MessageEmbed()
                         .setTitle("Game Timed Out!")
