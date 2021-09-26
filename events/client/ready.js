@@ -21,7 +21,7 @@ module.exports = async (client) => {
                 `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
                 `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
         } catch { }
-        const attachment = new MessageAttachment("../../icon/Online.png")
+        const attachment = new MessageAttachment("icon/Online.png")
         client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [new MessageEmbed()
