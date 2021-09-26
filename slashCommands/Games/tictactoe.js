@@ -31,6 +31,11 @@ module.exports = {
                     content: "No opponent mentioned!",
                     ephemeral: true
                 });
+            if (opponent.bot)
+                return interaction.followUp({
+                    content: "You can't play against bots",
+                    ephemeral: true
+                });
             if (opponent.id == interaction.user.id)
                 return interaction.followUp({
                     content: "You cannot play by yourself!",
