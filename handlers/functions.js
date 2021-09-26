@@ -820,8 +820,8 @@ function errDM (client, type, reason, promise, err, origin, monitor, e) {
                 embeds: [report
                     .setTitle("Unhandled Rejection/Catch")
                     .setDescription(`
-                    **Reason:**\`\`\`${reason}\`\`\`\n
-                    **Promise:**\`\`\`${promise}\`\`\``)
+                    **Promise:**\`\`\`${promise.stack ? String(promise.stack) : String(promise)}\`\`\`\n
+                    **Reason:**\`\`\`${reason.stack ? String(reason.stack) : String(reason)}\`\`\``)
                 ]
             });
         });
@@ -831,8 +831,8 @@ function errDM (client, type, reason, promise, err, origin, monitor, e) {
                 embeds: [report
                     .setTitle("Uncaught Exception/Catch (MONITOR)")
                     .setDescription(`
-                    **Error:**\`\`\`${err}\`\`\`\n
-                    **Origin:**\`\`\`${origin}\`\`\``)
+                    **Error:**\`\`\`${err.stack ? String(err.stack) : String(err)}\`\`\`\n
+                    **Origin:**\`\`\`${origin.stack ? String(origin.stack) : String(origin)}\`\`\``)
                 ]
             });
         });
@@ -842,8 +842,8 @@ function errDM (client, type, reason, promise, err, origin, monitor, e) {
                 embeds: [report
                     .setTitle("Uncaught Exception/Catch")
                     .setDescription(`
-                    **Error:**\`\`\`${err}\`\`\`\n
-                    **Origin:**\`\`\`${origin}\`\`\``)
+                    **Error:**\`\`\`${err.stack ? String(err.stack) : String(err)}\`\`\`\n
+                    **Origin:**\`\`\`${origin.stack ? String(origin.stack) : String(origin)}\`\`\``)
                 ]
             });
         });
@@ -853,9 +853,9 @@ function errDM (client, type, reason, promise, err, origin, monitor, e) {
                 embeds: [report
                     .setTitle("Multiple Resolves")
                     .setDescription(`
-                    **Type:**\`\`\`${type}\`\`\`\n
-                    **Promise:**\`\`\`${promise}\`\`\`\n
-                    **Reason:**\`\`\`${reason}\`\`\``)
+                    **Type:**\`\`\`${type.stack ? String(type.stack) : String(type)}\`\`\`\n
+                    **Promise:**\`\`\`${promise.stack ? String(promise.stack) : String(promise)}\`\`\`\n
+                    **Reason:**\`\`\`${reason.stack ? String(reason.stack) : String(reason)}\`\`\``)
                 ]
             });
         });
