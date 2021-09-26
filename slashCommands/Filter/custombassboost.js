@@ -4,7 +4,7 @@ const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const FiltersSettings = require("../../botconfig/filters.json");
 const { check_if_dj } = require("../../handlers/functions");
-const { errDM } = require("../../handlers/antiCrash");
+const { errDM } = require("../../handlers/functions");
 
 module.exports = {
     name: "custombassboost",

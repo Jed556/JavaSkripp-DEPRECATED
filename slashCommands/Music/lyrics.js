@@ -5,7 +5,7 @@ const ksoft = new KSoftClient(config.ksoftapi);
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const { lyricsEmbed, check_if_dj } = require("../../handlers/functions");
-const { errDM } = require("../../handlers/antiCrash");
+const { errDM } = require("../../handlers/functions");
 
 module.exports = {
     name: "lyrics",

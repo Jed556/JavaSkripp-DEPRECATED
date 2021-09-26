@@ -1,7 +1,7 @@
 const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
 const ee = require("../../botconfig/embed.json");
 const ms = require('ms');
-const { errDM } = require("../../handlers/antiCrash");
+const { errDM } = require("../../handlers/functions");
 
 /**
 *

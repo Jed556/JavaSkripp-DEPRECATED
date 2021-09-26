@@ -3,7 +3,7 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const moment = require("moment");
-const { errDM } = require("../../handlers/antiCrash");
+const { errDM } = require("../../handlers/functions");
 
 module.exports = {
     name: "send",

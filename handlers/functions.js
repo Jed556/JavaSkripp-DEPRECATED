@@ -3,7 +3,6 @@ const Discord = require("discord.js")
 const config = require("../botconfig/config.json");
 const ee = require("../botconfig/embed.json");
 const settings = require("../botconfig/settings.json");
-const { errDM } = require("./antiCrash")
 
 //EXPORT ALL FUNCTIONS
 module.exports.nFormatter = nFormatter;
@@ -30,6 +29,7 @@ module.exports.formatDate = formatDate;
 module.exports.customplaylistembed = customplaylistembed;
 module.exports.lyricsEmbed = lyricsEmbed;
 module.exports.check_if_dj = check_if_dj;
+module.exports.errDM = errDM;
 
 function check_if_dj(client, member, song) {
     //if no message added return
@@ -791,6 +791,75 @@ async function swap_pages2(client, message, embeds) {
         }
     });
 
+}
+
+/**
+ * 
+ * @param {*} client Discord Client
+ * Function to send errors to DM
+ */
+function errDM (client, reason, promise, err, origin, monitor, e) {
+    const report = new MessageEmbed()
+        .setTimestamp()
+        .setColor(ee.errColor)
+        .setAuthor("antiCrash.js", client.user.displayAvatarURL())
+        .setFooter("Check logs for more details")
+
+    if (e) {
+        return client.users.fetch(settings.ownerID, false).then((user) => {
+            user.send({
+                embeds: [report
+                    .setTitle("Command Error")
+                    .setDescription(`**Error:**\`\`\`${e.stack ? String(e.stack) : String(e)}\`\`\``)
+                ]
+            });
+        });
+    } else if (promise) {
+        return client.users.fetch(settings.ownerID, false).then((user) => {
+            user.send({
+                embeds: [report
+                    .setTitle("Unhandled Rejection/Catch")
+                    .setDescription(`
+                    **Reason:**\`\`\`${reason}\`\`\`\n
+                    **Promise:**\`\`\`${promise}\`\`\``)
+                ]
+            });
+        });
+    } else if (monitor) {
+        return client.users.fetch(settings.ownerID, false).then((user) => {
+            user.send({
+                embeds: [report
+                    .setTitle("Uncaught Exception/Catch (MONITOR)")
+                    .setDescription(`
+                    **Error:**\`\`\`${err}\`\`\`\n
+                    **Origin:**\`\`\`${origin}\`\`\``)
+                ]
+            });
+        });
+    } else if (origin) {
+        return client.users.fetch(settings.ownerID, false).then((user) => {
+            user.send({
+                embeds: [report
+                    .setTitle("Uncaught Exception/Catch")
+                    .setDescription(`
+                    **Error:**\`\`\`${err}\`\`\`\n
+                    **Origin:**\`\`\`${origin}\`\`\``)
+                ]
+            });
+        });
+    } else {
+        return client.users.fetch(settings.ownerID, false).then((user) => {
+            user.send({
+                embeds: [report
+                    .setTitle("Multiple Resolves")
+                    .setDescription(`
+                    **Type:**\`\`\`${type}\`\`\`\n
+                    **Promise:**\`\`\`${promise}\`\`\`\n
+                    **Reason:**\`\`\`${reason}\`\`\``)
+                ]
+            });
+        });
+    }
 }
 
 /**
