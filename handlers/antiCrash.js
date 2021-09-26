@@ -2,7 +2,7 @@ const config = require(`../botconfig/config.json`);
 const ee = require(`../botconfig/embed.json`);
 const settings = require(`../botconfig/settings.json`);
 const { MessageEmbed } = require(`discord.js`);
-module.exports.errDM = function (client, reason, promise, err, origin, monitor, e) {
+module.exports.errDM = function errDM(client, reason, promise, err, origin, monitor, e) {
     const report = new MessageEmbed()
         .setTimestamp()
         .setColor(ee.errColor)
