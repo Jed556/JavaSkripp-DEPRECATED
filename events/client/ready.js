@@ -21,13 +21,13 @@ module.exports = async (client) => {
                 `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
                 `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
         } catch { }
-        const attachment = new MessageAttachment("icon/online.svg")
+        const attachment = new MessageAttachment("icon/online.png")
         client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [new MessageEmbed()
                     .setTimestamp()
                     .setColor(ee.okColor)
-                    .setAuthor(`${client.user.username} Online`, "attachment://online.svg")
+                    .setAuthor(`${client.user.username} Online`, "attachment://online.png")
                     .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
                     .addField("🤖 Node", `\`${process.version}\``, true)
                     .addField("\u200b", `\u200b`, true)
