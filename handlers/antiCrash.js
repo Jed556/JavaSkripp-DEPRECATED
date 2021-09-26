@@ -12,7 +12,7 @@ function errDM(client, reason, promise, err, origin, monitor, e) {
         .setFooter("Check logs for more details")
 
     if (e) {
-        client.users.fetch(settings.ownerID, false).then((user) => {
+        return client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
                     .setTitle("Command Error")
@@ -21,7 +21,7 @@ function errDM(client, reason, promise, err, origin, monitor, e) {
             });
         });
     } else if (promise) {
-        client.users.fetch(settings.ownerID, false).then((user) => {
+        return client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
                     .setTitle("Unhandled Rejection/Catch")
@@ -32,7 +32,7 @@ function errDM(client, reason, promise, err, origin, monitor, e) {
             });
         });
     } else if (monitor) {
-        client.users.fetch(settings.ownerID, false).then((user) => {
+        return client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
                     .setTitle("Uncaught Exception/Catch (MONITOR)")
@@ -43,7 +43,7 @@ function errDM(client, reason, promise, err, origin, monitor, e) {
             });
         });
     } else if (origin) {
-        client.users.fetch(settings.ownerID, false).then((user) => {
+        return client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
                     .setTitle("Uncaught Exception/Catch")
@@ -54,7 +54,7 @@ function errDM(client, reason, promise, err, origin, monitor, e) {
             });
         });
     } else {
-        client.users.fetch(settings.ownerID, false).then((user) => {
+        return client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
                     .setTitle("Multiple Resolves")
