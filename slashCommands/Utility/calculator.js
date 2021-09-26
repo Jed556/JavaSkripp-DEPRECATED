@@ -1,5 +1,4 @@
 
-const Discord = require("discord.js");
 const { MessageButton, MessageActionRow } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
@@ -16,7 +15,7 @@ module.exports = {
     alloweduserids: [],
     run: async (client, interaction) => {
         try {
-            deferReply();
+            interaction.deferReply("Starting...")
 
             let button = new Array([], [], [], [], []);
             let row = [];
@@ -170,6 +169,9 @@ module.exports = {
                     return "Wrong Input";
                 }
             }
-        } catch { }
+        } catch (e) {
+            console.log(String(e.stack).bgRed)
+            errDM(client, e)
+        }
     }
 }
