@@ -7,7 +7,7 @@ const Discord = require("discord.js");
 module.exports = (client, interaction) => {
     const CategoryName = interaction.commandName;
     const SubCommand = interaction.options.getSubcommand();
-    
+
     if (interaction.guildId == null) return [interaction.reply({
         embeds: [
             new Discord.MessageEmbed()
@@ -19,6 +19,8 @@ module.exports = (client, interaction) => {
 
     const guild = interaction.guild.name;
     const channel = interaction.channel.name;
-    console.log(`[${guild} in #${channel} from ${interaction.user.tag}] Command: /${CategoryName} ${SubCommand}`);
+    try {
+        console.log(`[${guild} in #${channel} from ${interaction.user.tag}] Command: /${CategoryName} ${SubCommand}`);
+    } catch { }
 
 }
