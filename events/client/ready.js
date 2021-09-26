@@ -27,7 +27,7 @@ module.exports = async (client) => {
                 embeds: [new MessageEmbed()
                     .setTimestamp()
                     .setColor(ee.okColor)
-                    .setTitle(`${client.user.username} Online`, "attachment://Online.png")
+                    .setAuthor(`${client.user.username} Online`, "attachment://Online.png")
                     .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
                     .addField("🤖 Node", `\`${process.version}\``, true)
                     .addField("\u200b", `\u200b`, true)
