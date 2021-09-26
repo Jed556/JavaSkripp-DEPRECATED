@@ -15,7 +15,7 @@ module.exports = async (client) => {
         console.log('[antiCrash] :: Uncaught Exception/Catch (MONITOR)');
         console.log(err, origin);
         var monitor = true
-        errDM(client, client, err, origin, monitor);
+        errDM(client, err, origin, monitor);
     });
 
     process.on("uncaughtException", (err, origin) => {
