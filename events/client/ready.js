@@ -34,7 +34,7 @@ module.exports = async (client) => {
                     .addField(`⚙ Loaded`, `\`${client.slashCommands.size} Commands\``, true)
                     .addField("\u200b", `\u200b`, true)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                ], files: [attachment]
+                ]
             });
         });
         change_status(client);
