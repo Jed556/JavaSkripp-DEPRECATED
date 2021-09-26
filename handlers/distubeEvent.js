@@ -549,6 +549,7 @@ module.exports = (client) => {
         if (djs.length == 0) djs = "`not setup`";
         else djs.slice(0, 15).join(", ");
         if (!newTrack) return new MessageEmbed().setColor(ee.errColor).setTitle("NO SONG FOUND?!?!")
+        const spindisc = new MessageAttachment("icon/spindisc.gif")
         var embed = new MessageEmbed().setColor(ee.color)
             .setDescription(`**[${newTrack.name}](${newTrack.url})**`)
             .addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)
@@ -560,7 +561,7 @@ module.exports = (client) => {
             .addField(`⬇ Download Song:`, `>>> [\`Download here\`](${newTrack.streamURL})`, true)
             .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
             .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s" : ""}:`, `>>> ${djs}`, client.settings.get(newQueue.id, "djroles").length > 1 ? false : true)
-            .setAuthor(`DASHBOARD | NOW PLAYING`, ee.discspin)
+            .setAuthor(`DASHBOARD | NOW PLAYING`, "spindisc://spindisc.gif")
             .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
             .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({ dynamic: true }));
 
@@ -606,7 +607,8 @@ module.exports = (client) => {
         const row2 = new MessageActionRow().addComponents([songloop, queueloop, forward, rewind, lyrics]);
         return {
             embeds: [embed],
-            components: [row, row2]
+            components: [row, row2],
+            files: [spindisc]
         };
     }
 };
