@@ -132,13 +132,21 @@ module.exports = {
                     time: 30000
                 });
 
-                collect.on("collect", (b) => {
-                    if (!ids.has(b.user.id))
-                        return button.reply({
+                collector.on("collect", (b) => {
+                    press(b)
+                });
+
+                function press(b) {
+                    if (!ids.has(b.user.id)) {
+                        b.followUp({
                             content: "You cant play the game as they didn't call u to play.",
                             ephemeral: true
                         });
-                    ids.delete(b.user.id);
+                        collector.on("collect", (b) => {
+                            press(b)
+                        });
+                    } else
+                        ids.delete(b.user.id);
                     b.deferUpdate();
                     if (b.user.id == opponent.id) {
                         mem = b.customId;
@@ -147,74 +155,74 @@ module.exports = {
                         auth = b.customId;
                     }
                     if (ids.size == 0) collect.stop();
-                });
+                }
+            });
 
-                collect.on("end", (c, reason) => {
-                    if (reason == "time") {
+            collect.on("end", (c, reason) => {
+                if (reason == "time") {
+                    let embed = new MessageEmbed()
+                        .setTitle("Game Timed Out!")
+                        .setColor(ee.errColor)
+                        .setDescription(
+                            "One or more players did not make a move in time(30s)"
+                        )
+                        .setFooter(client.user.username, client.user.displayAvatarURL());
+                    interaction.editReply({
+                        embeds: [embed],
+                        components: []
+                    });
+                } else {
+                    if (mem == "rock" && auth == "scissors") {
                         let embed = new MessageEmbed()
-                            .setTitle("Game Timed Out!")
-                            .setColor(ee.errColor)
-                            .setDescription(
-                                "One or more players did not make a move in time(30s)"
-                            )
+                            .setTitle(`${opponent.tag} Wins!`)
+                            .setColor(ee.okColor)
+                            .setDescription("Rock defeats Scissors")
                             .setFooter(client.user.username, client.user.displayAvatarURL());
-                        interaction.editReply({
-                            embeds: [embed],
-                            components: []
-                        });
+                        interaction.editReply({ embeds: [embed], components: [] });
+                    } else if (mem == "scissors" && auth == "rock") {
+                        let embed = new MessageEmbed()
+                            .setTitle(`${interaction.user.tag} Wins!`)
+                            .setColor(ee.okColor)
+                            .setDescription("Rock defeats Scissors")
+                            .setFooter(client.user.username, client.user.displayAvatarURL());
+                        interaction.editReply({ embeds: [embed], components: [] });
+                    } else if (mem == "scissors" && auth == "paper") {
+                        let embed = new MessageEmbed()
+                            .setTitle(`${opponent.tag} Wins!`)
+                            .setColor(ee.okColor)
+                            .setDescription("Scissors defeats Paper")
+                            .setFooter(client.user.username, client.user.displayAvatarURL());
+                        interaction.editReply({ embeds: [embed], components: [] });
+                    } else if (mem == "paper" && auth == "scissors") {
+                        let embed = new MessageEmbed()
+                            .setTitle(`${interaction.user.tag} Wins!`)
+                            .setColor(ee.okColor)
+                            .setDescription("Scissors defeats Paper")
+                            .setFooter(client.user.username, client.user.displayAvatarURL());
+                        interaction.editReply({ embeds: [embed], components: [] });
+                    } else if (mem == "paper" && auth == "rock") {
+                        let embed = new MessageEmbed()
+                            .setTitle(`${opponent.tag} Wins!`)
+                            .setColor(ee.okColor)
+                            .setDescription("Paper defeats Rock")
+                            .setFooter(client.user.username, client.user.displayAvatarURL());
+                        interaction.editReply({ embeds: [embed], components: [] });
+                    } else if (mem == "rock" && auth == "paper") {
+                        let embed = new MessageEmbed()
+                            .setTitle(`${interaction.user.tag} Wins!`)
+                            .setColor(ee.okColor)
+                            .setDescription("Paper defeats Rock")
+                            .setFooter(client.user.username, client.user.displayAvatarURL());
+                        interaction.editReply({ embeds: [embed], components: [] });
                     } else {
-                        if (mem == "rock" && auth == "scissors") {
-                            let embed = new MessageEmbed()
-                                .setTitle(`${opponent.tag} Wins!`)
-                                .setColor(ee.okColor)
-                                .setDescription("Rock defeats Scissors")
-                                .setFooter(client.user.username, client.user.displayAvatarURL());
-                            interaction.editReply({ embeds: [embed], components: [] });
-                        } else if (mem == "scissors" && auth == "rock") {
-                            let embed = new MessageEmbed()
-                                .setTitle(`${interaction.user.tag} Wins!`)
-                                .setColor(ee.okColor)
-                                .setDescription("Rock defeats Scissors")
-                                .setFooter(client.user.username, client.user.displayAvatarURL());
-                            interaction.editReply({ embeds: [embed], components: [] });
-                        } else if (mem == "scissors" && auth == "paper") {
-                            let embed = new MessageEmbed()
-                                .setTitle(`${opponent.tag} Wins!`)
-                                .setColor(ee.okColor)
-                                .setDescription("Scissors defeats Paper")
-                                .setFooter(client.user.username, client.user.displayAvatarURL());
-                            interaction.editReply({ embeds: [embed], components: [] });
-                        } else if (mem == "paper" && auth == "scissors") {
-                            let embed = new MessageEmbed()
-                                .setTitle(`${interaction.user.tag} Wins!`)
-                                .setColor(ee.okColor)
-                                .setDescription("Scissors defeats Paper")
-                                .setFooter(client.user.username, client.user.displayAvatarURL());
-                            interaction.editReply({ embeds: [embed], components: [] });
-                        } else if (mem == "paper" && auth == "rock") {
-                            let embed = new MessageEmbed()
-                                .setTitle(`${opponent.tag} Wins!`)
-                                .setColor(ee.okColor)
-                                .setDescription("Paper defeats Rock")
-                                .setFooter(client.user.username, client.user.displayAvatarURL());
-                            interaction.editReply({ embeds: [embed], components: [] });
-                        } else if (mem == "rock" && auth == "paper") {
-                            let embed = new MessageEmbed()
-                                .setTitle(`${interaction.user.tag} Wins!`)
-                                .setColor(ee.okColor)
-                                .setDescription("Paper defeats Rock")
-                                .setFooter(client.user.username, client.user.displayAvatarURL());
-                            interaction.editReply({ embeds: [embed], components: [] });
-                        } else {
-                            let embed = new MessageEmbed()
-                                .setTitle("Draw!")
-                                .setColor(ee.okColor)
-                                .setDescription(`Both players chose ${mem}`)
-                                .setFooter(client.user.username, client.user.displayAvatarURL());
-                            interaction.editReply({ embeds: [embed], components: [] });
-                        }
+                        let embed = new MessageEmbed()
+                            .setTitle("Draw!")
+                            .setColor(ee.okColor)
+                            .setDescription(`Both players chose ${mem}`)
+                            .setFooter(client.user.username, client.user.displayAvatarURL());
+                        interaction.editReply({ embeds: [embed], components: [] });
                     }
-                });
+                }
             });
 
             collector.on("end", (collected, reason) => {
