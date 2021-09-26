@@ -132,7 +132,7 @@ module.exports = {
                     time: 30000
                 });
 
-                collector.on("collect", (b) => {
+                collect.on("collect", (b) => {
                     press(b)
                 });
 
@@ -142,7 +142,7 @@ module.exports = {
                             content: "You cant play the game as they didn't call u to play.",
                             ephemeral: true
                         });
-                        collector.on("collect", (b) => {
+                        collect.on("collect", (b) => {
                             press(b)
                         });
                     } else
@@ -158,7 +158,7 @@ module.exports = {
                 }
             });
 
-            collector.on("end", (c, reason) => {
+            collect.on("end", (c, reason) => {
                 if (reason == "time") {
                     let embed = new MessageEmbed()
                         .setTitle("Game Timed Out!")
