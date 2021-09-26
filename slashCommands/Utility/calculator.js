@@ -52,8 +52,7 @@ module.exports = {
                     let time = 600000;
                     let value = "";
                     let emb1 = new MessageEmbed()
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setColor(ee.errColor);
+                        .setColor(ee.color);
 
                     function createCollector(val, result = false) {
                         const filter = (button) =>
