@@ -66,8 +66,8 @@ module.exports = {
                     embeds: [emb],
                     components: row
                 })
-                .then(async (args) => {
-                    const msg = await interaction.fetchReply();
+                .then(async () => {
+                    const fr = await interaction.fetchReply();
 
                     let isWrong = false;
                     let time = 600000;
@@ -80,7 +80,7 @@ module.exports = {
                         const filter = (button) =>
                             button.user.id === interaction.user.id &&
                             button.customId === "cal" + val;
-                        let collect = msg.createMessageComponentCollector({
+                        let collect = fr.createMessageComponentCollector({
                             filter,
                             componentType: "BUTTON",
                             time: time
@@ -104,7 +104,7 @@ module.exports = {
                                 value = value.slice(0, -2);
                                 if (value === "") value = " ";
                                 emb1.setDescription("```" + value + "```");
-                                await msg.edit({
+                                await fr.edit({
                                     embeds: [emb1],
                                     components: row
                                 });
@@ -112,7 +112,7 @@ module.exports = {
                                 return interaction.deleteReply().catch(() => { });
                             else if (value.includes("Clear")) return (value = "0");
                             emb1.setDescription("```" + value + "```");
-                            await msg.edit({
+                            await fr.edit({
                                 embeds: [emb1],
                                 components: row
                             });
@@ -132,7 +132,7 @@ module.exports = {
                             "Your Time for using the calculator ran out (10 minutes)"
                         );
                         emb1.setColor(ee.errColor);
-                        await msg.edit({ embeds: [emb1], components: [] });
+                        await fr.edit({ embeds: [emb1], components: [] });
                     }, time);
                 });
 
