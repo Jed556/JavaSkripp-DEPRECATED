@@ -5,8 +5,8 @@ const settings = require("../../botconfig/settings.json");
 const { errDM } = require("../../handlers/antiCrash");
 
 module.exports = {
-    name: "tictactoe",
-    description: "Play tic tac toe with someone",
+    name: "rps",
+    description: "Play rock paper scissors with someone",
     category: "Games",
     cooldown: 1,
     requiredroles: [],
