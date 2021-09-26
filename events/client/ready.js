@@ -1,5 +1,5 @@
 //here the event starts
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, MessageAttachment } = require("discord.js");
 const Discord = require("discord.js");
 const { change_status } = require("../../handlers/functions");
 const settings = require("../../botconfig/settings.json")
@@ -21,12 +21,13 @@ module.exports = async (client) => {
                 `┃ `.bold.brightGreen + " ".repeat(-1 + stringlength - ` ┃ `.length) + "┃".bold.brightGreen + "\n" +
                 `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
         } catch { }
+        const attachment = new MessageAttachment("../../icon/Online.png")
         client.users.fetch(settings.ownerID, false).then((user) => {
             user.send({
                 embeds: [new MessageEmbed()
                     .setTimestamp()
                     .setColor(ee.okColor)
-                    .setTitle(`${client.user.username} Online`, "../../icon/Online.png")
+                    .setTitle(`${client.user.username} Online`, "attachment://Online.png")
                     .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
                     .addField("🤖 Node", `\`${process.version}\``, true)
                     .addField("\u200b", `\u200b`, true)
@@ -34,7 +35,7 @@ module.exports = async (client) => {
                     .addField(`⚙ Loaded`, `\`${client.slashCommands.size} Commands\``, true)
                     .addField("\u200b", `\u200b`, true)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                ]
+                ], files: [attachment]
             });
         });
         change_status(client);
