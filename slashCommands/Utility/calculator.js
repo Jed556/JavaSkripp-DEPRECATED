@@ -38,7 +38,6 @@ module.exports = {
 
             const emb = new MessageEmbed()
                 .setColor(ee.color)
-                .setFooter(client.user.username, client.user.displayAvatarURL())
                 .setDescription("```0```");
 
             await interaction
@@ -47,8 +46,6 @@ module.exports = {
                     components: row
                 })
                 .then(async (interaction) => {
-                    //const fr = await interaction.fetchReply();
-
                     let isWrong = false;
                     let time = 600000;
                     let value = "";
