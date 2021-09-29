@@ -3,6 +3,7 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const websiteSettings = require("../../dashboard/settings.json");
+const { dirSetup } = require("../../handlers/slashCommands")
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -67,9 +68,15 @@ module.exports = {
                 };
                 try {
                     for (let i = 0; i < client.slashCategories.length; i += 1) {
+                        readdirSync("../../slashCommands/").forEach((dir) => {
+                            if (lstatSync(`../../slashCommands/${dir}`).isDirectory()) {
+                                const groupName = dir;
+                                const cmdSetup = dirSetup.find(d => d.Folder == dir);
+                            }
+                        })
                         const current = client.slashCategories[i];
                         const items = slashCommands(current);
-                        embed.addField(`**${current.toUpperCase()} [${items.length}]**`, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
+                        embed.addField(`**${current.toUpperCase()} [${items.length}]** Prefix: \`${cmdSetup.CmdName}\``, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
                     }
                 } catch (e) {
                     console.log(String(e.stack).red);
