@@ -4,8 +4,38 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const websiteSettings = require("../../dashboard/settings.json");
-const { dirSetup } = require("../../handlers/functions")
 const { errDM } = require("../../handlers/functions");
+const dirSetup = [{
+    "Folder": "Info", "CmdName": "info",
+    "CmdDescription": "Get Bot, API or Command Information"
+}, {
+    "Folder": "Settings", "CmdName": "settings",
+    "CmdDescription": "Bot Configuration"
+}, {
+    "Folder": "Music", "CmdName": "music",
+    "CmdDescription": "Music Commands"
+}, {
+    "Folder": "Queue", "CmdName": "queue",
+    "CmdDescription": "Music Queue Commands"
+}, {
+    "Folder": "Filter", "CmdName": "filter",
+    "CmdDescription": "Modify Music Filters"
+}, {
+    "Folder": "Moderation", "CmdName": "mod",
+    "CmdDescription": "Moderating Commands"
+}, {
+    "Folder": "User", "CmdName": "user",
+    "CmdDescription": "User Commands"
+}, {
+    "Folder": "Search", "CmdName": "search",
+    "CmdDescription": "Search Commands"
+}, {
+    "Folder": "Games", "CmdName": "game",
+    "CmdDescription": "Play Games"
+}, {
+    "Folder": "Utility", "CmdName": "util",
+    "CmdDescription": "Utility Commands"
+}];
 
 module.exports = {
     name: "help",
