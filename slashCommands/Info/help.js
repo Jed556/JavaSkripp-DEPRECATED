@@ -4,7 +4,7 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const websiteSettings = require("../../dashboard/settings.json");
-const { dirSetup } = require("../../handlers/slashCommands")
+const { dirSetup } = require("../../handlers/functions")
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -72,11 +72,11 @@ module.exports = {
                         readdirSync("../").forEach((dir) => {
                             if (lstatSync(`../${dir}`).isDirectory()) {
                                 const cmdSetup = dirSetup.find(d => d.Folder == dir);
-                                const current = client.slashCategories[i];
-                                const items = slashCommands(current);
-                                embed.addField(`**${current.toUpperCase()} [${items.length}]** Prefix: \`${cmdSetup.CmdName}\``, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
                             }
                         })
+                        const current = client.slashCategories[i];
+                        const items = slashCommands(current);
+                        embed.addField(`**${current.toUpperCase()} [${items.length}]** Prefix: \`${cmdSetup.CmdName}\``, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
                     }
                 } catch (e) {
                     console.log(String(e.stack).red);

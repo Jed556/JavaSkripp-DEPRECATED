@@ -30,6 +30,39 @@ module.exports.customplaylistembed = customplaylistembed;
 module.exports.lyricsEmbed = lyricsEmbed;
 module.exports.check_if_dj = check_if_dj;
 module.exports.errDM = errDM;
+module.exports.dirSetup = dirSetup;
+
+const dirSetup = [{
+    "Folder": "Info", "CmdName": "info",
+    "CmdDescription": "Get Bot, API or Command Information"
+}, {
+    "Folder": "Settings", "CmdName": "settings",
+    "CmdDescription": "Bot Configuration"
+}, {
+    "Folder": "Music", "CmdName": "music",
+    "CmdDescription": "Music Commands"
+}, {
+    "Folder": "Queue", "CmdName": "queue",
+    "CmdDescription": "Music Queue Commands"
+}, {
+    "Folder": "Filter", "CmdName": "filter",
+    "CmdDescription": "Modify Music Filters"
+}, {
+    "Folder": "Moderation", "CmdName": "mod",
+    "CmdDescription": "Moderating Commands"
+}, {
+    "Folder": "User", "CmdName": "user",
+    "CmdDescription": "User Commands"
+}, {
+    "Folder": "Search", "CmdName": "search",
+    "CmdDescription": "Search Commands"
+}, {
+    "Folder": "Games", "CmdName": "game",
+    "CmdDescription": "Play Games"
+}, {
+    "Folder": "Utility", "CmdName": "util",
+    "CmdDescription": "Utility Commands"
+}];
 
 function check_if_dj(client, member, song) {
     //if no message added return
