@@ -69,8 +69,8 @@ module.exports = {
                 };
                 try {
                     for (let i = 0; i < client.slashCategories.length; i += 1) {
-                        readdirSync("../../slashCommands/").forEach((dir) => {
-                            if (lstatSync(`../../slashCommands/${dir}`).isDirectory()) {
+                        readdirSync("../").forEach((dir) => {
+                            if (lstatSync(`../${dir}`).isDirectory()) {
                                 const cmdSetup = dirSetup.find(d => d.Folder == dir);
                                 const current = client.slashCategories[i];
                                 const items = slashCommands(current);
