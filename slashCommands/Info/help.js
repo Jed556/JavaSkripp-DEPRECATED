@@ -102,11 +102,11 @@ module.exports = {
                         readdirSync("../").forEach((dir) => {
                             if (lstatSync(`../${dir}`).isDirectory()) {
                                 const cmdSetup = dirSetup.find(d => d.Folder == dir);
+                                const current = client.slashCategories[i];
+                                const items = slashCommands(current);
+                                embed.addField(`**${current.toUpperCase()} [${items.length}]** Prefix: \`${cmdSetup.CmdName}\``, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
                             }
                         })
-                        const current = client.slashCategories[i];
-                        const items = slashCommands(current);
-                        embed.addField(`**${current.toUpperCase()} [${items.length}]** Prefix: \`${cmdSetup.CmdName}\``, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
                     }
                 } catch (e) {
                     console.log(String(e.stack).red);
