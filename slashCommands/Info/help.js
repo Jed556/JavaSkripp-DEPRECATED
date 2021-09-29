@@ -68,15 +68,9 @@ module.exports = {
                 };
                 try {
                     for (let i = 0; i < client.slashCategories.length; i += 1) {
-                        readdirSync("../../slashCommands/").forEach((dir) => {
-                            if (lstatSync(`../../slashCommands/${dir}`).isDirectory()) {
-                                const groupName = dir;
-                                const cmdSetup = dirSetup.find(d => d.Folder == dir);
-                            }
-                        })
                         const current = client.slashCategories[i];
                         const items = slashCommands(current);
-                        embed.addField(`**${current.toUpperCase()} [${items.length}]** Prefix: \`${cmdSetup.CmdName}\``, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
+                        embed.addField(`**${current.toUpperCase()} [${items.length}]** Prefix: \`${dirSetup.CmdName}\``, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
                     }
                 } catch (e) {
                     console.log(String(e.stack).red);
