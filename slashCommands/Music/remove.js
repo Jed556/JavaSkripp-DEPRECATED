@@ -8,7 +8,7 @@ const { errDM } = require("../../handlers/functions");
 module.exports = {
     name: "remove",
     description: "Removes song(s)",
-    category: "Queue",
+    category: "Music",
     cooldown: 1,
     requiredroles: [],
     alloweduserids: [],
@@ -95,7 +95,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setTitle(`${client.allEmojis.x} **You can't remove the current Song (0)!**`)
-                        .setDescription(`**Use the \`${client.settings.get(guild.id, "prefix")}skip\` (Slash)Command instead!**`)
+                        .setDescription(`**Use the \`skip\` Slash Command instead!**`)
                     ],
                     ephemeral: true
                 })
