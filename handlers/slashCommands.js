@@ -20,9 +20,6 @@ const dirSetup = [{
     "Folder": "Moderation", "CmdName": "mod",
     "CmdDescription": "Moderating Commands"
 }, {
-    "Folder": "Guild", "CmdName": "guild",
-    "CmdDescription": "Guild Commands"
-}, {
     "Folder": "User", "CmdName": "user",
     "CmdDescription": "User Commands"
 }, {
