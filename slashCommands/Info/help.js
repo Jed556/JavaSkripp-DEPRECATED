@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const { readdirSync, lstatSync } = require("fs");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
@@ -68,9 +69,14 @@ module.exports = {
                 };
                 try {
                     for (let i = 0; i < client.slashCategories.length; i += 1) {
-                        const current = client.slashCategories[i];
-                        const items = slashCommands(current);
-                        embed.addField(`**${current.toUpperCase()} [${items.length}]** Prefix: \`${dirSetup.CmdName}\``, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
+                        readdirSync("../../slashCommands/").forEach((dir) => {
+                            if (lstatSync(`../../slashCommands/${dir}`).isDirectory()) {
+                                const cmdSetup = dirSetup.find(d => d.Folder == dir);
+                                const current = client.slashCategories[i];
+                                const items = slashCommands(current);
+                                embed.addField(`**${current.toUpperCase()} [${items.length}]** Prefix: \`${cmdSetup.CmdName}\``, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
+                            }
+                        })
                     }
                 } catch (e) {
                     console.log(String(e.stack).red);
