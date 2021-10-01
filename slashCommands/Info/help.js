@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const { readdirSync, lstatSync } = require("fs");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
@@ -68,46 +67,10 @@ module.exports = {
                 };
                 try {
                     for (let i = 0; i < client.slashCategories.length; i += 1) {
-                        readdirSync("../").forEach((dir) => {
-                            if (lstatSync(`../${dir}`).isDirectory()) {
-                                const dirSetup = [{
-                                    "Folder": "Info", "CmdName": "info",
-                                    "CmdDescription": "Get Bot, API or Command Information"
-                                }, {
-                                    "Folder": "Settings", "CmdName": "settings",
-                                    "CmdDescription": "Bot Configuration"
-                                }, {
-                                    "Folder": "Music", "CmdName": "music",
-                                    "CmdDescription": "Music Commands"
-                                }, {
-                                    "Folder": "Queue", "CmdName": "queue",
-                                    "CmdDescription": "Music Queue Commands"
-                                }, {
-                                    "Folder": "Filter", "CmdName": "filter",
-                                    "CmdDescription": "Modify Music Filters"
-                                }, {
-                                    "Folder": "Moderation", "CmdName": "mod",
-                                    "CmdDescription": "Moderating Commands"
-                                }, {
-                                    "Folder": "User", "CmdName": "user",
-                                    "CmdDescription": "User Commands"
-                                }, {
-                                    "Folder": "Search", "CmdName": "search",
-                                    "CmdDescription": "Search Commands"
-                                }, {
-                                    "Folder": "Games", "CmdName": "game",
-                                    "CmdDescription": "Play Games"
-                                }, {
-                                    "Folder": "Utility", "CmdName": "util",
-                                    "CmdDescription": "Utility Commands"
-                                }];
-                                const cmdSetup = dirSetup.find(d => d.Folder == dir);
                                 const current = client.slashCategories[i];
                                 const items = slashCommands(current);
-                                embed.addField(`**${current.toUpperCase()} [${items.length}]** Prefix: \`${cmdSetup.CmdName}\``, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
+                                embed.addField(`**${current.toUpperCase()} [${items.length}]**`, `${items.length ? `> ${items.join(", ")}` : "\u200b"}`);
                             }
-                        })
-                    }
                 } catch (e) {
                     console.log(String(e.stack).red);
                 }
