@@ -37,12 +37,12 @@ module.exports = {
                 ephemeral: true
             })
 
-            if (channel.userLimit != 0 && channel.full)
+            if (channel.userLimit != 0 && channel.full && !channel)
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`<:declined:780403017160982538> Your Voice Channel is full, I can't join!`)
+                        .setTitle(`${client.allEmojis.x} Your Voice Channel is full, I can't join!`)
                     ],
                     ephemeral: true
                 });
