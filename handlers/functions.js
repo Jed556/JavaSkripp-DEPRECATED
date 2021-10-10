@@ -878,7 +878,7 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
  */
 function change_status(client) {
     try {
-        const Guilds = client.guilds.cache.size; const Users = client.users.cache.size;
+        const Guilds = client.guilds.cache.size; const Users = client.users.cache.size - 1;
         if (Guilds > 1 && Users > 999) {
             client.user.setActivity(`${Guilds} Guilds • ${Math.ceil(Users / 1000)}K Members`, {
                 type: "LISTENING",
