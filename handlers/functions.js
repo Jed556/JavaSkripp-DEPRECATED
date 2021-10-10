@@ -881,21 +881,21 @@ function change_status(client) {
         //client.user.setActivity(`commands | ${client.guilds.cache.size} Guilds | ${Math.ceil(client.users.cache.size/1000)}k Members`, {
         //  type: "LISTENING",
         //});
-
-        if (client.guilds.cache.size > 1 && client.users.cache.size > 999) {
-            client.user.setActivity(`${client.guilds.cache.size} Guilds • ${Math.ceil(client.users.cache.size / 1000)}K Members`, {
+        const Guilds = client.guilds.cache.size - 1; const Users = client.users.cache.size - 1
+        if (Guilds > 1 && Users > 999) {
+            client.user.setActivity(`${Guilds} Guilds • ${Math.ceil(Users / 1000)}K Members`, {
                 type: "LISTENING",
             });
-        } else if (client.guilds.cache.size > 1 && client.users.cache.size > 1) {
-            client.user.setActivity(`${client.guilds.cache.size} Guilds • ${Math.ceil(client.users.cache.size)} Members`, {
+        } else if (Guilds > 1 && Users > 1) {
+            client.user.setActivity(`${Guilds} Guilds • ${Math.ceil(Users)} Members`, {
                 type: "LISTENING",
             });
-        } else if (client.users.cache.size > 1) {
-            client.user.setActivity(`${client.guilds.cache.size} Guild • ${Math.ceil(client.users.cache.size)} Members`, {
+        } else if (Users > 1) {
+            client.user.setActivity(`${Guilds} Guild • ${Math.ceil(Users)} Members`, {
                 type: "LISTENING",
             });
         } else {
-            client.user.setActivity(`${client.guilds.cache.size} Guild • ${Math.ceil(client.users.cache.size)} Member`, {
+            client.user.setActivity(`${Guilds} Guild • ${Math.ceil(Users)} Member`, {
                 type: "LISTENING",
             });
         }
