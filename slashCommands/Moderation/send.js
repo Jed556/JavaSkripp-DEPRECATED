@@ -85,7 +85,7 @@ module.exports = {
 
             } else return interaction.reply("Please enter the user tag (ex. Gatorade#4147)");
         } catch (e) {
-            interaction.reply(`No users with tag \`${Target}\` found`)
+            interaction.reply(`No users with tag \`${Target}\` found in mutual servers`)
             console.log(String(e.stack).bgRed)
             errDM(client, e)
         }

@@ -61,7 +61,7 @@ module.exports = {
                     .setThumbnail(client.user.displayAvatarURL())
                     .setTitle("HELP MENU 🔰 Commands")
                     .setDescription(`[**Click here to invite me!**]( ${ee.invite} )`)
-                    .setFooter(`List of commands are also available in \`/\` > JavaSkripp`, client.user.displayAvatarURL());
+                    .setFooter(`List of commands are also available in / > JavaSkripp`, client.user.displayAvatarURL());
                 const slashCommands = (category) => {
                     return client.slashCommands.filter((cmd) => cmd.category === category).map((cmd) => `\`${cmd.name}\``);
                 };
