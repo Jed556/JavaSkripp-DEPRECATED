@@ -37,7 +37,7 @@ module.exports = {
                 ephemeral: true
             })
 
-            if (channel.userLimit != 0 && channel.full)
+            if (channel.userLimit != 0 && channel.full && !channel)
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
