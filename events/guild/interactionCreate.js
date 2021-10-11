@@ -9,15 +9,19 @@ module.exports = (client, interaction) => {
 
     if (interaction.guildId == null) return;
 
-    client.settings.ensure(interaction.guildId, {
-        prefix: config.prefix,
-        defaultvolume: 100,
-        defaultautoplay: false,
-        defaultfilters: [`bassboost6`, `clear`],
-        djroles: [],
-    })
-    let prefix = client.settings.get(interaction.guildId)
+    let prefix = config.prefix;
+    if (interaction.guildId) {
+        client.settings.ensure(interaction.guildId, {
+            prefix: config.prefix,
+            defaultvolume: 100,
+            defaultautoplay: false,
+            defaultfilters: [`bassboost6`, `clear`],
+            djroles: [],
+        })
+        prefix = client.settings.get(interaction.guildId)
+    }
     let command = false;
+
     try {
         if (client.slashCommands.has(CategoryName + interaction.options.getSubcommand())) {
             command = client.slashCommands.get(CategoryName + interaction.options.getSubcommand());
@@ -28,7 +32,7 @@ module.exports = (client, interaction) => {
         }
     }
     if (command) {
-        let botchannels = client.settings.get(interaction.guildId, `botchannel`);
+        let botchannels = client.settings.get(interaction.guildId, `botchannel`) || false;
         if (!botchannels || !Array.isArray(botchannels)) botchannels = [];
         if (botchannels.length > 0) {
             if (!botchannels.includes(interaction.channelId) && !interaction.member.permissions.has("ADMINISTRATOR")) {
@@ -37,8 +41,8 @@ module.exports = (client, interaction) => {
                     embeds: [new Discord.MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.allEmojis.x} **You are not allowed to use this Command in here!**`)
-                        .setDescription(`Please do it in one of those:\n> ${botchannels.map(c => `<#${c}>`).join(", ")}`)
+                        .setTitle(`${client.allEmojis.x} **Executing command is restricted here!**`)
+                        .setDescription(`Execute it in:\n> ${botchannels.map(c => `<#${c}>`).join(", ")}`)
                     ]
                 })
             }
