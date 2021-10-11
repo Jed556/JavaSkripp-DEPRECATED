@@ -19,12 +19,14 @@ module.exports = {
                 deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
             const { guild } = member;
 
+            const ownerTag = await client.users.cache.find(u => u.id === settings.ownerID).tag;
+
             interaction.reply({
                 ephemeral: true,
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
                     .setTitle("Support")
-                    .addField(`Discord:`, `\`${ee.owner}\`, \`${client.user.tag}\``)
+                    .addField(`Discord:`, `\`${ownerTag}\`, \`${client.user.tag}\``)
                     .addField(`Gmail:`, `\`${ee.email}\``)
                     .addField(`Github:`, "[Jed556/JavaSkripp](https://github.com/Jed556/JavaSkripp-Public)")
                     .addField(`Updates`, "[Project Updates](https://github.com/Jed556/JavaSkripp-Public/projects/1?fullscreen=true)")
