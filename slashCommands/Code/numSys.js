@@ -36,7 +36,7 @@ module.exports = {
 
     run: async (client, interaction) => {
         try {
-            const input = interaction.options.getString("input");
+            var input = interaction.options.getString("input");
             const conv = interaction.options.getString("convert");
             const convert = (isNaN(input)) ? 16 : 2;
 
@@ -68,6 +68,7 @@ module.exports = {
             return interaction.reply({ embeds: [embed] });
 
             function allIndex(input) {
+                if (conv == "hex") input = parseInt(input, convert).toString(2);
                 var inputArr = input.split("").reverse();
                 var indexes = [], i;
                 for (i = 0; i < inputArr.length; i++)
@@ -85,6 +86,7 @@ module.exports = {
                 const split = input.match(new RegExp('.{1,3}', 'g'))
                 var indexes = [], i;
                 for (var idx = 0; idx < split.length; idx++) {
+                    if (conv == "hex") input = parseInt(split[idx], convert).toString(8);
                     var inputArr = split[idx].split("").reverse();
                     for (i = 0; i < inputArr.length; i++) {
                         if (inputArr[i] === "1") {
