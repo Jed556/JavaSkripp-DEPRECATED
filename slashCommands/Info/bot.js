@@ -20,7 +20,7 @@ module.exports = {
         try {
 
             const owner = await client.users.cache.find(u => u.id === settings.ownerID).tag
-            const avatar = await client.users.fetch(userID).catch(console.error);
+            const avatar = await client.users.fetch(owner).catch(console.error);
 
             const { createdTimestamp } = interaction;
             const ping = Math.floor((Date.now() - createdTimestamp) - 1 * Math.floor(client.ws.ping))
@@ -94,7 +94,7 @@ module.exports = {
                         .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
                         .addField("📶 Latency", `\`API: ${client.ws.ping}ms\` \`Bot: ${ping}ms\``, true)
                         .addField("\u200b", `\u200b`, true)
-                        .setFooter(`Coded by: ${ee.owner}`, ee.ownericon);
+                        .setFooter(`Coded by: ${owner}`, avatar);
                     interaction.reply({
                         embeds: [botinfo]
                     });
