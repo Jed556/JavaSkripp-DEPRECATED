@@ -21,7 +21,7 @@ module.exports = {
 
             const ownerID = await client.users.cache.find(u => u.id === settings.ownerID).id;
             const ownerTag = await client.users.cache.find(u => u.id === settings.ownerID).tag;
-            const avatar = await client.users.fetch(ownerID).catch(console.error);
+            const avatar = await client.users.fetch(ownerID.displayAvatarURL()).catch(console.error);
 
             const { createdTimestamp } = interaction;
             const ping = Math.floor((Date.now() - createdTimestamp) - 1 * Math.floor(client.ws.ping))
