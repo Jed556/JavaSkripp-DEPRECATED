@@ -456,7 +456,7 @@ module.exports = (client) => {
                         .setColor(ee.color)
                         .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
                         .setFooter(song.user.tag, song.user.displayAvatarURL({ dynamic: true }))
-                        .setTitle(`${client.allEmojis.check} **Song added to the Queue!**`)
+                        .setAuthor(`**Song added to the Queue!**`, ee.discAdd)
                         .setDescription(`${client.allEmojis.check} Song: [\`${song.name}\`](${song.url})  -  \`${song.formattedDuration}\``)
                         .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - 1} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - song.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
                         .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
@@ -468,8 +468,8 @@ module.exports = (client) => {
                         .setColor(ee.color)
                         .setThumbnail(playlist.thumbnail.url ? playlist.thumbnail.url : `https://img.youtube.com/vi/${playlist.songs[0].id}/mqdefault.jpg`)
                         .setFooter(playlist.user.tag, playlist.user.displayAvatarURL({ dynamic: true }))
-                        .setTitle(`${client.allEmojis.check} **Playlist added to the Queue!**`)
-                        .setDescription(`${client.allEmojis.check} Playlist: [\`${playlist.name}\`](${playlist.url ? playlist.url : ""})  -  \`${playlist.songs.length} Song${playlist.songs.length != 0 ? "s" : ""}\``)
+                        .setAuthor(`**Playlist added to the Queue!**`, ee.discAdd)
+                        .setDescription(`Playlist: [\`${playlist.name}\`](${playlist.url ? playlist.url : ""})  -  \`${playlist.songs.length} Song${playlist.songs.length != 0 ? "s" : ""}\``)
                         .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - - playlist.songs.length} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - playlist.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
                         .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
                 ]
@@ -487,7 +487,7 @@ module.exports = (client) => {
                         .setColor(ee.errColor)
                         .setTimestamp()
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.allEmojis.x} An error occured`)
+                        .setAuthor(`${client.allEmojis.x} An error occured`, ee.discError)
                         .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\`\`\`\`${e}\`\`\``)
                     ]
                 }).catch((e) => console.log(e))
@@ -560,7 +560,7 @@ module.exports = (client) => {
             .addField(`⬇ Download Song:`, `>>> [\`Download here\`](${newTrack.streamURL})`, true)
             .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
             .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s" : ""}:`, `>>> ${djs}`, client.settings.get(newQueue.id, "djroles").length > 1 ? false : true)
-            .setAuthor(`DASHBOARD | NOW PLAYING`, ee.discspin)
+            .setAuthor(`DASHBOARD | NOW PLAYING`, ee.discSpin)
             .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
             .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({ dynamic: true }));
 
