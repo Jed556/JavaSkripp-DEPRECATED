@@ -20,7 +20,7 @@ module.exports = {
             }
         },
         {
-            "String": {
+            "StringChoices": {
                 name: "convert",
                 description: "Convert to number system",
                 required: true,
