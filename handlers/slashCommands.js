@@ -31,6 +31,9 @@ const dirSetup = [{
 }, {
     "Folder": "Utility", "CmdName": "util",
     "CmdDescription": "Utility Commands"
+}, {
+    "Folder": "Code", "CmdName": "code",
+    "CmdDescription": "Coding Commands"
 }];
 
 module.exports = (client) => {
