@@ -12,10 +12,9 @@
 
     "invite": "https://tinyurl.com/JavaSkripp",
 
-    "songended": "https://cdn.discordapp.com/attachments/883978730261860383/883978741892649000/847032838998196234.png",
     "discSpin": "https://i.imgur.com/PsBpnQE.gif",
-    "discAdd": "https://i.imgur.com/TeuhraV.png",
-    "discError": "https://i.imgur.com/02p8M1E.png",
-    "discAlert": "",
-    "discDone": ""
+    "discAdd": "https://i.imgur.com/GFxHP8N.png",
+    "discError": "https://i.imgur.com/sc6WFzn.png",
+    "discAlert": "https://i.imgur.com/Nu0Ul0L.png",
+    "discDone": "https://i.imgur.com/phcsy0g.png"
 }

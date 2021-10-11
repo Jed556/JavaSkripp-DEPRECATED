@@ -32,7 +32,7 @@ module.exports = {
             if (!channel) return interaction.reply({
                 embeds: [new MessageEmbed()
                     .setColor(ee.errColor)
-                    .setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!**`)
+                    .setAuthor(`Join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!`, ee.discAlert)
                 ],
                 ephemeral: true
             })
@@ -42,7 +42,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.allEmojis.x} Your Voice Channel is full, I can't join!`)
+                        .setAuthor(`Your Voice Channel is full!`, ee.discAlert)
                     ],
                     ephemeral: true
                 });

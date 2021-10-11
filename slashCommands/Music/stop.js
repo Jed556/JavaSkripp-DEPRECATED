@@ -32,7 +32,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.allEmojis.x} Join __my__ Voice Channel!`)
+                        .setAuthor(`Join __my__ Voice Channel!`, ee.discAlert)
                         .setDescription(`<#${guild.me.voice.channel.id}>`)
                     ],
                     ephemeral: true

@@ -82,7 +82,10 @@ module.exports = (client) => {
                             //if the member is not in a channel, return
                             if (!channel)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //get the player instance
@@ -90,14 +93,20 @@ module.exports = (client) => {
                             //if no player available return aka not playing anything
                             if (!queue || !newQueue.songs || newQueue.songs.length == 0) {
                                 return i.reply({
-                                    content: `${client.allEmojis.x} Nothing Playing yet`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Nothing Playing yet`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             }
                             //if not in the same channel as the player, return Error
                             if (channel.id !== newQueue.voiceChannel.id)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //if there is nothing more to skip then stop music and leave the Channel
@@ -133,14 +142,20 @@ module.exports = (client) => {
                             //if the member is not in a channel, return
                             if (!channel)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
 
                             //if not in the same channel as the player, return Error
                             if (channel.id !== newQueue.voiceChannel.id)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //stop the track
@@ -163,13 +178,19 @@ module.exports = (client) => {
                             //if the member is not in a channel, return
                             if (!channel)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //if not in the same channel as the player, return Error
                             if (channel.id !== newQueue.voiceChannel.id)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             if (newQueue.playing) {
@@ -209,13 +230,19 @@ module.exports = (client) => {
                             //if the member is not in a channel, return
                             if (!channel)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //if not in the same channel as the player, return Error
                             if (channel.id !== newQueue.voiceChannel.id)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //pause the player
@@ -248,13 +275,19 @@ module.exports = (client) => {
                             //if the member is not in a channel, return
                             if (!channel)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //if not in the same channel as the player, return Error
                             if (channel.id !== newQueue.voiceChannel.id)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //pause the player
@@ -276,13 +309,19 @@ module.exports = (client) => {
                             //if the member is not in a channel, return
                             if (!channel)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //if not in the same channel as the player, return Error
                             if (channel.id !== newQueue.voiceChannel.id)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //Disable the Repeatmode
@@ -313,13 +352,19 @@ module.exports = (client) => {
                             //if the member is not in a channel, return
                             if (!channel)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //if not in the same channel as the player, return Error
                             if (channel.id !== newQueue.voiceChannel.id)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //Disable the Repeatmode
@@ -350,13 +395,19 @@ module.exports = (client) => {
                             //if the member is not in a channel, return
                             if (!channel)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //if not in the same channel as the player, return Error
                             if (channel.id !== newQueue.voiceChannel.id)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             let seektime = newQueue.currentTime + 10;
@@ -383,13 +434,19 @@ module.exports = (client) => {
                             //if the member is not in a channel, return
                             if (!channel)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //if not in the same channel as the player, return Error
                             if (channel.id !== newQueue.voiceChannel.id)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             let seektime = newQueue.currentTime - 10;
@@ -417,13 +474,19 @@ module.exports = (client) => {
                             //if the member is not in a channel, return
                             if (!channel)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             //if not in the same channel as the player, return Error
                             if (channel.id !== newQueue.voiceChannel.id)
                                 return i.reply({
-                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
                                     ephemeral: true
                                 })
                             return i.reply({
@@ -456,8 +519,8 @@ module.exports = (client) => {
                         .setColor(ee.color)
                         .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
                         .setFooter(song.user.tag, song.user.displayAvatarURL({ dynamic: true }))
-                        .setAuthor(`**Song added to the Queue!**`, ee.discAdd)
-                        .setDescription(`${client.allEmojis.check} Song: [\`${song.name}\`](${song.url})  -  \`${song.formattedDuration}\``)
+                        .setAuthor(`Song added to the Queue!`, ee.discAdd)
+                        .setDescription(`Song: [\`${song.name}\`](${song.url})  -  \`${song.formattedDuration}\``)
                         .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - 1} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - song.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
                         .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
                 ]
@@ -468,7 +531,7 @@ module.exports = (client) => {
                         .setColor(ee.color)
                         .setThumbnail(playlist.thumbnail.url ? playlist.thumbnail.url : `https://img.youtube.com/vi/${playlist.songs[0].id}/mqdefault.jpg`)
                         .setFooter(playlist.user.tag, playlist.user.displayAvatarURL({ dynamic: true }))
-                        .setAuthor(`**Playlist added to the Queue!**`, ee.discAdd)
+                        .setAuthor(`Playlist added to the Queue!`, ee.discAdd)
                         .setDescription(`Playlist: [\`${playlist.name}\`](${playlist.url ? playlist.url : ""})  -  \`${playlist.songs.length} Song${playlist.songs.length != 0 ? "s" : ""}\``)
                         .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - - playlist.songs.length} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - playlist.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
                         .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
@@ -487,8 +550,8 @@ module.exports = (client) => {
                         .setColor(ee.errColor)
                         .setTimestamp()
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setAuthor(`${client.allEmojis.x} An error occured`, ee.discError)
-                        .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\`\`\`\`${e}\`\`\``)
+                        .setAuthor(`AN ERROR OCCURED`, ee.discError)
+                        .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
                     ]
                 }).catch((e) => console.log(e))
                 console.error(e)
@@ -498,7 +561,7 @@ module.exports = (client) => {
             .on(`searchNoResult`, message => message.channel.send(`No result found!`).catch((e) => console.log(e)))
             .on(`finishSong`, (queue, song) => {
                 var embed = new MessageEmbed().setColor(ee.color)
-                    .setAuthor(`DASHBOARD | SONG ENDED`, ee.songended)
+                    .setAuthor(`DASHBOARD | SONG ENDED`, ee.discDone)
                     .setDescription(`**[${song.name}](${song.url})**`)
                     .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
                     .setFooter(`${song.user.tag}`, song.user.displayAvatarURL({ dynamic: true }))
@@ -516,8 +579,8 @@ module.exports = (client) => {
                 queue.textChannel.send({
                     embeds: [
                         new MessageEmbed().setColor(ee.color).setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle("⛔️ LEFT THE CHANNEL")
-                            .setDescription("🎧 **There are no more songs left**")
+                            .setAuthor("LEFT THE CHANNEL", ee.discAlert)
+                            .setDescription("🎧 **No more songs left**")
                             .setTimestamp()
                     ]
                 })
@@ -548,7 +611,10 @@ module.exports = (client) => {
         else djs = djs.map(r => `<@&${r}>`);
         if (djs.length == 0) djs = "`not setup`";
         else djs.slice(0, 15).join(", ");
-        if (!newTrack) return new MessageEmbed().setColor(ee.errColor).setTitle("NO SONG FOUND?!?!")
+        if (!newTrack) return new MessageEmbed()
+            .setColor(ee.errColor)
+            .setAuthor("NO SONG FOUND", ee.discError)
+            .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({ dynamic: true }));
         var embed = new MessageEmbed().setColor(ee.color)
             .setDescription(`**[${newTrack.name}](${newTrack.url})**`)
             .addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)
