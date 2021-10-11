@@ -68,7 +68,11 @@ module.exports = {
             return interaction.reply({ embeds: [embed] });
 
             function allIndex(input) {
-                if (conv == "hex") input = parseInt(input, convert).toString(2);
+                embed.addField(`Input:`, `> \`${input}\``)
+                if (isNaN(input)) {
+                    input = parseInt(input, convert).toString(2);
+                    embed.addField(`Parse:`, `> \`${input}\``)
+                }
                 var inputArr = input.split("").reverse();
                 var indexes = [], i;
                 for (i = 0; i < inputArr.length; i++)
@@ -77,16 +81,18 @@ module.exports = {
                         if (i == 0) { indexes.push(1); } else indexes.push(power);
                     }
 
-                embed
-                    .addField(`Input:`, `> \`${input}\``)
-                    .addField(`Formula:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
+                embed.addField(`Formula:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
             }
 
             function allIndexOct(input) {
+                embed.addField(`Input:`, `> \`${input}\``)
                 const split = input.match(new RegExp('.{1,3}', 'g'))
-                var indexes = [], i;
+                var indexes = []; var parse = []; i;
                 for (var idx = 0; idx < split.length; idx++) {
-                    if (conv == "hex") input = parseInt(split[idx], convert).toString(8);
+                    if (isNaN(input)) {
+                        split[idx] = parseInt(split[idx], convert).toString(2);
+                        parse.push(split[idx]);
+                    }
                     var inputArr = split[idx].split("").reverse();
                     for (i = 0; i < inputArr.length; i++) {
                         if (inputArr[i] === "1") {
@@ -95,9 +101,8 @@ module.exports = {
                         }
                     }
                 }
-                embed
-                    .addField(`Input:`, `> \`${input}\``)
-                    .addField(`Formula:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
+                if (isNaN(input)) embed.addField(`Input:`, `> \`${parse.join("")}\``)
+                embed.addField(`Formula:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
             }
 
             function toOctal(input, convert) {
