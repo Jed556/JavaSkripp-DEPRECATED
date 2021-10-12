@@ -117,7 +117,7 @@ module.exports = {
                 let sum = oct.reduce(function (sum, n) {
                     return parseFloat(sum) + parseFloat(n)
                 })
-                if (pOct.length == 1) embed.addField(`Octal:`, `> ${sum}`);
+                if (result.length == 1) embed.addField(`Octal:`, `> ${sum}`);
                 else embed.addField(`Octal:`, `> ${pOct} >> ${sum}`);
             }
         } catch (e) {
