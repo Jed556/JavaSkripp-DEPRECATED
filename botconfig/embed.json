@@ -2,19 +2,16 @@
     "color": "#5865F1",
     "errColor": "#E01E01",
     "okColor": "#00E500",
-
-    "owner": "Gatorade#4147",
-    "ownericon": "https://i.imgur.com/uO3gEij.png",
-    "email": "jguiriba11@gmail.com",
-
+    
     "iconC": "https://i.imgur.com/ZLYujDw.png",
     "iconS": "https://i.imgur.com/V4FC1eg.png",
-
-    "invite": "https://tinyurl.com/JavaSkripp",
-
+    
     "discSpin": "https://i.imgur.com/PsBpnQE.gif",
     "discAdd": "https://i.imgur.com/GFxHP8N.png",
     "discError": "https://i.imgur.com/sc6WFzn.png",
     "discAlert": "https://i.imgur.com/Nu0Ul0L.png",
-    "discDone": "https://i.imgur.com/phcsy0g.png"
+    "discDone": "https://i.imgur.com/phcsy0g.png",
+    
+    "email": "jguiriba11@gmail.com",
+    "invite": "https://tinyurl.com/JavaSkripp"
 }
