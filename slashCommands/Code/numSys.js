@@ -87,7 +87,7 @@ module.exports = {
             function allIndexOct(input) {
                 embed.addField(`Input:`, `> \`${input}\``)
                 const split = input.match(new RegExp('.{1,3}', 'g'))
-                var indexes = []; var parse = []; i;
+                var indexes = [], parse = [], i;
                 for (var idx = 0; idx < split.length; idx++) {
                     if (isNaN(input)) {
                         split[idx] = parseInt(split[idx], convert).toString(2);
