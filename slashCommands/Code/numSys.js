@@ -90,7 +90,7 @@ module.exports = {
                 var indexes = [], parse = [], i;
                 for (var idx = 0; idx < split.length; idx++) {
                     if (isNaN(input)) {
-                        split[idx] = parseInt(split[idx], convert).toString(2);
+                        split[idx] = parseInt(split[idx], convert).toString(2).padStart(3, "0");
                         parse.push(split[idx]);
                     }
                     var inputArr = split[idx].split("").reverse();
@@ -101,7 +101,7 @@ module.exports = {
                         }
                     }
                 }
-                if (isNaN(input)) embed.addField(`Input:`, `> \`${parse.join("")}\``)
+                if (isNaN(input)) embed.addField(`Parse:`, `> \`${parse.join(" ")}\``)
                 embed.addField(`Formula:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
             }
 
