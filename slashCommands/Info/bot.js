@@ -22,8 +22,6 @@ module.exports = {
             const ownerID = await client.users.cache.find(u => u.id === settings.ownerID).id;
             const owner = await client.users.fetch(ownerID).catch(console.error);
 
-            const { createdTimestamp } = interaction;
-            const ping = Math.floor((Date.now() - createdTimestamp) - 1 * Math.floor(client.ws.ping))
             cpuStat.usagePercent(function (e, percent, seconds) {
                 try {
                     if (e) return console.log(String(e.stack).red);
@@ -56,7 +54,7 @@ module.exports = {
                         .addField("🤖 Arch", `\`${os.arch()}\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
-                        .addField("📶 Latency", `\`API: ${client.ws.ping}ms\` \`Bot: ${ping}ms\``, true)
+                        .addField("📶 Latency", `\`Host: Heroku\` \`API: ${client.ws.ping}ms\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .setFooter(`Coded by: ${owner.tag}`, owner.displayAvatarURL({ dynamic: true }));
                     interaction.reply({
@@ -92,7 +90,7 @@ module.exports = {
                         .addField("🤖 Arch", `\`${os.arch()}\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
-                        .addField("📶 Latency", `\`API: ${client.ws.ping}ms\` \`Bot: ${ping}ms\``, true)
+                        .addField("📶 Latency", `\`Host: Heroku\` \`API: ${client.ws.ping}ms\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .setFooter(`Coded by: ${owner.tag}`, owner.displayAvatarURL({ dynamic: true }));
                     interaction.reply({
