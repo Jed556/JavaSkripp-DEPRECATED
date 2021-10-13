@@ -69,10 +69,13 @@ module.exports = {
 
             function allIndex(input) {
                 embed.addField(`Input:`, `> \`${input}\``)
+                var dec = parseInt(input, convert);
+
                 if (isNaN(input)) {
                     input = parseInt(input, convert).toString(2);
                     embed.addField(`Parse:`, `> \`${input}\``)
                 }
+
                 var inputArr = input.split("").reverse();
                 var indexes = [], i;
                 for (i = 0; i < inputArr.length; i++)
@@ -80,8 +83,8 @@ module.exports = {
                         const power = Math.pow(2, i)
                         if (i == 0) { indexes.push(1); } else indexes.push(power);
                     }
+
                 if (conv == "hex") {
-                    var dec = parseInt(input, convert);
                     var rems = [], ans = [];
                     const answer = parseInt(input, convert).toString(16).toUpperCase();
                     const ansSplit = answer.split("").reverse()
@@ -93,6 +96,7 @@ module.exports = {
                         dec = Math.floor(dec / 16);
                         idx++
                     }
+
                     embed
                         .addField(`Formula:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")} = \`${dec}\``)
                         .addField(`Remainder: `, `> ${rems.map(v => `\`${v}\``).join(", ")}`)
