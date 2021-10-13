@@ -86,7 +86,7 @@ module.exports = {
 
                 if (conv == "hex") {
                     var rems = [], ans = [];
-                    const answer = parseInt(input, convert).toString(16).toUpperCase();
+                    const answer = dec.toString(16).toUpperCase();
                     const ansSplit = answer.split("").reverse()
                     var idx = 0;
                     while (dec > 1) {
