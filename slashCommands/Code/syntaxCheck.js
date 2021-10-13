@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
@@ -7,7 +7,7 @@ const syntaxCheck = require("syntax-checker-new");
 
 module.exports = {
     name: "analyze",
-    description: "Syntax check your code",
+    description: "Syntax check your javascript code",
     category: "Code",
     cooldown: 2,
     requiredroles: [],
@@ -16,7 +16,7 @@ module.exports = {
         {
             "String": {
                 name: "code",
-                description: "Input your code",
+                description: "Input your javascript code",
                 required: true
             }
         },
@@ -26,10 +26,27 @@ module.exports = {
         try {
             const { member, channelId, guildId, applicationId, commandName,
                 deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
+
             const code = options.getString("code")
 
-            syntaxCheck.checkSyntaxString(jscode, "js", function (syntaxReturn) {
-                interaction.reply(syntaxReturn.passed);
+            var embed = new MessageEmbed()
+                .setTimestamp()
+                .setColor(ee.color)
+                .setFooter(client.user.username, client.user.displayAvatarURL())
+                .setAuthor("syntaxCheck.js", client.user.displayAvatarURL())
+
+            syntaxCheck.checkSyntaxString(code, "js", function (jscode) {
+                if (jscode.passed)
+                    interaction.reply({
+                        embeds: [embed
+                            .setDescription("No Errors Found!")
+                        ]
+                    });
+                else  interaction.reply({
+                    embeds: [embed
+                        .setDescription(`Error: \n\`\`\`${jscode.error}\`\`\``)
+                    ]
+                });
             })
 
         } catch (e) {
