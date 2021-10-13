@@ -80,8 +80,20 @@ module.exports = {
                         const power = Math.pow(2, i)
                         if (i == 0) { indexes.push(1); } else indexes.push(power);
                     }
-
-                embed.addField(`Formula:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
+                if (conv == "hex") {
+                    var dec = parseInt(input, convert);
+                    var rems = [];
+                    const ans = parseInt(input, convert).toString(16).toUpperCase();
+                    while (dec > 1) {
+                        const remainder = dec % 16;
+                        rems.push(`${dec}/16 = ${remainder}`);
+                        dec = Math.floor(dec / 16);
+                    }
+                    embed
+                        .addField(`Binary:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
+                        .addField(`Remainder: `, `> ${rems.map(v => `\`${v}\``).join(", ")}`)
+                        .addField(`Formula: `, `> ${ans.map(v => `\`${v}\``).join(", ")}`)
+                } else embed.addField(`Binary:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
             }
 
             function allIndexOct(input) {
