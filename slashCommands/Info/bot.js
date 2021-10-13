@@ -35,7 +35,7 @@ module.exports = {
 
                     const botinfo = new MessageEmbed()
                         .setAuthor(client.user.username, client.user.displayAvatarURL())
-                        .setTitle("__**Stats:**__")
+                        .setTitle("**Info & Status:**")
                         .setColor(ee.color).setTimestamp()
                         .addField("⏳ Memory Usage", `\`${((process.memoryUsage().heapUsed / 1024) / 1024).toFixed(2)}/ ${((os.totalmem() / 1024) / 1024).toFixed(2)}MB\``, true)
                         .addField("⌚️ Uptime ", `${duration(client.uptime).map(i => `\`${i}\``).join(", ")}`, true)
@@ -50,10 +50,10 @@ module.exports = {
                         .addField("🤖 Node", `\`${process.version}\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("🤖 CPU", `\`\`\`md\n${os.cpus().map((i) => `${i.model}`)[0]}\`\`\``)
-                        .addField("🤖 CPU usage", `\`${percent.toFixed(2)}%\``, true)
-                        .addField("🤖 Arch", `\`${os.arch()}\``, true)
+                        .addField("🤖 CPU Usage", `\`${percent.toFixed(2)}%\``, true)
+                        .addField("⚙ Loaded", `\`${client.slashCommands.size} Commands\``, true)
                         .addField("\u200b", `\u200b`, true)
-                        .addField("💻 Platform", `\`\`${os.platform()}\`\``, true)
+                        .addField("💻 Platform", `\`${os.platform()}\` \`${os.arch()}\``, true)
                         .addField("📶 Latency", `\`Host: Heroku\` \`API: ${client.ws.ping}ms\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .setFooter(`Coded by: ${owner.tag}`, owner.displayAvatarURL({ dynamic: true }));
