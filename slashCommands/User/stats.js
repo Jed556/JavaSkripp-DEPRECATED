@@ -40,7 +40,7 @@ module.exports = {
                 Info.addField("Roles", "No roles to display")
             }
 
-            interaction.reply({ embeds: [Info] })
+            interaction.reply({ embeds: [Info], ephemeral: true })
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)
