@@ -38,26 +38,35 @@ module.exports = {
             const Target = interaction.options.getUser("user");
             const Channel = interaction.channel;
             const Messages = Channel.messages.fetch();
+            const time = 5000;
+
+            var embed = new MessageEmbed()
+                .setTimestamp()
+                .setColor(ee.color)
+                .setFooter(client.user.username, client.user.displayAvatarURL())
 
             if (Amount <= 100) {
                 if (Target) {
                     const TargetMessages = (await Messages).filter((m) => m.author.id === Target.id);
                     await Channel.bulkDelete(TargetMessages, true);
                     interaction.reply({
-                        embeds: [new MessageEmbed()
-                            .setColor(ee.color)
+                        embeds: [embed
                             .setDescription(`Deleted ${Amount} messages sent by ${Target}`)]
                     })
                 } else {
                     Channel.bulkDelete(Amount, true);
                     interaction.reply({
-                        embeds: [new MessageEmbed()
-                            .setColor(ee.color)
+                        embeds: [embed
                             .setDescription(`Deleted ${Amount} messages in ${Channel}`)]
                     })
                 }
+
+                setTimeout(async () => {
+                    interaction.deleteReply().catch()
+                }, time);
+
             } else interaction.reply({
-                embeds: [new MessageEmbed()
+                embeds: [embed
                     .setColor(ee.errColor)
                     .setDescription(`${client.allEmojis.x} Exceeded max amount of 100 messages`)]
             })
