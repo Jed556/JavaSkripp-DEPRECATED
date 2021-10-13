@@ -92,7 +92,7 @@ module.exports = {
                     embed
                         .addField(`Binary:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
                         .addField(`Remainder: `, `> ${rems.map(v => `\`${v}\``).join(", ")}`)
-                        .addField(`Formula: `, `> ${ans.map(v => `\`${v}\``).join(", ")}`)
+                        .addField(`Formula: `, `> ${ans.split("").map(v => `\`${v}\``).join(", ")}`)
                 } else embed.addField(`Binary:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
             }
 
