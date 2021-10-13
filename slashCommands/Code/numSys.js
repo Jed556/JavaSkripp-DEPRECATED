@@ -56,7 +56,7 @@ module.exports = {
                 embed.addField(`Decimal:`, `> ${parseInt(input, convert).toString(10)}`);
             } else if (conv == "hex") {
                 allIndex(input)
-                embed.addField(`Hexadecimal:`, `> ${parseInt(input, convert)} >> ${parseInt(input, convert).toString(16).toUpperCase()}`);
+                embed.addField(`Hexadecimal:`, `> ${parseInt(input, convert).toString(16).toUpperCase()}`);
             } else {
                 interaction.reply({
                     embeds: [embed
@@ -113,7 +113,7 @@ module.exports = {
                         }
                     }
                 }
-                if (isNaN(input)) embed.addField(`Parse:`, `> \`${parse.join(" ")}\``)
+                if (isNaN(input)) embed.addField(`Parse:`, `> ${parse.map(v => `\`${v}\``).join(" ")}`)
                 embed.addField(`Formula:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
             }
 
