@@ -1,5 +1,6 @@
 const fs = require("fs");
 const ee = require("../botconfig/embed.json");
+const settings = require("../botconfig/settings.json");
 const allevents = [];
 module.exports = async (client) => {
     try {
