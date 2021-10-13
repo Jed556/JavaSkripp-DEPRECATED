@@ -1,13 +1,14 @@
 const fs = require("fs");
 const ee = require("../botconfig/embed.json");
-const settings = require("../botconfig/settings.json");
 const allevents = [];
+
 module.exports = async (client) => {
     try {
         try {
-            const owner = await client.users.cache.find(u => u.id === settings.ownerID).tag;
-            console.log("\n" + `STARTUP IN PROGRESS`.bold.yellow + "\n" + `By: ${owner}`.yellow);
-        } catch { }
+            console.log("\n" + `STARTUP IN PROGRESS`.bold.yellow + "\n" + `By: Jed556`.yellow);
+        } catch (e) {
+            console.log(e)
+        }
 
         let amount = 0;
         const load_dir = (dir) => {
