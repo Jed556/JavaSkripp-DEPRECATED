@@ -82,17 +82,21 @@ module.exports = {
                     }
                 if (conv == "hex") {
                     var dec = parseInt(input, convert);
-                    var rems = [];
-                    const ans = parseInt(input, convert).toString(16).toUpperCase();
+                    var rems = [], ans = [];
+                    const answer = parseInt(input, convert).toString(16).toUpperCase();
+                    const ansSplit = answer.split("")
+                    var idx = 0;
                     while (dec > 1) {
                         const remainder = dec % 16;
                         rems.push(`${dec}/16 = ${remainder}`);
+                        ans.push(`${ansSplit[idx]} = ${remainder}`);
                         dec = Math.floor(dec / 16);
+                        idx++
                     }
                     embed
-                        .addField(`Binary:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
+                        .addField(`Formula:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")} = \`${dec}\``)
                         .addField(`Remainder: `, `> ${rems.map(v => `\`${v}\``).join(", ")}`)
-                        .addField(`Formula: `, `> ${ans.split("").map(v => `\`${v}\``).join(", ")}`)
+                        .addField(`Conversion: `, `>  ${ans.reverse().map(v => `\`${v}\``).join(", ")}`)
                 } else embed.addField(`Binary:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
             }
 
