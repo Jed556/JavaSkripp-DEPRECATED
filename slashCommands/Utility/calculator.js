@@ -106,11 +106,13 @@ module.exports = {
                         createCollector(txt, result);
                     }
                     setTimeout(async () => {
-                        emb1.setDescription(
-                            "Your Time for using the calculator ran out (10 minutes)"
-                        );
-                        emb1.setColor(ee.errColor);
-                        await msg.edit({ embeds: [emb1], components: [] });
+                        try {
+                            emb1.setDescription(
+                                "Your Time for using the calculator ran out (10 minutes)"
+                            );
+                            emb1.setColor(ee.errColor);
+                            await msg.edit({ embeds: [emb1], components: [] });
+                        } catch { }
                     }, time);
                 });
 
