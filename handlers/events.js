@@ -4,7 +4,8 @@ const allevents = [];
 module.exports = async (client) => {
     try {
         try {
-            console.log("\n" + `STARTUP IN PROGRESS`.bold.yellow + "\n" + `By: ${ee.owner}`.yellow);
+            const owner = await client.users.cache.find(u => u.id === settings.ownerID).tag;
+            console.log("\n" + `STARTUP IN PROGRESS`.bold.yellow + "\n" + `By: ${owner}`.yellow);
         } catch { }
 
         let amount = 0;
