@@ -54,7 +54,7 @@ module.exports = {
                             .setDescription(`Deleted ${Amount} messages sent by ${Target}`)]
                     })
                 } else {
-                    Channel.bulkDelete(Amount, true);
+                    await Channel.bulkDelete(Amount, true);
                     interaction.reply({
                         embeds: [embed
                             .setDescription(`Deleted ${Amount} messages in ${Channel}`)]
@@ -62,7 +62,7 @@ module.exports = {
                 }
 
                 setTimeout(async () => {
-                    interaction.deleteReply().catch()
+                    try { interaction.deleteReply() } catch { }
                 }, time);
 
             } else interaction.reply({
