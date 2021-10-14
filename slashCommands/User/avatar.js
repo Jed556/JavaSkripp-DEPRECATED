@@ -27,7 +27,7 @@ module.exports = {
             const Response = new MessageEmbed()
                 .setColor('RANDOM')
                 .setAuthor(`${Target.tag}'s Avatar`)
-                .setFooter(`Requested by ${interaction.user.tag}`)
+                .setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ dynamic: true }))
 
             if (Target.id === settings.ownerID)
                 Response.setImage(ee.ownerAvatar)
