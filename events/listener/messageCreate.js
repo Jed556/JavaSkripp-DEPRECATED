@@ -17,9 +17,9 @@ module.exports = async (client, message) => {
         const msg = message.content.toLowerCase()
         const illegalArray = [
             "fuck", "shit", "bitch", "nigga", "piss off", "dick head", "asshole", "bastard", "cunt", "wanker",
-            "twat", "tangina", "puta", "putang ina", "putangina", "bobo", "bubu", "bobu", "bubo", "vovo",
+            "twat", "tangina", "puta", "pota", "putang ina", "putangina", "bobo", "bubu", "bobu", "bubo", "vovo",
             "vuvu", "vovu", "vuvo", "potaena", "putanginamo", "pokpok", "gago", "pakshet", "pucha", "ulol",
-            "punyeta", "tarantado"
+            "punyeta", "tarantado", "pakyu", "fuck u"
         ]
 
         if ((msg == "hi") || (msg == "hello") || (msg == "hey")) {
@@ -37,7 +37,7 @@ module.exports = async (client, message) => {
         }
 
         if (illegalArray.some(v => msg.includes(v))) {
-            const replyArray = ["That's illegal!", "Watch your language!", "Watch your fucking mouth!", "Mind your tone!", "Hold your tongue!"]
+            const replyArray = ["That's illegal!", "Watch your language!", "Watch your fucking mouth!", "Mind your tone!", "Whoaaaa!"]
             const reply = replyArray[Math.floor(Math.random() * replyArray.length)];
             var match = msg.match(new RegExp(illegalArray.join("|"), "g"))
             message.reply({
