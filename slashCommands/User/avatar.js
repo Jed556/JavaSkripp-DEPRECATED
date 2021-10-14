@@ -30,10 +30,9 @@ module.exports = {
                 .setFooter(`Requested by ${interaction.user.tag}`)
 
             if (Target.id === settings.ownerID)
-                Response.setImage(Target.displayAvatarURL({ dynamic: true }))
-
-            else
                 Response.setImage(ee.ownerAvatar)
+            else
+                Response.setImage(Target.displayAvatarURL({ dynamic: true }))
 
             interaction.reply({ embeds: [Response], ephemeral: true });
             console.log(`Sent ${Target.tag}'s Avatar`)
