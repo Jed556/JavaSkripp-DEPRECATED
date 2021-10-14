@@ -38,7 +38,9 @@ module.exports = {
         try {
             var input = interaction.options.getString("input");
             const conv = interaction.options.getString("convert");
-            const convert = (isNaN(input)) ? 16 : 2;
+            const hasLetter = /[a-zA-z]/g;
+            const nums = [2, 3, 4, 5, 6, 7, 8, 9];
+            const convert = (hasLetter.test(input)) ? 16 : (nums.some(v => input.includes(v))) ? 10 : 2;
 
             var embed = new MessageEmbed()
                 .setTimestamp()
@@ -71,7 +73,7 @@ module.exports = {
                 embed.addField(`Input:`, `> \`${input}\``)
                 var dec = parseInt(input, convert);
 
-                if (isNaN(input)) {
+                if (hasLetter.test(input) || nums.some(v => input.includes(v))) {
                     input = parseInt(input, convert).toString(2);
                     embed.addField(`Parse:`, `> \`${input}\``)
                 }
@@ -107,7 +109,7 @@ module.exports = {
             function allIndexOct(input) {
                 embed.addField(`Input:`, `> \`${input}\``)
 
-                if (isNaN(input)) {
+                if (hasLetter.test(input) || nums.some(v => input.includes(v))) {
                     var bin = parseInt(input, convert).toString(2);
                     embed.addField(`Parse:`, `> \`${input}\``)
                 } else var bin = input;
@@ -123,12 +125,12 @@ module.exports = {
                         }
                     }
                 }
-                if (isNaN(input)) embed.addField(`Parse:`, `> ${split.map(v => `\`${v}\``).join(" ")}`)
+                if (hasLetter.test(input) || nums.some(v => input.includes(v))) embed.addField(`Parse:`, `> ${split.map(v => `\`${v}\``).join(" ")}`)
                 embed.addField(`Formula:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
             }
 
             function toOctal(input, convert) {
-                if (isNaN(input)) {
+                if (hasLetter.test(input) || nums.some(v => input.includes(v))) {
                     input = parseInt(input, convert).toString(2);
                 }
 
