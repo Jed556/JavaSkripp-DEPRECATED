@@ -106,13 +106,15 @@ module.exports = {
 
             function allIndexOct(input) {
                 embed.addField(`Input:`, `> \`${input}\``)
-                const split = input.match(new RegExp('.{1,3}', 'g'))
+
+                if (isNaN(input)) {
+                    const bin = parseInt(input, convert).toString(2);
+                    embed.addField(`Parse:`, `> \`${input}\``)
+                } else const bin = input;
+
+                const split = bin.match(new RegExp('.{1,3}', 'g'))
                 var indexes = [], parse = [], i;
                 for (var idx = 0; idx < split.length; idx++) {
-                    if (isNaN(input)) {
-                        split[idx] = parseInt(split[idx], convert).toString(2).padStart(3, "0");
-                        parse.push(split[idx]);
-                    }
                     var inputArr = split[idx].split("").reverse();
                     for (i = 0; i < inputArr.length; i++) {
                         if (inputArr[i] === "1") {
@@ -121,11 +123,15 @@ module.exports = {
                         }
                     }
                 }
-                if (isNaN(input)) embed.addField(`Parse:`, `> ${parse.map(v => `\`${v}\``).join(" ")}`)
+                if (isNaN(input)) embed.addField(`Parse:`, `> ${split.map(v => `\`${v}\``).join(" ")}`)
                 embed.addField(`Formula:`, `> ${indexes.map(v => `\`${v}\``).join(" + ")}`)
             }
 
             function toOctal(input, convert) {
+                if (isNaN(input)) {
+                    const input = parseInt(input, convert).toString(2);
+                } else const input = input;
+
                 var result = [];
                 const split = input.match(new RegExp('.{1,3}', 'g'))
                 for (var i = 0; i < split.length; i++) {
