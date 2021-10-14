@@ -129,7 +129,7 @@ module.exports = {
 
             function toOctal(input, convert) {
                 if (isNaN(input)) {
-                    const input = parseInt(input, convert).toString(2);
+                    input = parseInt(input, convert).toString(2);
                 }
 
                 var result = [];
