@@ -108,12 +108,12 @@ module.exports = {
                 embed.addField(`Input:`, `> \`${input}\``)
 
                 if (isNaN(input)) {
-                    const bin = parseInt(input, convert).toString(2);
+                    var bin = parseInt(input, convert).toString(2);
                     embed.addField(`Parse:`, `> \`${input}\``)
-                } else const bin = input;
+                } else var bin = input;
 
                 const split = bin.match(new RegExp('.{1,3}', 'g'))
-                var indexes = [], parse = [], i;
+                var indexes = [], i;
                 for (var idx = 0; idx < split.length; idx++) {
                     var inputArr = split[idx].split("").reverse();
                     for (i = 0; i < inputArr.length; i++) {
@@ -130,7 +130,7 @@ module.exports = {
             function toOctal(input, convert) {
                 if (isNaN(input)) {
                     const input = parseInt(input, convert).toString(2);
-                } else const input = input;
+                }
 
                 var result = [];
                 const split = input.match(new RegExp('.{1,3}', 'g'))
