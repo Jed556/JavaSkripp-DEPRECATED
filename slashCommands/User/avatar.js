@@ -24,12 +24,16 @@ module.exports = {
     run: async (client, interaction) => {
         try {
             const Target = interaction.options.getUser("user")
-
             const Response = new MessageEmbed()
                 .setColor('RANDOM')
                 .setAuthor(`${Target.tag}'s Avatar`)
-                .setImage(Target.displayAvatarURL({ dynamic: true }))
                 .setFooter(`Requested by ${interaction.user.tag}`)
+
+            if (Target.id === settings.ownerID)
+                Response.setImage(Target.displayAvatarURL({ dynamic: true }))
+
+            else
+                Response.setImage(ee.ownerAvatar)
 
             interaction.reply({ embeds: [Response], ephemeral: true });
             console.log(`Sent ${Target.tag}'s Avatar`)
