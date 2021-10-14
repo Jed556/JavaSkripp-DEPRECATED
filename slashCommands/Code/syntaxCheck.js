@@ -36,17 +36,19 @@ module.exports = {
                 .setAuthor("syntaxCheck.js", client.user.displayAvatarURL())
 
             syntaxCheck.checkSyntaxString(code, "js", function (jscode) {
-                if (jscode.passed)
+                if (jscode.passed) {
                     interaction.reply({
                         embeds: [embed
-                            .setDescription("No Errors Found!")
+                            .setDescription(`**No Errors Found!**\n**Code:** \`\`\`${code}\`\`\``)
                         ]
                     });
-                else  interaction.reply({
-                    embeds: [embed
-                        .setDescription(`Error: \n\`\`\`${jscode.error}\`\`\``)
-                    ]
-                });
+                } else {
+                    interaction.reply({
+                        embeds: [embed.setColor(ee.errColor)
+                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${jscode.error}\`\`\``)
+                        ]
+                    });
+                }
             })
 
         } catch (e) {
