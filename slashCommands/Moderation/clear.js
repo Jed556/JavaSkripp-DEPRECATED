@@ -34,10 +34,10 @@ module.exports = {
 
     run: async (client, interaction) => {
         try {
-            const Amount = interaction.options.getInteger("amount");
-            const Target = interaction.options.getUser("user");
-            const Channel = interaction.channel;
-            const Messages = Channel.messages.fetch();
+            const { channel, options } = interaction;
+            const Amount = options.getInteger("amount");
+            const Target = options.getUser("user");
+            const Messages = channel.messages.fetch();
             const time = 5000;
 
             var embed = new MessageEmbed()
@@ -47,17 +47,26 @@ module.exports = {
 
             if (Amount <= 100) {
                 if (Target) {
-                    const TargetMessages = (await Messages).filter((m) => m.author.id === Target.id);
-                    await Channel.bulkDelete(TargetMessages, true);
-                    interaction.reply({
-                        embeds: [embed
-                            .setDescription(`Deleted ${Amount} messages sent by ${Target}`)]
+                    let i = 0;
+                    const filtered = [];
+                    (await Messages).filter((m) => {
+                        if (m.author.id === Target.id && Amount > i) {
+                            filtered.push(m);
+                            i++
+                        }
+                    });
+                    await channel.bulkDelete(filtered, true).then(msgs => {
+                        interaction.reply({
+                            embeds: [embed
+                                .setDescription(`Deleted ${msgs.size} messages sent by ${Target}`)]
+                        })
                     })
                 } else {
-                    await Channel.bulkDelete(Amount, true);
-                    interaction.reply({
-                        embeds: [embed
-                            .setDescription(`Deleted ${Amount} messages in ${Channel}`)]
+                    await channel.bulkDelete(filtered, true).then(msgs => {
+                        interaction.reply({
+                            embeds: [embed
+                                .setDescription(`Deleted ${msgs.size} messages in ${channel}`)]
+                        })
                     })
                 }
 
