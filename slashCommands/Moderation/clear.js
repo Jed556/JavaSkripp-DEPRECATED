@@ -19,7 +19,7 @@ module.exports = {
         {
             "Integer": {
                 name: "amount",
-                description: "Amount of messages to delete (Max: 100)",
+                description: "Amount of messages to delete",
                 required: true
             }
         },
@@ -62,23 +62,49 @@ module.exports = {
                         })
                     })
                 } else {
-                    await channel.bulkDelete(filtered, true).then(msgs => {
+                    await channel.bulkDelete(Amount, true).then(msgs => {
                         interaction.reply({
                             embeds: [embed
                                 .setDescription(`Deleted ${msgs.size} messages in ${channel}`)]
                         })
                     })
                 }
+            } else {
+                if (Target) {
+                    let i = 0;
+                    const filtered = [];
+                    (await Messages).filter((m) => {
+                        if (m.author.id === Target.id && Amount > i) {
+                            filtered.push(m);
+                            i++
+                        }
+                    });
+                    await channel.bulkDelete(filtered, true).then(msgs => {
+                        interaction.reply({
+                            embeds: [embed
+                                .setDescription(`Deleted ${msgs.size} messages sent by ${Target}`)]
+                        })
+                    })
+                } else {
+                    let iBulk = 0;
+                    bulkAmt = [];
+                    while (Math.ceil(Amount/100) > iBulk) {
+                        iBulk++;
+                        await channel.bulkDelete(100, true).then(msgs => {
+                            bulkAmt.push(msgs);
+                        })
+                    }
+                    interaction.reply({
+                        embeds: [embed
+                            .setDescription(`Deleted ${bulkAmt.size} messages in ${channel}`)]
+                    })
+                }
+            }
 
-                setTimeout(async () => {
-                    try { interaction.deleteReply() } catch { }
-                }, time);
+            setTimeout(async () => {
+                try { interaction.deleteReply() } catch { }
+            }, time);
 
-            } else interaction.reply({
-                embeds: [embed
-                    .setColor(ee.errColor)
-                    .setDescription(`${client.allEmojis.x} Exceeded max amount of 100 messages`)]
-            })
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)
