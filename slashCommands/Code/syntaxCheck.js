@@ -3,7 +3,9 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const { errDM } = require("../../handlers/functions");
-const syntaxCheck = require("syntax-checker-new");
+const util = require("util");
+const { exec } = require("child_process");
+const execProm = util.promisify(exec);
 
 module.exports = {
     name: "analyze",
@@ -35,22 +37,34 @@ module.exports = {
                 .setFooter(client.user.username, client.user.displayAvatarURL())
                 .setAuthor("syntaxCheck.js", client.user.displayAvatarURL())
 
-            syntaxCheck.checkSyntaxString(code, "js", function (jscode) {
-                if (jscode.passed) {
+            async function runShell(command) {
+                let result;
+                try {
+                    result = await execProm(command);
+                } catch (ex) {
+                    result = ex;
+                }
+                if (Error[Symbol.hasInstance](result))
+                    return;
+
+                return result;
+            }
+
+            runShell(code).then(res => {
+                if (res) {
                     interaction.reply({
-                        embeds: [embed
-                            .setDescription(`**No Errors Found!**\n**Code:** \`\`\`${code}\`\`\``)
+                        embeds: [embed.setColor(ee.errColor)
+                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${res}\`\`\``)
                         ]
                     });
                 } else {
                     interaction.reply({
-                        embeds: [embed.setColor(ee.errColor)
-                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${jscode.error}\`\`\``)
+                        embeds: [embed
+                            .setDescription(`**No Errors Found!**\n**Code:** \`\`\`${res}\`\`\``)
                         ]
                     });
                 }
-            })
-
+            });
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)
