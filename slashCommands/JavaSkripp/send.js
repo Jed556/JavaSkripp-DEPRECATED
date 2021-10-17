@@ -8,7 +8,7 @@ const { errDM } = require("../../handlers/functions");
 module.exports = {
     name: "send",
     description: "Send a direct message to a user",
-    category: "Moderation",
+    category: "JavaSkripp",
     cooldown: 1,
     requiredroles: [],
     alloweduserids: [settings.ownerID],

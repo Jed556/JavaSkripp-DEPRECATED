@@ -17,8 +17,11 @@ const dirSetup = [{
     "Folder": "Filter", "CmdName": "filter",
     "CmdDescription": "Modify Music Filters"
 }, {
+    "Folder": "JavaSkripp", "CmdName": "js",
+    "CmdDescription": "Bot Moderation Commands"
+}, {
     "Folder": "Moderation", "CmdName": "mod",
-    "CmdDescription": "Moderating Commands"
+    "CmdDescription": "Guild Moderation Commands"
 }, {
     "Folder": "User", "CmdName": "user",
     "CmdDescription": "User Commands"
