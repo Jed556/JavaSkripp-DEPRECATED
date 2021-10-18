@@ -557,7 +557,16 @@ module.exports = (client) => {
                 console.error(e)
                 errDM(client, e)
             })
-            .on(`empty`, channel => channel.send(`Voice channel is empty! Leaving the channel...`).catch((e) => console.log(e)))
+            .on(`empty`, channel => {
+                var embed = new MessageEmbed().setColor(ee.color)
+                    .setAuthor(`VOICE CHANNEL EMPTY`, ee.discAlert)
+                    .setDescription(`**LEAVING THE CHANNEL...**`)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                    .setTimestamp();
+                channel.send({ embeds: [embed], components: [] }).catch((e) => {
+                    console.log(e.stack ? String(e.stack).grey : String(e).grey)
+                })
+            })
             .on(`searchNoResult`, message => message.channel.send(`No result found!`).catch((e) => console.log(e)))
             .on(`finishSong`, (queue, song) => {
                 var embed = new MessageEmbed().setColor(ee.color)
