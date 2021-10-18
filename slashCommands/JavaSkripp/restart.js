@@ -14,9 +14,9 @@ module.exports = {
     alloweduserids: [settings.ownerID],
     options: [
         {
-            "String": {
+            "Integer": {
                 name: "countdown",
-                description: "Enter countdown before restarting",
+                description: "Enter countdown before restarting (seconds)",
                 required: false
             }
         }
@@ -24,13 +24,13 @@ module.exports = {
 
     run: async (client, interaction) => {
         try {
-            const cd = interaction.options.getString("countdown");
+            const cd = interaction.options.getInteger("countdown");
             if (cd) {
                 interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.color)
-                        .setDescription(`Restarting Host in ${secs}`)
+                        .setDescription(`Restarting Host in ${secs} secs`)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ], ephemeral: true
                 })
@@ -38,7 +38,7 @@ module.exports = {
                     try {
                         //restart code
                     } catch { }
-                }, time);
+                }, cd*1000);
             }
             else {
                 interaction.reply({
@@ -51,7 +51,6 @@ module.exports = {
                 })
             }
         } catch (e) {
-            interaction.reply(`No users with tag \`${Target}\` found in mutual servers`)
             console.log(String(e.stack).bgRed)
             errDM(client, e)
         }
