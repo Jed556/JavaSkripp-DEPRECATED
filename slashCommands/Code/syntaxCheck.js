@@ -37,7 +37,7 @@ module.exports = {
                 .setFooter(`Code by: ${interaction.user.tag}`, interaction.user.displayAvatarURL())
                 .setAuthor("syntaxCheck.js", client.user.displayAvatarURL())
 
-            function runShell(code) {
+            async function runShell(code) {
                 let result;
                 try {
                     result = await execProm(code);
