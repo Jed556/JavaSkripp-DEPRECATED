@@ -90,12 +90,15 @@ module.exports = {
                     bulkAmt = [];
                     while (Math.ceil(Amount / 100) > iBulk) {
                         iBulk++;
-                        await channel.bulkDelete(100, true).then(msgs => {
-                            bulkAmt.push(msgs.size);
-                        })
+                        setTimeout(async () => {
+                            try {
+                                await channel.bulkDelete(100, true).then(msgs => {
+                                    bulkAmt.push(msgs.size);
+                                })
+                            } catch { }
+                        }, 1500);
                     }
-                    const sum = await bulkAmt.reduce(add, 0)
-                    function add(acc, a) { return acc + a }
+                    const sum = await bulkAmt.reduce((pv, cv) => pv + cv, 0)
 
                     interaction.reply({
                         embeds: [embed
