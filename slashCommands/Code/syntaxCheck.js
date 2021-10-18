@@ -34,13 +34,13 @@ module.exports = {
             var embed = new MessageEmbed()
                 .setTimestamp()
                 .setColor(ee.color)
-                .setFooter(client.user.username, client.user.displayAvatarURL())
+                .setFooter(`Code by: ${interaction.user.tag}`, interaction.user.displayAvatarURL())
                 .setAuthor("syntaxCheck.js", client.user.displayAvatarURL())
 
-            async function runShell(command) {
+            function runShell(code) {
                 let result;
                 try {
-                    result = await execProm(command);
+                    result = await execProm(code);
                 } catch (ex) {
                     result = ex;
                 }
@@ -50,7 +50,7 @@ module.exports = {
                 return result;
             }
 
-            runShell(code).then(res => {
+            await runShell(code).then(res => {
                 if (res) {
                     interaction.reply({
                         embeds: [embed.setColor(ee.errColor)
