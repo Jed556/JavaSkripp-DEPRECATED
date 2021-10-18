@@ -290,9 +290,9 @@ module.exports = (client) => {
                                     ],
                                     ephemeral: true
                                 })
-                            //pause the player
+                            //Pause the player
                             await newQueue.shuffle()
-                            //Send Success Message
+                            //Send success message
                             i.reply({
                                 embeds: [new MessageEmbed()
                                     .setColor(ee.color)
@@ -513,6 +513,7 @@ module.exports = (client) => {
                     errDM(client, error)
                 }
             })
+
             .on(`addSong`, (queue, song) => queue.textChannel.send({
                 embeds: [
                     new MessageEmbed()
@@ -525,6 +526,7 @@ module.exports = (client) => {
                         .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
                 ]
             }))
+
             .on(`addList`, (queue, playlist) => queue.textChannel.send({
                 embeds: [
                     new MessageEmbed()
@@ -537,13 +539,16 @@ module.exports = (client) => {
                         .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
                 ]
             }))
+
             // DisTubeOptions.searchSongs = true
             .on(`searchResult`, (message, result) => {
                 let i = 0
                 message.channel.send(`**Choose an option from below**\n${result.map((song) => `**${++i}**. ${song.name} - \`${song.formattedDuration}\``).join(`\n`)}\n*Enter anything else or wait 60 seconds to cancel*`)
             })
+
             // DisTubeOptions.searchSongs = true
             .on(`searchCancel`, message => message.channel.send(`Searching canceled`).catch((e) => console.log(e)))
+
             .on(`error`, (channel, e) => {
                 channel.send({
                     embeds: [new MessageEmbed()
@@ -557,17 +562,20 @@ module.exports = (client) => {
                 console.error(e)
                 errDM(client, e)
             })
-            .on(`empty`, channel => {
+
+            .on(`empty`, message => {
                 var embed = new MessageEmbed().setColor(ee.color)
                     .setAuthor(`VOICE CHANNEL EMPTY`, ee.discAlert)
                     .setDescription(`**LEAVING THE CHANNEL...**`)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setTimestamp();
-                channel.send({ embeds: [embed], components: [] }).catch((e) => {
+                message.channel.send({ embeds: [embed], components: [] }).catch((e) => {
                     console.log(e.stack ? String(e.stack).grey : String(e).grey)
                 })
             })
+
             .on(`searchNoResult`, message => message.channel.send(`No result found!`).catch((e) => console.log(e)))
+
             .on(`finishSong`, (queue, song) => {
                 var embed = new MessageEmbed().setColor(ee.color)
                     .setAuthor(`DASHBOARD | SONG ENDED`, ee.discDone)
@@ -584,6 +592,7 @@ module.exports = (client) => {
                     //console.log(e.stack ? String(e.stack).grey : String(e).grey)
                 })
             })
+
             .on(`finish`, queue => {
                 queue.textChannel.send({
                     embeds: [
@@ -594,6 +603,7 @@ module.exports = (client) => {
                     ]
                 })
             })
+
             .on(`initQueue`, queue => {
                 try {
                     client.settings.ensure(queue.id, {
