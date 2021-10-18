@@ -6,8 +6,8 @@ const moment = require("moment");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
-    name: "send",
-    description: "Send a direct message to a user",
+    name: "restart",
+    description: "Perform JavaSkripp global restart",
     category: "JavaSkripp",
     cooldown: 1,
     requiredroles: [],
@@ -26,16 +26,17 @@ module.exports = {
         try {
             const cd = interaction.options.getString("countdown");
             if (cd) {
+                interaction.reply({
+                    embeds: [new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(ee.color)
+                        .setDescription(`Restarting Host in ${secs}`)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                    ], ephemeral: true
+                })
                 setTimeout(async () => {
                     try {
-                        interaction.reply({
-                            embeds: [new MessageEmbed()
-                                .setTimestamp()
-                                .setColor(ee.color)
-                                .setDescription(`Restarting Host in ${secs}`)
-                                .setFooter(client.user.username, client.user.displayAvatarURL())
-                            ], ephemeral: true
-                        })
+                        //restart code
                     } catch { }
                 }, time);
             }
