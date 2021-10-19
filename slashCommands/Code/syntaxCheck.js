@@ -53,9 +53,9 @@ module.exports = {
                     if (err) console.log(err);
                 });
 
-                exec(`node --check ${__dirname}/files/${fileId}.js`, function(err, stdout, stderr){
-                    if (err) {
-                        callback({ passed: false, error: stderr });
+                exec(`node --check ${__dirname}/files/${fileId}.js`, function(e){
+                    if (e) {
+                        callback({ passed: false, error: e });
                         return;
                     }
                     callback({ passed: true, error: null });
