@@ -50,7 +50,7 @@ module.exports = {
                 })
 
                 var djs = client.settings.get(newQueue.id, `djroles`).map(r => `<@&${r}>`);
-                if (djs.length == 0) djs = "`not setup`";
+                if (djs.length == 0) djs = "`Not Set`";
                 else djs.slice(0, 15).join(", ");
                 let newTrack = newQueue.songs[0];
                 let embed = new MessageEmbed().setColor(ee.color)
