@@ -62,8 +62,8 @@ module.exports = {
                     .addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check}\` Queue\`` : `${client.allEmojis.check} \`Song\`` : `${client.allEmojis.x}`}`, true)
                     .addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check}` : `${client.allEmojis.x}`}`, true)
                     .addField(`⬇ Download:`, `>>> [\`Music Link\`](${newTrack.streamURL})`, true)
-                    .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 3 ? false : true)
-                    .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s" : ""}:`, `>>> ${djs}`, (client.settings.get(newQueue.id, "djroles").length > 1 || djs != "`Not Set`") ? false : true)
+                    .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 2 ? false : true)
+                    .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s" : ""}:`, `>>> ${djs}`, (client.settings.get(newQueue.id, "djroles").length > 2 || djs != "`Not Set`") ? false : true)
                     .setAuthor(`DASHBOARD | NOW PLAYING`, ee.discSpin)
                     .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
                     .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({ dynamic: true }));
