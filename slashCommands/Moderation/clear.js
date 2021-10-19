@@ -26,7 +26,7 @@ module.exports = {
         {
             "User": {
                 name: "user",
-                description: "Clear mentioned user messages",
+                description: "Clear mentioned user's messages",
                 required: false
             }
         }
@@ -58,14 +58,14 @@ module.exports = {
                     await channel.bulkDelete(filtered, true).then(msgs => {
                         interaction.reply({
                             embeds: [embed
-                                .setDescription(`Deleted ${msgs.size} messages sent by ${Target}`)]
+                                .setDescription(`**Deleted ${msgs.size} messages sent by ${Target}**`)]
                         })
                     })
                 } else {
                     await channel.bulkDelete(Amount, true).then(msgs => {
                         interaction.reply({
                             embeds: [embed
-                                .setDescription(`Deleted ${msgs.size} messages in ${channel}`)]
+                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}**`)]
                         })
                     })
                 }
@@ -82,8 +82,11 @@ module.exports = {
                     await channel.bulkDelete(filtered, true).then(msgs => {
                         interaction.reply({
                             embeds: [embed
-                                .setDescription(`Deleted ${msgs.size} messages sent by ${Target}`)]
+                                .setDescription(`**Deleted ${msgs.size} messages sent by ${Target}**`)]
                         })
+                        setTimeout(async () => {
+                            try { await interaction.deleteReply() } catch { }
+                        }, time);
                     })
                 } else {
                     let iBulk = 0;
@@ -92,26 +95,20 @@ module.exports = {
                         await setTimeout(() => {
                             try {
                                 channel.bulkDelete(100, true).then(msgs => {
-                                    bulkAmt.push(msgs.size);
+                                    await interaction.reply({
+                                        embeds: [embed
+                                            .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: ${iBulk + 1}]\``)]
+                                    })
+                                    setTimeout(async () => {
+                                        try { await interaction.deleteReply() } catch { }
+                                    }, time);
                                 })
                             } catch { }
                         }, 1500);
                         iBulk++;
                     }
-
-                    await interaction.reply({
-                        embeds: [embed
-                            .setDescription(`Deleted ${bulkAmt.length} messages in ${channel}`)]
-                    })
                 }
             }
-
-            try {
-                await setTimeout(() => {
-                    interaction.deleteReply()
-                }, time);
-            } catch { }
-
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)
