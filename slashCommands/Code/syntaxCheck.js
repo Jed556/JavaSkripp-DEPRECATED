@@ -53,9 +53,9 @@ module.exports = {
                     if (err) console.log(err);
                 });
 
-                exec(`node --check ${__dirname}/files/${fileId}.js`, function(e){
-                    if (e) {
-                        callback({ passed: false, error: e });
+                exec(`node --check ${__dirname}/files/${fileId}.js`, function(err, stdout, stderr){
+                    if (err) {
+                        callback({ passed: false, error: err });
                         return;
                     }
                     callback({ passed: true, error: null });
@@ -77,6 +77,8 @@ module.exports = {
                     });
                 }
             });
+
+            await fs.unlink(`${__dirname}/files/${fileId}.${language}`);
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)
