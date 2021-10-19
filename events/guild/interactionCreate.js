@@ -7,7 +7,7 @@ const Discord = require("discord.js");
 module.exports = (client, interaction) => {
     const CategoryName = interaction.commandName;
 
-    if (interaction.guildId == null) return;
+    if (interaction.guildId == null && CategoryName != "js") return;
 
     let prefix = config.prefix;
     if (interaction.guildId) {

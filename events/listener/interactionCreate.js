@@ -9,7 +9,7 @@ module.exports = (client, interaction) => {
         const CategoryName = interaction.commandName;
         const SubCommand = interaction.options.getSubcommand();
 
-        if (interaction.guildId == null) return [interaction.reply({
+        if (interaction.guildId == null && CategoryName != "js") return [interaction.reply({
             embeds: [
                 new Discord.MessageEmbed()
                     .setColor(ee.errColor)
