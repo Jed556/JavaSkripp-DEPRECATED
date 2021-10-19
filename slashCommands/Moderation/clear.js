@@ -58,14 +58,16 @@ module.exports = {
                     await channel.bulkDelete(filtered, true).then(msgs => {
                         interaction.reply({
                             embeds: [embed
-                                .setDescription(`**Deleted ${msgs.size} messages sent by ${Target}**`)]
+                                .setDescription(`**Deleted ${msgs.size} messages sent by ${Target}**`)],
+                            ephemeral: true
                         })
                     })
                 } else {
                     await channel.bulkDelete(Amount, true).then(msgs => {
                         interaction.reply({
                             embeds: [embed
-                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}**`)]
+                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}**`)],
+                            ephemeral: true
                         })
                     })
                 }
@@ -82,31 +84,26 @@ module.exports = {
                     await channel.bulkDelete(filtered, true).then(msgs => {
                         interaction.reply({
                             embeds: [embed
-                                .setDescription(`**Deleted ${msgs.size} messages sent by ${Target}**`)]
+                                .setDescription(`**Deleted ${msgs.size} messages sent by ${Target}**`)],
+                            ephemeral: true
                         })
-                        setTimeout(async () => {
-                            try { await interaction.deleteReply() } catch { }
-                        }, time);
                     })
                 } else {
                     let iBulk = 1;
-                    interaction.reply({ embeds: [embed.setDescription("**Deleting Messages...**")] })
+                    interaction.reply({ embeds: [embed.setDescription("**Deleting Messages...**")], ephemeral: true })
                     try {
                         while (iBulk < Math.ceil(Amount / 100)) {
                             setTimeout(async () => {
                                 await channel.bulkDelete(100, true).then(msgs => {
                                     if (msgs.size > 0)
-                                        interaction.followUp({
+                                        interaction.editReply({
                                             embeds: [embed
-                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk}/${Math.ceil(Amount / 100)}]\``)]
+                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk}/${Math.ceil(Amount / 100)}]\``)],
                                         })
                                 })
                                 iBulk++;
                             }, 3500);
                         }
-                        setTimeout(async () => {
-                            await channel.bulkDelete(iBulk, true);
-                        }, time);
                     } catch { }
                 }
             }
