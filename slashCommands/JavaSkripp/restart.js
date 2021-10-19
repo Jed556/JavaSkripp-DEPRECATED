@@ -34,7 +34,8 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.color)
-                        .setDescription(`Restarting Host in ${cd} secs`)
+                        .setAuthor("HEROKU | restart.js", ee.heroku)
+                        .setDescription(`**Restarting Host in ${cd} secs**`)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ], ephemeral: true
                 })
@@ -51,7 +52,8 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.color)
-                        .setDescription("Restarting Host...")
+                        .setAuthor("HEROKU | restart.js", ee.heroku)
+                        .setDescription("**Restarting Host...**")
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ], ephemeral: true
                 })
