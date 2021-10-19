@@ -77,7 +77,7 @@ module.exports = {
                 }
             });
 
-            try { await fs.unlink(`${__dirname}/../../databases/files/${fileId}.js`); } catch (e) { console.log(err) }
+            try { await fs.unlink(`${__dirname}/../../databases/files/${fileId}.js`); } catch (e) { console.log(e) }
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)
