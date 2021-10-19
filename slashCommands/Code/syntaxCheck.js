@@ -3,9 +3,9 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const { errDM } = require("../../handlers/functions");
-const fs = require('fs');
-const os = require('os');
-const exec = require('child_process').exec;
+const fs = require("fs");
+const os = require("os");
+const exec = require("child_process").exec;
 
 module.exports = {
     name: "analyze",
@@ -26,10 +26,7 @@ module.exports = {
 
     run: async (client, interaction) => {
         try {
-            const { member, channelId, guildId, applicationId, commandName,
-                deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
-
-            const code = options.getString("code")
+            const code = interaction.options.getString("code")
 
             var embed = new MessageEmbed()
                 .setTimestamp()
@@ -39,8 +36,8 @@ module.exports = {
 
             function makeid(length) {
                 if (!length) length = 40;
-                var result = '';
-                var characters = '0123456789';
+                var result = "";
+                var characters = "0123456789";
                 var charactersLength = characters.length;
                 for (var i = 0; i < length; i++) {
                     result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -51,8 +48,8 @@ module.exports = {
             async function checkSyntaxString (string, language, callback) {
                 fileId = makeid();
                 string = string || ``;
-                language = language || 'js'
-                fs.writeFile(`${__dirname}/files/${fileId}.${language}`, string, 'utf8', (err) => {
+                language = language || "js"
+                fs.writeFile(`${__dirname}/files/${fileId}.${language}`, string, "utf8", (err) => {
                     if (err) console.log(err);
                 });
 
@@ -65,7 +62,7 @@ module.exports = {
                 });
             }
 
-            await checkSyntaxString(code, js, function(syntaxReturn){
+            await checkSyntaxString(code, "js", function(syntaxReturn){
                 if (syntaxReturn) {
                     interaction.reply({
                         embeds: [embed.setColor(ee.errColor)
