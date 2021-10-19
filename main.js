@@ -117,10 +117,3 @@ client.infos = new Enmap({ name: "infos", dataDir: "./databases/infos" });
 
 //Start the Bot
 client.login(config.token)
-
-/**
- * @LOAD_THE_DASHBOARD - Loading the Dashbaord Module with the BotClient into it
- */
-//client.on("ready", () => {
-//  require("./dashboard/index.js")(client);
-//})
