@@ -89,7 +89,7 @@ module.exports = {
                     let iBulk = 0;
                     bulkAmt = [];
                     while (Math.ceil(Amount / 100) > iBulk) {
-                        setTimeout(async () => {
+                        await setTimeout(() => {
                             try {
                                 await channel.bulkDelete(100, true).then(msgs => {
                                     bulkAmt.push(msgs.size);
@@ -98,11 +98,10 @@ module.exports = {
                         }, 1500);
                         iBulk++;
                     }
-                    const sum = await bulkAmt.reduce((pv, cv) => pv + cv, 0)
 
                     await interaction.reply({
                         embeds: [embed
-                            .setDescription(`Deleted ${sum} messages in ${channel}`)]
+                            .setDescription(`Deleted ${bulkAmt.length} messages in ${channel}`)]
                     })
                 }
             }
