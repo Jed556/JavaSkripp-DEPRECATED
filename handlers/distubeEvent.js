@@ -598,7 +598,7 @@ module.exports = (client) => {
                     embeds: [
                         new MessageEmbed().setColor(ee.color).setFooter(client.user.username, client.user.displayAvatarURL())
                             .setAuthor("LEFT THE CHANNEL", ee.discAlert)
-                            .setDescription("🎧 **No more songs left**")
+                            .setDescription("**No more songs left**")
                             .setTimestamp()
                     ]
                 })
@@ -636,7 +636,7 @@ module.exports = (client) => {
             .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({ dynamic: true }));
         var embed = new MessageEmbed().setColor(ee.color)
             .setDescription(`**[${newTrack.name}](${newTrack.url})**`)
-            .addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)
+            .addField(`${(newTrack.user === client.user) ? "💡 Autoplayed by:" : "💡 Requested by:"}`, `>>> ${newTrack.user}`, true)
             .addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
             .addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song${newQueue.songs.length != 1 ? "s" : ""}\`\n\`${newQueue.formattedDuration}\``, true)
             .addField(`🔊 Volume:`, `>>> \`${newQueue.volume} %\``, true)
