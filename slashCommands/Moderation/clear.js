@@ -102,7 +102,7 @@ module.exports = {
                                         })
                                 })
                                 iBulk++;
-                            }, 3500);
+                            }, 1500);
                         }
                     } catch { }
                 }
