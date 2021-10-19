@@ -61,11 +61,11 @@ module.exports = {
                 });
             }
 
-            await checkSyntaxString(code, function (syntaxReturn) {
-                if (syntaxReturn.passed) {
+            await checkSyntaxString(code, function (syntax) {
+                if (!syntax.passed) {
                     interaction.reply({
                         embeds: [embed.setColor(ee.errColor)
-                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${syntaxReturn.error}\`\`\``)
+                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${syntax.error}\`\`\``)
                         ]
                     });
                 } else {
