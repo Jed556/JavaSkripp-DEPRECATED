@@ -89,23 +89,24 @@ module.exports = {
                         }, time);
                     })
                 } else {
-                    let iBulk = 0;
+                    let iBulk = 1;
                     interaction.reply({ embeds: [embed.setDescription("**Deleting Messages...**")] })
                     try {
-                        while (Math.ceil(Amount / 100) > iBulk && Math.ceil(Amount / 100) != iBulk) {
+                        while (iBulk < Math.ceil(Amount / 100)) {
                             setTimeout(async () => {
                                 await channel.bulkDelete(100, true).then(msgs => {
                                     if (msgs.size > 0)
                                         interaction.followUp({
                                             embeds: [embed
-                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk + 1}/${Math.ceil(Amount / 100)}]\``)]
+                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk}/${Math.ceil(Amount / 100)}]\``)]
                                         })
+                                        else return;
                                 })
+                                await iBulk++;
                             }, 3500);
-                            iBulk++;
                         }
                         setTimeout(async () => {
-                            await channel.bulkDelete((iBulk + 1), true);
+                            await channel.bulkDelete(iBulk, true);
                         }, time);
                     } catch { }
                 }
