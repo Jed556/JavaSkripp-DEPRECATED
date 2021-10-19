@@ -100,9 +100,8 @@ module.exports = {
                                             embeds: [embed
                                                 .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk}/${Math.ceil(Amount / 100)}]\``)]
                                         })
-                                        else return;
                                 })
-                                await iBulk++;
+                                iBulk++;
                             }, 3500);
                         }
                         setTimeout(async () => {
