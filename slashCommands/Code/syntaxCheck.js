@@ -45,14 +45,14 @@ module.exports = {
                 return result;
             }
 
-            async function checkSyntaxString (string, callback) {
+            async function checkSyntaxString(string, callback) {
                 fileId = makeid();
                 string = string || ``;
                 fs.writeFile(`${__dirname}/../../databases/files/${fileId}.js`, string, "utf8", (err) => {
                     if (err) console.log(err);
                 });
 
-                exec(`node --check ${__dirname}/../../databases/files/${fileId}.js`, function(err, stdout, stderr){
+                exec(`node --check ${__dirname}/../../databases/files/${fileId}.js`, function (err, stdout, stderr) {
                     if (err) {
                         callback({ passed: false, error: err });
                         return;
@@ -61,7 +61,7 @@ module.exports = {
                 });
             }
 
-            await checkSyntaxString(code, function(syntaxReturn){
+            await checkSyntaxString(code, function (syntaxReturn) {
                 if (syntaxReturn.passed) {
                     interaction.reply({
                         embeds: [embed.setColor(ee.errColor)
@@ -77,7 +77,7 @@ module.exports = {
                 }
             });
 
-            await fs.unlink(`${__dirname}/files/${fileId}.${language}`);
+            try { await fs.unlink(`${__dirname}/../../databases/files/${fileId}.js`); } catch (e) { console.log(err) }
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)
