@@ -91,7 +91,7 @@ module.exports = {
                     while (Math.ceil(Amount / 100) > iBulk) {
                         await setTimeout(() => {
                             try {
-                                await channel.bulkDelete(100, true).then(msgs => {
+                                channel.bulkDelete(100, true).then(msgs => {
                                     bulkAmt.push(msgs.size);
                                 })
                             } catch { }
