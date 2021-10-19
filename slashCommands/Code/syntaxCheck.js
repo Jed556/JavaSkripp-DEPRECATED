@@ -55,7 +55,7 @@ module.exports = {
 
                 exec(`node --check ${__dirname}/files/${fileId}.js`, function(err, stdout, stderr){
                     if (err) {
-                        callback({ passed: false, error: err });
+                        callback({ passed: false, error: stderr });
                         return;
                     }
                     callback({ passed: true, error: null });
