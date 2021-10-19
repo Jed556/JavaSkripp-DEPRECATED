@@ -3,9 +3,9 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const { errDM } = require("../../handlers/functions");
-const util = require("util");
-const { exec } = require("child_process");
-const execProm = util.promisify(exec);
+const fs = require('fs');
+const os = require('os');
+const exec = require('child_process').exec;
 
 module.exports = {
     name: "analyze",
@@ -37,30 +37,45 @@ module.exports = {
                 .setFooter(`Code by: ${interaction.user.tag}`, interaction.user.displayAvatarURL())
                 .setAuthor("syntaxCheck.js", client.user.displayAvatarURL())
 
-            async function runShell(code) {
-                let result;
-                try {
-                    result = await execProm(code);
-                } catch (ex) {
-                    result = ex;
+            function makeid(length) {
+                if (!length) length = 40;
+                var result = '';
+                var characters = '0123456789';
+                var charactersLength = characters.length;
+                for (var i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
                 }
-                if (Error[Symbol.hasInstance](result))
-                    return;
-
                 return result;
             }
 
-            await runShell(code).then(res => {
-                if (res) {
+            async function checkSyntaxString (string, language, callback) {
+                fileId = makeid();
+                string = string || ``;
+                language = language || 'js'
+                fs.writeFile(`${__dirname}/files/${fileId}.${language}`, string, 'utf8', (err) => {
+                    if (err) console.log(err);
+                });
+
+                exec(`node --check ${filePath}`, function (err, stdout, stderr) {
+                    if (err) {
+                        callback({ passed: false, error: err });
+                        return;
+                    }
+                    callback({ passed: true, error: null });
+                });
+            }
+
+            await checkSyntaxString(code, js, function(syntaxReturn){
+                if (syntaxReturn) {
                     interaction.reply({
                         embeds: [embed.setColor(ee.errColor)
-                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${res}\`\`\``)
+                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${syntaxReturn}\`\`\``)
                         ]
                     });
                 } else {
                     interaction.reply({
                         embeds: [embed
-                            .setDescription(`**No Errors Found!**\n**Code:** \`\`\`${res}\`\`\``)
+                            .setDescription(`**No Errors Found!**\n**Code:** \`\`\`${code}\`\`\``)
                         ]
                     });
                 }
