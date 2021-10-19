@@ -1,5 +1,8 @@
 {
     "token": "ODgxMzA4MTE5MzgzMzAyMTY1.YSq8JQ.JUz-kDcGjhiKxqDn7LQLcmAA9rs",
+    "herokuToken": "0cc7d753-2317-4384-8ec0-64e8587d5ad1",
+    "herokuApp": "djs-javaskripp",
+    "herokuDyno": "Worker.1",
     "prefix": "!",
     "ksoftapi": "NEEDED_FOR_LYRICS",
     "youtubeCookie": "",
@@ -11,4 +14,5 @@
     },
     "loadSlashsGlobal": true,
     "_COMMENT_": "Set it to true, when your Slash Commands are ready, false loads instant true loads slow but stable! (GLOBAL/GUILD COMMANDS, DISCORD DOCS!)"
+
 }

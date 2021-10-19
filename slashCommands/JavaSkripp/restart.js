@@ -4,6 +4,10 @@ const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
 const moment = require("moment");
 const { errDM } = require("../../handlers/functions");
+var Heroku = require("heroku-client");
+var token = config.herokuToken;
+var appName = config.herokuApp;
+var dynoName = config.herokuDyno;
 
 module.exports = {
     name: "restart",
@@ -36,9 +40,14 @@ module.exports = {
                 })
                 setTimeout(async () => {
                     try {
-                        //restart code
-                    } catch { }
-                }, cd*1000);
+                        var heroku = new Heroku({ token: token });
+                        heroku.delete('/apps/' + appName + '/dynos/' + dynoName)
+                            .then(x => console.log(x));
+                    } catch (e) {
+                        console.log(String(e.stack).bgRed)
+                        errDM(client, e)
+                    }
+                }, cd * 1000);
             }
             else {
                 interaction.reply({
@@ -49,6 +58,14 @@ module.exports = {
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ], ephemeral: true
                 })
+                try {
+                    var heroku = new Heroku({ token: token });
+                    heroku.delete('/apps/' + appName + '/dynos/' + dynoName)
+                        .then(x => console.log(x));
+                } catch (e) {
+                    console.log(String(e.stack).bgRed)
+                    errDM(client, e)
+                }
             }
         } catch (e) {
             console.log(String(e.stack).bgRed)
