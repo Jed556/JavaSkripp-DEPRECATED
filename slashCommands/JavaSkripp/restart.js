@@ -30,7 +30,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.color)
-                        .setDescription(`Restarting Host in ${secs} secs`)
+                        .setDescription(`Restarting Host in ${cd} secs`)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ], ephemeral: true
                 })
