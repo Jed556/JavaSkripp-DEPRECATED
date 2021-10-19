@@ -45,11 +45,10 @@ module.exports = {
                 return result;
             }
 
-            async function checkSyntaxString (string, language, callback) {
+            async function checkSyntaxString (string, callback) {
                 fileId = makeid();
                 string = string || ``;
-                language = language || "js"
-                fs.writeFile(`${__dirname}/../../databases/files/${fileId}.${language}`, string, "utf8", (err) => {
+                fs.writeFile(`${__dirname}/../../databases/files/${fileId}.js`, string, "utf8", (err) => {
                     if (err) console.log(err);
                 });
 
@@ -62,11 +61,11 @@ module.exports = {
                 });
             }
 
-            await checkSyntaxString(code, "js", function(syntaxReturn){
-                if (syntaxReturn) {
+            await checkSyntaxString(code, function(syntaxReturn){
+                if (syntaxReturn.passed) {
                     interaction.reply({
                         embeds: [embed.setColor(ee.errColor)
-                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${JSON.stringify(syntaxReturn)}\`\`\``)
+                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${syntaxReturn.err}\`\`\``)
                         ]
                     });
                 } else {
