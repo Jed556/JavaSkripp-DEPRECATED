@@ -90,12 +90,11 @@ module.exports = {
                     })
                 } else {
                     let iBulk = 0;
-                    bulkAmt = [];
-                    await (async () => {
+                    function bulkDel() {
                         while (Math.ceil(Amount / 100) > iBulk) {
                             setTimeout(async () => {
                                 try {
-                                    await channel.bulkDelete(100, true).then(msgs => {
+                                    channel.bulkDelete(100, true).then(msgs => {
                                         if (iBulk === 0) {
                                             interaction.reply({
                                                 embeds: [embed
@@ -112,7 +111,9 @@ module.exports = {
                             }, 3500);
                             iBulk++;
                         }
-                    })
+                    }
+                    await bulkDel()
+
                     setTimeout(async () => {
                         try { await interaction.deleteReply() } catch { }
                     }, time);
