@@ -60,7 +60,7 @@ module.exports = {
                         .addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check} \`Queue\`` : `${client.allEmojis.check} \`Song\`` : `${client.allEmojis.x}`}`, true)
                         .addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check}` : `${client.allEmojis.x}`}`, true)
                         .addField(`⬇ Download:`, `>>> [\`Music Link\`](${newTrack.streamURL})`, true)
-                        .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
+                        .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 3 ? false : true)
                         .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
                         .setFooter(`Played in: ${guild.name}`, guild.iconURL({ dynamic: true }))
                         .setTimestamp()
