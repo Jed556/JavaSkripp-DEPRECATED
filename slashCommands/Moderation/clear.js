@@ -95,10 +95,17 @@ module.exports = {
                         setTimeout(async () => {
                             try {
                                 await channel.bulkDelete(100, true).then(msgs => {
-                                    interaction.reply({
-                                        embeds: [embed
-                                            .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: ${iBulk + 1}]\``)]
-                                    })
+                                    if (iBulk === 0) {
+                                        interaction.reply({
+                                            embeds: [embed
+                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk + 1}]\``)]
+                                        })
+                                    } else {
+                                        interaction.followUp({
+                                            embeds: [embed
+                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk + 1}]\``)]
+                                        })
+                                    }
                                     setTimeout(async () => {
                                         try { await interaction.deleteReply() } catch { }
                                     }, time);
