@@ -91,24 +91,23 @@ module.exports = {
                 } else {
                     let iBulk = 0;
                     interaction.deferReply("Clearing...")
-
-                    while (Math.ceil(Amount / 100) > iBulk) {
-                        setTimeout(async () => {
-                            try {
+                    try {
+                        while (Math.ceil(Amount / 100) > iBulk) {
+                            setTimeout(async () => {
                                 await channel.bulkDelete(100, true).then(msgs => {
-                                    interaction.editReply({
-                                        embeds: [embed
-                                            .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk + 1}/${Math.ceil(Amount / 100)}]\``)]
-                                    })
+                                    if (msgs.size > 0)
+                                        interaction.editReply({
+                                            embeds: [embed
+                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk + 1}/${Math.ceil(Amount / 100)}]\``)]
+                                        })
                                 })
-                            } catch { }
-                        }, 3500);
-                        iBulk++;
-
+                            }, 1000);
+                            iBulk++;
+                        }
                         setTimeout(async () => {
-                            try { await interaction.deleteReply() } catch { }
+                            await interaction.deleteReply()
                         }, time);
-                    }
+                    } catch { }
                 }
             }
         } catch (e) {
