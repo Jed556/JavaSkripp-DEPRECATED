@@ -43,10 +43,7 @@ module.exports = {
                         var heroku = new Heroku({ token: token });
                         heroku.delete('/apps/' + appName + '/dynos/' + dynoName)
                             .then(x => console.log(x));
-                    } catch (e) {
-                        console.log(String(e.stack).bgRed)
-                        errDM(client, e)
-                    }
+                    } catch { }
                 }, cd * 1000);
             }
             else {
@@ -62,10 +59,7 @@ module.exports = {
                     var heroku = new Heroku({ token: token });
                     heroku.delete('/apps/' + appName + '/dynos/' + dynoName)
                         .then(x => console.log(x));
-                } catch (e) {
-                    console.log(String(e.stack).bgRed)
-                    errDM(client, e)
-                }
+                } catch { }
             }
         } catch (e) {
             console.log(String(e.stack).bgRed)
