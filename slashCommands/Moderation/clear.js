@@ -96,12 +96,12 @@ module.exports = {
                                 try {
                                     await channel.bulkDelete(100, true).then(msgs => {
                                         if (iBulk === 0) {
-                                            await interaction.reply({
+                                            interaction.reply({
                                                 embeds: [embed
                                                     .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk + 1}/${Math.ceil(Amount / 100)}]\``)]
                                             })
                                         } else {
-                                            await interaction.editReply({
+                                            interaction.editReply({
                                                 embeds: [embed
                                                     .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk + 1}/${Math.ceil(Amount / 100)}]\``)]
                                             })
