@@ -107,9 +107,11 @@ module.exports = {
                 }
             }
 
-            setTimeout(async () => {
-                try { interaction.deleteReply() } catch { }
-            }, time);
+            try {
+                setTimeout(async () => {
+                    await interaction.deleteReply()
+                }, time);
+            } catch { }
 
         } catch (e) {
             console.log(String(e.stack).bgRed)
