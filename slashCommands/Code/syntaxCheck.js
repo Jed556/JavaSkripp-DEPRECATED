@@ -65,7 +65,7 @@ module.exports = {
                 if (syntaxReturn.passed) {
                     interaction.reply({
                         embeds: [embed.setColor(ee.errColor)
-                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${syntaxReturn.err}\`\`\``)
+                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${syntaxReturn.error}\`\`\``)
                         ]
                     });
                 } else {
