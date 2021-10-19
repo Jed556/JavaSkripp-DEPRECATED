@@ -92,7 +92,7 @@ module.exports = {
                     let iBulk = 0;
                     bulkAmt = [];
                     while (Math.ceil(Amount / 100) > iBulk) {
-                        await setTimeout(() => {
+                        setTimeout(async () => {
                             try {
                                 channel.bulkDelete(100, true).then(msgs => {
                                     await interaction.reply({
