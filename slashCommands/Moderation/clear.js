@@ -94,8 +94,8 @@ module.exports = {
                     while (Math.ceil(Amount / 100) > iBulk) {
                         setTimeout(async () => {
                             try {
-                                channel.bulkDelete(100, true).then(msgs => {
-                                    await interaction.reply({
+                                await channel.bulkDelete(100, true).then(msgs => {
+                                    interaction.reply({
                                         embeds: [embed
                                             .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: ${iBulk + 1}]\``)]
                                     })
