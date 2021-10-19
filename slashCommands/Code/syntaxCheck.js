@@ -49,11 +49,11 @@ module.exports = {
                 fileId = makeid();
                 string = string || ``;
                 language = language || "js"
-                fs.writeFile(`${__dirname}/files/${fileId}.${language}`, string, "utf8", (err) => {
+                fs.writeFile(`${__dirname}/../../databases/files/${fileId}.${language}`, string, "utf8", (err) => {
                     if (err) console.log(err);
                 });
 
-                exec(`node --check ${__dirname}/files/${fileId}.js`, function(err, stdout, stderr){
+                exec(`node --check ${__dirname}/../../databases/files/${fileId}.js`, function(err, stdout, stderr){
                     if (err) {
                         callback({ passed: false, error: err });
                         return;
