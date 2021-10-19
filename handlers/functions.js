@@ -825,13 +825,12 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
         });
     } else if (promise && reason) {
         return client.users.fetch(settings.ownerID, false).then((user) => {
-            JSON.stringify(promise);
             user.send({
                 embeds: [report
                     .setTitle("Unhandled Rejection/Catch")
                     .setDescription(`
                     **Reason:**\`\`\`${reason}\`\`\`\n
-                    **Promise:**\`\`\`${promise}\`\`\``)
+                    **Promise:**\`\`\`${JSON.stringify(promise)}\`\`\``)
                 ]
             });
         });

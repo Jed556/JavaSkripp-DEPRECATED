@@ -64,10 +64,9 @@ module.exports = {
 
             await checkSyntaxString(code, "js", function(syntaxReturn){
                 if (syntaxReturn) {
-                    JSON.stringify(syntaxReturn);
                     interaction.reply({
                         embeds: [embed.setColor(ee.errColor)
-                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${syntaxReturn}\`\`\``)
+                            .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${JSON.stringify(syntaxReturn)}\`\`\``)
                         ]
                     });
                 } else {
