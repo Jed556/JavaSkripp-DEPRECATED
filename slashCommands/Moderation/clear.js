@@ -108,8 +108,8 @@ module.exports = {
             }
 
             try {
-                setTimeout(async () => {
-                    await interaction.deleteReply()
+                await setTimeout(() => {
+                    interaction.deleteReply()
                 }, time);
             } catch { }
 
