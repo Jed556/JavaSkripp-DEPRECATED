@@ -98,22 +98,22 @@ module.exports = {
                                     if (iBulk === 0) {
                                         interaction.reply({
                                             embeds: [embed
-                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk + 1}]\``)]
+                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk + 1}/${Math.ceil(Amount / 100)}]\``)]
                                         })
                                     } else {
-                                        interaction.followUp({
+                                        interaction.editReply({
                                             embeds: [embed
-                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk + 1}]\``)]
+                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk + 1}/${Math.ceil(Amount / 100)}]\``)]
                                         })
                                     }
-                                    setTimeout(async () => {
-                                        try { await interaction.deleteReply() } catch { }
-                                    }, time);
                                 })
                             } catch { }
-                        }, 1500);
+                        }, 3500);
                         iBulk++;
                     }
+                    setTimeout(async () => {
+                        try { await interaction.deleteReply() } catch { }
+                    }, time);
                 }
             }
         } catch (e) {
