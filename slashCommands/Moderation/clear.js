@@ -90,19 +90,20 @@ module.exports = {
                     })
                 } else {
                     let iBulk = 1;
+                    const amt = Math.ceil(Amount / 100)
                     interaction.reply({ embeds: [embed.setDescription("**Deleting Messages...**")], ephemeral: true })
                     try {
-                        while (iBulk < Math.ceil(Amount / 100)) {
+                        while (amt > iBulk) {
                             setTimeout(async () => {
                                 await channel.bulkDelete(100, true).then(msgs => {
                                     if (msgs.size > 0)
                                         interaction.editReply({
                                             embeds: [embed
-                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk}/${Math.ceil(Amount / 100)}]\``)],
+                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk}/${amt}]\``)],
                                         })
                                 })
-                                iBulk++;
                             }, 1500);
+                            iBulk++;
                         }
                     } catch { }
                 }
