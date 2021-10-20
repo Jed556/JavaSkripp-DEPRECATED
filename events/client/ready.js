@@ -1,12 +1,12 @@
 //here the event starts
-const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { change_status } = require("../../handlers/functions");
 const settings = require("../../botconfig/settings.json")
 const config = require("../../botconfig/config.json")
 const ee = require("../../botconfig/embed.json")
-const os = require("os");
 const { readdirSync, lstatSync } = require("fs");
+const os = require("os");
 
 module.exports = async (client) => {
     //SETTING ALL GUILD DATA FOR THE DJ ONLY COMMANDS for the DEFAULT
@@ -26,9 +26,7 @@ module.exports = async (client) => {
         readdirSync(`${__dirname}/../../slashCommands/`).forEach((dir) => {
             if (lstatSync(`${__dirname}/../../slashCommands/${dir}`).isDirectory()) {
                 const cmd = readdirSync(`${__dirname}/../../slashCommands/${dir}/`).filter((file) => file.endsWith(".js"));
-                for (let file of cmd) {
-                    check.push(file);
-                }
+                for (let file of cmd) check.push(file);
             }
         })
         if (client.slashCommands.size < check.length) {
@@ -48,8 +46,8 @@ module.exports = async (client) => {
                     ]
                 });
             });
-                client.user.setStatus("dnd");
-                client.user.setActivity(`Redeploy • LOAD ERROR`, { type: "WATCHING" });
+            client.user.setStatus("dnd");
+            client.user.setActivity(`Redeploy • Error`, { type: "WATCHING" });
         } else {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
