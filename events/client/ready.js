@@ -48,8 +48,8 @@ module.exports = async (client) => {
                     ]
                 });
             });
-            client.user.setActivity(`Redeployment • Load Error`, { type: "WATCHING" });
-            client.user.setStatus("dnd");
+                client.user.setStatus("dnd");
+                client.user.setActivity(`Redeploy • LOAD ERROR`, { type: "WATCHING" });
         } else {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
