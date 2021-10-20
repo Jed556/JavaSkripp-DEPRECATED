@@ -6,7 +6,7 @@ const settings = require("../../botconfig/settings.json")
 const config = require("../../botconfig/config.json")
 const ee = require("../../botconfig/embed.json")
 const os = require("os");
-const { readdirSync } = require("fs");
+const { readdirSync, lstatSync } = require("fs");
 
 module.exports = async (client) => {
     //SETTING ALL GUILD DATA FOR THE DJ ONLY COMMANDS for the DEFAULT
@@ -23,9 +23,9 @@ module.exports = async (client) => {
                 `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
         } catch { }
         var check = [];
-        readdirSync("../../slashCommands/").forEach((dir) => {
-            if (lstatSync(`../../slashCommands/${dir}`).isDirectory()) {
-                const cmd = readdirSync(`../../slashCommands/${dir}/`).filter((file) => file.endsWith(".js"));
+        readdirSync("./../../slashCommands/").forEach((dir) => {
+            if (lstatSync(`./../../slashCommands/${dir}`).isDirectory()) {
+                const cmd = readdirSync(`./../../slashCommands/${dir}/`).filter((file) => file.endsWith(".js"));
                 for (let file of cmd) {
                     check.push(file);
                 }
@@ -47,10 +47,6 @@ module.exports = async (client) => {
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
-            });
-            client.user.setPresence({
-                activities: [{ name: "Disconnected..." }],
-                status: "dnd",
             });
             client.user.setActivity(`Redeployment • Load Error`, { type: "WATCHING" });
             client.user.setStatus("dnd");
