@@ -23,9 +23,9 @@ module.exports = async (client) => {
                 `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
         } catch { }
         var check = [];
-        readdirSync("./../../slashCommands/").forEach((dir) => {
-            if (lstatSync(`./../../slashCommands/${dir}`).isDirectory()) {
-                const cmd = readdirSync(`./../../slashCommands/${dir}/`).filter((file) => file.endsWith(".js"));
+        readdirSync(`${__dirname}/../../slashCommands/`).forEach((dir) => {
+            if (lstatSync(`${__dirname}/../../slashCommands/${dir}`).isDirectory()) {
+                const cmd = readdirSync(`${__dirname}/../../slashCommands/${dir}/`).filter((file) => file.endsWith(".js"));
                 for (let file of cmd) {
                     check.push(file);
                 }
