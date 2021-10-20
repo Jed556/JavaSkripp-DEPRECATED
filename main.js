@@ -38,10 +38,10 @@ const client = new Discord.Client({
         Discord.Intents.FLAGS.DIRECT_MESSAGE_TYPING
     ],
     presence: {
-        activity: {
-            name: "Server Deploy",
+        activities: [{
+            name: "Deployment",
             type: "WATCHING",
-        },
+        }],
         status: "idle"
     }
 });
