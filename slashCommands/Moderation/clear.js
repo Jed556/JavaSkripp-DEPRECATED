@@ -89,20 +89,25 @@ module.exports = {
                         })
                     })
                 } else {
-                    let iBulk = 1;
+                    var iBulk = 1;
                     const amt = Math.ceil(Amount / 100)
                     interaction.reply({ embeds: [embed.setDescription("**Deleting Messages...**")], ephemeral: true })
                     try {
                         while (amt > iBulk) {
-                            setTimeout(async () => {
-                                await channel.bulkDelete(100, true).then(msgs => {
-                                    if (msgs.size > 0)
-                                        interaction.editReply({
-                                            embeds: [embed
-                                                .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk}/${amt}]\``)],
-                                        })
-                                })
-                            }, 1500);
+                            await channel.bulkDelete(100, true).then(msgs => {
+                                if (msgs.size > 0)
+                                    interaction.editReply({
+                                        embeds: [embed
+                                            .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk}/${amt}]\``)],
+                                    })
+                                else {
+                                    interaction.editReply({
+                                        embeds: [embed
+                                            .setDescription(`**Done deleting messages in ${channel}**`)],
+                                    })
+                                    break;
+                                }
+                            })
                             iBulk++;
                         }
                     } catch { }
