@@ -105,7 +105,7 @@ module.exports = {
                                         embeds: [embed
                                             .setDescription(`**Done deleting messages in ${channel}**`)],
                                     })
-                                    break;
+                                    return;
                                 }
                             })
                             iBulk++;
