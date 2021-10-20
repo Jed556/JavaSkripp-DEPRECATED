@@ -35,7 +35,7 @@ module.exports = async (client) => {
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(ee.errColor)
-                        .setTitle(`${client.user.username} Online | Loading Error`)
+                        .setTitle(`${client.user.username} | Load Error`)
                         .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
                         .addField("🤖 Node", `\`${process.version}\``, true)
                         .addField("\u200b", `\u200b`, true)
@@ -47,7 +47,7 @@ module.exports = async (client) => {
                 });
             });
             client.user.setStatus("dnd");
-            client.user.setActivity(`Redeploy • Error`, { type: "WATCHING" });
+            client.user.setActivity(`Redeploys • ERROR`, { type: "WATCHING" });
         } else {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
