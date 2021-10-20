@@ -46,11 +46,11 @@ module.exports = (client) => {
             if (lstatSync(`./slashCommands/${dir}`).isDirectory()) {
                 const groupName = dir;
                 const cmdSetup = dirSetup.find(d => d.Folder == dir);
-                //If its a valid cmdsetup
+                //Check if a valid cmdsetup
                 if (cmdSetup && cmdSetup.Folder) {
-                    //Set the SubCommand as a Slash Builder
+                    //Set the SubCommand as a SlashCommandBuilder
                     const subCommand = new SlashCommandBuilder().setName(String(cmdSetup.CmdName).replace(/\s+/g, '_').toLowerCase()).setDescription(String(cmdSetup.CmdDescription));
-                    //Now for each file in that subcommand, add a command!
+                    //For each file in that subcommand, add a command
                     const slashCommands = readdirSync(`./slashCommands/${dir}/`).filter((file) => file.endsWith(".js"));
                     for (let file of slashCommands) {
                         let pull = require(`../slashCommands/${dir}/${file}`);
