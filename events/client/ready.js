@@ -12,6 +12,7 @@ module.exports = async (client) => {
     //SETTING ALL GUILD DATA FOR THE DJ ONLY COMMANDS for the DEFAULT
     //client.guilds.cache.forEach(guild=>client.settings.set(guild.id, ["autoplay", "clearqueue", "forward", "loop", "jump", "loopqueue", "loopsong", "move", "pause", "resume", "removetrack", "removedupe", "restart", "rewind", "seek", "shuffle", "skip", "stop", "volume"], "djonlycmds"))
     try {
+        client.user.setStatus("dnd");
         try {
             const stringlength = 32;
             console.log("\n" +
@@ -46,7 +47,7 @@ module.exports = async (client) => {
                     ]
                 });
             });
-            client.user.setStatus("dnd").setActivity(`Redeploys • ERROR`, { type: "WATCHING" });
+            client.user.setActivity(`Redeploys • ERROR`, { type: "WATCHING" });
         } else {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
