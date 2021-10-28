@@ -563,13 +563,13 @@ module.exports = (client) => {
                 errDM(client, e)
             })
 
-            .on(`empty`, message => {
+            .on(`empty`, queue => {
                 var embed = new MessageEmbed().setColor(ee.color)
                     .setAuthor(`VOICE CHANNEL EMPTY`, ee.discAlert)
                     .setDescription(`**LEAVING THE CHANNEL...**`)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setTimestamp();
-                message.channel.send({ embeds: [embed], components: [] }).catch((e) => {
+                queue.textChannel.send({ embeds: [embed], components: [] }).catch((e) => {
                     console.log(e.stack ? String(e.stack).grey : String(e).grey)
                 })
             })
