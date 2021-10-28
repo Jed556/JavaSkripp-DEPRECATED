@@ -22,6 +22,7 @@ module.exports = {
             const ownerID = await client.users.cache.find(u => u.id === settings.ownerID).id;
             const owner = await client.users.fetch(ownerID).catch(console.error);
 
+            console.log(os.hostname())
             cpuStat.usagePercent(function (e, percent, seconds) {
                 try {
                     if (e) return console.log(String(e.stack).red);
@@ -54,7 +55,7 @@ module.exports = {
                         .addField("⚙ Loaded", `\`${client.slashCommands.size} Commands\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`${os.platform()}\` \`${os.arch()}\``, true)
-                        .addField("📶 Latency", `\`Host: ${(os.hostname() == "Jed556") ? "Local" : "Heroku"}\` \`API: ${client.ws.ping}ms\``, true)
+                        .addField("📶 Latency", `\`Host: ${(os.hostname() == config.localhost) ? "Local" : "Heroku"}\` \`API: ${client.ws.ping}ms\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .setFooter(`Coded by: ${owner.tag}`, owner.displayAvatarURL({ dynamic: true }));
                     interaction.reply({
