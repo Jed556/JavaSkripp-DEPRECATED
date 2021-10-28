@@ -22,7 +22,6 @@ module.exports = {
             const ownerID = await client.users.cache.find(u => u.id === settings.ownerID).id;
             const owner = await client.users.fetch(ownerID).catch(console.error);
 
-            console.log(os.hostname())
             cpuStat.usagePercent(function (e, percent, seconds) {
                 try {
                     if (e) return console.log(String(e.stack).red);
