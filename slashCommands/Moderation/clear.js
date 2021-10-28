@@ -95,11 +95,13 @@ module.exports = {
                     try {
                         while (amt > iBulk) {
                             await channel.bulkDelete(100, true).then(msgs => {
-                                if (msgs.size > 0)
+                                if (msgs.size > 0) {
                                     interaction.editReply({
                                         embeds: [embed
                                             .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk}/${amt}]\``)],
                                     })
+                                    await new Promise(r => setTimeout(r, 1000))
+                                }
                                 else {
                                     interaction.editReply({
                                         embeds: [embed
