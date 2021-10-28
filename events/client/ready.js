@@ -40,7 +40,7 @@ module.exports = async (client) => {
                         .addField("🤖 Node", `\`${process.version}\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`${os.platform()}\` \`${os.arch()}\``, true)
-                        .addField(`⚙ Loaded`, `\`${client.slashCommands.size} Commands\``, true)
+                        .addField(`⚙ Loaded`, `\`${client.slashCommands.size}/${check.length} Commands\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
@@ -66,10 +66,10 @@ module.exports = async (client) => {
             });
             client.user.setStatus("online");
             change_status(client);
-            //loop through the status per each 10 minutes
+
             setInterval(() => {
                 change_status(client);
-            }, 10000);
+            }, 10000); //loop every 10 mins
         }
     } catch (e) {
         console.log(String(e.stack).grey.italic.dim.bgRed)
