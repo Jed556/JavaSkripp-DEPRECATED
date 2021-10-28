@@ -100,7 +100,7 @@ module.exports = {
                                         embeds: [embed
                                             .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk}/${amt}]\``)],
                                     })
-                                    await new Promise(r => setTimeout(r, 1000))
+                                    new Promise(r => setTimeout(r, 1000))
                                 }
                                 else {
                                     interaction.editReply({
