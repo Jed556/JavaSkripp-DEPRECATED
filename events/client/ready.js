@@ -46,8 +46,7 @@ module.exports = async (client) => {
                     ]
                 });
             });
-            client.user.setStatus("dnd");
-            client.user.setActivity(`Redeploys • ERROR`, { type: "WATCHING" });
+            client.user.setStatus("dnd").setActivity(`Redeploys • ERROR`, { type: "WATCHING" });
         } else {
             client.users.fetch(settings.ownerID, false).then((user) => {
                 user.send({
