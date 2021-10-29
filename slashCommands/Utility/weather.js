@@ -27,13 +27,6 @@ module.exports = {
                 required: true
             }
         },
-        {
-            "Integer": {
-                name: "forecasts",
-                description: "Number of forecasts to display",
-                required: false
-            }
-        },
     ],
 
     run: async (client, interaction) => {
@@ -44,21 +37,22 @@ module.exports = {
             embed = new MessageEmbed()
                 .setTimestamp()
                 .setColor(ee.color)
+                .setFooter(client.user.username, client.user.displayAvatarURL())
 
             weather.find({ search: `${city}, ${country}`, degreeType: 'C' }, function (err, result) {
                 if (err) return console.log(err)
                 parseData = JSON.parse(JSON.stringify(result));
-                console.log(parseData, "\n");
 
                 for (let i = 0; i < parseData.length; i++) {
+                    var wind = parseData[i].current.winddisplay.split(" ");
                     embed
                         .setAuthor(`WEATHER | ${parseData[0].location.name}`)
-                        .addField("Location:", `\`${parseData[i].location.lat}, ${parseData[i].location.long}\``, true)
-                        .addField("Date:", `\`${parseData[i].current.day}, ${parseData[i].current.date}\``, true)
-                        .addField("Temperature:", `\`${parseData[i].current.temperature}° ${parseData[i].location.degreetype}\``, true)
-                        .addField("Sky:", `\`${parseData[i].current.skytext}\``, true)
-                        .addField("Wind:", `\`${parseData[i].current.winddisplay}\``, true)
-                        .addField("\u200b", `\u200b`, true)
+                        .addField("🏦 Location:", `\`${parseData[i].location.lat}\n${parseData[i].location.long}\``, true)
+                        .addField("⌚ Date:", `\`${parseData[i].current.day}\n${parseData[i].current.date}\``, true)
+                        .addField("🌡 Temp:", `\`${parseData[i].current.temperature}° ${parseData[i].location.degreetype}\``, true)
+                        .addField("☁ Sky:", `\`${parseData[i].current.skytext}\``, true)
+                        .addField("💨 Wind:", `\`${wind[0]} ${wind[1]}\n${wind[2]}\``, true)
+                        .addField("\u200b", `\u200b\n\u200b\n\u200b`, true)
                 }
                 interaction.reply({ embeds: [embed] })
             })
