@@ -62,11 +62,12 @@ module.exports = {
                             .setDescription(`${reply}${user}`)]
                     });
                 }
+                interaction.followUp({
+                    embeds: [ping
+                        .setDescription(`${client.allEmojis.check} **Done pinging user**`)],
+                    ephemeral: true
+                });
             } else interaction.reply({ embeds: [ping] });
-            interaction.followUp({
-                embeds: [ping
-                    .setDescription(`${client.allEmojis.check} **Done pinging user**`)]
-            });
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)
