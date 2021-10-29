@@ -32,7 +32,8 @@ module.exports = {
         try {
             const user = interaction.options.getUser("user");
             const loop = interaction.options.getInteger("loop");
-            const replyArray = ["Hey! ", "Oi! ", "Eyyy! ", "Ping! ", "Pong! ", "Pssst! ", "Oy! ", "", "AAAAA "]
+            const replyArray = [" ", "Hey!", "Oi!", "Eyyy!", "Ping!", "Pong!", "Pssst!", "Oy!", "AAAAA"]
+            var reply = (replyArray[Math.floor(Math.random() * replyArray.length != "")] ? replyArray[Math.floor(Math.random() * replyArray.length)] : "")
 
             if (user.bot) return interaction.reply({
                 embeds: [new MessageEmbed()
@@ -47,18 +48,25 @@ module.exports = {
             const ping = new MessageEmbed()
                 .setTimestamp()
                 .setColor(ee.color)
-                .setDescription(`**${replyArray[Math.floor(Math.random() * replyArray.length)]}**${user}`)
+                .setDescription(`**${reply}**${user}`)
                 .setAuthor(`${interaction.user.tag}`, interaction.user.displayAvatarURL({ dynamic: true }))
                 .setFooter(client.user.username, client.user.displayAvatarURL())
 
             if (loop > 1) {
                 interaction.reply({ embeds: [ping] });
-                for (let i = 2; i <= loop; i++) interaction.followUp({
-                    embeds: [ping
-                        .setDescription(`**${replyArray[Math.floor(Math.random() * replyArray.length)]}**${user}`)]
-                });
+                for (let i = 2; i <= loop; i++) {
+                    var reply = (replyArray[Math.floor(Math.random() * replyArray.length != " ")]) ?
+                        `**${replyArray[Math.floor(Math.random() * replyArray.length)]}** ` : ""
+                    interaction.followUp({
+                        embeds: [ping
+                            .setDescription(`${reply}${user}`)]
+                    });
+                }
             } else interaction.reply({ embeds: [ping] });
-
+            interaction.followUp({
+                embeds: [ping
+                    .setDescription(`${client.allEmojis.check} **Done pinging user**`)]
+            });
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)
