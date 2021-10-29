@@ -99,7 +99,7 @@ module.exports = {
                                 if (msgs.size > 0) {
                                     interaction.editReply({
                                         embeds: [embed
-                                            .setDescription(`**${(sum == 0) ? `No more messages deleted in ${channel}` : `Deleted ${msgs.size} message${(msgs.size > 1 || msgs.size == 0) ? "s" : ""} in ${channel}`}** \`Loop: [${iBulk}/${amt}]\``)],
+                                            .setDescription(`**${(msgs.size == 0) ? `No more messages deleted in ${channel}` : `Deleted ${msgs.size} message${(msgs.size > 1 || msgs.size == 0) ? "s" : ""} in ${channel}`}** \`Loop: [${iBulk}/${amt}]\``)],
                                     })
                                     msgsArray.push(msgs.size);
                                 }
