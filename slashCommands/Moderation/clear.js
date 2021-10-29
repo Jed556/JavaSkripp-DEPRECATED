@@ -93,24 +93,27 @@ module.exports = {
                     const amt = Math.ceil(Amount / 100)
                     interaction.reply({ embeds: [embed.setDescription("**Deleting Messages...**")], ephemeral: true })
                     try {
+                        msgsArray = [];
                         while (amt > iBulk) {
                             await channel.bulkDelete(100, true).then(msgs => {
                                 if (msgs.size > 0) {
                                     interaction.editReply({
                                         embeds: [embed
-                                            .setDescription(`**Deleted ${msgs.size} messages in ${channel}** \`Loop: [${iBulk}/${amt}]\``)],
+                                            .setDescription(`**${(sum == 0) ? `No more messages deleted in ${channel}` : `Deleted ${msgs.size} message${(msgs.size > 1 || msgs.size == 0) ? "s" : ""} in ${channel}`}** \`Loop: [${iBulk}/${amt}]\``)],
                                     })
-                                    new Promise(r => setTimeout(r, 1000))
+                                    msgsArray.push(msgs.size);
                                 }
                                 else {
-                                    interaction.editReply({
+                                    const sum = msgsArray.reduce(function (a, v) { return a + v; }, 0)
+                                    return interaction.editReply({
                                         embeds: [embed
-                                            .setDescription(`**Done deleting messages in ${channel}**`)],
+                                            .setDescription(`**${(sum == 0) ? `No messages deleted in ${channel}` : `Done deleting ${sum} message${(sum > 1) ? "s" : ""} in ${channel}`}**`)],
                                     })
-                                    return;
                                 }
+
                             })
                             iBulk++;
+                            await new Promise(r => setTimeout(r, 2000))
                         }
                     } catch { }
                 }
