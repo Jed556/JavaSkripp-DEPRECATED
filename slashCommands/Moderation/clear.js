@@ -102,19 +102,17 @@ module.exports = {
                                             .setDescription(`**Deleted ${msgs.size} message${(msgs.size > 1 || msgs.size == 0) ? "s" : ""} in ${channel}** \`Loop: [${iBulk}/${amt}]\``)],
                                     })
                                     msgsArray.push(msgs.size);
-                                }
-                                else {
-                                    const sum = msgsArray.reduce(function (a, v) { return a + v; }, 0)
-                                    return interaction.editReply({
-                                        embeds: [embed
-                                            .setDescription(`**${(sum < 1) ? `No messages deleted in ${channel}` : `Done deleting ${sum} message${(sum > 1) ? "s" : ""} in ${channel}`}**`)],
-                                    })
-                                }
-
+                                } else return
                             })
                             iBulk++;
                             await new Promise(r => setTimeout(r, 3500))
                         }
+
+                        const sum = await msgsArray.reduce(function (a, v) { return a + v; }, 0)
+                        await interaction.editReply({
+                            embeds: [embed
+                                .setDescription(`**${(sum < 1) ? `No messages deleted in ${channel}` : `Done deleting ${sum} message${(sum > 1) ? "s" : ""} in ${channel}`}**`)],
+                        })
                     } catch { }
                 }
             }
