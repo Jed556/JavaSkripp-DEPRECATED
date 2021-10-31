@@ -19,7 +19,7 @@ module.exports = {
                 deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
             const { guild } = member;
 
-            const ownerTag = await client.users.cache.find(u => u.id === settings.ownerID).tag;
+            const ownerTag = await client.users.cache.find(u => u.id === config.ownerID).tag;
 
             interaction.reply({
                 ephemeral: true,

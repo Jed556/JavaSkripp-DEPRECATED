@@ -54,7 +54,7 @@ module.exports = async (client, message) => {
             log.setColor(ee.errColor)
         }
 
-        client.users.fetch(settings.ownerID, false).then((user) => {
+        client.users.fetch(config.ownerID, false).then((user) => {
             user.send({ embeds: [log] });
         });
         console.log(`[${message.author.tag}]${message.content ? ` MESSAGE: ${message.content}` : ""}${message.attachments.size ? ` ATTACHMENT: ${message.attachments.first().url}` : ""}`);

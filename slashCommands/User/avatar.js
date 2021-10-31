@@ -29,7 +29,7 @@ module.exports = {
                 .setAuthor(`${Target.tag}'s Avatar`)
                 .setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ dynamic: true }))
 
-            if (Target.id === settings.ownerID)
+            if (Target.id === config.ownerID)
                 Response.setImage(ee.ownerAvatar)
             else
                 Response.setImage(Target.displayAvatarURL({ dynamic: true }))

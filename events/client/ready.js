@@ -31,7 +31,7 @@ module.exports = async (client) => {
             }
         })
         if (client.slashCommands.size < check.length) {
-            client.users.fetch(settings.ownerID, false).then((user) => {
+            client.users.fetch(config.ownerID, false).then((user) => {
                 user.send({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
@@ -49,7 +49,7 @@ module.exports = async (client) => {
             });
             client.user.setActivity(`Redeploys • ERROR`, { type: "WATCHING" });
         } else {
-            client.users.fetch(settings.ownerID, false).then((user) => {
+            client.users.fetch(config.ownerID, false).then((user) => {
                 user.send({
                     embeds: [new MessageEmbed()
                         .setTimestamp()

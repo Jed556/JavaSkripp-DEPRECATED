@@ -10,7 +10,7 @@ module.exports = {
     category: "JavaSkripp",
     cooldown: 1,
     requiredroles: [],
-    alloweduserids: [settings.ownerID],
+    alloweduserids: [config.ownerID],
     options: [
         {
             "User": {

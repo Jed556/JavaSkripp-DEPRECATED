@@ -1,19 +1,17 @@
 {
+    "ownerID": "839430747088617472",
     "token": "ODgxMzA4MTE5MzgzMzAyMTY1.YSq8JQ.JUz-kDcGjhiKxqDn7LQLcmAA9rs",
     "herokuToken": "0cc7d753-2317-4384-8ec0-64e8587d5ad1",
     "herokuApp": "djs-javaskripp",
     "herokuDyno": "Worker.1",
     "localhost": "JED556",
-    "prefix": "!",
+    "prefix": "/",
     "ksoftapi": "NEEDED_FOR_LYRICS",
     "youtubeCookie": "",
     "spotify_api": {
-        "enabled": false,
-        "_COMMENT_": "Set it to false, if you want to scrape, when on true you can get spotify playlists with 100+ Tracks",
+        "enabled": false, "_COMMENT_": "Set it to false, if you want to scrape, when on true you can get spotify playlists with 100+ Tracks",
         "clientSecret": "",
         "clientId": ""
     },
-    "loadSlashsGlobal": true,
-    "_COMMENT_": "Set it to true, when your Slash Commands are ready, false loads instant true loads slow but stable! (GLOBAL/GUILD COMMANDS, DISCORD DOCS!)"
-
+    "loadSlashsGlobal": true, "_COMMENT_": "Set it to true, when your Slash Commands are ready, false loads instant true loads slow but stable! (GLOBAL/GUILD COMMANDS, DISCORD DOCS!)"
 }

@@ -806,7 +806,7 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
         .setFooter("Check logs for more details")
 
     if (e) {
-        return client.users.fetch(settings.ownerID, false).then((user) => {
+        return client.users.fetch(config.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
                     .setTitle("Command Error")
@@ -815,7 +815,7 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
             });
         });
     } else if (error) {
-        return client.users.fetch(settings.ownerID, false).then((user) => {
+        return client.users.fetch(config.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
                     .setTitle("Command Error")
@@ -824,7 +824,7 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
             });
         });
     } else if (promise && reason) {
-        return client.users.fetch(settings.ownerID, false).then((user) => {
+        return client.users.fetch(config.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
                     .setTitle("Unhandled Rejection/Catch")
@@ -835,7 +835,7 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
             });
         });
     } else if (monitor && err && origin) {
-        return client.users.fetch(settings.ownerID, false).then((user) => {
+        return client.users.fetch(config.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
                     .setTitle("Uncaught Exception/Catch (MONITOR)")
@@ -846,7 +846,7 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
             });
         });
     } else if (err && origin) {
-        return client.users.fetch(settings.ownerID, false).then((user) => {
+        return client.users.fetch(config.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
                     .setTitle("Uncaught Exception/Catch")
@@ -857,7 +857,7 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
             });
         });
     } else {
-        return client.users.fetch(settings.ownerID, false).then((user) => {
+        return client.users.fetch(config.ownerID, false).then((user) => {
             user.send({
                 embeds: [report
                     .setTitle("Multiple Resolves")

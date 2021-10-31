@@ -19,7 +19,7 @@ module.exports = {
     run: async (client, interaction) => {
         try {
 
-            const ownerID = await client.users.cache.find(u => u.id === settings.ownerID).id;
+            const ownerID = await client.users.cache.find(u => u.id === config.ownerID).id;
             const owner = await client.users.fetch(ownerID).catch(console.error);
 
             cpuStat.usagePercent(function (e, percent, seconds) {
