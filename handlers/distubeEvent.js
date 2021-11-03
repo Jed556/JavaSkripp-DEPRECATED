@@ -75,41 +75,42 @@ module.exports = (client) => {
                             lastEdited = false
                         }, 7000)
 
+                        // Check if conditions were met before proceeding
+                        let { member } = i; //get the channel instance from the Member
+                        const { channel } = member.voice
+                        //if the member is not in a channel, return error
+                        if (!channel)
+                            return i.reply({
+                                embeds: [new MessageEmbed()
+                                    .setColor(ee.errColor)
+                                    .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                ],
+                                ephemeral: true
+                            })
+                        //if not in the same channel as the player, return error
+                        if (channel.id !== newQueue.voiceChannel.id)
+                            return i.reply({
+                                embeds: [new MessageEmbed()
+                                    .setColor(ee.errColor)
+                                    .setAuthor(`Join __my__ Voice Channel First! <#${channel.id}>`, ee.discAlert)
+                                ],
+                                ephemeral: true
+                            })
+                        //get the player instance
+                        const queue = client.distube.getQueue(i.guild.id);
+                        //if no player available return aka not playing anything
+                        if (!queue || !newQueue.songs || newQueue.songs.length == 0) {
+                            return i.reply({
+                                embeds: [new MessageEmbed()
+                                    .setColor(ee.errColor)
+                                    .setAuthor(`Nothing Playing yet`, ee.discAlert)
+                                ],
+                                ephemeral: true
+                            })
+                        }
+
                         // ---------------------------------------- PREVIOUS ---------------------------------------- //
                         if (i.customId == `1`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //get the player instance
-                            const queue = client.distube.getQueue(i.guild.id);
-                            //if no player available return aka not playing anything
-                            if (!queue || !newQueue.songs || newQueue.songs.length == 0) {
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Nothing Playing yet`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            }
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
                             //if there are no previous songs then return error
                             if (!newQueue.previousSongs || newQueue.previousSongs.length == 0) {
                                 return i.reply({
@@ -125,46 +126,13 @@ module.exports = (client) => {
                                 embeds: [new MessageEmbed()
                                     .setColor(ee.color)
                                     .setTimestamp()
-                                    .setTitle(`⏭ **Playing previous Song!**`)
+                                    .setTitle(`⏮ **Playing previous Song!**`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                             })
                         }
 
                         // ---------------------------------------- SKIP ---------------------------------------- //
                         if (i.customId == `2`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //get the player instance
-                            const queue = client.distube.getQueue(i.guild.id);
-                            //if no player available return aka not playing anything
-                            if (!queue || !newQueue.songs || newQueue.songs.length == 0) {
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Nothing Playing yet`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            }
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
                             //if there is nothing more to skip then stop music and leave the Channel
                             if (newQueue.songs.length == 0) {
                                 //if its on autoplay mode, then do autoplay before leaving...
@@ -193,28 +161,6 @@ module.exports = (client) => {
 
                         // ---------------------------------------- STOP ---------------------------------------- //
                         if (i.customId == `3`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
                             //stop the track
                             i.reply({
                                 embeds: [new MessageEmbed()
@@ -230,27 +176,6 @@ module.exports = (client) => {
 
                         // ---------------------------------------- PAUSE & RESUME ---------------------------------------- //
                         if (i.customId == `4`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
                             if (newQueue.playing) {
                                 await client.distube.pause(i.guild.id);
                                 var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
@@ -283,27 +208,6 @@ module.exports = (client) => {
 
                         // ---------------------------------------- SHUFFLE ---------------------------------------- //
                         if (i.customId == `5`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
                             //Pause the player
                             await newQueue.shuffle()
                             //Send success message
@@ -318,27 +222,6 @@ module.exports = (client) => {
 
                         // ---------------------------------------- AUTOPLAY ---------------------------------------- //
                         if (i.customId == `6`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
                             //pause the player
                             await newQueue.toggleAutoplay()
                             if (newQueue.autoplay) {
@@ -364,27 +247,6 @@ module.exports = (client) => {
 
                         // ---------------------------------------- SONG LOOP ---------------------------------------- //
                         if (i.customId == `7`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
                             //Disable the Repeatmode
                             if (newQueue.repeatMode == 1) {
                                 await newQueue.setRepeatMode(0)
@@ -408,27 +270,6 @@ module.exports = (client) => {
 
                         // ---------------------------------------- QUEUE LOOP ---------------------------------------- //
                         if (i.customId == `8`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
                             //Disable the Repeatmode
                             if (newQueue.repeatMode == 2) {
                                 await newQueue.setRepeatMode(0)
@@ -452,27 +293,6 @@ module.exports = (client) => {
 
                         // ---------------------------------------- REWIND ---------------------------------------- //
                         if (i.customId == `9`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
                             let seektime = newQueue.currentTime - 10;
                             if (seektime < 0) seektime = 0;
                             if (seektime >= newQueue.songs[0].duration - newQueue.currentTime) seektime = 0;
@@ -493,27 +313,6 @@ module.exports = (client) => {
 
                         // ---------------------------------------- FORWARD ---------------------------------------- //
                         if (i.customId == `10`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
                             let seektime = newQueue.currentTime + 10;
                             if (seektime >= newQueue.songs[0].duration) seektime = newQueue.songs[0].duration - 1;
                             await newQueue.seek(Number(seektime))
@@ -533,27 +332,6 @@ module.exports = (client) => {
 
                         // ---------------------------------------- LYRICS ---------------------------------------- //
                         if (i.customId == `11`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
                             return i.reply({
                                 content: `${client.allEmojis.x} **Lyrics are disabled!**\n> *Due to legal Reasons, Lyrics are disabled and won't work for an unknown amount of time!*`,
                                 ephemeral: true
