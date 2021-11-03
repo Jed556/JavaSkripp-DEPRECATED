@@ -22,6 +22,7 @@ module.exports = {
             const ownerID = await client.users.cache.find(u => u.id === config.ownerID).id;
             const owner = await client.users.fetch(ownerID).catch(console.error);
 
+            console.log(os.hostname());
             cpuStat.usagePercent(function (e, percent, seconds) {
                 try {
                     if (e) return console.log(String(e.stack).red);
@@ -32,7 +33,7 @@ module.exports = {
                         if (guilds[i].me.voice.channel) connectedchannelsamount += 1;
                     }
                     if (connectedchannelsamount > client.guilds.cache.size) connectedchannelsamount = client.guilds.cache.size;
-
+                    
                     const botinfo = new MessageEmbed()
                         .setAuthor(client.user.username, client.user.displayAvatarURL())
                         .setTitle("**Info & Status:**")
