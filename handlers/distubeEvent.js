@@ -111,7 +111,7 @@ module.exports = (client) => {
                                     ephemeral: true
                                 })
                             //if there are no previous songs then return error
-                            if (!newQueue || !newQueue.previousSongs || newQueue.previousSongs.length == 0) {
+                            if (!newQueue.previousSongs || newQueue.previousSongs.length == 0) {
                                 return i.reply({
                                     embeds: [new MessageEmbed()
                                         .setColor(ee.errColor)
@@ -120,6 +120,14 @@ module.exports = (client) => {
                                     ephemeral: true
                                 })
                             }
+                            await newQueue.previous();
+                            i.reply({
+                                embeds: [new MessageEmbed()
+                                    .setColor(ee.color)
+                                    .setTimestamp()
+                                    .setTitle(`⏭ **Playing previous Song!**`)
+                                    .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
+                            })
                         }
 
                         // ---------------------------------------- SKIP ---------------------------------------- //
