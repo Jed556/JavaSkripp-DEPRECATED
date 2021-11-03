@@ -755,7 +755,7 @@ module.exports = (client) => {
         } else {
             forward = forward.setDisabled(false)
         }
-        const row1 = new MessageActionRow().addComponents([previous, skip, stop, pause, shuffle, lyrics]);
+        const row1 = new MessageActionRow().addComponents([previous, skip, stop, pause, shuffle]);
         const row2 = new MessageActionRow().addComponents([songloop, queueloop, autoplay, rewind, forward]);
         return {
             embeds: [embed],
