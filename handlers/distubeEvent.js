@@ -74,8 +74,56 @@ module.exports = (client) => {
                         setTimeout(() => {
                             lastEdited = false
                         }, 7000)
-                        //skip
+
+                        // ---------------------------------------- PREVIOUS ---------------------------------------- //
                         if (i.customId == `1`) {
+                            let { member } = i;
+                            //get the channel instance from the Member
+                            const { channel } = member.voice
+                            //if the member is not in a channel, return
+                            if (!channel)
+                                return i.reply({
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
+                                    ephemeral: true
+                                })
+                            //get the player instance
+                            const queue = client.distube.getQueue(i.guild.id);
+                            //if no player available return aka not playing anything
+                            if (!queue || !newQueue.songs || newQueue.songs.length == 0) {
+                                return i.reply({
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Nothing Playing yet`, ee.discAlert)
+                                    ],
+                                    ephemeral: true
+                                })
+                            }
+                            //if not in the same channel as the player, return Error
+                            if (channel.id !== newQueue.voiceChannel.id)
+                                return i.reply({
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
+                                    ephemeral: true
+                                })
+                            //if there are no previous songs then return error
+                            if (!newQueue || !newQueue.previousSongs || newQueue.previousSongs.length == 0) {
+                                return i.reply({
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`No Previous song`, ee.discAlert)
+                                    ],
+                                    ephemeral: true
+                                })
+                            }
+                        }
+
+                        // ---------------------------------------- SKIP ---------------------------------------- //
+                        if (i.customId == `2`) {
                             let { member } = i;
                             //get the channel instance from the Member
                             const { channel } = member.voice
@@ -134,8 +182,9 @@ module.exports = (client) => {
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                             })
                         }
-                        //stop
-                        if (i.customId == `2`) {
+
+                        // ---------------------------------------- STOP ---------------------------------------- //
+                        if (i.customId == `3`) {
                             let { member } = i;
                             //get the channel instance from the Member
                             const { channel } = member.voice
@@ -170,8 +219,9 @@ module.exports = (client) => {
                             //edit the current song message
                             await client.distube.stop(i.guild.id)
                         }
-                        //pause/resume
-                        if (i.customId == `3`) {
+
+                        // ---------------------------------------- PAUSE & RESUME ---------------------------------------- //
+                        if (i.customId == `4`) {
                             let { member } = i;
                             //get the channel instance from the Member
                             const { channel } = member.voice
@@ -222,8 +272,44 @@ module.exports = (client) => {
                                 })
                             }
                         }
-                        //autoplay
-                        if (i.customId == `4`) {
+
+                        // ---------------------------------------- SHUFFLE ---------------------------------------- //
+                        if (i.customId == `5`) {
+                            let { member } = i;
+                            //get the channel instance from the Member
+                            const { channel } = member.voice
+                            //if the member is not in a channel, return
+                            if (!channel)
+                                return i.reply({
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
+                                    ephemeral: true
+                                })
+                            //if not in the same channel as the player, return Error
+                            if (channel.id !== newQueue.voiceChannel.id)
+                                return i.reply({
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
+                                    ephemeral: true
+                                })
+                            //Pause the player
+                            await newQueue.shuffle()
+                            //Send success message
+                            i.reply({
+                                embeds: [new MessageEmbed()
+                                    .setColor(ee.color)
+                                    .setTimestamp()
+                                    .setTitle(`🔀 **Shuffled ${newQueue.songs.length} Songs!**`)
+                                    .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
+                            })
+                        }
+
+                        // ---------------------------------------- AUTOPLAY ---------------------------------------- //
+                        if (i.customId == `6`) {
                             let { member } = i;
                             //get the channel instance from the Member
                             const { channel } = member.voice
@@ -267,42 +353,9 @@ module.exports = (client) => {
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                             })
                         }
-                        //Shuffle
-                        if (i.customId == `5`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //Pause the player
-                            await newQueue.shuffle()
-                            //Send success message
-                            i.reply({
-                                embeds: [new MessageEmbed()
-                                    .setColor(ee.color)
-                                    .setTimestamp()
-                                    .setTitle(`🔀 **Shuffled ${newQueue.songs.length} Songs!**`)
-                                    .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
-                            })
-                        }
-                        //Songloop
-                        if (i.customId == `6`) {
+
+                        // ---------------------------------------- SONG LOOP ---------------------------------------- //
+                        if (i.customId == `7`) {
                             let { member } = i;
                             //get the channel instance from the Member
                             const { channel } = member.voice
@@ -344,8 +397,9 @@ module.exports = (client) => {
                                 //console.log(e.stack ? String(e.stack).grey : String(e).grey)
                             })
                         }
-                        //Queueloop
-                        if (i.customId == `7`) {
+
+                        // ---------------------------------------- QUEUE LOOP ---------------------------------------- //
+                        if (i.customId == `8`) {
                             let { member } = i;
                             //get the channel instance from the Member
                             const { channel } = member.voice
@@ -387,46 +441,8 @@ module.exports = (client) => {
                                 //console.log(e.stack ? String(e.stack).grey : String(e).grey)
                             })
                         }
-                        //Forward
-                        if (i.customId == `8`) {
-                            let { member } = i;
-                            //get the channel instance from the Member
-                            const { channel } = member.voice
-                            //if the member is not in a channel, return
-                            if (!channel)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            //if not in the same channel as the player, return Error
-                            if (channel.id !== newQueue.voiceChannel.id)
-                                return i.reply({
-                                    embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
-                                    ],
-                                    ephemeral: true
-                                })
-                            let seektime = newQueue.currentTime + 10;
-                            if (seektime >= newQueue.songs[0].duration) seektime = newQueue.songs[0].duration - 1;
-                            await newQueue.seek(Number(seektime))
-                            collector.resetTimer({ time: (newQueue.songs[0].duration - newQueue.currentTime) * 1000 })
-                            i.reply({
-                                embeds: [new MessageEmbed()
-                                    .setColor(ee.color)
-                                    .setTimestamp()
-                                    .setTitle(`⏩ **Forwarded the song for \`10\` Seconds**`)
-                                    .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
-                            })
-                            var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
-                            currentSongPlayMsg.edit(data).catch((e) => {
-                                //console.log(e.stack ? String(e.stack).grey : String(e).grey)
-                            })
-                        }
-                        //Rewind
+
+                        // ---------------------------------------- REWIND ---------------------------------------- //
                         if (i.customId == `9`) {
                             let { member } = i;
                             //get the channel instance from the Member
@@ -466,8 +482,49 @@ module.exports = (client) => {
                                 //console.log(e.stack ? String(e.stack).grey : String(e).grey)
                             })
                         }
-                        //Lyrics
+
+                        // ---------------------------------------- FORWARD ---------------------------------------- //
                         if (i.customId == `10`) {
+                            let { member } = i;
+                            //get the channel instance from the Member
+                            const { channel } = member.voice
+                            //if the member is not in a channel, return
+                            if (!channel)
+                                return i.reply({
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    ],
+                                    ephemeral: true
+                                })
+                            //if not in the same channel as the player, return Error
+                            if (channel.id !== newQueue.voiceChannel.id)
+                                return i.reply({
+                                    embeds: [new MessageEmbed()
+                                        .setColor(ee.errColor)
+                                        .setAuthor(`Join __my__ Voice Channel first! <#${channel.id}>`, ee.discAlert)
+                                    ],
+                                    ephemeral: true
+                                })
+                            let seektime = newQueue.currentTime + 10;
+                            if (seektime >= newQueue.songs[0].duration) seektime = newQueue.songs[0].duration - 1;
+                            await newQueue.seek(Number(seektime))
+                            collector.resetTimer({ time: (newQueue.songs[0].duration - newQueue.currentTime) * 1000 })
+                            i.reply({
+                                embeds: [new MessageEmbed()
+                                    .setColor(ee.color)
+                                    .setTimestamp()
+                                    .setTitle(`⏩ **Forwarded the song for \`10\` Seconds**`)
+                                    .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
+                            })
+                            var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
+                            currentSongPlayMsg.edit(data).catch((e) => {
+                                //console.log(e.stack ? String(e.stack).grey : String(e).grey)
+                            })
+                        }
+
+                        // ---------------------------------------- LYRICS ---------------------------------------- //
+                        if (i.customId == `11`) {
                             let { member } = i;
                             //get the channel instance from the Member
                             const { channel } = member.voice
@@ -634,7 +691,7 @@ module.exports = (client) => {
             .setColor(ee.errColor)
             .setAuthor("NO SONG FOUND", ee.discError)
             .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({ dynamic: true }));
-        var embed = new MessageEmbed().setColor(ee.color)
+        var embed = new MessageEmbed().setColor(ee.color).setTimestamp()
             .setDescription(`**[${newTrack.name}](${newTrack.url})**`)
             .addField(`${(newTrack.user === client.user) ? "💡 Autoplay by:" : "💡 Request by:"}`, `>>> ${newTrack.user}`, true)
             .addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
@@ -649,22 +706,33 @@ module.exports = (client) => {
             .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
             .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({ dynamic: true }));
 
-        let skip = new MessageButton().setStyle('PRIMARY').setCustomId('1').setEmoji(`⏭`).setLabel(`Skip`)
-        let stop = new MessageButton().setStyle('DANGER').setCustomId('2').setEmoji(`⏹`).setLabel(`Stop`)
-        let pause = new MessageButton().setStyle('SECONDARY').setCustomId('3').setEmoji('⏸').setLabel(`Pause`)
-        let autoplay = new MessageButton().setStyle('SUCCESS').setCustomId('4').setEmoji('🔁').setLabel(`Autoplay`)
+        let previous = new MessageButton().setStyle('PRIMARY').setCustomId('1').setEmoji('⏮').setLabel(`Previous`);
+        let skip = new MessageButton().setStyle('PRIMARY').setCustomId('2').setEmoji(`⏭`).setLabel(`Skip`)
+        let stop = new MessageButton().setStyle('DANGER').setCustomId('3').setEmoji(`⏹`).setLabel(`Stop`)
+        let pause = new MessageButton().setStyle('SECONDARY').setCustomId('4').setEmoji('⏸').setLabel(`Pause`)
         let shuffle = new MessageButton().setStyle('PRIMARY').setCustomId('5').setEmoji('🔀').setLabel(`Shuffle`)
+        let autoplay = new MessageButton().setStyle('SUCCESS').setCustomId('6').setEmoji('🔁').setLabel(`Autoplay`)
+        let songloop = new MessageButton().setStyle('SUCCESS').setCustomId('7').setEmoji(`🔂`).setLabel(`Song`)
+        let queueloop = new MessageButton().setStyle('SUCCESS').setCustomId('8').setEmoji(`🔁`).setLabel(`Queue`)
+        let rewind = new MessageButton().setStyle('PRIMARY').setCustomId('9').setEmoji('⏪').setLabel(`-10 Sec`)
+        let forward = new MessageButton().setStyle('PRIMARY').setCustomId('10').setEmoji('⏩').setLabel(`+10 Sec`)
+        let lyrics = new MessageButton().setStyle('PRIMARY').setCustomId('11').setEmoji('📝').setLabel(`Lyrics`).setDisabled();
+        if (newQueue.songs.length == 0) {
+            skip = skip.setDisabled();
+        } else {
+            skip = skip.setDisabled(false);
+        }
+        if (!newQueue.previousSongs || newQueue.previousSongs.length == 0) {
+            previous = previous.setDisabled();
+        } else {
+            previous = previous.setDisabled(false);
+        }
         if (!newQueue.playing) {
             pause = pause.setStyle('SUCCESS').setEmoji('▶️').setLabel(`Resume`)
         }
         if (newQueue.autoplay) {
             autoplay = autoplay.setStyle('SECONDARY')
         }
-        let songloop = new MessageButton().setStyle('SUCCESS').setCustomId('6').setEmoji(`🔂`).setLabel(`Song`)
-        let queueloop = new MessageButton().setStyle('SUCCESS').setCustomId('7').setEmoji(`🔁`).setLabel(`Queue`)
-        let forward = new MessageButton().setStyle('PRIMARY').setCustomId('8').setEmoji('⏩').setLabel(`+10 Sec`)
-        let rewind = new MessageButton().setStyle('PRIMARY').setCustomId('9').setEmoji('⏪').setLabel(`-10 Sec`)
-        let lyrics = new MessageButton().setStyle('PRIMARY').setCustomId('10').setEmoji('📝').setLabel(`Lyrics`).setDisabled();
         if (newQueue.repeatMode === 0) {
             songloop = songloop.setStyle('SUCCESS')
             queueloop = queueloop.setStyle('SUCCESS')
@@ -687,11 +755,11 @@ module.exports = (client) => {
         } else {
             forward = forward.setDisabled(false)
         }
-        const row = new MessageActionRow().addComponents([skip, stop, pause, autoplay, shuffle]);
-        const row2 = new MessageActionRow().addComponents([songloop, queueloop, forward, rewind, lyrics]);
+        const row1 = new MessageActionRow().addComponents([previous, skip, stop, pause, shuffle, lyrics]);
+        const row2 = new MessageActionRow().addComponents([songloop, queueloop, autoplay, rewind, forward]);
         return {
             embeds: [embed],
-            components: [row, row2]
+            components: [row1, row2]
         };
     }
 };
