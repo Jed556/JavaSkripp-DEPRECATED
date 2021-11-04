@@ -1,8 +1,7 @@
 //Import Modules
-const config = require(`../../botconfig/config.json`);
-const ee = require(`../../botconfig/embed.json`);
-const settings = require(`../../botconfig/settings.json`);
-const { onCoolDown, replacemsg } = require("../../handlers/functions");
+const config = require("../../botconfig/config.json");
+const ee = require("../../botconfig/embed.json");
+const settings = require("../../botconfig/settings.json");
 const Discord = require("discord.js");
 module.exports = (client, interaction) => {
     try {

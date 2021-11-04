@@ -1,9 +1,9 @@
 //Import Modules
-const config = require(`../../botconfig/config.json`);
-const ee = require(`../../botconfig/embed.json`);
-const settings = require(`../../botconfig/settings.json`);
-const { onCoolDown, replacemsg } = require(`../../handlers/functions`);
-const Discord = require(`discord.js`);
+const config = require("../../botconfig/config.json");
+const ee = require("../../botconfig/embed.json");
+const settings = require("../../botconfig/settings.json");
+const { onCoolDown, replacemsg } = require("../../handlers/functions");
+const { MessageEmbed } = require("discord.js")
 
 module.exports = async (client, message) => {
     if (!message.guild || !message.channel || message.author.bot) return;
@@ -13,7 +13,7 @@ module.exports = async (client, message) => {
         prefix: config.prefix,
         defaultvolume: 100,
         defaultautoplay: false,
-        defaultfilters: [`bassboost6`, `clear`],
+        defaultfilters: ['bassboost6', 'clear'],
         djroles: [],
         botchannel: []
     })
@@ -28,10 +28,10 @@ module.exports = async (client, message) => {
             const replyArray = ["Yoooo!", "Hey There!", "Hello There!", "Hello Friend!", "Heyyy!"]
             const reply = replyArray[Math.floor(Math.random() * replyArray.length)];
             message.reply({
-                embeds: [new Discord.MessageEmbed()
+                embeds: [new MessageEmbed()
                     .setColor(ee.color)
                     .setFooter(`${client.user.username} - Type / to view commands`, client.user.displayAvatarURL())
-                    .setTitle(`\`${reply}\``)]
+                    .setTitle(`**${reply}**`)]
             })
         }
         return;
@@ -44,7 +44,7 @@ module.exports = async (client, message) => {
         if (botchannels.length > 0) {
             if (!botchannels.includes(message.channel.id) && !message.member.permissions.has("ADMINISTRATOR")) {
                 return message.reply({
-                    embeds: [new Discord.MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} **You are not allowed to use this Command in here!**`)
@@ -56,7 +56,7 @@ module.exports = async (client, message) => {
         //Check if user is on cooldown with the cmd, with Tomato#6966's Function from /handlers/functions.js
         if (onCoolDown(message, command)) {
             return message.reply({
-                embeds: [new Discord.MessageEmbed()
+                embeds: [new MessageEmbed()
                     .setColor(ee.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setTitle(replacemsg(settings.messages.cooldown, {
@@ -70,7 +70,7 @@ module.exports = async (client, message) => {
             //if Command has specific permission return error
             if (command.memberpermissions && command.memberpermissions.length > 0 && !message.member.permissions.has(command.memberpermissions)) {
                 return message.reply({
-                    embeds: [new Discord.MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
@@ -83,7 +83,7 @@ module.exports = async (client, message) => {
             //if Command has specific needed roles return error
             if (command.requiredroles && command.requiredroles.length > 0 && message.member.roles.cache.size > 0 && !message.member.roles.cache.some(r => command.requiredroles.includes(r.id))) {
                 return message.reply({
-                    embeds: [new Discord.MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
@@ -97,7 +97,7 @@ module.exports = async (client, message) => {
             //if Command has specific users return error
             if (command.alloweduserids && command.alloweduserids.length > 0 && !command.alloweduserids.includes(message.author.id)) {
                 return message.reply({
-                    embeds: [new Discord.MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
@@ -110,7 +110,7 @@ module.exports = async (client, message) => {
             //if command has minimum args, and user dont entered enough, return error
             if (command.minargs && command.minargs > 0 && args.length < command.minargs) {
                 return message.reply({
-                    embeds: [new Discord.MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
@@ -120,7 +120,7 @@ module.exports = async (client, message) => {
             //if command has maximum args, and user enters too many, return error
             if (command.maxargs && command.maxargs > 0 && args.length > command.maxargs) {
                 return message.reply({
-                    embeds: [new Discord.MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
@@ -131,7 +131,7 @@ module.exports = async (client, message) => {
             //if command has minimum args (splitted with `++`), and user dont entered enough, return error
             if (command.minplusargs && command.minplusargs > 0 && args.join(` `).split(`++`).filter(Boolean).length < command.minplusargs) {
                 return message.reply({
-                    embeds: [new Discord.MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
@@ -141,7 +141,7 @@ module.exports = async (client, message) => {
             //if command has maximum args (splitted with `++`), and user enters too many, return error
             if (command.maxplusargs && command.maxplusargs > 0 && args.join(` `).split(`++`).filter(Boolean).length > command.maxplusargs) {
                 return message.reply({
-                    embeds: [new Discord.MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} Wrong Command Usage!`)
@@ -153,7 +153,7 @@ module.exports = async (client, message) => {
         } catch (error) {
             if (settings.somethingwentwrong_cmd) {
                 return message.reply({
-                    embeds: [new Discord.MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setColor(ee.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(replacemsg(settings.messages.somethingwentwrong_cmd.title, {
@@ -168,15 +168,7 @@ module.exports = async (client, message) => {
                 }).then(msg => { setTimeout(() => { msg.delete().catch((e) => { console.log(String(e).grey) }) }, 4000) }).catch((e) => { console.log(String(e).grey) });
             }
         }
-    }/* else //if the command is not found send an info msg
-        return message.reply({
-          embeds: [new Discord.MessageEmbed()
-            .setColor(ee.errColor)
-            .setFooter(client.user.username, client.user.displayAvatarURL())
-            .setTitle(replacemsg(settings.messages.unknown_cmd, {
-              prefix: prefix
-            }))]
-        }).then(msg => {setTimeout(()=>{msg.delete().catch((e) => {console.log(String(e).grey)})}, 4000)}).catch((e) => {console.log(String(e).grey)});*/
+    }
 }
 
 function escapeRegex(str) {

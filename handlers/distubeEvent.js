@@ -1,13 +1,11 @@
-console.log("\n" + `DISTUBE HANDLER LAUNCHED`.yellow);
-const PlayerMap = new Map()
-const Discord = require(`discord.js`);
-const { KSoftClient } = require('@ksoft/api');
-const config = require(`../botconfig/config.json`);
+console.log("\n" + "DISTUBE HANDLER LAUNCHED".yellow);
+const { MessageButton, MessageActionRow, MessageEmbed } = require("discord.js");
+const { lyricsEmbed, check_if_dj, errDM } = require("./functions");
+const config = require("../botconfig/config.json");
+const ee = require("../botconfig/embed.json");
+const { KSoftClient } = require("@ksoft/api");
 const ksoft = new KSoftClient(config.ksoftapi);
-const ee = require(`../botconfig/embed.json`);
-const { MessageButton, MessageActionRow, MessageEmbed } = require(`discord.js`);
-const { lyricsEmbed, check_if_dj } = require("./functions");
-const { errDM } = require("./functions")
+const PlayerMap = new Map()
 let songEditInterval = null;
 
 module.exports = (client) => {
