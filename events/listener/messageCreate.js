@@ -30,7 +30,7 @@ module.exports = async (client, message) => {
                     .setTimestamp()
                     .setColor(ee.color)
                     .setTitle(reply)
-                    .setFooter(client.user.tag, client.user.displayAvatarURL({ dynamic: true }))
+                    .setFooter(`${client.user.username} - Autoreply`, client.user.displayAvatarURL({ dynamic: true }))
                 ]
             });
             log.addField(`Reply:`, `> ${reply}`)
@@ -46,7 +46,7 @@ module.exports = async (client, message) => {
                     .setColor(ee.errColor)
                     .setTitle(reply)
                     .addField(`Reason:`, `> ${match.map(m => `\`${m}\``).join(", ")}`)
-                    .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
+                    .setFooter(`${client.user.username} - Autoreply`, client.user.displayAvatarURL({ dynamic: true }))
                 ]
             });
             log.addField(`Reply:`, `> ${reply}`)

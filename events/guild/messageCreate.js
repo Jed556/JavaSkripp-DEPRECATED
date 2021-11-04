@@ -25,11 +25,13 @@ module.exports = async (client, message) => {
     const cmd = args.length > 0 ? args.shift().toLowerCase() : null;
     if (!cmd || cmd.length == 0) {
         if (mPrefix.includes(client.user.id)) {
+            const replyArray = ["Yoooo!", "Hey There!", "Hello There!", "Hello Friend!", "Heyyy!"]
+            const reply = replyArray[Math.floor(Math.random() * replyArray.length)];
             message.reply({
                 embeds: [new Discord.MessageEmbed()
                     .setColor(ee.color)
-                    .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setTitle(`:thumbsup: **My Prefix here, is __\`${prefix}\`__**`)]
+                    .setFooter(`${client.user.username} - Type / to view commands`, client.user.displayAvatarURL())
+                    .setTitle(`\`${reply}\``)]
             })
         }
         return;
