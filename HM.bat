@@ -1,6 +1,15 @@
 @echo off
+
+REM For windows terminal with custom profile
+if /i not "%1" == "wt" goto cmd
+start /MAX wt -p "JavaSkripp" cmd /k HM max & exit /b
+goto start
+
+:cmd
+REM For windows command prompt
 if not "%1" == "max" start /MAX cmd /c HM max & exit /b
 
+:start
 REM heroku plugins:install heroku-builds
 set app=djs-javaskripp
 
