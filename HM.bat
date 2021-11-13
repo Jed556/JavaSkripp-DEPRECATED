@@ -1,13 +1,16 @@
 @echo off
+REM Install Heroku CLI and install plugins...
+REM heroku plugins:install heroku-builds
+REM Pass in "wt" to run in windows terminal
 
 REM For windows terminal with custom profile
 if /i not "%1" == "wt" goto cmd
-start /MAX wt -p "JavaSkripp" cmd /k HM max & exit /b
+start /MAX wt -p "JavaSkripp" cmd /k %~dpn0 max & exit /b
 goto start
 
 :cmd
 REM For windows command prompt
-if not "%1" == "max" start /MAX cmd /c HM max & exit /b
+if not "%1" == "max" start /MAX cmd /c %~dpn0 max & exit /b
 
 :start
 REM heroku plugins:install heroku-builds
@@ -55,7 +58,7 @@ if /i %args%==r (
 )
 
 if /i %args%==notif (
-    title JavaSkripp Heroku - Loading Notifications
+    title Loading Notifications
     echo.
     call heroku notifications -a %app%
     title JavaSkripp Heroku - Notifications
@@ -65,7 +68,7 @@ if /i %args%==notif (
 )
 
 if /i %args%==n (
-    title JavaSkripp Heroku - Loading Notifications
+    title Loading Notifications
     echo.
     call heroku notifications -a %app%
     title JavaSkripp Heroku - Notifications
@@ -75,7 +78,7 @@ if /i %args%==n (
 )
 
 if /i %args%==info (
-    title JavaSkripp Heroku - Loading Info
+    title Loading Info
     echo.
     call heroku apps:info -a %app%
     echo.
@@ -96,7 +99,7 @@ if /i %args%==info (
 )
 
 if /i %args%==i (
-    title JavaSkripp Heroku - Loading Info
+    title Loading Info
     echo.
     call heroku apps:info -a %app%
     echo.
@@ -117,7 +120,7 @@ if /i %args%==i (
 )
 
 if /i %args%==builds (
-    title JavaSkripp Heroku - Loading Builds
+    title Loading Builds
     echo.
     call heroku builds:info -a %app%
     echo.
@@ -129,7 +132,7 @@ if /i %args%==builds (
 )
 
 if /i %args%==b (
-    title JavaSkripp Heroku - Loading Builds
+    title Loading Builds
     echo.
     call heroku builds:info -a %app%
     echo.
@@ -141,7 +144,7 @@ if /i %args%==b (
 )
 
 if /i %args%==errors (
-    title JavaSkripp Heroku - Loading Errors
+    title Loading Errors
     echo.
     call heroku apps:errors -a %app%
     title JavaSkripp Heroku - Errors
@@ -151,7 +154,7 @@ if /i %args%==errors (
 )
 
 if /i %args%==e (
-    title JavaSkripp Heroku - Loading Errors
+    title Loading Errors
     echo.
     call heroku apps:errors -a %app%
     title JavaSkripp Heroku - Errors
@@ -161,7 +164,7 @@ if /i %args%==e (
 )
 
 if /i %args%==config (
-    title JavaSkripp Heroku - Loading Config Vars
+    title Loading Config Vars
     echo.
     call heroku config -a %app%
     title JavaSkripp Heroku - Config Vars
@@ -171,7 +174,7 @@ if /i %args%==config (
 )
 
 if /i %args%==c (
-    title JavaSkripp Heroku - Loading Config Vars
+    title Loading Config Vars
     echo.
     call heroku config -a %app%
     title JavaSkripp Heroku - Config Vars
