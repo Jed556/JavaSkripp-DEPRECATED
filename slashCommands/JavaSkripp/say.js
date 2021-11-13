@@ -24,7 +24,18 @@ module.exports = {
     run: async (client, interaction) => {
         try {
             const message = interaction.options.getString("message")
-            try { interaction.reply({ content: message }); } catch {
+            try {
+                interaction.channel.send({ content: message });
+                interaction.reply({
+                    embeds: [new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(ee.okColor)
+                        .addField(`Message:`, `${message ? `> ${message}` : "\u200b"}`)
+                        .setAuthor("MESSAGE SENT", interaction.user.displayAvatarURL({ dynamic: true }))
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                    ], ephemeral: true
+                })
+            } catch {
                 interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
