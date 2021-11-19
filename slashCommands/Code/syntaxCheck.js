@@ -18,8 +18,8 @@ module.exports = {
         {
             "String": {
                 name: "code",
-                description: "Input your javascript code",
-                required: true
+                description: "Input your javascript on line code",
+                required: false
             }
         },
     ],
