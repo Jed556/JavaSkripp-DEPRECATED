@@ -14,13 +14,13 @@ module.exports = {
 
     run: async (client, interaction) => {
         try {
-            const mtStat;
+            let mtStat;
             if (client.maintenance) {
                 client.maintenance = false;
-                mtStat = "OFF"
+                mtStat = "OFF";
             } else {
                 client.maintenance = true;
-                mtStat = "ON"
+                mtStat = "ON";
             }
             interaction.reply({
                 embeds: [new MessageEmbed()
