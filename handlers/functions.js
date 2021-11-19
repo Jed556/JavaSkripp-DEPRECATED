@@ -900,7 +900,7 @@ function change_status(client) {
             }
         } else {
             client.user.setStatus("dnd");
-            client.user.setActivity(`UNDER MAINTENANCE`, { type: "STREAMING" });
+            client.user.setActivity(`• MAINTENANCE`, { type: "STREAMING" });
         }
     } catch (e) {
         console.log(String(e.stack).bgRed)
