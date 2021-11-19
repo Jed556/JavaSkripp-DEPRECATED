@@ -98,6 +98,8 @@ client.commands = new Discord.Collection();
 client.cooldowns = new Discord.Collection();
 client.slashCommands = new Discord.Collection();
 client.aliases = new Discord.Collection();
+client.maintenance = false;
+
 try { client.categories = require("fs").readdirSync(`./commands`) } catch { };
 try { client.slashCategories = require("fs").readdirSync(`./slashCommands`) } catch { };
 client.allEmojis = require("./botconfig/emojis.json");

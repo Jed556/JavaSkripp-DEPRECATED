@@ -878,25 +878,30 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
  */
 function change_status(client) {
     try {
-        const Guilds = client.guilds.cache.size; const Users = client.users.cache.size - 1;
-        if (Guilds > 1 && Users > 999) {
-            client.user.setActivity(`${Guilds} Guilds • ${Math.ceil(Users / 1000)}K Members`, {
-                type: "LISTENING",
-            });
-        } else if (Guilds > 1 && Users > 1) {
-            client.user.setActivity(`${Guilds} Guilds • ${Math.ceil(Users)} Members`, {
-                type: "LISTENING",
-            });
-        } else if (Users > 1) {
-            client.user.setActivity(`${Guilds} Guild • ${Math.ceil(Users)} Members`, {
-                type: "LISTENING",
-            });
+        if (!client.maintenance) {
+            client.user.setStatus("online");
+            const Guilds = client.guilds.cache.size; const Users = client.users.cache.size - 1;
+            if (Guilds > 1 && Users > 999) {
+                client.user.setActivity(`${Guilds} Guilds • ${Math.ceil(Users / 1000)}K Members`, {
+                    type: "LISTENING",
+                });
+            } else if (Guilds > 1 && Users > 1) {
+                client.user.setActivity(`${Guilds} Guilds • ${Math.ceil(Users)} Members`, {
+                    type: "LISTENING",
+                });
+            } else if (Users > 1) {
+                client.user.setActivity(`${Guilds} Guild • ${Math.ceil(Users)} Members`, {
+                    type: "LISTENING",
+                });
+            } else {
+                client.user.setActivity(`${Guilds} Guild • ${Math.ceil(Users)} Member`, {
+                    type: "LISTENING",
+                });
+            }
         } else {
-            client.user.setActivity(`${Guilds} Guild • ${Math.ceil(Users)} Member`, {
-                type: "LISTENING",
-            });
+            client.user.setStatus("dnd");
+            client.user.setActivity(`UNDER MAINTENANCE`, { type: "STREAMING" });
         }
-
     } catch (e) {
         console.log(String(e.stack).bgRed)
         errDM(client, e)

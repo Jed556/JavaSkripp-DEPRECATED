@@ -65,8 +65,6 @@ module.exports = async (client) => {
                     ]
                 });
             });
-            client.user.setStatus("online");
-            change_status(client);
 
             setInterval(() => {
                 change_status(client);

@@ -5,6 +5,18 @@ const settings = require("../../botconfig/settings.json");
 const { onCoolDown, replacemsg } = require("../../handlers/functions");
 const Discord = require("discord.js");
 module.exports = (client, interaction) => {
+    if (client.maintenance && interaction.user.id != config.ownerID) {
+        return interaction.reply({
+            embeds: [new MessageEmbed()
+                .setTimestamp()
+                .setColor(ee.color)
+                .setTitle("UNDER MAINTENANCE")
+                .setDescription("JavaSkripp will be back ASAP!")
+                .setFooter(client.user.username, client.user.displayAvatarURL())
+            ], ephemeral: true
+        })
+    }
+
     const CategoryName = interaction.commandName;
 
     if (interaction.guildId == null) return;
