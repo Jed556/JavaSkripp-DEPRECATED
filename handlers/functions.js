@@ -900,7 +900,7 @@ function change_status(client) {
             }
         } else {
             client.user.setStatus("dnd");
-            client.user.setActivity(`• MAINTENANCE`, { type: "STREAMING" });
+            client.user.setActivity(`• MAINTENANCE`, { type: "WATCHING" });
         }
     } catch (e) {
         console.log(String(e.stack).bgRed)
