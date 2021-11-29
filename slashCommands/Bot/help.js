@@ -12,15 +12,15 @@ module.exports = {
     memberpermissions: [],
     requiredroles: [],
     alloweduserids: [],
-    options: [
-        {
-            "String": {
-                name: "command",
-                description: "Details of a Specific Command",
-                required: false
-            }
-        },
-    ],
+    // options: [
+    //     {
+    //         "String": {
+    //             name: "command",
+    //             description: "Details of a Specific Command",
+    //             required: false
+    //         }
+    //     },
+    // ],
 
     run: async (client, interaction) => {
         try {
