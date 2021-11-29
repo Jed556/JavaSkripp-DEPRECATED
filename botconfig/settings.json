@@ -22,7 +22,7 @@
             "title": "❌ Something went wrong while, running the: `%{commandname}%` command",
             "description": "```%{errormessage}%```"
         },
-        "unknown_cmd": "❌ Unkown command, try: **`%{prefix}%info help`**",
+        "unknown_cmd": "❌ Unkown command, try: **`%{prefix}%bot help`**",
         "error_occur": "❌ An error occurred",
         "error_occur_desc": "````%{errorstack}%````"
     },
