@@ -2,7 +2,7 @@ const { readdirSync, lstatSync } = require("fs");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const config = require("../botconfig/config.json");
 const dirSetup = [{
-    "Folder": "Info", "CmdName": "info",
+    "Folder": "Bot", "CmdName": "bot",
     "CmdDescription": "Get Bot, API or Command Information"
 }, {
     "Folder": "Settings", "CmdName": "settings",

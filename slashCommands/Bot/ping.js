@@ -7,7 +7,7 @@ const { errDM } = require("../../handlers/functions");
 module.exports = {
 	name: "ping",
 	description: "Displays bot latency",
-	category: "Info",
+	category: "Bot",
 	cooldown: 1,
 	memberpermissions: [],
 	requiredroles: [],

@@ -8,10 +8,10 @@ let os = require("os");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
-    name: "bot",
+    name: "info",
     cooldown: 1,
     description: "Shows JavaSkripp's information",
-    category: "Info",
+    category: "Bot",
     memberpermissions: [],
     requiredroles: [],
     alloweduserids: [],

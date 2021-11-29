@@ -8,7 +8,7 @@ module.exports = {
     name: "support",
     cooldown: 1,
     description: "Sends contacts for bot support",
-    category: "Info",
+    category: "Bot",
     memberpermissions: [],
     requiredroles: [],
     alloweduserids: [],

@@ -2,13 +2,14 @@ const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const settings = require("../../botconfig/settings.json");
+const { duration } = require("../../handlers/functions")
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
-    name: "invite",
-    cooldown: 5,
-    description: "Sends you an invite link",
-    category: "Info",
+    name: "uptime",
+    cooldown: 1,
+    description: "Returns how long JavaSkripp is online",
+    category: "Bot",
     memberpermissions: [],
     requiredroles: [],
     alloweduserids: [],
@@ -24,7 +25,7 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(ee.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setDescription(`[**Click here to invite me!**]( ${ee.invite} )`)
+                    .setTitle(`${client.allEmojis.check} **${client.user.username}** is since:\n ${duration(client.uptime).map(t => `\`${t}\``).join(", ")} online`)
                 ]
             });
         } catch (e) {

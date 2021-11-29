@@ -8,7 +8,7 @@ module.exports = {
     name: "help",
     cooldown: 1,
     description: "Returns all Commmands, or one specific command",
-    category: "Info",
+    category: "Bot",
     memberpermissions: [],
     requiredroles: [],
     alloweduserids: [],
