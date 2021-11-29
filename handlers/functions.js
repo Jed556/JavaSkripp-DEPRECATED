@@ -880,7 +880,9 @@ function change_status(client) {
     try {
         if (!client.maintenance) {
             client.user.setStatus("online");
-            const Guilds = client.guilds.cache.size; const Users = client.users.cache.size - 1;
+            const Guilds = client.guilds.cache.size;
+            const Users = client.users.cache.filter(user => !user.bot).size;
+
             if (Guilds > 1 && Users > 999) {
                 client.user.setActivity(`${Guilds} Guilds • ${Math.ceil(Users / 1000)}K Members`, {
                     type: "LISTENING",
@@ -900,7 +902,7 @@ function change_status(client) {
             }
         } else {
             client.user.setStatus("dnd");
-            client.user.setActivity(`• MAINTENANCE`, { type: "WATCHING" });
+            client.user.setActivity(`MAINTENANCE`, { type: "WATCHING" });
         }
     } catch (e) {
         console.log(String(e.stack).bgRed)
