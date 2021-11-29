@@ -30,7 +30,7 @@ module.exports = {
     run: async (client, interaction) => {
         try {
             const cd = interaction.options.getInteger("countdown");
-            if (os.hostname() != config.localhost)
+            if (os.hostname().length == 36)
                 if (cd) {
                     interaction.reply({
                         embeds: [new MessageEmbed()
