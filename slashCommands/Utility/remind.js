@@ -45,7 +45,7 @@ module.exports = {
             })
 
             // Sec: x * 1000 // Min: x * 1000 * 60 // Hr: Min: x * 1000 * 60 * 60 //
-            await wait(time * 1000 * 60)
+            await new Promise(r => setTimeout(r, time * 1000 * 60))
 
             interaction.followUp({
                 embeds: [new MessageEmbed()
