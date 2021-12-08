@@ -32,7 +32,7 @@ module.exports = {
                         if (guilds[i].me.voice.channel) connectedchannelsamount += 1;
                     }
                     if (connectedchannelsamount > client.guilds.cache.size) connectedchannelsamount = client.guilds.cache.size;
-                    
+
                     const botinfo = new MessageEmbed()
                         .setAuthor(client.user.username, client.user.displayAvatarURL())
                         .setTitle("**Info & Status:**")
@@ -54,7 +54,7 @@ module.exports = {
                         .addField("⚙ Loaded", `\`${client.slashCommands.size} Commands\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`${os.platform()}\` \`${os.arch()}\``, true)
-                        .addField("📶 Latency", `\`Host: ${(os.hostname().length == 36) ? os.hostname() : "Heroku"}\` \`API: ${client.ws.ping}ms\``, true)
+                        .addField("📶 Latency", `\`Host: ${(os.hostname().length == 36) ? "Heroku" : os.hostname()}\` \`API: ${client.ws.ping}ms\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .setFooter(`Coded by: ${owner.tag}`, owner.displayAvatarURL({ dynamic: true }));
                     interaction.reply({
@@ -90,7 +90,7 @@ module.exports = {
                         .addField("⚙ Loaded", `\`${client.slashCommands.size} Commands\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .addField("💻 Platform", `\`${os.platform()}\` \`${os.arch()}\``, true)
-                        .addField("📶 Latency", `\`Host: ${(os.hostname().length == 36) ? os.hostname() : "Heroku"}\` \`API: ${client.ws.ping}ms\``, true)
+                        .addField("📶 Latency", `\`Host: ${(os.hostname().length == 36) ? "Heroku" : os.hostname()}\` \`API: ${client.ws.ping}ms\``, true)
                         .addField("\u200b", `\u200b`, true)
                         .setFooter(`Coded by: ${owner.tag}`, owner.displayAvatarURL({ dynamic: true }));
                     interaction.reply({
