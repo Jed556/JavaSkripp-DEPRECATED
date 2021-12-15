@@ -931,7 +931,7 @@ function change_status(client) {
             if (display == 4) {
                 const ownerID = client.users.cache.find(u => u.id === config.ownerID).id;
                 const owner = client.users.fetch(ownerID).catch(console.error);
-                client.user.setActivity(owner.tag, {
+                client.user.setActivity(`${owner.tag}`, {
                     type: "WATCHING",
                 });
             }
