@@ -884,7 +884,7 @@ function change_status(client) {
             const Users = client.users.cache.filter(user => !user.bot).size;
             const display = Math.floor(Math.random() * 5)
 
-            if (display == 1) {
+            if (display == 0) {
                 if (Guilds > 1) {
                     client.user.setActivity(`${Guilds} Guilds`, {
                         type: "LISTENING",
@@ -900,7 +900,7 @@ function change_status(client) {
                 }
             }
 
-            if (display == 2) {
+            if (display == 1) {
                 if (Users > 999) {
                     client.user.setActivity(`${Math.ceil(Users / 1000)}K Members`, {
                         type: "LISTENING",
@@ -916,19 +916,19 @@ function change_status(client) {
                 }
             }
 
-            if (display == 3) {
+            if (display == 2) {
                 client.user.setActivity(`Slash Commands`, {
                     type: "WATCHING",
                 });
             }
 
-            if (display == 4) {
+            if (display == 3) {
                 client.user.setActivity(`my DMs`, {
                     type: "LISTENING",
                 });
             }
 
-            if (display == 5) {
+            if (display == 4) {
                 const ownerID = client.users.cache.find(u => u.id === config.ownerID).id;
                 const owner = client.users.fetch(ownerID).catch(console.error);
                 client.user.setActivity(owner.tag, {
