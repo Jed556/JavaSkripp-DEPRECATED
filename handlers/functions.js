@@ -882,24 +882,60 @@ function change_status(client) {
             client.user.setStatus("online");
             const Guilds = client.guilds.cache.size;
             const Users = client.users.cache.filter(user => !user.bot).size;
+            const display = Math.floor(Math.random() * 5)
 
-            if (Guilds > 1 && Users > 999) {
-                client.user.setActivity(`${Guilds} Guilds • ${Math.ceil(Users / 1000)}K Members`, {
-                    type: "LISTENING",
+            if (display == 1) {
+                if (Guilds > 1) {
+                    client.user.setActivity(`${Guilds} Guilds`, {
+                        type: "LISTENING",
+                    });
+                } else if (Guilds > 1 || Guilds < 1) {
+                    client.user.setActivity(`${Guilds} Guilds`, {
+                        type: "LISTENING",
+                    });
+                } else {
+                    client.user.setActivity(`${Guilds} Guild`, {
+                        type: "LISTENING",
+                    });
+                }
+            }
+
+            if (display == 2) {
+                if (Users > 999) {
+                    client.user.setActivity(`${Math.ceil(Users / 1000)}K Members`, {
+                        type: "LISTENING",
+                    });
+                } else if (Users > 1 || Users < 1) {
+                    client.user.setActivity(`${Math.ceil(Users)} Members`, {
+                        type: "LISTENING",
+                    });
+                } else {
+                    client.user.setActivity(`${Math.ceil(Users)} Member`, {
+                        type: "LISTENING",
+                    });
+                }
+            }
+
+            if (display == 3) {
+                client.user.setActivity(`Slash Commands`, {
+                    type: "WATCHING",
                 });
-            } else if (Guilds > 1 && Users > 1) {
-                client.user.setActivity(`${Guilds} Guilds • ${Math.ceil(Users)} Members`, {
-                    type: "LISTENING",
-                });
-            } else if (Users > 1) {
-                client.user.setActivity(`${Guilds} Guild • ${Math.ceil(Users)} Members`, {
-                    type: "LISTENING",
-                });
-            } else {
-                client.user.setActivity(`${Guilds} Guild • ${Math.ceil(Users)} Member`, {
+            }
+
+            if (display == 4) {
+                client.user.setActivity(`my DMs`, {
                     type: "LISTENING",
                 });
             }
+
+            if (display == 5) {
+                const ownerID = await client.users.cache.find(u => u.id === config.ownerID).id;
+                const owner = await client.users.fetch(ownerID).catch(console.error);
+                client.user.setActivity(owner.tag, {
+                    type: "WATCHING",
+                });
+            }
+
         } else {
             client.user.setStatus("dnd");
             client.user.setActivity(`MAINTENANCE`, { type: "WATCHING" });
