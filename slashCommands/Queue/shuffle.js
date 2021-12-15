@@ -12,6 +12,7 @@ module.exports = {
     cooldown: 3,
     requiredroles: [],
     alloweduserids: [],
+
     run: async (client, interaction) => {
         try {
             const { member, channelId, guildId, applicationId, commandName,

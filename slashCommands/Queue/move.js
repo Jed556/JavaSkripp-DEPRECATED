@@ -13,14 +13,14 @@ module.exports = {
     requiredroles: [],
     alloweduserids: [],
     options: [
-        
+
         {
             "Integer": {
                 name: "song",
                 description: "Song index to remove",
                 required: true
             }
-        }, //to use in the code: interacton.getInteger("ping_amount")
+        },
         {
             "Integer": {
                 name: "where",
@@ -29,6 +29,7 @@ module.exports = {
             }
         },
     ],
+
     run: async (client, interaction) => {
         try {
             const { member, channelId, guildId, applicationId, commandName,
@@ -54,7 +55,7 @@ module.exports = {
                     ephemeral: true
                 });
             }
-            
+
             try {
                 let newQueue = client.distube.getQueue(guildId);
                 if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
@@ -80,7 +81,7 @@ module.exports = {
                 if (songIndex > newQueue.songs.length - 1) return interaction.reply({
                     embeds: [
                         new MessageEmbed().setColor(ee.errColor).setTitle(`${client.allEmojis.x} **This Song does not exist!**`)
-                        .setDescription(`**The last Song in the Queue has the Index: \`${newQueue.songs.length}\`**`)
+                            .setDescription(`**The last Song in the Queue has the Index: \`${newQueue.songs.length}\`**`)
                     ],
                     ephemeral: true
                 })
@@ -97,10 +98,10 @@ module.exports = {
                 newQueue.addToQueue(song, position)
                 interaction.reply({
                     embeds: [new MessageEmbed()
-                      .setColor(ee.color)
-                      .setTimestamp()
-                      .setTitle(`📑 Moved **${song.name}** to the **\`${position}th\`** Place right after **_${newQueue.songs[position - 1].name}_!**`)
-                      .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({dynamic: true}))]
+                        .setColor(ee.color)
+                        .setTimestamp()
+                        .setTitle(`📑 Moved **${song.name}** to the **\`${position}th\`** Place right after **_${newQueue.songs[position - 1].name}_!**`)
+                        .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                 })
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
@@ -108,7 +109,7 @@ module.exports = {
                     content: `${client.allEmojis.x} | Error: `,
                     embeds: [
                         new MessageEmbed().setColor(ee.errColor)
-                        .setDescription(`\`\`\`${e}\`\`\``)
+                            .setDescription(`\`\`\`${e}\`\`\``)
                     ],
                     ephemeral: true
                 })

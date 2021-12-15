@@ -12,13 +12,14 @@ module.exports = {
     cooldown: 1,
     requiredroles: [],
     alloweduserids: [],
+
     run: async (client, interaction) => {
         try {
             const { member, channelId, guildId, applicationId, commandName,
                 deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
             const { guild } = member;
             const { channel } = member.voice;
-            
+
             if (!channel) return interaction.reply({
                 embeds: [new MessageEmbed()
                     .setColor(ee.errColor)

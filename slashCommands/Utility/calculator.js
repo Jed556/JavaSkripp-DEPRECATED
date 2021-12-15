@@ -13,6 +13,7 @@ module.exports = {
     cooldown: 5,
     requiredroles: [],
     alloweduserids: [],
+
     run: async (client, interaction) => {
         try {
             interaction.deferReply("Starting...")

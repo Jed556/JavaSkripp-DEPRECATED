@@ -21,6 +21,7 @@ module.exports = {
             }
         },
     ],
+
     run: async (client, interaction) => {
         try {
             const { member, channelId, guildId, applicationId, commandName,
