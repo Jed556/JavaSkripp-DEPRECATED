@@ -929,8 +929,8 @@ function change_status(client) {
             }
 
             if (display == 5) {
-                const ownerID = await client.users.cache.find(u => u.id === config.ownerID).id;
-                const owner = await client.users.fetch(ownerID).catch(console.error);
+                const ownerID = client.users.cache.find(u => u.id === config.ownerID).id;
+                const owner = client.users.fetch(ownerID).catch(console.error);
                 client.user.setActivity(owner.tag, {
                     type: "WATCHING",
                 });
