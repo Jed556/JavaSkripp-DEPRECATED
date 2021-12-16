@@ -882,15 +882,15 @@ function change_status(client) {
             client.user.setStatus("online");
             const Guilds = client.guilds.cache.size;
             const Users = client.users.cache.filter(user => !user.bot).size;
-            let display = Math.floor(Math.random() * 5)
+            let display = Math.floor(Math.random() * 4)
 
             if (display == 0) {
                 if (Guilds > 1 || Guilds < 1) {
-                    client.user.setActivity(`${Guilds} Guilds`, {
+                    client.user.setActivity(`${Guilds} Servers`, {
                         type: "LISTENING",
                     });
                 } else {
-                    client.user.setActivity(`${Guilds} Guild`, {
+                    client.user.setActivity(`${Guilds} Server`, {
                         type: "LISTENING",
                     });
                 }
@@ -924,45 +924,45 @@ function change_status(client) {
                 });
             }
 
-            if (display == 4) {
-                let event;
-                const d = new Date();
-                const day = d.getDate();
-                const month = d.getMonth();
-                if (month == 11 && day > 12 && day < 27) event = "christmas";
-                if (month == 10 && day > 0 && day < 3) event = "halloween";
-                if (month == 9 && day > 28 && day < 32) event = "halloween";
-                if (month == 11 && day > 28 && day < 32) event = "newYear";
-                if (month == 0 && day > 0 && day < 3) event = "newYear";
-                if (month == 7 && day == 29) event = "birthday";
+            // if (display == 4) {
+            //     let event;
+            //     const d = new Date();
+            //     const day = d.getDate();
+            //     const month = d.getMonth();
+            //     if (month == 11 && day > 12 && day < 27) event = "christmas";
+            //     if (month == 10 && day > 0 && day < 3) event = "halloween";
+            //     if (month == 9 && day > 28 && day < 32) event = "halloween";
+            //     if (month == 11 && day > 28 && day < 32) event = "newYear";
+            //     if (month == 0 && day > 0 && day < 3) event = "newYear";
+            //     if (month == 7 && day == 29) event = "birthday";
 
-                if (event) {
-                    if (event == "christmas") {
-                        client.user.setActivity(`Snowball Fight ❄`, {
-                            type: "PLAYING",
-                        });
-                    }
-                    if (event == "newYear") {
-                        client.user.setActivity(`Fireworks 🎆`, {
-                            type: "WATCHING",
-                        });
-                    }
-                    if (event == "birthday") {
-                        client.user.setActivity(`Birthday Greetings 🎉`, {
-                            type: "LISTENING",
-                        });
-                    }
-                    if (event == "halloween") {
-                        client.user.setActivity(`Ghosts FLoat 👻`, {
-                            type: "WATCHING",
-                        });
-                    }
-                } else {
-                    client.user.setActivity(`Music 🎵`, {
-                        type: "PLAYING",
-                    });
-                }
-            }
+            //     if (event) {
+            //         if (event == "christmas") {
+            //             client.user.setActivity(`Snowball Fight ❄`, {
+            //                 type: "PLAYING",
+            //             });
+            //         }
+            //         if (event == "newYear") {
+            //             client.user.setActivity(`Fireworks 🎆`, {
+            //                 type: "WATCHING",
+            //             });
+            //         }
+            //         if (event == "birthday") {
+            //             client.user.setActivity(`Birthday Greetings 🎉`, {
+            //                 type: "LISTENING",
+            //             });
+            //         }
+            //         if (event == "halloween") {
+            //             client.user.setActivity(`Ghosts FLoat 👻`, {
+            //                 type: "WATCHING",
+            //             });
+            //         }
+            //     } else {
+            //         client.user.setActivity(`Music 🎵`, {
+            //             type: "PLAYING",
+            //         });
+            //     }
+            // }
 
         } else {
             client.user.setStatus("dnd");
