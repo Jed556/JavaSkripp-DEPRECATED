@@ -62,8 +62,8 @@ module.exports = (client) => {
                                 embeds: [new MessageEmbed()
                                     .setColor(ee.errColor)
                                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                                    .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
-                                    .setDescription(`**DJ-ROLES:**\n${check_if_dj(client, i.member, client.distube.getQueue(i.guild.id).songs[0])}`)
+                                    .setAuthor(`No Permission`, ee.discAlert)
+                                    .setDescription(`**You are not a DJ and not the Song Requester!**\n**DJ-ROLES:**\n${check_if_dj(client, i.member, client.distube.getQueue(i.guild.id).songs[0])}`)
                                 ],
                                 ephemeral: true
                             });
