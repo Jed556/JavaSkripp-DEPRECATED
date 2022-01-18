@@ -3,6 +3,7 @@ const { MessageButton, MessageActionRow, MessageEmbed } = require("discord.js");
 const { lyricsEmbed, check_if_dj, errDM } = require("./functions");
 const config = require("../botconfig/config.json");
 const emb = require("../botconfig/embed.json");
+const settings = require("../botconfig/distube.json");
 const { KSoftClient } = require("@ksoft/api");
 const ksoft = new KSoftClient(config.ksoftapi);
 const PlayerMap = new Map()
