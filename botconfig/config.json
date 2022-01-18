@@ -8,17 +8,18 @@
 
     "prefix": "/",
     "defaultCooldown" : 1,
-    "antiCrash": true,
-    "commands": false,
-    "friendlyMode": false,
+    "antiCrash": true, "_COMMENT_": "Toggle to enable/disable antiCrash on command execution error",
+    "commands": false, "_COMMENT_": "Toggle to enable/disable loading of commands (Deprecated)",
+    "friendlyMode": false, "_COMMENT_": "Toggle to enable/disable greetings and warnings in direct messages",
 
-    "ksoftapi": "NEEDED_FOR_LYRICS",
+    "ksoftapi": "NEEDED_FOR_LYRICS (Deprecated)",
     "youtubeCookie": "",
     "spotify_api": {
-        "enabled": false, "_COMMENT_": "Set it to false, if you want to scrape, when on true you can get spotify playlists with 100+ Tracks",
+        "enabled": false, "_COMMENT_": "Set to true to get spotify playlists with 100+ Tracks instead of scraping",
         "clientSecret": "",
         "clientId": ""
     },
+    "nsfwMusic": true, "_COMMENT_": "Toggle to enable/disable NSFW songs scraping",
 
-    "loadSlashsGlobal": true, "_COMMENT_": "Set it to true, when your Slash Commands are ready, false loads instant true loads slow but stable! (GLOBAL/GUILD COMMANDS, DISCORD DOCS!)"
+    "loadSlashsGlobal": true, "_COMMENT_": "False loads instant true loads slow but stable!"
 }

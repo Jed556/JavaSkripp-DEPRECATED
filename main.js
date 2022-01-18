@@ -70,8 +70,8 @@ client.distube = new DisTube(client, {
     emitAddSongWhenCreatingQueue: false,
     //emitAddListWhenCreatingQueue: false,
     searchSongs: 0,
-    youtubeCookie: config.youtubeCookie,     //Comment this line if you dont want to use a youtube Cookie 
-    nsfw: true, //Set it to false if u want to disable nsfw songs
+    youtubeCookie: config.youtubeCookie,
+    nsfw: config.nsfwMusic,
     emptyCooldown: 25,
     ytdlOptions: {
         //requestOptions: {
@@ -109,7 +109,6 @@ client.settings = new Enmap({ name: "settings", dataDir: "./databases/settings" 
 client.infos = new Enmap({ name: "infos", dataDir: "./databases/infos" });
 
 //Require the Handlers
-//         Add the commands file if enabled                         Add the antiCrash file if enabled
 ["events", config.commands ? "commands" : null, "slashCommands", config.antiCrash ? "antiCrash" : null, "distubeEvent"]
     .filter(Boolean)
     .forEach(h => {
