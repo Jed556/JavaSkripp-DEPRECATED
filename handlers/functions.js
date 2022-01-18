@@ -26,7 +26,6 @@ module.exports.parseMilliseconds = parseMilliseconds;
 module.exports.onCoolDown = onCoolDown;
 module.exports.formatDate = formatDate;
 module.exports.customplaylistembed = customplaylistembed;
-module.exports.lyricsEmbed = lyricsEmbed;
 module.exports.check_if_dj = check_if_dj;
 module.exports.errDM = errDM;
 
@@ -79,36 +78,13 @@ function customplaylistembed(lyrics, song) {
     }
 }
 
-function lyricsEmbed(lyrics, song) {
-    try {
-        let embeds = [];
-        let k = 1000;
-        for (let i = 0; i < lyrics.length; i += 1000) {
-            const current = lyrics.slice(i, k);
-            k += 1000;
-            const embed = new Discord.MessageEmbed()
-                .setTitle("Lyrics - " + song.name)
-                .setURL(song.url)
-                .setThumbnail(song.thumbnail)
-                .setFooter(`Song Requested by: ${song.user.tag}`, song.user.displayAvatarURL({ dynamic: true }))
-                .setColor(emb.color)
-                .setDescription(current)
-            embeds.push(embed);
-        }
-        return embeds;
-    } catch (error) {
-        console.log(error)
-        errDM(client, error)
-    }
-}
-
 /**
  * 
  * @param {*} message A DiscordMessage, with the client, information
  * @param {*} command The Command with the command.name
  * @returns BOOLEAN
  */
-function onCoolDown(message, command) {
+ function onCoolDown(message, command) {
     if (!message || !message.client) throw "No Message with a valid DiscordClient granted as First Parameter";
     if (!command || !command.name) throw "No Command with a valid Name granted as Second Parameter";
     const client = message.client;
@@ -638,7 +614,7 @@ async function swap_pages(client, message, description, TITLE) {
     let button_home = new MessageButton().setStyle('DANGER').setCustomId('2').setEmoji("🏠").setLabel("Home")
     let button_forward = new MessageButton().setStyle('SUCCESS').setCustomId('3').setEmoji('832598861813776394').setLabel("Forward")
     const allbuttons = [new MessageActionRow().addComponents([button_back, button_home, button_forward])]
-
+    
     //Send message with buttons
     let swapmsg = await message.channel.send({
         content: `***Click on the __Buttons__ to swap the Pages***`,
@@ -648,11 +624,11 @@ async function swap_pages(client, message, description, TITLE) {
 
     //create a collector for the thinggy
     const collector = swapmsg.createMessageComponentCollector({ filter: (i) => i.isButton() && i.user && i.user.id == cmduser.id && i.message.author.id == client.user.id, time: 180e3 }); //collector for 5 seconds
-
+    
     //array of all embeds, here simplified just 10 embeds with numbers 0 - 9
     collector.on('collect', async b => {
         if (b.user.id !== message.author.id)
-            return b.reply(`${client.emojis.x} **Only the one who typed ${prefix}help is allowed to react!**`, true)
+        return b.reply(`${client.emojis.x} **Only the one who typed ${prefix}help is allowed to react!**`, true)
         //page forward
         if (b.customId == "1") {
             //b.reply("***Swapping a PAGE FORWARD***, *please wait 2 Seconds for the next Input*", true)
@@ -762,7 +738,7 @@ async function swap_pages2(client, message, embeds) {
  * @param {*} client Discord Client
  * Function to send errors to DM
  */
-function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
+ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
     const report = new MessageEmbed()
         .setTimestamp()
         .setColor(emb.errColor)
@@ -840,7 +816,7 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
  * @param {*} client Discord Client
  * Function to Change the Status 
  */
-function change_status(client) {
+ function change_status(client) {
     try {
         if (!client.maintenance) {
             client.user.setStatus("online");
