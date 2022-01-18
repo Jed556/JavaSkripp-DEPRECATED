@@ -2,7 +2,6 @@ const { MessageEmbed, Collection } = require("discord.js");
 const Discord = require("discord.js")
 const config = require("../botconfig/config.json");
 const ee = require("../botconfig/embed.json");
-const settings = require("../botconfig/settings.json");
 
 //EXPORT ALL FUNCTIONS
 module.exports.nFormatter = nFormatter;
@@ -24,12 +23,14 @@ module.exports.GetUser = GetUser;
 module.exports.GetRole = GetRole;
 module.exports.GetGlobalUser = GetGlobalUser;
 module.exports.parseMilliseconds = parseMilliseconds;
+// module.exports.replacemsg = replacedefaultmessages (DEPRRECATED)
 module.exports.onCoolDown = onCoolDown;
 module.exports.formatDate = formatDate;
 module.exports.customplaylistembed = customplaylistembed;
 module.exports.lyricsEmbed = lyricsEmbed;
 module.exports.check_if_dj = check_if_dj;
 module.exports.errDM = errDM;
+
 
 function check_if_dj(client, member, song) {
     //if no message added return
@@ -102,42 +103,6 @@ function lyricsEmbed(lyrics, song) {
     }
 }
 
-module.exports.replacemsg = replacedefaultmessages
-/**
- * 
- * @param {*} text The Text that should be replaced, usually from /botconfig/settings.json
- * @param {*} options Those Options are what are needed for the replaceMent! Valid ones are: { 
- *   timeLeft: "",
- *   commandmemberpermissions: { memberpermissions: [] }, 
- *   commandalloweduserids: { alloweduserids: [] }, 
- *   commandrequiredroles: { requiredroles: [] }, 
- *   commandname: { name: "" }, 
- *   commandaliases: { aliases: [] }, 
- *   prefix: "",
- *   errormessage: { message: "" }
- *   errorstack: { stack: STACK }
- *   error: ERRORTYPE
- * }
- * @returns STRING
- */
-function replacedefaultmessages(text, o = {}) {
-    if (!text || text == undefined || text == null) throw "No Text for the replacedefault message added as First Parameter";
-    const options = Object(o)
-    if (!options || options == undefined || options == null) return String(text)
-    return String(text)
-        .replace(/%{timeleft}%/gi, options && options.timeLeft ? options.timeLeft.toFixed(1) : "%{timeleft}%")
-        .replace(/%{commandname}%/gi, options && options.command && options.command.name ? options.command.name : "%{commandname}%")
-        .replace(/%{commandaliases}%/gi, options && options.command && options.command.aliases ? options.command.aliases.map(v => `\`${v}\``).join(",") : "%{commandaliases}%")
-        .replace(/%{prefix}%/gi, options && options.prefix ? options.prefix : "%{prefix}%")
-        .replace(/%{commandmemberpermissions}%/gi, options && options.command && options.command.memberpermissions ? options.command.memberpermissions.map(v => `\`${v}\``).join(",") : "%{commandmemberpermissions}%")
-        .replace(/%{commandalloweduserids}%/gi, options && options.command && options.command.alloweduserids ? options.command.alloweduserids.map(v => `<@${v}>`).join(",") : "%{commandalloweduserids}%")
-        .replace(/%{commandrequiredroles}%/gi, options && options.command && options.command.requiredroles ? options.command.requiredroles.map(v => `<@&${v}>`).join(",") : "%{commandrequiredroles}%")
-        .replace(/%{errormessage}%/gi, options && options.error && options.error.message ? options.error.message : options && options.error ? options.error : "%{errormessage}%")
-        .replace(/%{errorstack}%/gi, options && options.error && options.error.stack ? options.error.stack : options && options.error && options.error.message ? options.error.message : options && options.error ? options.error : "%{errorstack}%")
-        .replace(/%{error}%/gi, options && options.error ? options.error : "%{error}%")
-
-}
-
 /**
  * 
  * @param {*} message A DiscordMessage, with the client, information
@@ -153,7 +118,7 @@ function onCoolDown(message, command) {
     }
     const now = Date.now(); //get the current time
     const timestamps = client.cooldowns.get(command.name); //get the timestamp of the last used commands
-    const cooldownAmount = (command.cooldown || settings.default_cooldown_in_sec) * 1000; //get the cooldownamount of the command, if there is no cooldown there will be automatically 1 sec cooldown, so you cannot spam it^^
+    const cooldownAmount = (command.cooldown || config.defaultCooldown) * 1000; //get the cooldownamount of the command, if there is no cooldown there will be automatically 1 sec cooldown, so you cannot spam it^^
     if (timestamps.has(message.member.id)) { //if the user is on cooldown
         const expirationTime = timestamps.get(message.member.id) + cooldownAmount; //get the amount of time he needs to wait until he can run the cmd again
         if (now < expirationTime) { //if he is still on cooldonw
@@ -162,7 +127,7 @@ function onCoolDown(message, command) {
             return timeLeft
         }
         else {
-            //if he is not on cooldown, set it to the cooldown
+            //if user is not on cooldown, set it to the cooldown
             timestamps.set(message.member.id, now);
             //set a timeout function with the cooldown, so it gets deleted later on again
             setTimeout(() => timestamps.delete(message.member.id), cooldownAmount);
@@ -171,7 +136,7 @@ function onCoolDown(message, command) {
         }
     }
     else {
-        //if he is not on cooldown, set it to the cooldown
+        //if user is not on cooldown, set it to the cooldown
         timestamps.set(message.member.id, now);
         //set a timeout function with the cooldown, so it gets deleted later on again
         setTimeout(() => timestamps.delete(message.member.id), cooldownAmount);
