@@ -32,11 +32,7 @@ module.exports = {
 
             let args = options.getString("filters").split(" ");
             if (!args) args = [options.getString("filters")]
-            client.settings.ensure(guild.id, {
-                defaultvolume: 100,
-                defaultautoplay: false,
-                defaultfilters: [`bassboost6`, `clear`]
-            });
+
             if (args.some(a => !filters[a])) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()

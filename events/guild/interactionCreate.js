@@ -1,6 +1,6 @@
-//Import Modules
 const config = require("../../botconfig/config.json");
 const emb = require("../../botconfig/embed.json");
+const settings = require("../../botconfig/settings.json");
 const { onCoolDown } = require("../../handlers/functions");
 const Discord = require("discord.js");
 module.exports = (client, interaction) => {
@@ -20,19 +20,16 @@ module.exports = (client, interaction) => {
 
     if (interaction.guildId == null) return;
 
-    let prefix = config.prefix;
-    if (interaction.guildId) {
-        client.settings.ensure(interaction.guildId, {
-            prefix: config.prefix,
-            defaultvolume: 100,
-            defaultautoplay: false,
-            defaultfilters: ['bassboost6', 'clear'],
-            djroles: [],
-        })
-        prefix = client.settings.get(interaction.guildId)
-    }
+    client.settings.ensure(interaction.guildId, {
+        prefix: config.prefix,
+        defaultvolume: 100,
+        defaultautoplay: false,
+        defaultfilters: [`bassboost6`, `clear`],
+        djroles: [],
+    })
+    let prefix = client.settings.get(interaction.guildId)
     let command = false;
-
+    
     try {
         if (client.slashCommands.has(CategoryName + interaction.options.getSubcommand())) {
             command = client.slashCommands.get(CategoryName + interaction.options.getSubcommand());
@@ -43,7 +40,7 @@ module.exports = (client, interaction) => {
         }
     }
     if (command) {
-        let botchannels = client.settings.get(interaction.guildId, `botchannel`) || false;
+        let botchannels = client.settings.get(interaction.guildId, `botchannel`);
         if (!botchannels || !Array.isArray(botchannels)) botchannels = [];
         if (botchannels.length > 0) {
             if (!botchannels.includes(interaction.channelId) && !interaction.member.permissions.has("ADMINISTRATOR")) {
@@ -67,7 +64,7 @@ module.exports = (client, interaction) => {
                     .setColor(emb.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setAuthor("Cooldown")
-                    .addField("Time Left", `${(timeLeft > 1 || timeLeft < 1) ? `${timeleft} secs` : `${timeleft} sec`}`)
+                    .addField("Time Left", `${(timeLeft > 1 || timeLeft < 1) ? `${timeLeft} secs` : `${timeLeft} sec`}`)
                     .addField("Command", command)
                 ]
             })

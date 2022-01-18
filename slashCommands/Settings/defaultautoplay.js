@@ -18,12 +18,6 @@ module.exports = {
                 deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
             const { guild } = member;
 
-            client.settings.ensure(guild.id, {
-                defaultvolume: 100,
-                defaultautoplay: false,
-                defaultfilters: [`bassboost6`, `clear`]
-            });
-
             client.settings.set(guild.id, !client.settings.get(guild.id, "defaultautoplay"), "defaultautoplay");
             return interaction.reply({
                 embeds: [new MessageEmbed()

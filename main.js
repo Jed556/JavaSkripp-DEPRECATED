@@ -9,7 +9,7 @@ const voice = require("@discordjs/voice");
 const DisTube = require("distube").default;
 const https = require('https-proxy-agent');
 const client = new Discord.Client({
-    //fetchAllMembers: false,
+    fetchAllMembers: false,
     //restTimeOffset: 0,
     //restWsBridgetimeout: 100,
     shards: "auto",
@@ -18,6 +18,7 @@ const client = new Discord.Client({
         parse: [],
         repliedUser: false,
     },
+    failIfNotExists: false,
     partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
     intents: [
         Discord.Intents.FLAGS.GUILDS,
@@ -45,8 +46,8 @@ const client = new Discord.Client({
     }
 });
 
-//const proxy = 'http://123.123.123.123:8080';
-//const agent = https(proxy);
+const proxy = 'http://123.123.123.123:8080';
+const agent = https(proxy);
 const { SpotifyPlugin } = require("@distube/spotify");
 const { SoundCloudPlugin } = require("@distube/soundcloud");
 let spotifyoptions = {
@@ -74,14 +75,14 @@ client.distube = new DisTube(client, {
     nsfw: config.nsfwMusic,
     emptyCooldown: 25,
     ytdlOptions: {
-        //requestOptions: {
-        //  agent //ONLY USE ONE IF YOU KNOW WHAT YOU DO
-        //},
+        requestOptions: {
+         agent //ONLY USE ONE IF YOU KNOW WHAT YOU DO
+        },
         highWaterMark: 1024 * 1024 * 64,
         quality: "highestaudio",
         format: "audioonly",
         liveBuffer: 60000,
-        dlChunkSize: 1024 * 1024 * 64,
+        dlChunkSize: 1024 * 1024 * 4,
     },
     youtubeDL: true,
     updateYouTubeDL: true,
@@ -102,11 +103,13 @@ client.maintenance = false;
 try { client.categories = require("fs").readdirSync(`./commands`) } catch { };
 try { client.slashCategories = require("fs").readdirSync(`./slashCommands`) } catch { };
 client.emojis = require("./botconfig/emojis.json");
+client.maps = new Map();
 
 client.setMaxListeners(100); require('events').defaultMaxListeners = 100;
 
 client.settings = new Enmap({ name: "settings", dataDir: "./databases/settings" });
 client.infos = new Enmap({ name: "infos", dataDir: "./databases/infos" });
+client.autoresume = new Enmap({ name: "autoresume", dataDir: "./databases/infos"});
 
 //Require the Handlers
 ["events", config.commands ? "commands" : null, "slashCommands", config.antiCrash ? "antiCrash" : null, "distubeEvent"]

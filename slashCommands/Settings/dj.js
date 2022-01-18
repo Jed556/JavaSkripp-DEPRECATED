@@ -40,7 +40,6 @@ module.exports = {
 
             let add_remove = options.getString("action");
             let Role = options.getRole("role");
-            client.settings.ensure(guild.id, { djroles: [] });
 
             if (add_remove == "add") {
                 if (client.settings.get(guild.id, "djroles").includes(Role.id)) {
