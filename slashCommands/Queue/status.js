@@ -58,10 +58,10 @@ module.exports = {
                     .addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
                     .addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song${newQueue.songs.length != 1 ? "s" : ""}\` - \`${newQueue.formattedDuration}\``, true)
                     .addField(`🔊 Volume:`, `>>> \`${newQueue.volume} %\``, true)
-                    .addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.emojis.check}\` Queue\`` : `${client.emojis.check} \`Song\`` : `${client.emojis.x}`}`, true)
-                    .addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.emojis.check}` : `${client.emojis.x}`}`, true)
+                    .addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.emoji.check}\` Queue\`` : `${client.emoji.check} \`Song\`` : `${client.emoji.x}`}`, true)
+                    .addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.emoji.check}` : `${client.emoji.x}`}`, true)
                     .addField(`⬇ Download:`, `>>> [\`Music Link\`](${newTrack.streamURL})`, true)
-                    .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.emojis.x}`}`, newQueue.filters.length > 2 ? false : true)
+                    .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.emoji.x}`}`, newQueue.filters.length > 2 ? false : true)
                     .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s" : ""}:`, `>>> ${djs}`, (client.settings.get(newQueue.id, "djroles").length > 2 || djs != "`Not Set`") ? false : true)
                     .setAuthor(`DASHBOARD | NOW PLAYING`, emb.discSpin)
                     .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
@@ -72,7 +72,7 @@ module.exports = {
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.emojis.x} | Error: `,
+                    content: `${client.emoji.x} | Error: `,
                     embeds: [
                         new MessageEmbed().setColor(emb.errColor)
                             .setDescription(`\`\`\`${e}\`\`\``)

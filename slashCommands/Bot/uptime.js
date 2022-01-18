@@ -24,7 +24,7 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(emb.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setTitle(`${client.emojis.check} **${client.user.username}** is since:\n ${duration(client.uptime).map(t => `\`${t}\``).join(", ")} online`)
+                    .setTitle(`${client.emoji.check} **${client.user.username}** is since:\n ${duration(client.uptime).map(t => `\`${t}\``).join(", ")} online`)
                 ]
             });
         } catch (e) {

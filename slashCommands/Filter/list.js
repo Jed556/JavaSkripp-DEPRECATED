@@ -43,7 +43,7 @@ module.exports = {
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.emojis.x} | Error: `,
+                    content: `${client.emoji.x} | Error: `,
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)

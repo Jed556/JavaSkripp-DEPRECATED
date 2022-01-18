@@ -22,7 +22,7 @@ module.exports = {
             if (!channel) return interaction.reply({
                 embeds: [new MessageEmbed()
                     .setColor(emb.errColor)
-                    .setTitle(`${client.emojis.x} **Please join ${guild.me.voice.channel ? "my" : "a"} VoiceChannel First!**`)
+                    .setTitle(`${client.emoji.x} **Please join ${guild.me.voice.channel ? "my" : "a"} VoiceChannel First!**`)
                 ],
                 ephemeral: true
             })
@@ -45,7 +45,7 @@ module.exports = {
                     new MessageEmbed()
                         .setColor(emb.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.emojis.check} **The Autoresume __\`${client.settings.get(guild.id, "autoresume") ? "Enabled" : "Disabled"}\`__!**`)
+                        .setTitle(`${client.emoji.check} **The Autoresume __\`${client.settings.get(guild.id, "autoresume") ? "Enabled" : "Disabled"}\`__!**`)
                 ],
             })
 

@@ -68,7 +68,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(emb.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.emojis.x} **You are not a DJ and not the Song Requester!**`)
+                            .setTitle(`${client.emoji.x} **You are not a DJ and not the Song Requester!**`)
                             .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
                         ],
                         ephemeral: true
@@ -79,14 +79,14 @@ module.exports = {
                 if (position >= newQueue.songs.length || position < 0) position = -1;
                 if (songIndex > newQueue.songs.length - 1) return interaction.reply({
                     embeds: [
-                        new MessageEmbed().setColor(emb.errColor).setTitle(`${client.emojis.x} **This Song does not exist!**`)
+                        new MessageEmbed().setColor(emb.errColor).setTitle(`${client.emoji.x} **This Song does not exist!**`)
                             .setDescription(`**The last Song in the Queue has the Index: \`${newQueue.songs.length}\`**`)
                     ],
                     ephemeral: true
                 })
                 if (position == 0) return interaction.reply({
                     embeds: [
-                        new MessageEmbed().setColor(emb.errColor).setTitle(`${client.emojis.x} **Cannot move Song before Playing Song!**`)
+                        new MessageEmbed().setColor(emb.errColor).setTitle(`${client.emoji.x} **Cannot move Song before Playing Song!**`)
                     ],
                     ephemeral: true
                 })
@@ -105,7 +105,7 @@ module.exports = {
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.emojis.x} | Error: `,
+                    content: `${client.emoji.x} | Error: `,
                     embeds: [
                         new MessageEmbed().setColor(emb.errColor)
                             .setDescription(`\`\`\`${e}\`\`\``)

@@ -64,7 +64,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(emb.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.emojis.x}**You are not a DJ and not the Song Requester!**`)
+                            .setTitle(`${client.emoji.x}**You are not a DJ and not the Song Requester!**`)
                             .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
                         ],
                         ephemeral: true
@@ -78,7 +78,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(emb.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.emojis.x} **You added at least one Filter, which is invalid!**`)
+                            .setTitle(`${client.emoji.x} **You added at least one Filter, which is invalid!**`)
                             .setDescription("**To define Multiple Filters add a SPACE (` `) in between!**")
                             .addField("**All Valid Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom are having there own Command, please use them to define what custom amount u want!*")
                         ],
@@ -98,7 +98,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(emb.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.emojis.x} **You did not add a Filter, which is (not) in the Filters yet.**`)
+                            .setTitle(`${client.emoji.x} **You did not add a Filter, which is (not) in the Filters yet.**`)
                             .addField("**All __current__ Filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
                         ],
                     })
@@ -115,7 +115,7 @@ module.exports = {
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.emojis.x} | Error: `,
+                    content: `${client.emoji.x} | Error: `,
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)

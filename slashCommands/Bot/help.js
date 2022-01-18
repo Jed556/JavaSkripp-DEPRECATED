@@ -76,7 +76,7 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(emb.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setTitle(`${client.emojis.x} ERROR | An error occurred`)
+                    .setTitle(`${client.emoji.x} ERROR | An error occurred`)
                     .setDescription(`\`\`\`${e.message ? String(e.message).substr(0, 2000) : String(e).substr(0, 2000)}\`\`\``)
                 ]
             });

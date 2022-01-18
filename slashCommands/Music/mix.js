@@ -109,7 +109,7 @@ module.exports = {
                 if (args[0].toLowerCase().startsWith("h")) link = "https://open.spotify.com/playlist/37i9dQZF1DX9qNs32fujYe";
             } //update it without a response!
             await interaction.reply({
-                content: `${client.emojis.loading} Loading the **'${args[0] ? args[0] : "Default"}' Music Mix**`,
+                content: `${client.emoji.loading} Loading the **'${args[0] ? args[0] : "Default"}' Music Mix**`,
                 ephemeral: true
             });
 
@@ -122,13 +122,13 @@ module.exports = {
                 await client.distube.play(channel, link, options)
                 //Edit the reply
                 interaction.editReply({
-                    content: `${queue?.songs?.length > 0 ? `${client.emojis.check} Loaded` : "🎶 Now Playing"}: the **'${args[0] ? args[0] : "Default"}'**`,
+                    content: `${queue?.songs?.length > 0 ? `${client.emoji.check} Loaded` : "🎶 Now Playing"}: the **'${args[0] ? args[0] : "Default"}'**`,
                     ephemeral: true
                 });
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.emojis.x} | Error: `,
+                    content: `${client.emoji.x} | Error: `,
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)

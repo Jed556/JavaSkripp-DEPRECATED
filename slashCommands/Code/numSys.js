@@ -62,7 +62,7 @@ module.exports = {
                 interaction.reply({
                     embeds: [embed
                         .setColor(emb.errColor)
-                        .setDescription(`${client.emojis.x} Invalid Input or Conversion`)]
+                        .setDescription(`${client.emoji.x} Invalid Input or Conversion`)]
                 });
             }
 

@@ -53,7 +53,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.emojis.x} Lyrics are Disabled!`)
+                        .setTitle(`${client.emoji.x} Lyrics are Disabled!`)
                         .setDescription(`**Due to legal reasons, lyrics are disabled and won't work for an unknown amount of time!**`)
                     ],
                 });
@@ -62,7 +62,7 @@ module.exports = {
                 await ksoft.lyrics.get(newQueue.songs[0].name).then(
                     async track => {
                         if (!track.lyrics) return interaction.reply({
-                            content: `${client.emojis.x} **No Lyrics Found!**`,
+                            content: `${client.emoji.x} **No Lyrics Found!**`,
                             ephemeral: true
                         });
                         lyrics = track.lyrics;
@@ -70,7 +70,7 @@ module.exports = {
                     }).catch(e => {
                         console.log(e)
                         return interaction.reply({
-                            content: `${client.emojis.x} **No Lyrics Found!**\n${String(e).substr(0, 1800)}`,
+                            content: `${client.emoji.x} **No Lyrics Found!**\n${String(e).substr(0, 1800)}`,
                             ephemeral: true
                         });
                     })
@@ -81,7 +81,7 @@ module.exports = {
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.emojis.x} | Error: `,
+                    content: `${client.emoji.x} | Error: `,
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)

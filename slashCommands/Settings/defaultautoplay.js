@@ -23,7 +23,7 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(emb.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setTitle(`${client.emojis.check} **The Default-Autoplay got __\`${client.settings.get(guild.id, "defaultautoplay") ? "Enabled" : "Disabled"}\`__!**`)
+                    .setTitle(`${client.emoji.check} **The Default-Autoplay got __\`${client.settings.get(guild.id, "defaultautoplay") ? "Enabled" : "Disabled"}\`__!**`)
                 ],
             })
         } catch (e) {

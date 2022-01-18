@@ -35,7 +35,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.emojis.x} **The Volume __must__ be between \`1\` and \`150\`!**`)
+                        .setTitle(`${client.emoji.x} **The Volume __must__ be between \`1\` and \`150\`!**`)
                     ],
                 })
             }
@@ -45,7 +45,7 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(emb.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setTitle(`${client.emojis.check} **The Default-Volume has been set to: \`${volume}\`!**`)
+                    .setTitle(`${client.emoji.check} **The Default-Volume has been set to: \`${volume}\`!**`)
                 ],
             })
         } catch (e) {

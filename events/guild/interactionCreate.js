@@ -48,7 +48,7 @@ module.exports = (client, interaction) => {
                     embeds: [new Discord.MessageEmbed()
                         .setColor(emb.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.emojis.x} **Executing command is restricted here!**`)
+                        .setTitle(`${client.emoji.x} **Executing command is restricted here!**`)
                         .setDescription(`Execute it in:\n> ${botchannels.map(c => `<#${c}>`).join(", ")}`)
                     ]
                 })

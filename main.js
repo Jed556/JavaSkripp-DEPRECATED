@@ -102,7 +102,7 @@ client.maintenance = false;
 
 try { client.categories = require("fs").readdirSync(`./commands`) } catch { };
 try { client.slashCategories = require("fs").readdirSync(`./slashCommands`) } catch { };
-client.emojis = require("./botconfig/emojis.json");
+client.emoji = require("./botconfig/emojis.json");
 client.maps = new Map();
 
 client.setMaxListeners(100); require('events').defaultMaxListeners = 100;
