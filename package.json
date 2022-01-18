@@ -4,6 +4,7 @@
     "@discordjs/voice": "^0.7.5",
     "@distube/soundcloud": "^1.1.0",
     "@distube/spotify": "^1.1.0",
+    "@discordjs/opus": "0.7.0",
     "@ksoft/api": "^3.1.9",
     "colors": "^1.4.0",
     "cpu-stat": "^2.0.1",
