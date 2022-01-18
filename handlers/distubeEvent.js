@@ -1022,7 +1022,7 @@ module.exports = (client) => {
                 if (!PlayerMap.has(`deleted-${queue.id}`)) {
                     PlayerMap.set(`deleted-${queue.id}`, true);
                     if (client.maps.has(`beforeshuffle-${queue.id}`)) {
-                        client.maps.delete(`beforeshuffle-${newQueue.id}`);
+                        client.maps.delete(`beforeshuffle-${queue.id}`);
                     }
                     try {
                         //Delete the interval for the check relevant messages system so
