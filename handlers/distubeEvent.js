@@ -15,14 +15,14 @@ module.exports = (client) => {
         // AUTO-RESUME-FUNCTION
         const autoconnect = async () => {
             let guilds = client.autoresume.keyArray();
-            console.log(`Autoresume`.brightCyan + ` - All Guilds, to autoresume:`, guilds)
+            console.log(`AUTORESUME`.brightCyan + ` - Guilds to Autoresume:`, guilds)
             if (!guilds || guilds.length == 0) return;
             for (const gId of guilds) {
                 try {
                     let guild = client.guilds.cache.get(gId);
                     if (!guild) {
                         client.autoresume.delete(gId);
-                        console.log(`Autoresume`.brightCyan + ` - Bot got Kicked out of the Guild`)
+                        console.log(`AUTORESUME`.brightCyan + ` - Bot was kicked from the Guild`)
                         continue;
                     }
                     let data = client.autoresume.get(gId);
@@ -31,7 +31,7 @@ module.exports = (client) => {
                     if (!voiceChannel && data.voiceChannel) voiceChannel = await guild.channels.fetch(data.voiceChannel).catch(() => { }) || false;
                     if (!voiceChannel || !voiceChannel.members || voiceChannel.members.filter(m => !m.user.bot && !m.voice.deaf && !m.voice.selfDeaf).size < 1) {
                         client.autoresume.delete(gId);
-                        console.log(`Autoresume`.brightCyan + ` - Voice Channel is either Empty / no Listeners / got deleted`)
+                        console.log(`AUTORESUME`.brightCyan + ` - Voice Channel is either Empty / No Listeners / Deleted`)
                         continue;
                     }
 
@@ -39,12 +39,12 @@ module.exports = (client) => {
                     if (!textChannel) textChannel = await guild.channels.fetch(data.textChannel).catch(() => { }) || false;
                     if (!textChannel) {
                         client.autoresume.delete(gId);
-                        console.log(`Autoresume`.brightCyan + ` - Text Channel got deleted`)
+                        console.log(`AUTORESUME`.brightCyan + ` - Text Channel got deleted`)
                         continue;
                     }
                     let tracks = data.songs;
                     if (!tracks || !tracks[0]) {
-                        console.log(`Autoresume`.brightCyan + ` - Destroyed the player, because there are no tracks available`);
+                        console.log(`AUTORESUME`.brightCyan + ` - Destroyed the player, there are no tracks available`);
                         continue;
                     }
                     const makeTrack = async track => {
@@ -72,7 +72,7 @@ module.exports = (client) => {
                     for (const track of tracks.slice(1)) {
                         newQueue.songs.push(await makeTrack(track))
                     }
-                    console.log(`Autoresume`.brightCyan + ` - Added ${newQueue.songs.length} Tracks on the QUEUE and started playing ${newQueue.songs[0].name} in ${guild.name}`);
+                    console.log(`AUTORESUME`.brightCyan + ` - Added ${newQueue.songs.length} Tracks on the QUEUE and started playing ${newQueue.songs[0].name} in ${guild.name}`);
                     //ADJUST THE QUEUE SETTINGS
                     await newQueue.setVolume(data.volume)
                     if (data.repeatMode && data.repeatMode !== 0) {
@@ -86,7 +86,7 @@ module.exports = (client) => {
                         await newQueue.setFilter(data.filters, true);
                     }
                     client.autoresume.delete(newQueue.id)
-                    console.log(`Autoresume`.brightCyan + " - Changed autoresume track to queue adjustments + deleted the database entry")
+                    console.log(`AUTORESUME`.brightCyan + " - Changed autoresume track to queue adjustments & deleted the database entry")
                     if (!data.playing) {
                         newQueue.pause();
                     }

@@ -46,7 +46,7 @@ module.exports = {
                     ], ephemeral: true
                 })
 
-                await client.distube.playVoiceChannel(channel, newQueue.songs[0].url)
+                await client.distube.play(channel, newQueue.songs[0].url)
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({

@@ -85,7 +85,7 @@ module.exports = {
                         });
                     }
                 }
-                await client.distube.playVoiceChannel(channel, Text, options)
+                await client.distube.play(channel, Text, options)
 
                 //Edit the reply
                 interaction.editReply({

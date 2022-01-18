@@ -119,7 +119,7 @@ module.exports = {
                     member: member,
                 }
                 if (!queue) options.textChannel = guild.channels.cache.get(channelId)
-                await client.distube.playVoiceChannel(channel, link, options)
+                await client.distube.play(channel, link, options)
                 //Edit the reply
                 interaction.editReply({
                     content: `${queue?.songs?.length > 0 ? `${client.emojis.check} Loaded` : "🎶 Now Playing"}: the **'${args[0] ? args[0] : "Default"}'**`,
