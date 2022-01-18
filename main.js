@@ -46,8 +46,8 @@ const client = new Discord.Client({
     }
 });
 
-const proxy = 'http://123.123.123.123:8080';
-const agent = https(proxy);
+//const proxy = 'http://123.123.123.123:8080';
+//const agent = https(proxy);
 const { SpotifyPlugin } = require("@distube/spotify");
 const { SoundCloudPlugin } = require("@distube/soundcloud");
 let spotifyoptions = {
@@ -75,10 +75,10 @@ client.distube = new DisTube(client, {
     nsfw: config.nsfwMusic,
     emptyCooldown: 25,
     ytdlOptions: {
-        requestOptions: {
-         agent //ONLY USE ONE IF YOU KNOW WHAT YOU DO
-        },
-        highWaterMark: 1024 * 1024 * 64,
+        // requestOptions: {
+        //  agent //ONLY USE ONE IF YOU KNOW WHAT YOU DO
+        // },
+        highWaterMark: 1024 * 1024 * 32,
         quality: "highestaudio",
         format: "audioonly",
         liveBuffer: 60000,
