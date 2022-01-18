@@ -60,9 +60,9 @@ module.exports = (client) => {
                         if (i.customId != `10` && check_if_dj(client, i.member, client.distube.getQueue(i.guild.id).songs[0])) {
                             return i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.errColor)
+                                    .setColor(embed.errColor)
                                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                                    .setAuthor(`No Permission`, ee.discAlert)
+                                    .setAuthor(`No Permission`, embed.discAlert)
                                     .setDescription(`**You are not a DJ and not the Song Requester!**\n**DJ-ROLES:**\n${check_if_dj(client, i.member, client.distube.getQueue(i.guild.id).songs[0])}`)
                                 ],
                                 ephemeral: true
@@ -80,8 +80,8 @@ module.exports = (client) => {
                         if (!channel)
                             return i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.errColor)
-                                    .setAuthor(`Join a Voice Channel First!`, ee.discAlert)
+                                    .setColor(embed.errColor)
+                                    .setAuthor(`Join a Voice Channel First!`, embed.discAlert)
                                 ],
                                 ephemeral: true
                             })
@@ -89,8 +89,8 @@ module.exports = (client) => {
                         if (channel.id !== newQueue.voiceChannel.id)
                             return i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.errColor)
-                                    .setAuthor(`Join __my__ Voice Channel First! <#${channel.id}>`, ee.discAlert)
+                                    .setColor(embed.errColor)
+                                    .setAuthor(`Join __my__ Voice Channel First! <#${channel.id}>`, embed.discAlert)
                                 ],
                                 ephemeral: true
                             })
@@ -100,8 +100,8 @@ module.exports = (client) => {
                         if (!queue || !newQueue.songs || newQueue.songs.length == 0) {
                             return i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.errColor)
-                                    .setAuthor(`Nothing Playing yet`, ee.discAlert)
+                                    .setColor(embed.errColor)
+                                    .setAuthor(`Nothing Playing yet`, embed.discAlert)
                                 ],
                                 ephemeral: true
                             })
@@ -113,8 +113,8 @@ module.exports = (client) => {
                             if (!newQueue.previousSongs || newQueue.previousSongs.length == 0) {
                                 return i.reply({
                                     embeds: [new MessageEmbed()
-                                        .setColor(ee.errColor)
-                                        .setAuthor(`No Previous song`, ee.discAlert)
+                                        .setColor(embed.errColor)
+                                        .setAuthor(`No Previous song`, embed.discAlert)
                                     ],
                                     ephemeral: true
                                 })
@@ -122,7 +122,7 @@ module.exports = (client) => {
                             await newQueue.previous();
                             i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.color)
+                                    .setColor(embed.color)
                                     .setTimestamp()
                                     .setTitle(`⏮ **Playing previous Song!**`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -136,7 +136,7 @@ module.exports = (client) => {
                                 //if its on autoplay mode, then do autoplay before leaving...
                                 i.reply({
                                     embeds: [new MessageEmbed()
-                                        .setColor(ee.color)
+                                        .setColor(embed.color)
                                         .setTimestamp()
                                         .setTitle(`⏹ **Stopped playing and left the Channel**`)
                                         .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -150,7 +150,7 @@ module.exports = (client) => {
                             await client.distube.skip(i.guild.id)
                             i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.color)
+                                    .setColor(embed.color)
                                     .setTimestamp()
                                     .setTitle(`⏭ **Skipped to the next Song!**`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -162,7 +162,7 @@ module.exports = (client) => {
                             //stop the track
                             i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.color)
+                                    .setColor(embed.color)
                                     .setTimestamp()
                                     .setTitle(`⏹ **Stopped playing and left the Channel!**`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -182,7 +182,7 @@ module.exports = (client) => {
                                 })
                                 i.reply({
                                     embeds: [new MessageEmbed()
-                                        .setColor(ee.color)
+                                        .setColor(embed.color)
                                         .setTimestamp()
                                         .setTitle(`⏸ **Paused!**`)
                                         .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -196,7 +196,7 @@ module.exports = (client) => {
                                 })
                                 i.reply({
                                     embeds: [new MessageEmbed()
-                                        .setColor(ee.color)
+                                        .setColor(embed.color)
                                         .setTimestamp()
                                         .setTitle(`▶️ **Resumed!**`)
                                         .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -211,7 +211,7 @@ module.exports = (client) => {
                             //Send success message
                             i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.color)
+                                    .setColor(embed.color)
                                     .setTimestamp()
                                     .setTitle(`🔀 **Shuffled ${newQueue.songs.length} Songs!**`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -236,7 +236,7 @@ module.exports = (client) => {
                             //Send Success Message
                             i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.color)
+                                    .setColor(embed.color)
                                     .setTimestamp()
                                     .setTitle(`${newQueue.autoplay ? `${client.allEmojis.check} **Enabled Autoplay**` : `${client.allEmojis.x} **Disabled Autoplay**`}`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -255,7 +255,7 @@ module.exports = (client) => {
                             }
                             i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.color)
+                                    .setColor(embed.color)
                                     .setTimestamp()
                                     .setTitle(`${newQueue.repeatMode == 1 ? `${client.allEmojis.check} **Enabled Song-Loop**` : `${client.allEmojis.x} **Disabled Song-Loop**`}`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -278,7 +278,7 @@ module.exports = (client) => {
                             }
                             i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.color)
+                                    .setColor(embed.color)
                                     .setTimestamp()
                                     .setTitle(`${newQueue.repeatMode == 2 ? `${client.allEmojis.check} **Enabled Queue-Loop**` : `${client.allEmojis.x} **Disabled Queue-Loop**`}`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -298,7 +298,7 @@ module.exports = (client) => {
                             collector.resetTimer({ time: (newQueue.songs[0].duration - newQueue.currentTime) * 1000 })
                             i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.color)
+                                    .setColor(embed.color)
                                     .setTimestamp()
                                     .setTitle(`⏪ **Rewinded the song for \`10\` Seconds**`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -317,7 +317,7 @@ module.exports = (client) => {
                             collector.resetTimer({ time: (newQueue.songs[0].duration - newQueue.currentTime) * 1000 })
                             i.reply({
                                 embeds: [new MessageEmbed()
-                                    .setColor(ee.color)
+                                    .setColor(embed.color)
                                     .setTimestamp()
                                     .setTitle(`⏩ **Forwarded the song for \`10\` Seconds**`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
@@ -358,10 +358,10 @@ module.exports = (client) => {
             .on(`addSong`, (queue, song) => queue.textChannel.send({
                 embeds: [
                     new MessageEmbed()
-                        .setColor(ee.color)
+                        .setColor(embed.color)
                         .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
                         .setFooter(song.user.tag, song.user.displayAvatarURL({ dynamic: true }))
-                        .setAuthor(`Song added to the Queue!`, ee.discAdd)
+                        .setAuthor(`Song added to the Queue!`, embed.discAdd)
                         .setDescription(`Song: [\`${song.name}\`](${song.url})  -  \`${song.formattedDuration}\``)
                         .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - 1} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - song.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
                         .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
@@ -371,10 +371,10 @@ module.exports = (client) => {
             .on(`addList`, (queue, playlist) => queue.textChannel.send({
                 embeds: [
                     new MessageEmbed()
-                        .setColor(ee.color)
+                        .setColor(embed.color)
                         .setThumbnail(playlist.thumbnail.url ? playlist.thumbnail.url : `https://img.youtube.com/vi/${playlist.songs[0].id}/mqdefault.jpg`)
                         .setFooter(playlist.user.tag, playlist.user.displayAvatarURL({ dynamic: true }))
-                        .setAuthor(`Playlist added to the Queue!`, ee.discAdd)
+                        .setAuthor(`Playlist added to the Queue!`, embed.discAdd)
                         .setDescription(`Playlist: [\`${playlist.name}\`](${playlist.url ? playlist.url : ""})  -  \`${playlist.songs.length} Song${playlist.songs.length != 0 ? "s" : ""}\``)
                         .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - - playlist.songs.length} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - playlist.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
                         .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
@@ -393,10 +393,10 @@ module.exports = (client) => {
             .on(`error`, (channel, e) => {
                 channel.send({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .setTimestamp()
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setAuthor(`AN ERROR OCCURED`, ee.discError)
+                        .setAuthor(`AN ERROR OCCURED`, embed.discError)
                         .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
                     ]
                 }).catch((e) => console.log(e))
@@ -405,8 +405,8 @@ module.exports = (client) => {
             })
 
             .on(`empty`, queue => {
-                var embed = new MessageEmbed().setColor(ee.color)
-                    .setAuthor(`VOICE CHANNEL EMPTY`, ee.discAlert)
+                var embed = new MessageEmbed().setColor(embed.color)
+                    .setAuthor(`VOICE CHANNEL EMPTY`, embed.discAlert)
                     .setDescription(`**LEAVING THE CHANNEL...**`)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setTimestamp();
@@ -418,8 +418,8 @@ module.exports = (client) => {
             .on(`searchNoResult`, message => message.channel.send(`No result found!`).catch((e) => console.log(e)))
 
             .on(`finishSong`, (queue, song) => {
-                var embed = new MessageEmbed().setColor(ee.color)
-                    .setAuthor(`DASHBOARD | SONG ENDED`, ee.discDone)
+                var embed = new MessageEmbed().setColor(embed.color)
+                    .setAuthor(`DASHBOARD | SONG ENDED`, embed.discDone)
                     .setDescription(`**[${song.name}](${song.url})**`)
                     .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
                     .setFooter(`${song.user.tag}`, song.user.displayAvatarURL({ dynamic: true }))
@@ -437,8 +437,8 @@ module.exports = (client) => {
             .on(`finish`, queue => {
                 queue.textChannel.send({
                     embeds: [
-                        new MessageEmbed().setColor(ee.color).setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setAuthor("LEFT THE CHANNEL", ee.discAlert)
+                        new MessageEmbed().setColor(embed.color).setFooter(client.user.username, client.user.displayAvatarURL())
+                            .setAuthor("LEFT THE CHANNEL", embed.discAlert)
                             .setDescription("**No more songs left**")
                             .setTimestamp()
                     ]
@@ -472,10 +472,10 @@ module.exports = (client) => {
         if (djs.length == 0) djs = "`Not Set`";
         else djs.slice(0, 15).join(", ");
         if (!newTrack) return new MessageEmbed()
-            .setColor(ee.errColor)
-            .setAuthor("NO SONG FOUND", ee.discError)
+            .setColor(embed.errColor)
+            .setAuthor("NO SONG FOUND", embed.discError)
             .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({ dynamic: true }));
-        var embed = new MessageEmbed().setColor(ee.color).setTimestamp()
+        var embed = new MessageEmbed().setColor(embed.color).setTimestamp()
             .setDescription(`**[${newTrack.name}](${newTrack.url})**`)
             .addField(`${(newTrack.user === client.user) ? "💡 Autoplay by:" : "💡 Request by:"}`, `>>> ${newTrack.user}`, true)
             .addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
@@ -486,7 +486,7 @@ module.exports = (client) => {
             .addField(`⬇ Download:`, `>>> [\`Music Link\`](${newTrack.streamURL})`, true)
             .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 2 ? false : true)
             .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s" : ""}:`, `>>> ${djs}`, (client.settings.get(newQueue.id, "djroles").length > 2 || djs != "`Not Set`") ? false : true)
-            .setAuthor(`DASHBOARD | NOW PLAYING`, ee.discSpin)
+            .setAuthor(`DASHBOARD | NOW PLAYING`, embed.discSpin)
             .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
             .setFooter(`${newTrack.user.tag}`, newTrack.user.displayAvatarURL({ dynamic: true }));
 

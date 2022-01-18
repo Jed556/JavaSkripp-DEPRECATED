@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const moment = require("moment");
 const { errDM } = require("../../handlers/functions");
 
@@ -45,7 +45,7 @@ module.exports = {
             if (Target == client.user.tag) return interaction.reply({
                 embeds: [new MessageEmbed()
                     .setTimestamp()
-                    .setColor(ee.errColor)
+                    .setColor(embed.errColor)
                     .addField(`Unsent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
                     .setImage(`${Image ? `${Image}` : ""}`)
                     .addField(`Reason:`, `You can't use \`/send\` to ${client.user.tag} `)
@@ -62,7 +62,7 @@ module.exports = {
                     user.send({
                         embeds: [new MessageEmbed()
                             .setTimestamp()
-                            .setColor(ee.color)
+                            .setColor(embed.color)
                             .addField(`Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
                             .setImage(`${Image ? `${Image}` : ""}`)
                             .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({ dynamic: true }))
@@ -74,7 +74,7 @@ module.exports = {
                 interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.color)
+                        .setColor(embed.color)
                         .addField(`Sent Message:`, `${Message ? `> ${Message}` : "\u200b"}`)
                         .setImage(`${Image ? `${Image}` : ""}`)
                         .setAuthor(Target, avatar.displayAvatarURL({ dynamic: true }))

@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 const weather = require("weather-js");
 
@@ -35,7 +35,7 @@ module.exports = {
 
             embed = new MessageEmbed()
                 .setTimestamp()
-                .setColor(ee.color)
+                .setColor(embed.color)
                 .setFooter(client.user.username, client.user.displayAvatarURL())
 
             weather.find({ search: `${city}, ${country}`, degreeType: 'C' }, function (err, result) {

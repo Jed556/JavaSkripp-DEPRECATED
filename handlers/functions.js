@@ -92,7 +92,7 @@ function lyricsEmbed(lyrics, song) {
                 .setURL(song.url)
                 .setThumbnail(song.thumbnail)
                 .setFooter(`Song Requested by: ${song.user.tag}`, song.user.displayAvatarURL({ dynamic: true }))
-                .setColor(ee.color)
+                .setColor(embed.color)
                 .setDescription(current)
             embeds.push(embed);
         }
@@ -605,7 +605,7 @@ async function swap_pages(client, message, description, TITLE) {
                 const embed = new MessageEmbed()
                     .setDescription(current)
                     .setTitle(TITLE)
-                    .setColor(ee.color)
+                    .setColor(embed.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                 embeds.push(embed);
             }
@@ -620,7 +620,7 @@ async function swap_pages(client, message, description, TITLE) {
                 const embed = new MessageEmbed()
                     .setDescription(current)
                     .setTitle(TITLE)
-                    .setColor(ee.color)
+                    .setColor(embed.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                 embeds.push(embed);
             }
@@ -630,7 +630,7 @@ async function swap_pages(client, message, description, TITLE) {
     if (embeds.length === 0) return message.channel.send({
         embeds: [new MessageEmbed()
             .setTitle(`${emoji.msg.ERROR} No Content added to the SWAP PAGES Function`)
-            .setColor(ee.errColor)
+            .setColor(embed.errColor)
             .setFooter(client.user.username, client.user.displayAvatarURL())]
     }).catch(e => console.log("THIS IS TO PREVENT A CRASH"))
     if (embeds.length === 1) return message.channel.send({ embeds: [embeds[0]] }).catch(e => console.log("THIS IS TO PREVENT A CRASH"))
@@ -766,7 +766,7 @@ async function swap_pages2(client, message, embeds) {
 function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
     const report = new MessageEmbed()
         .setTimestamp()
-        .setColor(ee.errColor)
+        .setColor(embed.errColor)
         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
         .setFooter("Check logs for more details")
 

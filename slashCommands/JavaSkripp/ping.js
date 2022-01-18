@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -37,7 +37,7 @@ module.exports = {
             if (user.bot) return interaction.reply({
                 embeds: [new MessageEmbed()
                     .setTimestamp()
-                    .setColor(ee.errColor)
+                    .setColor(embed.errColor)
                     .setDescription(`${client.allEmojis.x} **You can't ping bots**`)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                 ],
@@ -46,7 +46,7 @@ module.exports = {
 
             const ping = new MessageEmbed()
                 .setTimestamp()
-                .setColor(ee.color)
+                .setColor(embed.color)
                 .setDescription(`**${reply}**${user}`)
                 .setAuthor(`${interaction.user.tag}`, interaction.user.displayAvatarURL({ dynamic: true }))
                 .setFooter(client.user.username, client.user.displayAvatarURL())

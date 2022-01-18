@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -27,7 +27,7 @@ module.exports = {
             client.settings.set(guild.id, !client.settings.get(guild.id, "defaultautoplay"), "defaultautoplay");
             return interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(ee.color)
+                    .setColor(embed.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setTitle(`${client.allEmojis.check} **The Default-Autoplay got __\`${client.settings.get(guild.id, "defaultautoplay") ? "Enabled" : "Disabled"}\`__!**`)
                 ],

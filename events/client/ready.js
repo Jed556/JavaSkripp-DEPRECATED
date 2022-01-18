@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const { MessageEmbed } = require("discord.js");
 const { change_status } = require("../../handlers/functions");
 const config = require("../../botconfig/config.json")
-const ee = require("../../botconfig/embed.json")
+const embed = require("../../botconfig/embed.json")
 const { readdirSync, lstatSync } = require("fs");
 const os = require("os");
 
@@ -34,7 +34,7 @@ module.exports = async (client) => {
                 user.send({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .setTitle(`${client.user.username} | Load Error`)
                         .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
                         .addField("🤖 Node", `\`${process.version}\``, true)
@@ -52,7 +52,7 @@ module.exports = async (client) => {
                 user.send({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.okColor)
+                        .setColor(embed.okColor)
                         .setTitle(`${client.user.username} Online!`)
                         .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
                         .addField("🤖 Node", `\`${process.version}\``, true)

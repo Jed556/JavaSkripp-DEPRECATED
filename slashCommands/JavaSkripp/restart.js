@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const moment = require("moment");
 const { errDM } = require("../../handlers/functions");
 var Heroku = require("heroku-client");
@@ -34,8 +34,8 @@ module.exports = {
                     interaction.reply({
                         embeds: [new MessageEmbed()
                             .setTimestamp()
-                            .setColor(ee.color)
-                            .setAuthor("HEROKU | restart.js", ee.heroku)
+                            .setColor(embed.color)
+                            .setAuthor("HEROKU | restart.js", embed.heroku)
                             .setDescription(`**Restarting Host in ${cd} secs**`)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                         ], ephemeral: true
@@ -52,8 +52,8 @@ module.exports = {
                     interaction.reply({
                         embeds: [new MessageEmbed()
                             .setTimestamp()
-                            .setColor(ee.color)
-                            .setAuthor("HEROKU | restart.js", ee.heroku)
+                            .setColor(embed.color)
+                            .setAuthor("HEROKU | restart.js", embed.heroku)
                             .setDescription("**Restarting Host...**")
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                         ], ephemeral: true
@@ -67,8 +67,8 @@ module.exports = {
                 else interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.errColor)
-                        .setAuthor("HEROKU | restart.js", ee.heroku)
+                        .setColor(embed.errColor)
+                        .setAuthor("HEROKU | restart.js", embed.heroku)
                         .setDescription("**JavaSkripp is currently not hosted by Heroku**")
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ], ephemeral: true

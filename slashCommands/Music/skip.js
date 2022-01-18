@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { check_if_dj } = require("../../handlers/functions");
 const { errDM } = require("../../handlers/functions");
 
@@ -21,7 +21,7 @@ module.exports = {
 
             if (!channel) return interaction.reply({
                 embeds: [
-                    new MessageEmbed().setColor(ee.errColor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "my" : "a"} VoiceChannel First!**`)
+                    new MessageEmbed().setColor(embed.errColor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "my" : "a"} VoiceChannel First!**`)
                 ],
                 ephemeral: true
             })
@@ -29,9 +29,9 @@ module.exports = {
             if (channel.guild.me.voice.channel && channel.guild.me.voice.channel.id != channel.id) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setAuthor(`Join __my__ Voice Channel!`, ee.discAlert)
+                        .setAuthor(`Join __my__ Voice Channel!`, embed.discAlert)
                         .setDescription(`<#${guild.me.voice.channel.id}>`)
                     ],
                     ephemeral: true
@@ -42,7 +42,7 @@ module.exports = {
                 let newQueue = client.distube.getQueue(guildId);
                 if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
                     embeds: [
-                        new MessageEmbed().setColor(ee.errColor).setAuthor(`Nothing playing right now`, ee.discAlert)
+                        new MessageEmbed().setColor(embed.errColor).setAuthor(`Nothing playing right now`, embed.discAlert)
                     ],
                     ephemeral: true
                 })
@@ -50,7 +50,7 @@ module.exports = {
                 if (check_if_dj(client, member, newQueue.songs[0])) {
                     return interaction.reply({
                         embeds: [new MessageEmbed()
-                            .setColor(ee.errColor)
+                            .setColor(embed.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                             .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
                             .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
@@ -68,7 +68,7 @@ module.exports = {
                 interaction.editReply({
                     content: `${client.allEmojis.x} | Error: `,
                     embeds: [new MessageEmbed()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)
                     ],
                     ephemeral: true

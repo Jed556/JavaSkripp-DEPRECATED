@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -49,7 +49,7 @@ module.exports = {
 
             if (target.id === interaction.member.id)
                 return interaction.reply({
-                    embeds: [new MessageEmbed().setTitle("❌ Error ❌").setColor(ee.errColor)
+                    embeds: [new MessageEmbed().setTitle("❌ Error ❌").setColor(embed.errColor)
                         .setDescription("Why Are You Trying To Ban Yourself??").setTimestamp()
                     ],
                     ephemeral: true
@@ -57,14 +57,14 @@ module.exports = {
 
             if (target.permissions.has("BAN_MEMBERS"))
                 return interaction.reply({
-                    embeds: [new MessageEmbed().setColor(ee.errColor).setDescription("❌ You Can't Ban An Admin ❌")]
+                    embeds: [new MessageEmbed().setColor(embed.errColor).setDescription("❌ You Can't Ban An Admin ❌")]
                 });
 
             const reason = options.getString("reason");
 
             if (reason.length > 512)
                 return interaction.reply({
-                    embeds: [new MessageEmbed().setTitle("❌ Can't Run Code With The Strings Given ❌").setColor(ee.errColor)
+                    embeds: [new MessageEmbed().setTitle("❌ Can't Run Code With The Strings Given ❌").setColor(embed.errColor)
                         .setDescription("Reason Can't Be More Than 512 Characters").setTimestamp()
                     ],
                     ephemeral: true
@@ -73,7 +73,7 @@ module.exports = {
             target.send(
                 new MessageEmbed()
                     .setTitle(`You've been Banned from ${interaction.guild.name}!`)
-                    .setColor(ee.errColor)
+                    .setColor(embed.errColor)
                     .setTimestamp()
                     .addFields({
                         name: "Reason For Ban:",
@@ -92,7 +92,7 @@ module.exports = {
             })
 
             interaction.reply({
-                embeds: [new MessageEmbed().setColor(ee.okColor).setDescription(`🟢 **${target.user.username}** Has Been Banned From ${interaction.guild.name} 🟢`)],
+                embeds: [new MessageEmbed().setColor(embed.okColor).setDescription(`🟢 **${target.user.username}** Has Been Banned From ${interaction.guild.name} 🟢`)],
                 ephemeral: true
             })
 

@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -36,7 +36,7 @@ module.exports = {
                 return interaction.reply({
                     ephemeral: true,
                     embeds: [new MessageEmbed()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} **The Volume __must__ be between \`1\` and \`150\`!**`)
                     ],
@@ -46,7 +46,7 @@ module.exports = {
             return interaction.reply({
                 ephemeral: true,
                 embeds: [new MessageEmbed()
-                    .setColor(ee.color)
+                    .setColor(embed.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setTitle(`${client.allEmojis.check} **The Default-Volume has been set to: \`${volume}\`!**`)
                 ],

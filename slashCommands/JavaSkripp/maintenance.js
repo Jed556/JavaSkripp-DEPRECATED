@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
             interaction.reply({
                 embeds: [new MessageEmbed()
                     .setTimestamp()
-                    .setColor(ee.color)
+                    .setColor(embed.color)
                     .setAuthor("maintenance.js", client.user.displayAvatarURL())
                     .setDescription(`**Maintenance Status**\nStatus: \`${mtStat}\``)
                     .setFooter(client.user.username, client.user.displayAvatarURL())

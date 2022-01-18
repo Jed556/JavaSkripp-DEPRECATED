@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { check_if_dj } = require("../../handlers/functions");
 const { errDM } = require("../../handlers/functions");
 
@@ -30,8 +30,8 @@ module.exports = {
 
             if (!channel) return interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(ee.errColor)
-                    .setAuthor(`Join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!`, ee.discAlert)
+                    .setColor(embed.errColor)
+                    .setAuthor(`Join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!`, embed.discAlert)
                 ],
                 ephemeral: true
             })
@@ -39,9 +39,9 @@ module.exports = {
             if (channel.userLimit != 0 && channel.full && !channel)
                 return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setAuthor(`Your Voice Channel is full!`, ee.discAlert)
+                        .setAuthor(`Your Voice Channel is full!`, embed.discAlert)
                     ],
                     ephemeral: true
                 });
@@ -49,9 +49,9 @@ module.exports = {
             if (channel.guild.me.voice.channel && channel.guild.me.voice.channel.id != channel.id) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setAuthor(`I am already connected somewhere else`, ee.discAlert)
+                        .setAuthor(`I am already connected somewhere else`, embed.discAlert)
                     ],
                     ephemeral: true
                 });
@@ -76,7 +76,7 @@ module.exports = {
                     if (check_if_dj(client, member, queue.songs[0])) {
                         return interaction.reply({
                             embeds: [new MessageEmbed()
-                                .setColor(ee.errColor)
+                                .setColor(embed.errColor)
                                 .setFooter(client.user.username, client.user.displayAvatarURL())
                                 .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
                                 .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, queue.songs[0])}`)
@@ -96,7 +96,7 @@ module.exports = {
                 interaction.editReply({
                     content: `${client.allEmojis.x} | Error: `,
                     embeds: [new MessageEmbed()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)
                     ],
                     ephemeral: true

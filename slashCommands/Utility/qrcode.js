@@ -1,6 +1,6 @@
 const { MessageAttachment } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 const qrc = require("qrcode")
 

@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -49,7 +49,7 @@ module.exports = {
 
             if (target.id === interaction.member.id)
                 return interaction.reply({
-                    embeds: [new MessageEmbed().setTitle("❌ Error ❌").setColor(ee.errColor)
+                    embeds: [new MessageEmbed().setTitle("❌ Error ❌").setColor(embed.errColor)
                         .setDescription("Why Are You Trying To Kick Yourself??").setTimestamp()
                     ],
                     ephemeral: true
@@ -57,7 +57,7 @@ module.exports = {
 
             if (target.permissions.has("KICK_MEMBERS"))
                 return interaction.reply({
-                    embeds: [new MessageEmbed().setColor(ee.errColor).setDescription("❌ You Can't Kick An Admin ❌")]
+                    embeds: [new MessageEmbed().setColor(embed.errColor).setDescription("❌ You Can't Kick An Admin ❌")]
                 });
 
 
@@ -65,7 +65,7 @@ module.exports = {
 
             if (reason.length > 512)
                 return interaction.reply({
-                    embeds: [new MessageEmbed().setTitle("❌ Can't Run Code With The Strings Given ❌").setColor(ee.errColor)
+                    embeds: [new MessageEmbed().setTitle("❌ Can't Run Code With The Strings Given ❌").setColor(embed.errColor)
                         .setDescription("Reason Can't Be More Than 512 Characters").setTimestamp()
                     ],
                     ephemeral: true
@@ -97,7 +97,7 @@ module.exports = {
             })
 
             interaction.reply({
-                embeds: [new MessageEmbed().setColor(ee.okColor).setDescription(`🟢 **${target.user.username}** Has Been Kicked From ${interaction.guild.name} 🟢`)],
+                embeds: [new MessageEmbed().setColor(embed.okColor).setDescription(`🟢 **${target.user.username}** Has Been Kicked From ${interaction.guild.name} 🟢`)],
                 ephemeral: true
             });
         } catch (e) {

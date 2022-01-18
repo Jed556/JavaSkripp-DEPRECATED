@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
     run: async (client, interaction) => {
         try {
             const Response = new MessageEmbed()
-                .setColor(ee.color)
+                .setColor(embed.color)
                 .setTitle("Guilds")
                 .addField("Total Guilds:",  `\`${client.guilds.cache.size}\``)
                 .addField("Guild Names:", `${client.guilds.cache.map(g => `• ${g.name}`).join(`\n`)}`)

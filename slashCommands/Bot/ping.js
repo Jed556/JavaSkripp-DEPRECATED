@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -41,7 +41,7 @@ module.exports = {
                 if (StringOption == "botping") {
                     await interaction.reply({
                         embeds: [new MessageEmbed()
-                            .setColor(ee.color)
+                            .setColor(embed.color)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                             .setTitle(`${client.allEmojis.loading} Getting the Bot Ping...`)
                         ],
@@ -49,7 +49,7 @@ module.exports = {
                     });
                     interaction.editReply({
                         embeds: [new MessageEmbed()
-                            .setColor(ee.color)
+                            .setColor(embed.color)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                             .setTitle(`${client.allEmojis.ping} Ping`)
                             .addField(`Bot Ping:`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)
@@ -62,7 +62,7 @@ module.exports = {
                 else {
                     interaction.reply({
                         embeds: [new MessageEmbed()
-                            .setColor(ee.color)
+                            .setColor(embed.color)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                             .setTitle(`${client.allEmojis.ping} Ping`)
                             .addField(`API Ping:`, `\`${Math.floor(client.ws.ping)}ms\``, true)
@@ -74,7 +74,7 @@ module.exports = {
             } else {
                 await interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.color)
+                        .setColor(embed.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.loading} Getting the Bot Ping...`)
                     ],
@@ -82,7 +82,7 @@ module.exports = {
                 });
                 interaction.editReply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.color)
+                        .setColor(embed.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.ping} Ping`)
                         .addField(`Bot Ping:`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)

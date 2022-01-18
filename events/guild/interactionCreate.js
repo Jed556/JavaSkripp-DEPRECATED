@@ -1,6 +1,6 @@
 //Import Modules
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { onCoolDown } = require("../../handlers/functions");
 const Discord = require("discord.js");
 module.exports = (client, interaction) => {
@@ -8,7 +8,7 @@ module.exports = (client, interaction) => {
         return interaction.reply({
             embeds: [new MessageEmbed()
                 .setTimestamp()
-                .setColor(ee.color)
+                .setColor(embed.color)
                 .setTitle("UNDER MAINTENANCE")
                 .setDescription("JavaSkripp will be back ASAP!")
                 .setFooter(client.user.username, client.user.displayAvatarURL())
@@ -50,7 +50,7 @@ module.exports = (client, interaction) => {
                 return interaction.reply({
                     ephemeral: true,
                     embeds: [new Discord.MessageEmbed()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} **Executing command is restricted here!**`)
                         .setDescription(`Execute it in:\n> ${botchannels.map(c => `<#${c}>`).join(", ")}`)
@@ -64,7 +64,7 @@ module.exports = (client, interaction) => {
             return interaction.reply({
                 ephemeral: true,
                 embeds: [new Discord.MessageEmbed()
-                    .setColor(ee.errColor)
+                    .setColor(embed.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setAuthor("Cooldown")
                     .addField("Time Left", `${(timeLeft > 1 || timeLeft < 1) ? `${timeleft} secs` : `${timeleft} sec`}`)
@@ -77,7 +77,7 @@ module.exports = (client, interaction) => {
         if (command.memberpermissions && command.memberpermissions.length > 0 && !interaction.member.permissions.has(command.memberpermissions)) {
             return interaction.reply({
                 ephemeral: true, embeds: [new Discord.MessageEmbed()
-                    .setColor(ee.errColor)
+                    .setColor(embed.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setAuthor("Invalid Permission")
                     .addField("Required Permissions", `${(command && command.memberpermissions) ? command.memberpermissions.map(v => `\`${v}\``).join(",") : command.memberpermissions}`)
@@ -89,7 +89,7 @@ module.exports = (client, interaction) => {
         if (command.requiredroles && command.requiredroles.length > 0 && interaction.member.roles.cache.size > 0 && !interaction.member.roles.cache.some(r => command.requiredroles.includes(r.id))) {
             return interaction.reply({
                 ephemeral: true, embeds: [new Discord.MessageEmbed()
-                    .setColor(ee.errColor)
+                    .setColor(embed.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setAuthor("Invalid Role")
                     .addField("Required Roles", `${(command && command.requiredroles) ? command.requiredroles.map(v => `<@&${v}>`).join(",") : command.requiredroles}`)
@@ -101,7 +101,7 @@ module.exports = (client, interaction) => {
         if (command.alloweduserids && command.alloweduserids.length > 0 && !command.alloweduserids.includes(interaction.member.id)) {
             return interaction.reply({
                 ephemeral: true, embeds: [new Discord.MessageEmbed()
-                    .setColor(ee.errColor)
+                    .setColor(embed.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setAuthor("Invalid User")
                     .addField("Allowed Users", `${(command && command.alloweduserids) ? command.alloweduserids.map(v => `<@${v}>`).join(",") : command.alloweduserids}`)

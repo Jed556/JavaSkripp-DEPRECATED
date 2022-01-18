@@ -1,7 +1,7 @@
 
 const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 const math = require("mathjs");
 
@@ -37,7 +37,7 @@ module.exports = {
             }
 
             const emb = new MessageEmbed()
-                .setColor(ee.color)
+                .setColor(embed.color)
                 .setDescription("```0```");
 
             await interaction
@@ -52,7 +52,7 @@ module.exports = {
                     let time = 600000;
                     let value = "";
                     let emb1 = new MessageEmbed()
-                        .setColor(ee.color);
+                        .setColor(embed.color);
 
                     function createCollector(val, result = false) {
                         const filter = (button) =>
@@ -110,7 +110,7 @@ module.exports = {
                             emb1.setDescription(
                                 "Your Time for using the calculator ran out (10 minutes)"
                             );
-                            emb1.setColor(ee.errColor);
+                            emb1.setColor(embed.errColor);
                             await msg.edit({ embeds: [emb1], components: [] });
                         } catch { }
                     }, time);

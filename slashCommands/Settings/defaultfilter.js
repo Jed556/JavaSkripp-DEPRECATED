@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 
 const filters = require("../../botconfig/filters.json");
 const { errDM } = require("../../handlers/functions");
@@ -40,7 +40,7 @@ module.exports = {
             if (args.some(a => !filters[a])) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.allEmojis.x} **You added at least one Filter, which is invalid!**`)
                         .setDescription("**To define Multiple Filters add a SPACE (` `) in between!**")
@@ -52,7 +52,7 @@ module.exports = {
             client.settings.set(guild.id, args, "defaultfilters");
             return interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(ee.color)
+                    .setColor(embed.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setTitle(`${client.allEmojis.check} **The new Default-Filter${args.length > 0 ? "s are" : " is"}:**`)
                     .setDescription(`${args.map(a => `\`${a}\``).join(", ")}`)

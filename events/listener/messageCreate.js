@@ -7,7 +7,7 @@ module.exports = async (client, message) => {
     function DM() {
         const log = new MessageEmbed()
             .setTimestamp()
-            .setColor(ee.color)
+            .setColor(embed.color)
             .addField(`Message:`, `${message.content ? `> ${message.content}` : "\u200b"}`)
             .setImage(`${message.attachments.size ? `${message.attachments.first().url}` : ""}`)
             .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
@@ -28,7 +28,7 @@ module.exports = async (client, message) => {
                 message.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.color)
+                        .setColor(embed.color)
                         .setTitle(reply)
                         .setFooter(`${client.user.username} - Autoreply`, client.user.displayAvatarURL({ dynamic: true }))
                     ]
@@ -43,7 +43,7 @@ module.exports = async (client, message) => {
                 message.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .setTitle(reply)
                         .addField(`Reason:`, `> ${match.map(m => `\`${m}\``).join(", ")}`)
                         .setFooter(`${client.user.username} - Autoreply`, client.user.displayAvatarURL({ dynamic: true }))
@@ -51,7 +51,7 @@ module.exports = async (client, message) => {
                 });
                 log.addField(`Reply:`, `> ${reply}`)
                 log.addField(`Reason:`, `> ${match.map(m => `\`${m}\``).join(", ")}`)
-                log.setColor(ee.errColor)
+                log.setColor(embed.errColor)
             }
         }
         client.users.fetch(config.ownerID, false).then((user) => {

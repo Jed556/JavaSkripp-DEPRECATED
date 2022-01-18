@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -28,7 +28,7 @@ module.exports = {
                 interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.okColor)
+                        .setColor(embed.okColor)
                         .addField(`Message:`, `${message ? `> ${message}` : "\u200b"}`)
                         .setAuthor("MESSAGE SENT", interaction.user.displayAvatarURL({ dynamic: true }))
                         .setFooter(client.user.username, client.user.displayAvatarURL())
@@ -38,7 +38,7 @@ module.exports = {
                 interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
-                        .setColor(ee.errColor)
+                        .setColor(embed.errColor)
                         .addField(`Unsent Message:`, `${message ? `> ${message}` : "\u200b"}`)
                         .setAuthor("ERROR SENDING", interaction.user.displayAvatarURL({ dynamic: true }))
                         .setFooter(client.user.username, client.user.displayAvatarURL())

@@ -1,6 +1,6 @@
 //Import Modules
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 const Discord = require("discord.js");
 module.exports = (client, interaction) => {
     try {
@@ -10,7 +10,7 @@ module.exports = (client, interaction) => {
         if (interaction.guildId == null) return [interaction.reply({
             embeds: [
                 new Discord.MessageEmbed()
-                    .setColor(ee.errColor)
+                    .setColor(embed.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setDescription(`**HEY! You can't execute commands in a DM.**`)
             ]

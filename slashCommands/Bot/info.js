@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
 const config = require("../../botconfig/config.json");
-const ee = require("../../botconfig/embed.json");
+const embed = require("../../botconfig/embed.json");
 let cpuStat = require("cpu-stat");
 let os = require("os");
 const { errDM } = require("../../handlers/functions");
@@ -35,7 +35,7 @@ module.exports = {
                     const botinfo = new MessageEmbed()
                         .setAuthor(client.user.username, client.user.displayAvatarURL())
                         .setTitle("**Info & Status:**")
-                        .setColor(ee.color).setTimestamp()
+                        .setColor(embed.color).setTimestamp()
                         .addField("⏳ Memory Usage", `\`${((process.memoryUsage().heapUsed / 1024) / 1024).toFixed(2)}/ ${((os.totalmem() / 1024) / 1024).toFixed(2)}MB\``, true)
                         .addField("⌚️ Uptime ", `${duration(client.uptime).map(i => `\`${i}\``).join(", ")}`, true)
                         .addField("\u200b", `\u200b`, true)
@@ -71,7 +71,7 @@ module.exports = {
                     const botinfo = new MessageEmbed()
                         .setAuthor(client.user.username, client.user.displayAvatarURL())
                         .setTitle("**Info & Status:**")
-                        .setColor(ee.color).setTimestamp()
+                        .setColor(embed.color).setTimestamp()
                         .addField("⏳ Memory Usage", `\`${((process.memoryUsage().heapUsed / 1024) / 1024).toFixed(2)}/ ${((os.totalmem() / 1024) / 1024).toFixed(2)}MB\``, true)
                         .addField("⌚️ Uptime ", `${duration(client.uptime).map(i => `\`${i}\``).join(", ")}`, true)
                         .addField("\u200b", `\u200b`, true)
