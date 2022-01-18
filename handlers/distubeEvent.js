@@ -484,69 +484,70 @@ module.exports = (client) => {
                                             }
                                         }, 3000)
                                     }
-
-                                    // ---------------------------------------- SHUFFLE ---------------------------------------- //
-                                    if (i.customId == `5`) {
-                                        let { member } = i;
-                                        //get the channel instance from the Member
-                                        const { channel } = member.voice
-                                        //if the member is not in a channel, return
-                                        if (!channel)
-                                            return i.reply({
-                                                content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
-                                                ephemeral: true
-                                            }).then(interaction => {
-                                                if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
-                                                    setTimeout(() => {
-                                                        try {
-                                                            i.deleteReply().catch(console.log);
-                                                        } catch (e) {
-                                                            console.log(e)
-                                                        }
-                                                    }, 3000)
-                                                }
-                                            })
-                                        //if not in the same channel as the player, return Error
-                                        if (channel.id !== newQueue.voiceChannel.id)
-                                            return i.reply({
-                                                content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
-                                                ephemeral: true
-                                            }).then(interaction => {
-                                                if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
-                                                    setTimeout(() => {
-                                                        try {
-                                                            i.deleteReply().catch(console.log);
-                                                        } catch (e) {
-                                                            console.log(e)
-                                                        }
-                                                    }, 3000)
-                                                }
-                                            })
-                                        client.maps.set(`beforeshuffle-${newQueue.id}`, newQueue.songs.map(track => track).slice(1));
-                                        //pause the player
-                                        newQueue.shuffle()
-                                        //Send Success Message
-                                        i.reply({
-                                            embeds: [new MessageEmbed()
-                                                .setColor(emb.color)
-                                                .setTimestamp()
-                                                .setTitle(`🔀 **Shuffled ${newQueue.songs.length} Songs!**`)
-                                                .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
-                                        }).then(interaction => {
-                                            if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
-                                                setTimeout(() => {
-                                                    try {
-                                                        i.deleteReply().catch(console.log);
-                                                    } catch (e) {
-                                                        console.log(e)
-                                                    }
-                                                }, 3000)
-                                            }
-                                        })
-                                    }
                                 })
                             }
                         }
+
+                        // ---------------------------------------- SHUFFLE ---------------------------------------- //
+                        if (i.customId == `5`) {
+                            let { member } = i;
+                            //get the channel instance from the Member
+                            const { channel } = member.voice
+                            //if the member is not in a channel, return
+                            if (!channel)
+                                return i.reply({
+                                    content: `${client.allEmojis.x} **Please join a Voice Channel first!**`,
+                                    ephemeral: true
+                                }).then(interaction => {
+                                    if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
+                                        setTimeout(() => {
+                                            try {
+                                                i.deleteReply().catch(console.log);
+                                            } catch (e) {
+                                                console.log(e)
+                                            }
+                                        }, 3000)
+                                    }
+                                })
+                            //if not in the same channel as the player, return Error
+                            if (channel.id !== newQueue.voiceChannel.id)
+                                return i.reply({
+                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    ephemeral: true
+                                }).then(interaction => {
+                                    if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
+                                        setTimeout(() => {
+                                            try {
+                                                i.deleteReply().catch(console.log);
+                                            } catch (e) {
+                                                console.log(e)
+                                            }
+                                        }, 3000)
+                                    }
+                                })
+                            client.maps.set(`beforeshuffle-${newQueue.id}`, newQueue.songs.map(track => track).slice(1));
+                            //pause the player
+                            await newQueue.shuffle()
+                            //Send Success Message
+                            i.reply({
+                                embeds: [new MessageEmbed()
+                                    .setColor(emb.color)
+                                    .setTimestamp()
+                                    .setTitle(`🔀 **Shuffled ${newQueue.songs.length} Songs!**`)
+                                    .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
+                            }).then(interaction => {
+                                if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
+                                    setTimeout(() => {
+                                        try {
+                                            i.deleteReply().catch(console.log);
+                                        } catch (e) {
+                                            console.log(e)
+                                        }
+                                    }, 3000)
+                                }
+                            })
+                        }
+
 
                         // ---------------------------------------- AUTOPLAY ---------------------------------------- //
                         if (i.customId == `6`) {
