@@ -38,7 +38,7 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setTimestamp()
                     .setColor(embed.errColor)
-                    .setDescription(`${client.allEmojis.x} **You can't ping bots**`)
+                    .setDescription(`${client.emojis.x} **You can't ping bots**`)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                 ],
                 ephemeral: true
@@ -63,7 +63,7 @@ module.exports = {
                 }
                 interaction.followUp({
                     embeds: [ping
-                        .setDescription(`${client.allEmojis.check} **Done pinging user**`)],
+                        .setDescription(`${client.emojis.check} **Done pinging user**`)],
                     ephemeral: true
                 });
             } else interaction.reply({ embeds: [ping] });

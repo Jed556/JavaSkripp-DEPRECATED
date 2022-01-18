@@ -43,7 +43,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(embed.color)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.allEmojis.loading} Getting the Bot Ping...`)
+                            .setTitle(`${client.emojis.loading} Getting the Bot Ping...`)
                         ],
                         ephemeral: true
                     });
@@ -51,7 +51,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(embed.color)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.allEmojis.ping} Ping`)
+                            .setTitle(`${client.emojis.ping} Ping`)
                             .addField(`Bot Ping:`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)
                             .setTimestamp()
                         ],
@@ -64,7 +64,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(embed.color)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.allEmojis.ping} Ping`)
+                            .setTitle(`${client.emojis.ping} Ping`)
                             .addField(`API Ping:`, `\`${Math.floor(client.ws.ping)}ms\``, true)
                             .setTimestamp()
                         ],
@@ -76,7 +76,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(embed.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.allEmojis.loading} Getting the Bot Ping...`)
+                        .setTitle(`${client.emojis.loading} Getting the Bot Ping...`)
                     ],
                     ephemeral: true
                 });
@@ -84,7 +84,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(embed.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.allEmojis.ping} Ping`)
+                        .setTitle(`${client.emojis.ping} Ping`)
                         .addField(`Bot Ping:`, `\`${Math.floor((Date.now() - createdTimestamp) - 2 * Math.floor(client.ws.ping))}ms\``, true)
                         .addField(`API Ping:`, `\`${Math.floor(client.ws.ping)}ms\``, true)
                         .setTimestamp()

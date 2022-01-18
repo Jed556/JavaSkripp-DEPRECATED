@@ -238,7 +238,7 @@ module.exports = (client) => {
                                 embeds: [new MessageEmbed()
                                     .setColor(embed.color)
                                     .setTimestamp()
-                                    .setTitle(`${newQueue.autoplay ? `${client.allEmojis.check} **Enabled Autoplay**` : `${client.allEmojis.x} **Disabled Autoplay**`}`)
+                                    .setTitle(`${newQueue.autoplay ? `${client.emojis.check} **Enabled Autoplay**` : `${client.emojis.x} **Disabled Autoplay**`}`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                             })
                         }
@@ -257,7 +257,7 @@ module.exports = (client) => {
                                 embeds: [new MessageEmbed()
                                     .setColor(embed.color)
                                     .setTimestamp()
-                                    .setTitle(`${newQueue.repeatMode == 1 ? `${client.allEmojis.check} **Enabled Song-Loop**` : `${client.allEmojis.x} **Disabled Song-Loop**`}`)
+                                    .setTitle(`${newQueue.repeatMode == 1 ? `${client.emojis.check} **Enabled Song-Loop**` : `${client.emojis.x} **Disabled Song-Loop**`}`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                             })
                             var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
@@ -280,7 +280,7 @@ module.exports = (client) => {
                                 embeds: [new MessageEmbed()
                                     .setColor(embed.color)
                                     .setTimestamp()
-                                    .setTitle(`${newQueue.repeatMode == 2 ? `${client.allEmojis.check} **Enabled Queue-Loop**` : `${client.allEmojis.x} **Disabled Queue-Loop**`}`)
+                                    .setTitle(`${newQueue.repeatMode == 2 ? `${client.emojis.check} **Enabled Queue-Loop**` : `${client.emojis.x} **Disabled Queue-Loop**`}`)
                                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                             })
                             var data = receiveQueueData(client.distube.getQueue(queue.id), newQueue.songs[0])
@@ -331,18 +331,18 @@ module.exports = (client) => {
                         // ---------------------------------------- LYRICS ---------------------------------------- //
                         if (i.customId == `11`) {
                             return i.reply({
-                                content: `${client.allEmojis.x} **Lyrics are disabled!**\n> *Due to legal Reasons, Lyrics are disabled and won't work for an unknown amount of time!*`,
+                                content: `${client.emojis.x} **Lyrics are disabled!**\n> *Due to legal Reasons, Lyrics are disabled and won't work for an unknown amount of time!*`,
                                 ephemeral: true
                             });
                             let embeds = [];
                             await ksoft.lyrics.get(newQueue.songs[0].name).then(
                                 async track => {
-                                    if (!track.lyrics) return i.reply({ content: `${client.allEmojis.x} **No Lyrics Found!**`, ephemeral: true });
+                                    if (!track.lyrics) return i.reply({ content: `${client.emojis.x} **No Lyrics Found!**`, ephemeral: true });
                                     lyrics = track.lyrics;
                                     embeds = lyricsEmbed(lyrics, newQueue.songs[0]);
                                 }).catch(e => {
                                     console.log(e)
-                                    return i.reply({ content: `${client.allEmojis.x} **No Lyrics Found!** \n${String(e).substr(0, 1800)}`, ephemeral: true });
+                                    return i.reply({ content: `${client.emojis.x} **No Lyrics Found!** \n${String(e).substr(0, 1800)}`, ephemeral: true });
                                 })
                             i.reply({
                                 embeds: embeds, ephemeral: true
@@ -481,10 +481,10 @@ module.exports = (client) => {
             .addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
             .addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song${newQueue.songs.length != 1 ? "s" : ""}\` - \`${newQueue.formattedDuration}\``, true)
             .addField(`🔊 Volume:`, `>>> \`${newQueue.volume} %\``, true)
-            .addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check}\` Queue\`` : `${client.allEmojis.check} \`Song\`` : `${client.allEmojis.x}`}`, true)
-            .addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check}` : `${client.allEmojis.x}`}`, true)
+            .addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.emojis.check}\` Queue\`` : `${client.emojis.check} \`Song\`` : `${client.emojis.x}`}`, true)
+            .addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.emojis.check}` : `${client.emojis.x}`}`, true)
             .addField(`⬇ Download:`, `>>> [\`Music Link\`](${newTrack.streamURL})`, true)
-            .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 2 ? false : true)
+            .addField(`🎙 Filter${newQueue.filters.length != 1 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.emojis.x}`}`, newQueue.filters.length > 2 ? false : true)
             .addField(`💿 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s" : ""}:`, `>>> ${djs}`, (client.settings.get(newQueue.id, "djroles").length > 2 || djs != "`Not Set`") ? false : true)
             .setAuthor(`DASHBOARD | NOW PLAYING`, embed.discSpin)
             .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)

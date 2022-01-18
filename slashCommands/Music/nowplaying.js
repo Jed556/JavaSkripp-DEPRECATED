@@ -56,10 +56,10 @@ module.exports = {
                         .addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
                         .addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song(s)\`\n\`${newQueue.formattedDuration}\``, true)
                         .addField(`🔊 Volume:`, `>>> \`${newQueue.volume} %\``, true)
-                        .addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check} \`Queue\`` : `${client.allEmojis.check} \`Song\`` : `${client.allEmojis.x}`}`, true)
-                        .addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check}` : `${client.allEmojis.x}`}`, true)
+                        .addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.emojis.check} \`Queue\`` : `${client.emojis.check} \`Song\`` : `${client.emojis.x}`}`, true)
+                        .addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.emojis.check}` : `${client.emojis.x}`}`, true)
                         .addField(`⬇ Download Song:`, `>>> [\`Download here\`](${newTrack.streamURL})`, true)
-                        .addField(`🎙 Filter${newQueue.filters.length > 0 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
+                        .addField(`🎙 Filter${newQueue.filters.length > 0 ? "s" : ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f => `\`${f}\``).join(`, `)}` : `${client.emojis.x}`}`, newQueue.filters.length > 1 ? false : true)
                         .addField(`<:Youtube:840260133686870036>  View${newTrack.views > 0 ? "s" : ""}:`, `>>> \`${newTrack.views}\``, true)
                         .addField(`:thumbsup: Like${newTrack.likes > 0 ? "s" : ""}:`, `>>> \`${newTrack.likes}\``, true)
                         .addField(`:thumbsdown: Dislike${newTrack.dislikes > 0 ? "s" : ""}:`, `>>> \`${newTrack.dislikes}\``, true)
@@ -73,7 +73,7 @@ module.exports = {
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.allEmojis.x} | Error: `,
+                    content: `${client.emojis.x} | Error: `,
                     embeds: [new MessageEmbed()
                         .setColor(embed.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)

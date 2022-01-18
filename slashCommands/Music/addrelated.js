@@ -65,13 +65,13 @@ module.exports = {
 
                 await newQueue.addRelatedSong();
                 await interaction.editReply({
-                    content: `${client.allEmojis.check} Added: **${newQueue.songs[newQueue.songs.length - 1].name}**`,
+                    content: `${client.emojis.check} Added: **${newQueue.songs[newQueue.songs.length - 1].name}**`,
                     ephemeral: true
                 });
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.allEmojis.x} | Error: `,
+                    content: `${client.emojis.x} | Error: `,
                     embeds: [new MessageEmbed()
                         .setColor(embed.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)

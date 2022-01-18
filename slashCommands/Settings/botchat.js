@@ -49,7 +49,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(embed.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.allEmojis.x} **This Channel is already a whitelisted Bot-Channel!**`)
+                            .setTitle(`${client.emojis.x} **This Channel is already a whitelisted Bot-Channel!**`)
                         ],
                     })
                 }
@@ -62,7 +62,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(embed.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.allEmojis.check} **The Channel \`${Channel.name}\` got added to the ${client.settings.get(guild.id, "djroles").length - 1} whitelisted Bot-Channels!**`)
+                        .setTitle(`${client.emojis.check} **The Channel \`${Channel.name}\` got added to the ${client.settings.get(guild.id, "djroles").length - 1} whitelisted Bot-Channels!**`)
                         .addField(`🎧 **Bot-Channel${client.settings.get(guild.id, "botchannel").length > 1 ? "s" : ""}:**`, `>>> ${djs}`, true)
                     ],
                 })
@@ -73,7 +73,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(embed.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.allEmojis.x} **This Channel is not a whitelisted Bot-Channel yet!**`)
+                            .setTitle(`${client.emojis.x} **This Channel is not a whitelisted Bot-Channel yet!**`)
                         ],
                     })
                 }
@@ -86,7 +86,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(embed.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.allEmojis.check} **The Channel \`${Channel.name}\` got removed from the ${client.settings.get(guild.id, "djroles").length} whitelisted Bot-Channels!**`)
+                        .setTitle(`${client.emojis.check} **The Channel \`${Channel.name}\` got removed from the ${client.settings.get(guild.id, "djroles").length} whitelisted Bot-Channels!**`)
                         .addField(`🎧 **Bot-Channel${client.settings.get(guild.id, "botchannel").length > 1 ? "s" : ""}:**`, `>>> ${djs}`, true)
                     ],
                 })

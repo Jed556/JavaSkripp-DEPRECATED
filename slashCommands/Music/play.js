@@ -73,13 +73,13 @@ module.exports = {
                 await client.distube.playVoiceChannel(channel, Text, options)
                 //Edit the reply
                 interaction.editReply({
-                    content: `${queue?.songs?.length > 0 ? `${client.allEmojis.check} Added` : "🎶 Now Playing"}: \`\`\`\n${Text}\n\`\`\``,
+                    content: `${queue?.songs?.length > 0 ? `${client.emojis.check} Added` : "🎶 Now Playing"}: \`\`\`\n${Text}\n\`\`\``,
                     ephemeral: true
                 });
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.allEmojis.x} | Error: `,
+                    content: `${client.emojis.x} | Error: `,
                     embeds: [new MessageEmbed()
                         .setColor(embed.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)

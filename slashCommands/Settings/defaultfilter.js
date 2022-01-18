@@ -42,7 +42,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(embed.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.allEmojis.x} **You added at least one Filter, which is invalid!**`)
+                        .setTitle(`${client.emojis.x} **You added at least one Filter, which is invalid!**`)
                         .setDescription("**To define Multiple Filters add a SPACE (` `) in between!**")
                         .addField("**All Valid Filters:**", Object.keys(filters).map(f => `\`${f}\``).join(", "))
                     ],
@@ -54,7 +54,7 @@ module.exports = {
                 embeds: [new MessageEmbed()
                     .setColor(embed.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setTitle(`${client.allEmojis.check} **The new Default-Filter${args.length > 0 ? "s are" : " is"}:**`)
+                    .setTitle(`${client.emojis.check} **The new Default-Filter${args.length > 0 ? "s are" : " is"}:**`)
                     .setDescription(`${args.map(a => `\`${a}\``).join(", ")}`)
                 ],
             })

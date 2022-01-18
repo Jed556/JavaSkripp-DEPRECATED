@@ -22,7 +22,7 @@ module.exports = {
             if (!channel) return interaction.reply({
                 embeds: [new MessageEmbed()
                     .setColor(embed.errColor)
-                    .setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? "my" : "a"} VoiceChannel First!**`)
+                    .setTitle(`${client.emojis.x} **Please join ${guild.me.voice.channel ? "my" : "a"} VoiceChannel First!**`)
                 ],
                 ephemeral: true
             })
@@ -54,7 +54,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(embed.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
+                            .setTitle(`${client.emojis.x} **You are not a DJ and not the Song Requester!**`)
                             .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
                         ],
                         ephemeral: true
@@ -66,13 +66,13 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(embed.color)
                         .setTimestamp()
-                        .setTitle(`**${newQueue.autoplay ? `${client.allEmojis.check} Enabled` : `${client.allEmojis.x} Disabled`} Autoplay!**`)
+                        .setTitle(`**${newQueue.autoplay ? `${client.emojis.check} Enabled` : `${client.emojis.x} Disabled`} Autoplay!**`)
                         .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
                 })
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.allEmojis.x} | Error: `,
+                    content: `${client.emojis.x} | Error: `,
                     embeds: [new MessageEmbed()
                         .setColor(embed.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)

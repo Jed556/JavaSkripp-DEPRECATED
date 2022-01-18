@@ -71,7 +71,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(embed.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
+                            .setTitle(`${client.emojis.x} **You are not a DJ and not the Song Requester!**`)
                             .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
                         ],
                         ephemeral: true
@@ -85,7 +85,7 @@ module.exports = {
                     embeds: [
                         new MessageEmbed()
                             .setColor(embed.errColor)
-                            .setTitle(`${client.allEmojis.x} **This Song does not exist!**`)
+                            .setTitle(`${client.emojis.x} **This Song does not exist!**`)
                             .setDescription(`**The last Song in the Queue has the Index: \`${newQueue.songs.length}\`**`)
                     ],
                     ephemeral: true
@@ -93,14 +93,14 @@ module.exports = {
                 if (songIndex <= 0) return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(embed.errColor)
-                        .setTitle(`${client.allEmojis.x} **You can't remove the current Song (0)!**`)
+                        .setTitle(`${client.emojis.x} **You can't remove the current Song (0)!**`)
                         .setDescription(`**Use the \`skip\` Slash Command instead!**`)
                     ],
                     ephemeral: true
                 })
                 if (amount <= 0) return interaction.reply({
                     embeds: [
-                        new MessageEmbed().setColor(embed.errColor).setTitle(`${client.allEmojis.x} **You need to at least remove 1 Song!**`)
+                        new MessageEmbed().setColor(embed.errColor).setTitle(`${client.emojis.x} **You need to at least remove 1 Song!**`)
                     ],
                     ephemeral: true
                 })
@@ -115,7 +115,7 @@ module.exports = {
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.allEmojis.x} | Error: `,
+                    content: `${client.emojis.x} | Error: `,
                     embeds: [new MessageEmbed()
                         .setColor(embed.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)

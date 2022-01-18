@@ -49,7 +49,7 @@ module.exports = {
                 if (!newQueue || !newQueue.previousSongs || newQueue.previousSongs.length == 0) return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(embed.errColor)
-                        .setTitle(`${client.allEmojis.x} **There are no previous Songs!**`)
+                        .setTitle(`${client.emojis.x} **There are no previous Songs!**`)
                     ],
                     ephemeral: true
                 })
@@ -58,7 +58,7 @@ module.exports = {
                         embeds: [new MessageEmbed()
                             .setColor(embed.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.allEmojis.x} **You are not a DJ and not the Song Requester!**`)
+                            .setTitle(`${client.emojis.x} **You are not a DJ and not the Song Requester!**`)
                             .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
                         ],
                         ephemeral: true
@@ -75,7 +75,7 @@ module.exports = {
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.allEmojis.x} | Error: `,
+                    content: `${client.emojis.x} | Error: `,
                     embeds: [new MessageEmbed()
                         .setColor(embed.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)
