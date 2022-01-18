@@ -1,6 +1,5 @@
 const config = require("../../botconfig/config.json");
 const emb = require("../../botconfig/embed.json");
-const settings = require("../../botconfig/settings.json");
 const { onCoolDown } = require("../../handlers/functions");
 const Discord = require("discord.js");
 module.exports = (client, interaction) => {
