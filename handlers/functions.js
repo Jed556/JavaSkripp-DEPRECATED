@@ -1,7 +1,7 @@
 const { MessageEmbed, Collection } = require("discord.js");
 const Discord = require("discord.js")
 const config = require("../botconfig/config.json");
-const ee = require("../botconfig/embed.json");
+const embed = require("../botconfig/embed.json");
 
 //EXPORT ALL FUNCTIONS
 module.exports.nFormatter = nFormatter;
@@ -23,7 +23,6 @@ module.exports.GetUser = GetUser;
 module.exports.GetRole = GetRole;
 module.exports.GetGlobalUser = GetGlobalUser;
 module.exports.parseMilliseconds = parseMilliseconds;
-// module.exports.replacemsg = replacedefaultmessages (DEPRRECATED)
 module.exports.onCoolDown = onCoolDown;
 module.exports.formatDate = formatDate;
 module.exports.customplaylistembed = customplaylistembed;
