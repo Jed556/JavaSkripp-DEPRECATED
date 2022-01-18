@@ -171,8 +171,8 @@ module.exports = (client) => {
                             lastEdited = false
                         }, 7000)
 
-                         // ---------------------------------------- PREVIOUS ---------------------------------------- //
-                         if (i.customId == `1`) {
+                        // ---------------------------------------- PREVIOUS ---------------------------------------- //
+                        if (i.customId == `1`) {
                             //if there are no previous songs then return error
                             if (!newQueue.previousSongs || newQueue.previousSongs.length == 0) {
                                 return i.reply({
@@ -201,41 +201,41 @@ module.exports = (client) => {
                                     }, 3000)
                                 }
                             })
-                        //get the player instance
-                        const queue = client.distube.getQueue(i.guild.id);
-                        //if no player available return aka not playing anything
-                        if (!queue || !newQueue.songs || newQueue.songs.length == 0) {
-                            return i.reply({
-                                content: `${client.allEmojis.x} Nothing Playing yet`,
-                                ephemeral: true
-                            }).then(interaction => {
-                                if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
-                                    setTimeout(() => {
-                                        try {
-                                            i.deleteReply().catch(console.log);
-                                        } catch (e) {
-                                            console.log(e)
-                                        }
-                                    }, 3000)
-                                }
-                            })
-                        }
-                        //if not in the same channel as the player, return Error
-                        if (channel.id !== newQueue.voiceChannel.id)
-                            return i.reply({
-                                content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
-                                ephemeral: true
-                            }).then(interaction => {
-                                if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
-                                    setTimeout(() => {
-                                        try {
-                                            i.deleteReply().catch(console.log);
-                                        } catch (e) {
-                                            console.log(e)
-                                        }
-                                    }, 3000)
-                                }
-                            })
+                            //get the player instance
+                            const queue = client.distube.getQueue(i.guild.id);
+                            //if no player available return aka not playing anything
+                            if (!queue || !newQueue.songs || newQueue.songs.length == 0) {
+                                return i.reply({
+                                    content: `${client.allEmojis.x} Nothing Playing yet`,
+                                    ephemeral: true
+                                }).then(interaction => {
+                                    if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
+                                        setTimeout(() => {
+                                            try {
+                                                i.deleteReply().catch(console.log);
+                                            } catch (e) {
+                                                console.log(e)
+                                            }
+                                        }, 3000)
+                                    }
+                                })
+                            }
+                            //if not in the same channel as the player, return Error
+                            if (channel.id !== newQueue.voiceChannel.id)
+                                return i.reply({
+                                    content: `${client.allEmojis.x} **Please join __my__ Voice Channel first! <#${channel.id}>**`,
+                                    ephemeral: true
+                                }).then(interaction => {
+                                    if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
+                                        setTimeout(() => {
+                                            try {
+                                                i.deleteReply().catch(console.log);
+                                            } catch (e) {
+                                                console.log(e)
+                                            }
+                                        }, 3000)
+                                    }
+                                })
                         }
 
                         // ---------------------------------------- SKIP ---------------------------------------- //
@@ -485,7 +485,7 @@ module.exports = (client) => {
                                         }, 3000)
                                     }
 
-                                    //Shuffle
+                                    // ---------------------------------------- SHUFFLE ---------------------------------------- //
                                     if (i.customId == `5`) {
                                         let { member } = i;
                                         //get the channel instance from the Member
@@ -524,7 +524,7 @@ module.exports = (client) => {
                                             })
                                         client.maps.set(`beforeshuffle-${newQueue.id}`, newQueue.songs.map(track => track).slice(1));
                                         //pause the player
-                                        await newQueue.shuffle()
+                                        newQueue.shuffle()
                                         //Send Success Message
                                         i.reply({
                                             embeds: [new MessageEmbed()
