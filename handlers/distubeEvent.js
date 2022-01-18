@@ -6,6 +6,7 @@ const emb = require("../botconfig/embed.json");
 const settings = require("../botconfig/distube.json");
 const { KSoftClient } = require("@ksoft/api");
 const ksoft = new KSoftClient(config.ksoftapi);
+const playerintervals = new Map();
 const PlayerMap = new Map()
 let songEditInterval = null;
 
