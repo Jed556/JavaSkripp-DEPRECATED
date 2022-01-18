@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
                 if (!cmd) {
                     return interaction.reply({
                         ephemeral: true,
-                        embeds: [embed.setColor(embed.errColor).setDescription(`No Information found for command **${args.toLowerCase()}**`)]
+                        embeds: [embed.setColor(emb.errColor).setDescription(`No Information found for command **${args.toLowerCase()}**`)]
                     });
                 }
 
@@ -42,14 +42,14 @@ module.exports = {
                 }
                 return interaction.reply({
                     ephemeral: true,
-                    embeds: [embed.setColor(embed.color)]
+                    embeds: [embed.setColor(emb.color)]
                 });
             } else {
                 const embed = new MessageEmbed()
-                    .setColor(embed.color)
+                    .setColor(emb.color)
                     .setThumbnail(client.user.displayAvatarURL())
                     .setTitle("HELP MENU 🔰 Commands")
-                    .setDescription(`[**Click here to invite me!**]( ${embed.invite} )`)
+                    .setDescription(`[**Click here to invite me!**]( ${emb.invite} )`)
                     .setFooter(`List of commands are also available in / > JavaSkripp`, client.user.displayAvatarURL());
                 const slashCommands = (category) => {
                     return client.slashCommands.filter((cmd) => cmd.category === category).map((cmd) => `\`${cmd.name}\``);
@@ -74,7 +74,7 @@ module.exports = {
             return interaction.reply({
                 ephemeral: true,
                 embeds: [new MessageEmbed()
-                    .setColor(embed.errColor)
+                    .setColor(emb.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setTitle(`${client.emojis.x} ERROR | An error occurred`)
                     .setDescription(`\`\`\`${e.message ? String(e.message).substr(0, 2000) : String(e).substr(0, 2000)}\`\`\``)

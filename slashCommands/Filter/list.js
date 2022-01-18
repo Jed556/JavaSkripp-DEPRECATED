@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const FiltersSettings = require("../../botconfig/filters.json");
 const { check_if_dj } = require("../../handlers/functions");
 const { errDM } = require("../../handlers/functions");
@@ -24,7 +24,7 @@ module.exports = {
                 if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
                     embeds: [
                         new MessageEmbed()
-                            .setColor(embed.color)
+                            .setColor(emb.color)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                             .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
                     ],
@@ -34,7 +34,7 @@ module.exports = {
                 return interaction.reply({
                     embeds: [
                         new MessageEmbed()
-                            .setColor(embed.color)
+                            .setColor(emb.color)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                             .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
                             .addField("**All __current__ Filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
@@ -45,7 +45,7 @@ module.exports = {
                 interaction.editReply({
                     content: `${client.emojis.x} | Error: `,
                     embeds: [new MessageEmbed()
-                        .setColor(embed.errColor)
+                        .setColor(emb.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)
                     ],
                     ephemeral: true

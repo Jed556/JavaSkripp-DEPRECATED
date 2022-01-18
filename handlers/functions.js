@@ -1,7 +1,7 @@
 const { MessageEmbed, Collection } = require("discord.js");
 const Discord = require("discord.js")
 const config = require("../botconfig/config.json");
-const embed = require("../botconfig/embed.json");
+const emb = require("../botconfig/embed.json");
 
 //EXPORT ALL FUNCTIONS
 module.exports.nFormatter = nFormatter;
@@ -91,7 +91,7 @@ function lyricsEmbed(lyrics, song) {
                 .setURL(song.url)
                 .setThumbnail(song.thumbnail)
                 .setFooter(`Song Requested by: ${song.user.tag}`, song.user.displayAvatarURL({ dynamic: true }))
-                .setColor(embed.color)
+                .setColor(emb.color)
                 .setDescription(current)
             embeds.push(embed);
         }
@@ -604,7 +604,7 @@ async function swap_pages(client, message, description, TITLE) {
                 const embed = new MessageEmbed()
                     .setDescription(current)
                     .setTitle(TITLE)
-                    .setColor(embed.color)
+                    .setColor(emb.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                 embeds.push(embed);
             }
@@ -619,7 +619,7 @@ async function swap_pages(client, message, description, TITLE) {
                 const embed = new MessageEmbed()
                     .setDescription(current)
                     .setTitle(TITLE)
-                    .setColor(embed.color)
+                    .setColor(emb.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                 embeds.push(embed);
             }
@@ -629,7 +629,7 @@ async function swap_pages(client, message, description, TITLE) {
     if (embeds.length === 0) return message.channel.send({
         embeds: [new MessageEmbed()
             .setTitle(`${emoji.msg.ERROR} No Content added to the SWAP PAGES Function`)
-            .setColor(embed.errColor)
+            .setColor(emb.errColor)
             .setFooter(client.user.username, client.user.displayAvatarURL())]
     }).catch(e => console.log("THIS IS TO PREVENT A CRASH"))
     if (embeds.length === 1) return message.channel.send({ embeds: [embeds[0]] }).catch(e => console.log("THIS IS TO PREVENT A CRASH"))
@@ -765,7 +765,7 @@ async function swap_pages2(client, message, embeds) {
 function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
     const report = new MessageEmbed()
         .setTimestamp()
-        .setColor(embed.errColor)
+        .setColor(emb.errColor)
         .setAuthor("antiCrash.js", client.user.displayAvatarURL())
         .setFooter("Check logs for more details")
 

@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -21,9 +21,9 @@ module.exports = {
             interaction.reply({
                 ephemeral: true,
                 embeds: [new MessageEmbed()
-                    .setColor(embed.color)
+                    .setColor(emb.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setDescription(`[**Click here to invite me!**]( ${embed.invite} )`)
+                    .setDescription(`[**Click here to invite me!**]( ${emb.invite} )`)
                 ]
             });
         } catch (e) {

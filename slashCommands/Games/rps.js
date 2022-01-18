@@ -1,6 +1,6 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -44,7 +44,7 @@ module.exports = {
             let acceptEmbed = new MessageEmbed()
                 .setTitle(`Waiting for ${opponent.tag} to accept!`)
                 .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL())
-                .setColor(embed.color)
+                .setColor(emb.color)
                 .setFooter(client.user.username, client.user.displayAvatarURL());
 
             let accept = new MessageButton()
@@ -87,7 +87,7 @@ module.exports = {
                 button.deferUpdate();
                 let embed = new MessageEmbed()
                     .setTitle(`${interaction.user.tag} VS. ${opponent.tag}`)
-                    .setColor(embed.color)
+                    .setColor(emb.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setDescription("Select 🪨, 📄, or ✂️");
 
@@ -151,7 +151,7 @@ module.exports = {
                     if (reason == "time") {
                         let embed = new MessageEmbed()
                             .setTitle("Game Timed Out!")
-                            .setColor(embed.errColor)
+                            .setColor(emb.errColor)
                             .setDescription(
                                 "One or more players did not make a move in time(30s)"
                             )
@@ -164,49 +164,49 @@ module.exports = {
                         if (mem == "rock" && auth == "scissors") {
                             let embed = new MessageEmbed()
                                 .setTitle(`${opponent.tag} Wins!`)
-                                .setColor(embed.okColor)
+                                .setColor(emb.okColor)
                                 .setDescription("Rock defeats Scissors")
                                 .setFooter(client.user.username, client.user.displayAvatarURL());
                             interaction.editReply({ embeds: [embed], components: [] });
                         } else if (mem == "scissors" && auth == "rock") {
                             let embed = new MessageEmbed()
                                 .setTitle(`${interaction.user.tag} Wins!`)
-                                .setColor(embed.okColor)
+                                .setColor(emb.okColor)
                                 .setDescription("Rock defeats Scissors")
                                 .setFooter(client.user.username, client.user.displayAvatarURL());
                             interaction.editReply({ embeds: [embed], components: [] });
                         } else if (mem == "scissors" && auth == "paper") {
                             let embed = new MessageEmbed()
                                 .setTitle(`${opponent.tag} Wins!`)
-                                .setColor(embed.okColor)
+                                .setColor(emb.okColor)
                                 .setDescription("Scissors defeats Paper")
                                 .setFooter(client.user.username, client.user.displayAvatarURL());
                             interaction.editReply({ embeds: [embed], components: [] });
                         } else if (mem == "paper" && auth == "scissors") {
                             let embed = new MessageEmbed()
                                 .setTitle(`${interaction.user.tag} Wins!`)
-                                .setColor(embed.okColor)
+                                .setColor(emb.okColor)
                                 .setDescription("Scissors defeats Paper")
                                 .setFooter(client.user.username, client.user.displayAvatarURL());
                             interaction.editReply({ embeds: [embed], components: [] });
                         } else if (mem == "paper" && auth == "rock") {
                             let embed = new MessageEmbed()
                                 .setTitle(`${opponent.tag} Wins!`)
-                                .setColor(embed.okColor)
+                                .setColor(emb.okColor)
                                 .setDescription("Paper defeats Rock")
                                 .setFooter(client.user.username, client.user.displayAvatarURL());
                             interaction.editReply({ embeds: [embed], components: [] });
                         } else if (mem == "rock" && auth == "paper") {
                             let embed = new MessageEmbed()
                                 .setTitle(`${interaction.user.tag} Wins!`)
-                                .setColor(embed.okColor)
+                                .setColor(emb.okColor)
                                 .setDescription("Paper defeats Rock")
                                 .setFooter(client.user.username, client.user.displayAvatarURL());
                             interaction.editReply({ embeds: [embed], components: [] });
                         } else {
                             let embed = new MessageEmbed()
                                 .setTitle("Draw!")
-                                .setColor(embed.okColor)
+                                .setColor(emb.okColor)
                                 .setDescription(`Both players chose ${mem}`)
                                 .setFooter(client.user.username, client.user.displayAvatarURL());
                             interaction.editReply({ embeds: [embed], components: [] });
@@ -220,7 +220,7 @@ module.exports = {
                     let embed = new MessageEmbed()
                         .setTitle("Challenge Not Accepted in Time")
                         .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL())
-                        .setColor(embed.errColor)
+                        .setColor(emb.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setDescription("Ran out of time!\nTime limit: 30s");
                     interaction.editReply({
@@ -232,7 +232,7 @@ module.exports = {
                     let embed = new MessageEmbed()
                         .setTitle("Game Declined!")
                         .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL())
-                        .setColor(embed.errColor)
+                        .setColor(emb.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setDescription(`${opponent.tag} has declined your game!`);
                     interaction.editReply({

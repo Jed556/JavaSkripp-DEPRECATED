@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { duration } = require("../../handlers/functions")
 const { errDM } = require("../../handlers/functions");
 
@@ -22,7 +22,7 @@ module.exports = {
             interaction.reply({
                 ephemeral: true,
                 embeds: [new MessageEmbed()
-                    .setColor(embed.color)
+                    .setColor(emb.color)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setTitle(`${client.emojis.check} **${client.user.username}** is since:\n ${duration(client.uptime).map(t => `\`${t}\``).join(", ")} online`)
                 ]

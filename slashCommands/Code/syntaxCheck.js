@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 const fs = require("fs");
 const os = require("os");
@@ -29,7 +29,7 @@ module.exports = {
 
             var embed = new MessageEmbed()
                 .setTimestamp()
-                .setColor(embed.color)
+                .setColor(emb.color)
                 .setFooter(`Code by: ${interaction.user.tag}`, interaction.user.displayAvatarURL())
                 .setAuthor("syntaxCheck.js", client.user.displayAvatarURL())
 
@@ -63,7 +63,7 @@ module.exports = {
             await checkSyntaxString(code, function (syntax) {
                 if (!syntax.passed) {
                     interaction.reply({
-                        embeds: [embed.setColor(embed.errColor)
+                        embeds: [embed.setColor(emb.errColor)
                             .setDescription(`**Code:** \`\`\`${code}\`\`\`\n**Error:** \`\`\`${syntax.error}\`\`\``)
                         ]
                     });

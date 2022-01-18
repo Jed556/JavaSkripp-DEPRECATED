@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -36,7 +36,7 @@ module.exports = {
 
             if (reason.length > 512)
                 return interaction.reply({
-                    embeds: [new MessageEmbed().setTitle("❌ Can't Run Code With The Strings Given ❌").setColor(embed.errColor)
+                    embeds: [new MessageEmbed().setTitle("❌ Can't Run Code With The Strings Given ❌").setColor(emb.errColor)
                         .setDescription("Reason Can't Be More Than 512 Characters").setTimestamp()
                     ],
                     ephemeral: true
@@ -44,7 +44,7 @@ module.exports = {
 
             const SuccessEmbed = new MessageEmbed()
                 .setTitle(`🟢 Unbanned **[${userID}]** Successfully From ${interaction.guild.name} 🟢`)
-                .setColor(embed.okColor)
+                .setColor(emb.okColor)
                 .setTimestamp()
                 .addFields({
                     name: "Reason For Unban:",
@@ -53,7 +53,7 @@ module.exports = {
 
             const ErrorEmbed = new MessageEmbed()
                 .setTitle(`❌ Couldn't Unban [${userID}] From ${interaction.guild.name} ❌`)
-                .setColor(embed.errColor)
+                .setColor(emb.errColor)
                 .setTimestamp()
                 .addFields({
                     name: "Reason It Failed:",

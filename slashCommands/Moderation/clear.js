@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 /**
@@ -41,7 +41,7 @@ module.exports = {
 
             var embed = new MessageEmbed()
                 .setTimestamp()
-                .setColor(embed.color)
+                .setColor(emb.color)
                 .setFooter(client.user.username, client.user.displayAvatarURL())
 
             if (Amount <= 100) {

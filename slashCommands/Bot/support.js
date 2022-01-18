@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -23,10 +23,10 @@ module.exports = {
             interaction.reply({
                 ephemeral: true,
                 embeds: [new MessageEmbed()
-                    .setColor(embed.color)
+                    .setColor(emb.color)
                     .setTitle("Support")
                     .addField(`Discord:`, `\`${ownerTag}\`, \`${client.user.tag}\``)
-                    .addField(`Gmail:`, `\`${embed.email}\``)
+                    .addField(`Gmail:`, `\`${emb.email}\``)
                     .addField(`Github:`, "[Jed556/JavaSkripp](https://github.com/Jed556/JavaSkripp-Public)")
                     .addField(`Updates`, "[Project Updates](https://github.com/Jed556/JavaSkripp-Public/projects/1?fullscreen=true)")
                     .setFooter(client.user.username, client.user.displayAvatarURL())

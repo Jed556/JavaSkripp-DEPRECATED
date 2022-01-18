@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -47,7 +47,7 @@ module.exports = {
                     return interaction.reply({
                         ephemeral: true,
                         embeds: [new MessageEmbed()
-                            .setColor(embed.errColor)
+                            .setColor(emb.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                             .setTitle(`${client.emojis.x} **This Role is already a DJ-ROLE!**`)
                         ],
@@ -60,7 +60,7 @@ module.exports = {
                 return interaction.reply({
                     ephemeral: true,
                     embeds: [new MessageEmbed()
-                        .setColor(embed.color)
+                        .setColor(emb.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.emojis.check} **The Role \`${Role.name}\` got added to the ${client.settings.get(guild.id, "djroles").length - 1} DJ-Roles!**`)
                         .addField(`🎧 **DJ-Role${client.settings.get(guild.id, "djroles").length > 1 ? "s" : ""}:**`, `>>> ${djs}`, true)
@@ -71,7 +71,7 @@ module.exports = {
                     return interaction.reply({
                         ephemeral: true,
                         embeds: [new MessageEmbed()
-                            .setColor(embed.errColor)
+                            .setColor(emb.errColor)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
                             .setTitle(`${client.emojis.x} **This Role is not a DJ-ROLE yet!**`)
                         ],
@@ -84,7 +84,7 @@ module.exports = {
                 return interaction.reply({
                     ephemeral: true,
                     embeds: [new MessageEmbed()
-                        .setColor(embed.color)
+                        .setColor(emb.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .setTitle(`${client.emojis.check} **The Role \`${Role.name}\` got removed from the ${client.settings.get(guild.id, "djroles").length} DJ-Roles!**`)
                         .addField(`🎧 **DJ-Role${client.settings.get(guild.id, "djroles").length > 1 ? "s" : ""}:**`, `>>> ${djs}`, true)

@@ -1,6 +1,6 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -43,7 +43,7 @@ module.exports = {
 
             var embed = new MessageEmbed()
                 .setTimestamp()
-                .setColor(embed.color)
+                .setColor(emb.color)
                 .setFooter(client.user.username, client.user.displayAvatarURL())
 
             if (conv == "bin") {
@@ -61,7 +61,7 @@ module.exports = {
             } else {
                 interaction.reply({
                     embeds: [embed
-                        .setColor(embed.errColor)
+                        .setColor(emb.errColor)
                         .setDescription(`${client.emojis.x} Invalid Input or Conversion`)]
                 });
             }

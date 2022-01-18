@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 const moment = require("moment");
 

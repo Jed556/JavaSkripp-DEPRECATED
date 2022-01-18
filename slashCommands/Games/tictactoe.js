@@ -1,6 +1,6 @@
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -44,7 +44,7 @@ module.exports = {
             let acceptEmbed = new MessageEmbed()
                 .setTitle(`Waiting for ${opponent.tag} to accept!`)
                 .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({ dynamic: true }))
-                .setColor(embed.color)
+                .setColor(emb.color)
                 .setFooter(client.user.username, client.user.displayAvatarURL());
 
             let accept = new MessageButton()
@@ -148,7 +148,7 @@ module.exports = {
                         .setDescription(
                             `**How to Play?**\n*Wait for your turn.. If its your turn, Click one of the buttons from the table to draw your emoji.*`
                         )
-                        .setColor(embed.color)
+                        .setColor(emb.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
                         .setTimestamp();
                     let infomsg = interaction.editReply({ embeds: [xoemb] });
@@ -412,7 +412,7 @@ module.exports = {
                     let embed = new MessageEmbed()
                         .setTitle("Challenge Not Accepted in Time")
                         .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({ dynamic: true }))
-                        .setColor(embed.errColor)
+                        .setColor(emb.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
                         .setDescription("Ran out of time!\nTime limit: 30s");
                     m.edit({
@@ -425,7 +425,7 @@ module.exports = {
                     let embed = new MessageEmbed()
                         .setTitle("Game Declined!")
                         .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL({ dynamic: true }))
-                        .setColor(embed.errColor)
+                        .setColor(emb.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL({ dynamic: true }))
                         .setDescription(`${opponent.user.tag} has declined your game!`);
                     m.edit({

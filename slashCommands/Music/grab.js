@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
-const embed = require("../../botconfig/embed.json");
+const emb = require("../../botconfig/embed.json");
 const { check_if_dj } = require("../../handlers/functions");
 const { errDM } = require("../../handlers/functions");
 
@@ -21,17 +21,17 @@ module.exports = {
 
             if (!channel) return interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(embed.errColor)
-                    .setAuthor(`Join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!`, embed.discAlert)
+                    .setColor(emb.errColor)
+                    .setAuthor(`Join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!`, emb.discAlert)
                 ], ephemeral: true
             })
 
             if (channel.guild.me.voice.channel && channel.guild.me.voice.channel.id != channel.id) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(embed.errColor)
+                        .setColor(emb.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setAuthor(`Join __my__ Voice Channel!`, embed.discAlert)
+                        .setAuthor(`Join __my__ Voice Channel!`, emb.discAlert)
                         .setDescription(`<#${guild.me.voice.channel.id}>`)
                     ], ephemeral: true
                 });
@@ -41,15 +41,15 @@ module.exports = {
                 let newQueue = client.distube.getQueue(guildId);
                 if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
                     embeds: [new MessageEmbed()
-                        .setColor(embed.errColor)
-                        .setAuthor(`Nothing playing right now`, embed.discAlert)
+                        .setColor(emb.errColor)
+                        .setAuthor(`Nothing playing right now`, emb.discAlert)
                     ], ephemeral: true
                 })
 
                 let newTrack = newQueue.songs[0];
                 member.send({
                     embeds: [new MessageEmbed()
-                        .setColor(embed.color)
+                        .setColor(emb.color)
                         .setTitle(newTrack.name)
                         .setURL(newTrack.url)
                         .addField(`${(newTrack.user === client.user) ? "💡 Autoplay by:" : "💡 Request by:"}`, `>>> ${newTrack.user}`, true)
@@ -81,7 +81,7 @@ module.exports = {
                 interaction.editReply({
                     content: `${client.emojis.x} | Error: `,
                     embeds: [new MessageEmbed()
-                        .setColor(embed.errColor)
+                        .setColor(emb.errColor)
                         .setDescription(`\`\`\`${e}\`\`\``)
                     ], ephemeral: true
                 })
