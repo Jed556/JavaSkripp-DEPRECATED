@@ -62,7 +62,7 @@ module.exports = (client) => {
                                 views: track.views,
                             }), guild.members.cache.get(track.memberId) || guild.me, track.source);
                     };
-                    await client.distube.playVoiceChannel(voiceChannel, tracks[0].url, {
+                    await client.distube.play(voiceChannel, tracks[0].url, {
                         member: guild.members.cache.get(tracks[0].memberId) || guild.me,
                         textChannel: textChannel
                     })
@@ -1286,7 +1286,7 @@ module.exports = (client) => {
                 member: message.member,
             }
             if (!queue) options.textChannel = message.guild.channels.cache.get(message.channel.id)
-            await client.distube.playVoiceChannel(channel, Text, options)
+            await client.distube.play(channel, Text, options)
 
         } catch (e) {
             console.log(e.stack ? e.stack : e)
@@ -1627,7 +1627,7 @@ module.exports = (client) => {
                     member: member,
                 }
                 if (!newQueue) options.textChannel = guild.channels.cache.get(channel.id)
-                await client.distube.playVoiceChannel(member.voice.channel, link, options)
+                await client.distube.play(member.voice.channel, link, options)
                 //Edit the reply
                 interaction.editReply({
                     content: `${newQueue?.songs?.length > 0 ? `👍 Loaded` : `🎶 Now Playing`}: the **'${interaction.values[0]}'**`,
