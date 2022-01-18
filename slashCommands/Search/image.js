@@ -1,6 +1,6 @@
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
-const settings = require("../../botconfig/settings.json");
+
 const Scraper = require("images-scraper");
 const { errDM } = require("../../handlers/functions");
 

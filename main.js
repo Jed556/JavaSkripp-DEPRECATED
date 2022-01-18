@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const config = require(`./botconfig/config.json`);
-const settings = require(`./botconfig/settings.json`);
 const filters = require(`./botconfig/filters.json`);
 const colors = require("colors");
 const Enmap = require("enmap");
@@ -111,7 +110,7 @@ client.infos = new Enmap({ name: "infos", dataDir: "./databases/infos" });
 
 //Require the Handlers
 //         Add the commands file if enabled                         Add the antiCrash file if enabled
-["events", settings.commands ? "commands" : null, "slashCommands", settings.antiCrash ? "antiCrash" : null, "distubeEvent"]
+["events", config.commands ? "commands" : null, "slashCommands", config.antiCrash ? "antiCrash" : null, "distubeEvent"]
     .filter(Boolean)
     .forEach(h => {
         require(`./handlers/${h}`)(client);

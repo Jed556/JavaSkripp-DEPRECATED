@@ -2,7 +2,6 @@ const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
-const settings = require("../../botconfig/settings.json");
 let cpuStat = require("cpu-stat");
 let os = require("os");
 const { errDM } = require("../../handlers/functions");

@@ -2,7 +2,6 @@
 const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
-const settings = require("../../botconfig/settings.json");
 const { errDM } = require("../../handlers/functions");
 const math = require("mathjs");
 

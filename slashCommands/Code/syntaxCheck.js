@@ -1,7 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
-const settings = require("../../botconfig/settings.json");
 const { errDM } = require("../../handlers/functions");
 const fs = require("fs");
 const os = require("os");

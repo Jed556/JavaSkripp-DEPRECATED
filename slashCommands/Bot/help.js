@@ -1,7 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
-const settings = require("../../botconfig/settings.json");
 const { errDM } = require("../../handlers/functions");
 
 module.exports = {
@@ -36,7 +35,7 @@ module.exports = {
                 if (cmd.description) embed.addField("**Description**", `\`${cmd.description}\``);
                 if (cmd.aliases) embed.addField("**Aliases**", `\`${cmd.aliases.map((a) => `${a}`).join("`, `")}\``);
                 if (cmd.cooldown) embed.addField("**Cooldown**", `\`${cmd.cooldown}\` Seconds`);
-                else embed.addField("**Cooldown**", `\`${settings.default_cooldown_in_sec}\` Second`);
+                else embed.addField("**Cooldown**", `\`${config.defaultCooldown}\` Second`);
                 if (cmd.usage) {
                     embed.addField("**Usage**", `\`/${cmd.usage}\``);
                     embed.setFooter("Syntax: <> = required, [] = optional");

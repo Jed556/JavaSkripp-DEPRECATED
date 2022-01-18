@@ -1,8 +1,7 @@
 //Import Modules
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
-const settings = require("../../botconfig/settings.json");
-const { onCoolDown, replacemsg } = require("../../handlers/functions");
+const { onCoolDown } = require("../../handlers/functions");
 const Discord = require("discord.js");
 module.exports = (client, interaction) => {
     if (client.maintenance && interaction.user.id != config.ownerID) {
@@ -59,58 +58,57 @@ module.exports = (client, interaction) => {
                 })
             }
         }
+
         if (onCoolDown(interaction, command)) {
+            const timeLeft = onCoolDown(interaction, command);
             return interaction.reply({
                 ephemeral: true,
                 embeds: [new Discord.MessageEmbed()
                     .setColor(ee.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setTitle(replacemsg(settings.messages.cooldown, {
-                        prefix: prefix,
-                        command: command,
-                        timeLeft: onCoolDown(interaction, command)
-                    }))]
-            });
-        }
+                    .setAuthor("Cooldown")
+                    .addField("Time Left", `${(timeLeft > 1 || timeLeft < 1) ? `${timeleft} secs` : `${timeleft} sec`}`)
+                    .addField("Command", command)
+                ]
+            })
+        };
+
         //if Command has specific permission return error
         if (command.memberpermissions && command.memberpermissions.length > 0 && !interaction.member.permissions.has(command.memberpermissions)) {
             return interaction.reply({
                 ephemeral: true, embeds: [new Discord.MessageEmbed()
                     .setColor(ee.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
-                    .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.memberpermissions, {
-                        command: command,
-                        prefix: prefix
-                    }))]
-            });
-        }
+                    .setAuthor("Invalid Permission")
+                    .addField("Required Permissions", `${(command && command.memberpermissions) ? command.memberpermissions.map(v => `\`${v}\``).join(",") : command.memberpermissions}`)
+                ]
+            })
+        };
+
         //if Command has specific needed roles return error
         if (command.requiredroles && command.requiredroles.length > 0 && interaction.member.roles.cache.size > 0 && !interaction.member.roles.cache.some(r => command.requiredroles.includes(r.id))) {
             return interaction.reply({
                 ephemeral: true, embeds: [new Discord.MessageEmbed()
                     .setColor(ee.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
-                    .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.requiredroles, {
-                        command: command,
-                        prefix: prefix
-                    }))]
+                    .setAuthor("Invalid Role")
+                    .addField("Required Roles", `${(command && command.requiredroles) ? command.requiredroles.map(v => `<@&${v}>`).join(",") : command.requiredroles}`)
+                ]
             })
         }
+
         //if Command has specific users return error
         if (command.alloweduserids && command.alloweduserids.length > 0 && !command.alloweduserids.includes(interaction.member.id)) {
             return interaction.reply({
                 ephemeral: true, embeds: [new Discord.MessageEmbed()
                     .setColor(ee.errColor)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setTitle(replacemsg(settings.messages.notallowed_to_exec_cmd.title))
-                    .setDescription(replacemsg(settings.messages.notallowed_to_exec_cmd.description.alloweduserids, {
-                        command: command,
-                        prefix: prefix
-                    }))]
-            });
+                    .setAuthor("Invalid User")
+                    .addField("Allowed Users", `${(command && command.alloweduserids) ? command.alloweduserids.map(v => `<@${v}>`).join(",") : command.alloweduserids}`)
+                ]
+            })
         }
+
         //execute the Command
         command.run(client, interaction)
     }
