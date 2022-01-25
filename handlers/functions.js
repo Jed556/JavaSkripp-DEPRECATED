@@ -734,9 +734,15 @@ async function swap_pages2(client, message, embeds) {
 }
 
 /**
- * 
  * @param {*} client Discord Client
- * Function to send errors to DM
+ * @param {*} type Error type
+ * @param {*} error Interaction error
+ * @param {*} err Interaction error
+ * @param {*} e Interaction error
+ * @param {*} origin Origin of the error
+ * @param {*} promise Promise
+ * @param {*} monitor Monitored
+ * @returns Automatic error logs to DM
  */
  function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
     const report = new MessageEmbed()
@@ -812,9 +818,8 @@ async function swap_pages2(client, message, embeds) {
 }
 
 /**
- * 
  * @param {*} client Discord Client
- * Function to Change the Status 
+ * @returns Bot Status
  */
  function change_status(client) {
     try {
