@@ -2,7 +2,7 @@ const config = require("../../botconfig/config.json");
 const emb = require("../../botconfig/embed.json");
 
 const Scraper = require("images-scraper");
-const { errDM } = require("../../handlers/functions");
+const { errDM, getRandomInt } = require("../../handlers/functions");
 
 module.exports = {
     name: "image",
@@ -35,7 +35,7 @@ module.exports = {
             interaction.reply(`🔍 Searching... \`\`\`${search}\`\`\``)
 
             const results = await google.scrape(search, 30);
-            interaction.editReply(results[Math.floor(Math.random() * results.length)].url);
+            interaction.editReply(results[getRandomInt(results.length)].url);
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)

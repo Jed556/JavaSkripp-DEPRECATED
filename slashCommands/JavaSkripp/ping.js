@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const config = require("../../botconfig/config.json");
 const emb = require("../../botconfig/embed.json");
-const { errDM } = require("../../handlers/functions");
+const { errDM, getRandomInt } = require("../../handlers/functions");
 
 module.exports = {
     name: "ping",
@@ -32,7 +32,7 @@ module.exports = {
             const user = interaction.options.getUser("user");
             const loop = interaction.options.getInteger("loop");
             const replyArray = [" ", "Hey!", "Oi!", "Eyyy!", "Ping!", "Pong!", "Pssst!", "Oy!", "AAAAA"]
-            var reply = (replyArray[Math.floor(Math.random() * replyArray.length != "")] ? replyArray[Math.floor(Math.random() * replyArray.length)] : "")
+            var reply = (replyArray[getRandomInt(replyArray.length)] != " ") ? replyArray[getRandomInt(replyArray.length)] : ""
 
             if (user.bot) return interaction.reply({
                 embeds: [new MessageEmbed()
@@ -54,8 +54,8 @@ module.exports = {
             if (loop > 1) {
                 interaction.reply({ embeds: [ping] });
                 for (let i = 2; i <= loop; i++) {
-                    var reply = (replyArray[Math.floor(Math.random() * replyArray.length != " ")]) ?
-                        `**${replyArray[Math.floor(Math.random() * replyArray.length)]}** ` : ""
+                    var reply = (replyArray[getRandomInt(replyArray.length)] != " ") ?
+                        `**${replyArray[getRandomInt(replyArray.length)]}** ` : ""
                     interaction.followUp({
                         embeds: [ping
                             .setDescription(`${reply}${user}`)]

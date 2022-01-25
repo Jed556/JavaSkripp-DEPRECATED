@@ -2,6 +2,7 @@
 const config = require(`../../botconfig/config.json`);
 const emb = require(`../../botconfig/embed.json`);
 const { MessageEmbed } = require(`discord.js`);
+const { getRandomInt } = require("../../handlers/functions");
 
 module.exports = async (client, message) => {
     function DM() {
@@ -24,7 +25,7 @@ module.exports = async (client, message) => {
         if (config.friendlyMode) {
             if ((msg == "hi") || (msg == "hello") || (msg == "hey")) {
                 const replyArray = ["Yoooo!", "Hey There!", "Hello There!", "Hello Friend!", "Heyyy!"]
-                const reply = replyArray[Math.floor(Math.random() * replyArray.length)];
+                const reply = replyArray[getRandomInt(replyArray.length)];
                 message.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
@@ -38,7 +39,7 @@ module.exports = async (client, message) => {
 
             if (illegalArray.some(v => msg.includes(v))) {
                 const replyArray = ["That's illegal!", "Watch your language!", "Watch your fucking mouth!", "Mind your tone!", "Whoaaaa!"]
-                const reply = replyArray[Math.floor(Math.random() * replyArray.length)];
+                const reply = replyArray[getRandomInt(replyArray.length)];
                 var match = msg.match(new RegExp(illegalArray.join("|"), "g"))
                 message.reply({
                     embeds: [new MessageEmbed()

@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const emb = require("../../botconfig/embed.json");
-const { errDM } = require("../../handlers/functions");
+const { errDM, getRandomInt } = require("../../handlers/functions");
 const fs = require("fs");
 const os = require("os");
 const exec = require("child_process").exec;
@@ -39,7 +39,7 @@ module.exports = {
                 var characters = "0123456789";
                 var charactersLength = characters.length;
                 for (var i = 0; i < length; i++) {
-                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                    result += characters.charAt(getRandomInt(charactersLength));
                 }
                 return result;
             }
