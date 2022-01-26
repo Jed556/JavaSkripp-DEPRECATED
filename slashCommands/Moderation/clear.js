@@ -90,7 +90,10 @@ module.exports = {
                 } else {
                     var iBulk = 1;
                     const amt = Math.ceil(Amount / 100)
-                    interaction.reply({ embeds: [embed.setDescription("**Deleting Messages...**")], ephemeral: true })
+                    interaction.reply({
+                        embeds: [embed.setDescription("**Deleting Messages...**")],
+                        ephemeral: true
+                    })
                     try {
                         msgsArray = [];
                         while (amt > iBulk) {

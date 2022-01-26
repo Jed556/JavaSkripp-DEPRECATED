@@ -28,7 +28,8 @@ module.exports = {
                     .setAuthor("maintenance.js", client.user.displayAvatarURL())
                     .setDescription(`**Maintenance Status**\nStatus: \`${mtStat}\``)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                ], ephemeral: true
+                ],
+                ephemeral: true
             })
         } catch (e) {
             console.log(String(e.stack).bgRed)

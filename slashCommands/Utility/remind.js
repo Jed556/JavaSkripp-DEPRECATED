@@ -40,7 +40,8 @@ module.exports = {
                     .addField("Reminder:", desc)
                     .addField("Time:", `${time} minutes`)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                ], ephemeral: true
+                ],
+                ephemeral: true
             })
 
             // Sec: x * 1000 // Min: x * 1000 * 60 // Hr: Min: x * 1000 * 60 * 60 //
@@ -54,7 +55,8 @@ module.exports = {
                     .addField("Reminder:", desc)
                     .addField("Time:", `${time} minutes`)
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                ], ephemeral: true
+                ],
+                ephemeral: true
             })
         } catch (e) {
             console.log(String(e.stack).bgRed)

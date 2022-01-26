@@ -38,7 +38,8 @@ module.exports = {
                             .setAuthor("HEROKU | restart.js", emb.heroku)
                             .setDescription(`**Restarting Host in ${cd} secs**`)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                        ], ephemeral: true
+                        ],
+                        ephemeral: true
                     })
                     setTimeout(async () => {
                         try {
@@ -56,7 +57,8 @@ module.exports = {
                             .setAuthor("HEROKU | restart.js", emb.heroku)
                             .setDescription("**Restarting Host...**")
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                        ], ephemeral: true
+                        ],
+                        ephemeral: true
                     })
                     try {
                         var heroku = new Heroku({ token: token });
@@ -64,15 +66,16 @@ module.exports = {
                             .then(x => console.log(x));
                     } catch { }
                 }
-                else interaction.reply({
-                    embeds: [new MessageEmbed()
-                        .setTimestamp()
-                        .setColor(emb.errColor)
-                        .setAuthor("HEROKU | restart.js", emb.heroku)
-                        .setDescription("**JavaSkripp is currently not hosted by Heroku**")
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ], ephemeral: true
-                })
+            else interaction.reply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(emb.errColor)
+                    .setAuthor("HEROKU | restart.js", emb.heroku)
+                    .setDescription("**JavaSkripp is currently not hosted by Heroku**")
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
+            })
         } catch (e) {
             console.log(String(e.stack).bgRed)
             errDM(client, e)

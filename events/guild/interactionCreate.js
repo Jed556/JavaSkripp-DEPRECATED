@@ -11,7 +11,8 @@ module.exports = (client, interaction) => {
                 .setTitle("UNDER MAINTENANCE")
                 .setDescription("JavaSkripp will be back ASAP!")
                 .setFooter(client.user.username, client.user.displayAvatarURL())
-            ], ephemeral: true
+            ],
+            ephemeral: true
         })
     }
 
@@ -28,7 +29,7 @@ module.exports = (client, interaction) => {
     })
     let prefix = client.settings.get(interaction.guildId)
     let command = false;
-    
+
     try {
         if (client.slashCommands.has(CategoryName + interaction.options.getSubcommand())) {
             command = client.slashCommands.get(CategoryName + interaction.options.getSubcommand());

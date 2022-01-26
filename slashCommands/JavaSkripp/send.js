@@ -51,9 +51,10 @@ module.exports = {
                     .addField(`Reason:`, `You can't use \`/send\` to ${client.user.tag} `)
                     .setAuthor(Target, avatar.displayAvatarURL({ dynamic: true }))
                     .setFooter(client.user.username, client.user.displayAvatarURL())
-                ], ephemeral: true
+                ],
+                ephemeral: true
             })
-            
+
             if (tag.some(v => Target.includes(v))) {
                 const userID = await client.users.cache.find(u => u.tag === Target).id
                 const avatar = await client.users.fetch(userID).catch(console.error);
@@ -70,7 +71,7 @@ module.exports = {
                         ]
                     });
                 });
-                
+
                 interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
@@ -79,7 +80,8 @@ module.exports = {
                         .setImage(`${Image ? `${Image}` : ""}`)
                         .setAuthor(Target, avatar.displayAvatarURL({ dynamic: true }))
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ], ephemeral: true
+                    ],
+                    ephemeral: true
                 })
 
             } else return interaction.reply("Please enter the user tag (ex. Gatorade#4147)");

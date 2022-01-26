@@ -32,7 +32,8 @@ module.exports = {
                         .addField(`Message:`, `${message ? `> ${message}` : "\u200b"}`)
                         .setAuthor("MESSAGE SENT", interaction.user.displayAvatarURL({ dynamic: true }))
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ], ephemeral: true
+                    ],
+                    ephemeral: true
                 })
             } catch {
                 interaction.reply({
@@ -42,7 +43,8 @@ module.exports = {
                         .addField(`Unsent Message:`, `${message ? `> ${message}` : "\u200b"}`)
                         .setAuthor("ERROR SENDING", interaction.user.displayAvatarURL({ dynamic: true }))
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ], ephemeral: true
+                    ],
+                    ephemeral: true
                 })
             }
         } catch (e) {
