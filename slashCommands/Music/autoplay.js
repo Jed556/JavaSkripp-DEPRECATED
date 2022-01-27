@@ -19,32 +19,33 @@ module.exports = {
             const { guild } = member;
             const { channel } = member.voice;
 
-            if (!channel) return interaction.reply({
-                embeds: [new MessageEmbed()
-                    .setColor(emb.errColor)
-                    .setTitle(`${client.emoji.x} **Please join ${guild.me.voice.channel ? "my" : "a"} VoiceChannel First!**`)
-                ],
-                ephemeral: true
-            })
-
-            if (channel.guild.me.voice.channel && channel.guild.me.voice.channel.id != channel.id) {
+            if (!channel || channel.guild.me.voice.channel.id != channel.id)
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
+                        .setAuthor(`JOIN ${guild.me.voice.channel ? "MY" : "A"} VOICE CHANNEL FIRST!`, emb.disc.alert)
+                        .setDescription(channel.id ? `**Channel: <#${channel.id}>**` : "")
+                    ],
+                    ephemeral: true
+                })
+
+            if (channel.userLimit != 0 && channel.full && !channel)
+                return interaction.reply({
+                    embeds: [new MessageEmbed()
+                        .setColor(emb.errColor)
+                        .setAuthor(`YOUR VOICE CHANNEL IS FULL`, emb.disc.alert)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setAuthor(`Join __my__ Voice Channel!`, emb.discAlert)
-                        .setDescription(`<#${guild.me.voice.channel.id}>`)
                     ],
                     ephemeral: true
                 });
-            }
 
             try {
                 let newQueue = client.distube.getQueue(guildId);
                 if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
-                        .setAuthor(`Nothing playing right now`, emb.discAlert)
+                        .setAuthor(`NOTHING PLAYING YET`, emb.disc.alert)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ],
                     ephemeral: true
                 })
@@ -52,23 +53,36 @@ module.exports = {
                 if (check_if_dj(client, member, newQueue.songs[0])) {
                     return interaction.reply({
                         embeds: [new MessageEmbed()
+                            .setTimestamp()
                             .setColor(emb.errColor)
-                            .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.emoji.x} **You are not a DJ and not the Song Requester!**`)
+                            .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
                             .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
+                            .setFooter(client.user.username, client.user.displayAvatarURL())
                         ],
                         ephemeral: true
                     });
                 }
 
                 await newQueue.toggleAutoplay();
-                interaction.reply({
-                    embeds: [new MessageEmbed()
-                        .setColor(emb.color)
-                        .setTimestamp()
-                        .setTitle(`**${newQueue.autoplay ? `${client.emoji.check} Enabled` : `${client.emoji.x} Disabled`} Autoplay!**`)
-                        .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
-                })
+                if (newQueue.autoplay) {
+                    i.reply({
+                        embeds: [new MessageEmbed()
+                            .setTimestamp()
+                            .setColor(emb.color)
+                            .setAuthor(`ENABLED AUTOPLAY`, emb.disc.autoplay.on)
+                            .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
+                        ]
+                    })
+                } else {
+                    i.reply({
+                        embeds: [new MessageEmbed()
+                            .setTimestamp()
+                            .setColor(emb.color)
+                            .setAuthor(`DISABLED AUTOPLAY`, emb.disc.autoplay.off)
+                            .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
+                        ]
+                    })
+                }
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({

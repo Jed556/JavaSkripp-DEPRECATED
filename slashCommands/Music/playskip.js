@@ -28,30 +28,44 @@ module.exports = {
             const { guild } = member;
             const { channel } = member.voice;
 
-            if (!channel) return interaction.reply({
-                embeds: [new MessageEmbed()
-                    .setColor(emb.errColor)
-                    .setAuthor(`Join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!`, emb.discAlert)
-                ],
-                ephemeral: true
-            })
+            if (!channel || channel.guild.me.voice.channel.id != channel.id)
+                return interaction.reply({
+                    embeds: [new MessageEmbed()
+                        .setColor(emb.errColor)
+                        .setAuthor(`JOIN ${guild.me.voice.channel ? "MY" : "A"} VOICE CHANNEL FIRST!`, emb.disc.alert)
+                        .setDescription(channel.id ? `**Channel: <#${channel.id}>**` : "")
+                    ],
+                    ephemeral: true
+                })
 
             if (channel.userLimit != 0 && channel.full && !channel)
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
+                        .setAuthor(`YOUR VOICE CHANNEL IS FULL`, emb.disc.alert)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setAuthor(`Your Voice Channel is full!`, emb.discAlert)
                     ],
                     ephemeral: true
                 });
 
-            if (channel.guild.me.voice.channel && channel.guild.me.voice.channel.id != channel.id) {
+            let newQueue = client.distube.getQueue(guildId);
+            if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
+                embeds: [new MessageEmbed()
+                    .setColor(emb.errColor)
+                    .setAuthor(`NOTHING PLAYING YET`, emb.disc.alert)
+                    .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
+                ],
+                ephemeral: true
+            })
+
+            if (check_if_dj(client, member, newQueue.songs[0])) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
+                        .setTimestamp()
                         .setColor(emb.errColor)
+                        .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
+                        .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setAuthor(`I am already connected somewhere else`, emb.discAlert)
                     ],
                     ephemeral: true
                 });
@@ -61,7 +75,10 @@ module.exports = {
             const Text = options.getString("song"); //same as in StringChoices //RETURNS STRING 
             //update it without a response!
             await interaction.reply({
-                content: `🔍 Searching... \`\`\`${Text}\`\`\``,
+                embeds: [new MessageEmbed()
+                    .setAuthor(`SEARCHING`, emb.disc.spin)
+                    .setDescription(`Song: **${Text}**`)
+                ],
                 ephemeral: true
             });
 
@@ -72,32 +89,25 @@ module.exports = {
                     skip: true
                 }
                 if (!queue) options.textChannel = guild.channels.cache.get(channelId)
-                if (queue) {
-                    if (check_if_dj(client, member, queue.songs[0])) {
-                        return interaction.reply({
-                            embeds: [new MessageEmbed()
-                                .setColor(emb.errColor)
-                                .setFooter(client.user.username, client.user.displayAvatarURL())
-                                .setTitle(`${client.emoji.x} **You are not a DJ and not the Song Requester!**`)
-                                .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, queue.songs[0])}`)
-                            ],
-                            ephemeral: true
-                        });
-                    }
-                }
                 await client.distube.play(channel, Text, options)
+                
                 //Edit the reply
                 interaction.editReply({
-                    content: `${queue?.songs?.length > 0 ? "⏭ Skipping to" : "🎶 Now Playing"}: \`\`\`\n${Text}\n\`\`\``,
+                    embeds: [new MessageEmbed()
+                        .setAuthor(`SKIPPED TO SONG`, emb.disc.skip)
+                        .setDescription(`Song: **${Text}**`)
+                    ],
                     ephemeral: true
                 });
             } catch (e) {
                 console.log(e.stack ? e.stack : e)
                 interaction.editReply({
-                    content: `${client.emoji.x} | Error: `,
                     embeds: [new MessageEmbed()
+                        .setTimestamp()
                         .setColor(emb.errColor)
-                        .setDescription(`\`\`\`${e}\`\`\``)
+                        .setAuthor(`AN ERROR OCCURED`, emb.disc.error)
+                        .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ],
                     ephemeral: true
                 })
