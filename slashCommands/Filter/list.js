@@ -36,7 +36,7 @@ module.exports = {
                         .setColor(emb.color)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                         .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
-                        .addField("**All __current__ Filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
+                        .addField("**All __current__ Filters:**", newQueue.filters && newQueue.filters.length > 0 ? newQueue.filters.map(f => `\`${f}\``).join(", ") : `None`)
                 ],
             })
         } catch (e) {
