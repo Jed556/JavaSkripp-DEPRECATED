@@ -12,7 +12,6 @@
     "commands": false, "_COMMENT_": "Toggle to enable/disable loading of commands (Deprecated)",
     "friendlyMode": false, "_COMMENT_": "Toggle to enable/disable greetings and warnings in direct messages",
 
-    "ksoftapi": "NEEDED_FOR_LYRICS (Deprecated)",
     "youtubeCookie": "",
     "spotify_api": {
         "enabled": false, "_COMMENT_": "Set to true to get spotify playlists with 100+ Tracks instead of scraping",
