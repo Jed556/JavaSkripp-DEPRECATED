@@ -10,9 +10,12 @@ const playerintervals = new Map();
 const PlayerMap = new Map()
 let songEditInterval = null;
 
-module.exports = (client) => {
+module.exports = (client, interaction) => {
 
     // ---------------------------------------- GLOBAL EMBEDS ---------------------------------------- //
+    const { member, channelId, guildId, applicationId, deferred, replied, options, } = interaction;
+    const { guild } = member;
+
     const joinAlert = new MessageEmbed()
         .setTimestamp()
         .setColor(emb.errColor)
@@ -1079,7 +1082,7 @@ module.exports = (client) => {
         console.log(String(e.stack).bgRed)
         errDM(client, e)
     }
-   
+
     //for the music system interaction buttonjs and meu
     client.on(`interactionCreate`, async (interaction) => {
         if (!interaction.isButton() && !interaction.isSelectMenu()) return;

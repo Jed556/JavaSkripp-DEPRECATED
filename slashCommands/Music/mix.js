@@ -45,7 +45,6 @@ module.exports = {
             const { guild } = member;
             const { channel } = member.voice;
             let queue = client.distube.getQueue(guildId)
-            let options = { member: member }
 
             if (!channel || channel.guild.me.voice.channel.id != channel.id)
                 return interaction.reply({
