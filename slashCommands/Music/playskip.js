@@ -27,8 +27,6 @@ module.exports = {
                 deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
             const { guild } = member;
             const { channel } = member.voice;
-            let queue = client.distube.getQueue(guildId)
-            let optionsObj = { member: member, skip: true }
 
             if (!channel || channel.guild.me.voice.channel.id != channel.id)
                 return interaction.reply({
@@ -84,8 +82,25 @@ module.exports = {
                 ephemeral: true
             });
 
-            if (!queue) optionsObj.textChannel = guild.channels.cache.get(channelId)
-            await client.distube.play(channel, Text, optionsObj)
+            try {
+                let queue = client.distube.getQueue(guildId)
+                let options = { member: member, skip: true }
+                if (!queue) options.textChannel = guild.channels.cache.get(channelId)
+                await client.distube.play(channel, Text, options)
+            } catch (e) {
+                console.log(e.stack ? e.stack.bgRed : e.bgRed)
+                interaction.editReply({
+                    embeds: [new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(emb.errColor)
+                        .setAuthor(`AN ERROR OCCURED`, emb.disc.error)
+                        .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                    ],
+                    ephemeral: true
+                })
+                errDM(client, e)
+            }
 
             //Edit the reply
             interaction.editReply({
