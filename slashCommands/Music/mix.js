@@ -45,6 +45,7 @@ module.exports = {
             const { guild } = member;
             const { channel } = member.voice;
             let queue = client.distube.getQueue(guildId)
+            let optionsObj = { member: member, }
 
             if (!channel || channel.guild.me.voice.channel.id != channel.id)
                 return interaction.reply({
@@ -121,8 +122,8 @@ module.exports = {
                 ephemeral: true
             });
 
-            if (!queue) options.textChannel = guild.channels.cache.get(channelId)
-            await client.distube.play(channel, link, options)
+            if (!queue) optionsObj.textChannel = guild.channels.cache.get(channelId)
+            await client.distube.play(channel, link, optionsObj)
             //Edit the reply
             interaction.editReply({
                 embeds: [new MessageEmbed()
