@@ -1,6 +1,7 @@
 const { errDM } = require("./functions")
 
 module.exports = async (client) => {
+    client.faralError = true
 
     process.on('unhandledRejection', (reason, promise) => {
         console.log('[antiCrash] :: Unhandled Rejection/Catch');

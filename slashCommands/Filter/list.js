@@ -18,41 +18,37 @@ module.exports = {
             const { member, channelId, guildId, applicationId, commandName,
                 deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
             const { guild } = member;
+            let newQueue = client.distube.getQueue(guildId);
 
-            try {
-                let newQueue = client.distube.getQueue(guildId);
-                if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                            .setColor(emb.color)
-                            .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
-                    ],
-                    ephemeral: true
-                })
+            if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
+                embeds: [
+                    new MessageEmbed()
+                        .setColor(emb.color)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                        .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
+                ],
+                ephemeral: true
+            })
 
-                return interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                            .setColor(emb.color)
-                            .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
-                            .addField("**All __current__ Filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
-                    ],
-                })
-            } catch (e) {
-                console.log(e.stack ? e.stack : e)
-                interaction.editReply({
-                    content: `${client.emoji.x} | Error: `,
-                    embeds: [new MessageEmbed()
-                        .setColor(emb.errColor)
-                        .setDescription(`\`\`\`${e}\`\`\``)
-                    ],
-                    ephemeral: true
-                })
-            }
+            return interaction.reply({
+                embeds: [
+                    new MessageEmbed()
+                        .setColor(emb.color)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                        .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
+                        .addField("**All __current__ Filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
+                ],
+            })
         } catch (e) {
-            console.log(String(e.stack).bgRed)
+            console.log(e.stack ? e.stack : e)
+            interaction.editReply({
+                content: `${client.emoji.x} | Error: `,
+                embeds: [new MessageEmbed()
+                    .setColor(emb.errColor)
+                    .setDescription(`\`\`\`${e}\`\`\``)
+                ],
+                ephemeral: true
+            })
             errDM(client, e)
         }
     }

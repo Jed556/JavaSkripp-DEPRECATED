@@ -27,26 +27,31 @@ module.exports = {
                 deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
             const { guild } = member;
             const { channel } = member.voice;
+            let queue = client.distube.getQueue(guildId)
+            let options = {
+                member: member,
+                unshift: true
+            }
 
             if (!channel || channel.guild.me.voice.channel.id != channel.id)
-            return interaction.reply({
-                embeds: [new MessageEmbed()
-                    .setColor(emb.errColor)
-                    .setAuthor(`JOIN ${guild.me.voice.channel ? "MY" : "A"} VOICE CHANNEL FIRST!`, emb.disc.alert)
-                    .setDescription(channel.id ? `**Channel: <#${channel.id}>**` : "")
-                ],
-                ephemeral: true
-            })
+                return interaction.reply({
+                    embeds: [new MessageEmbed()
+                        .setColor(emb.errColor)
+                        .setAuthor(`JOIN ${guild.me.voice.channel ? "MY" : "A"} VOICE CHANNEL FIRST!`, emb.disc.alert)
+                        .setDescription(channel.id ? `**Channel: <#${channel.id}>**` : "")
+                    ],
+                    ephemeral: true
+                })
 
-        if (channel.userLimit != 0 && channel.full && !channel)
-            return interaction.reply({
-                embeds: [new MessageEmbed()
-                    .setColor(emb.errColor)
-                    .setAuthor(`YOUR VOICE CHANNEL IS FULL`, emb.disc.alert)
-                    .setFooter(client.user.username, client.user.displayAvatarURL())
-                ],
-                ephemeral: true
-            });
+            if (channel.userLimit != 0 && channel.full && !channel)
+                return interaction.reply({
+                    embeds: [new MessageEmbed()
+                        .setColor(emb.errColor)
+                        .setAuthor(`YOUR VOICE CHANNEL IS FULL`, emb.disc.alert)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                    ],
+                    ephemeral: true
+                });
 
             let newQueue = client.distube.getQueue(guildId);
             if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
@@ -82,38 +87,29 @@ module.exports = {
                 ephemeral: true
             });
 
-            try {
-                let queue = client.distube.getQueue(guildId)
-                let options = {
-                    member: member,
-                    unshift: true
-                }
-                if (!queue) options.textChannel = guild.channels.cache.get(channelId)
-                await client.distube.play(channel, Text, options)
+            if (!queue) options.textChannel = guild.channels.cache.get(channelId)
+            await client.distube.play(channel, Text, options)
 
-                //Edit the reply
-                interaction.editReply({
-                    embeds: [new MessageEmbed()
-                        .setAuthor(`SKIPPED TO SONG`, emb.disc.song.add)
-                        .setDescription(`Song: **${Text}**`)
-                    ],
-                    ephemeral: true
-                });
-            } catch (e) {
-                console.log(e.stack ? e.stack : e)
-                interaction.editReply({
-                    embeds: [new MessageEmbed()
-                        .setTimestamp()
-                        .setColor(emb.errColor)
-                        .setAuthor(`AN ERROR OCCURED`, emb.disc.error)
-                        .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ],
-                    ephemeral: true
-                })
-            }
+            //Edit the reply
+            interaction.editReply({
+                embeds: [new MessageEmbed()
+                    .setAuthor(`SKIPPED TO SONG`, emb.disc.song.add)
+                    .setDescription(`Song: **${Text}**`)
+                ],
+                ephemeral: true
+            });
         } catch (e) {
-            console.log(String(e.stack).bgRed)
+            console.log(e.stack ? e.stack.bgRed : e.bgRed)
+            interaction.editReply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(emb.errColor)
+                    .setAuthor(`AN ERROR OCCURED`, emb.disc.error)
+                    .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
+            })
             errDM(client, e)
         }
     }

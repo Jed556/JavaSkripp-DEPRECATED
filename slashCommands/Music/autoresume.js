@@ -72,9 +72,18 @@ module.exports = {
                     ],
                 })
             }
-
         } catch (e) {
-            console.log(String(e.stack).bgRed)
+            console.log(e.stack ? e.stack.bgRed : e.bgRed)
+            interaction.editReply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(emb.errColor)
+                    .setAuthor(`AN ERROR OCCURED`, emb.disc.error)
+                    .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
+            })
             errDM(client, e)
         }
     }

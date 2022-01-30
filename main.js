@@ -99,6 +99,7 @@ client.cooldowns = new Discord.Collection();
 client.slashCommands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.maintenance = false;
+client.fatalError = false;
 
 try { client.categories = require("fs").readdirSync(`./commands`) } catch { };
 try { client.slashCategories = require("fs").readdirSync(`./slashCommands`) } catch { };

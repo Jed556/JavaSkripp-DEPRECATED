@@ -35,6 +35,7 @@ module.exports = {
                 deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
             const { guild } = member;
             const { channel } = member.voice;
+            let newQueue = client.distube.getQueue(guildId);
 
             if (!channel || channel.guild.me.voice.channel.id != channel.id)
                 return interaction.reply({
@@ -56,81 +57,76 @@ module.exports = {
                     ephemeral: true
                 });
 
-            try {
-                let newQueue = client.distube.getQueue(guildId);
-                if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
-                    embeds: [new MessageEmbed()
-                        .setColor(emb.errColor)
-                        .setAuthor(`NOTHING PLAYING YET`, emb.disc.alert)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ],
-                    ephemeral: true
-                })
+            if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
+                embeds: [new MessageEmbed()
+                    .setColor(emb.errColor)
+                    .setAuthor(`NOTHING PLAYING YET`, emb.disc.alert)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
+            })
 
-                if (check_if_dj(client, member, newQueue.songs[0])) {
-                    return interaction.reply({
-                        embeds: [new MessageEmbed()
-                            .setTimestamp()
-                            .setColor(emb.errColor)
-                            .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
-                            .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
-                            .setFooter(client.user.username, client.user.displayAvatarURL())
-                        ],
-                        ephemeral: true
-                    });
-                }
-
-                let songIndex = options.getInteger("song");
-                let position = options.getInteger("where");
-                if (position >= newQueue.songs.length || position < 0) position = -1;
-                if (songIndex > newQueue.songs.length - 1) return interaction.reply({
+            if (check_if_dj(client, member, newQueue.songs[0])) {
+                return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(emb.errColor)
-                        .setAuthor(`SONG DOESN'T EXIST`, emb.disc.alert)
-                        .setDescription(`**LAST SONG'S INDEX: ${newQueue.songs.length}**`)
+                        .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
+                        .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ],
                     ephemeral: true
-                })
-                if (position == 0) return interaction.reply({
-                    embeds: [new MessageEmbed()
-                        .setTimestamp()
-                        .setColor(emb.errColor)
-                        .setAuthor(`CAN'T MOVE PLAYING SONG`, emb.disc.alert)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ],
-                    ephemeral: true
-                })
-                let song = newQueue.songs[songIndex];
-                //remove the song
-                newQueue.songs.splice(songIndex);
-                //Add it to a specific Position
-                newQueue.addToQueue(song, position)
-                interaction.reply({
-                    embeds: [new MessageEmbed()
-                        .setTimestamp()
-                        .setColor(emb.color)
-                        .setAuthor(`SONG MOVED`, emb.disc.stop)
-                        .setDescription(`**Moved ${song.name} to index ${position}\n(After ${newQueue.songs[position - 1].name})**`)
-                        .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
-                    ]
-                })
-            } catch (e) {
-                console.log(e.stack ? e.stack : e)
-                interaction.editReply({
-                    embeds: [new MessageEmbed()
-                        .setTimestamp()
-                        .setColor(emb.errColor)
-                        .setAuthor(`AN ERROR OCCURED`, emb.disc.error)
-                        .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ],
-                    ephemeral: true
-                })
+                });
             }
+
+            let songIndex = options.getInteger("song");
+            let position = options.getInteger("where");
+            if (position >= newQueue.songs.length || position < 0) position = -1;
+            if (songIndex > newQueue.songs.length - 1) return interaction.reply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(emb.errColor)
+                    .setAuthor(`SONG DOESN'T EXIST`, emb.disc.alert)
+                    .setDescription(`**LAST SONG'S INDEX: ${newQueue.songs.length}**`)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
+            })
+            if (position == 0) return interaction.reply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(emb.errColor)
+                    .setAuthor(`CAN'T MOVE PLAYING SONG`, emb.disc.alert)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
+            })
+            let song = newQueue.songs[songIndex];
+            //remove the song
+            newQueue.songs.splice(songIndex);
+            //Add it to a specific Position
+            newQueue.addToQueue(song, position)
+            interaction.reply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(emb.color)
+                    .setAuthor(`SONG MOVED`, emb.disc.stop)
+                    .setDescription(`**Moved ${song.name} to index ${position}\n(After ${newQueue.songs[position - 1].name})**`)
+                    .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
+                ]
+            })
         } catch (e) {
-            console.log(String(e.stack).bgRed)
+            console.log(e.stack ? e.stack.bgRed : e.bgRed)
+            interaction.editReply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(emb.errColor)
+                    .setAuthor(`AN ERROR OCCURED`, emb.disc.error)
+                    .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
+            })
             errDM(client, e)
         }
     }

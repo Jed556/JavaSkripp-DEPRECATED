@@ -28,6 +28,7 @@ module.exports = {
                 deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
             const { guild } = member;
             const { channel } = member.voice;
+            let newQueue = client.distube.getQueue(guildId);
 
             if (!channel || channel.guild.me.voice.channel.id != channel.id)
                 return interaction.reply({
@@ -49,86 +50,81 @@ module.exports = {
                     ephemeral: true
                 });
 
-            try {
-                let newQueue = client.distube.getQueue(guildId);
-                if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
-                    embeds: [new MessageEmbed()
-                        .setColor(emb.errColor)
-                        .setAuthor(`NOTHING PLAYING YET`, emb.disc.alert)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ],
-                    ephemeral: true
-                })
+            if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
+                embeds: [new MessageEmbed()
+                    .setColor(emb.errColor)
+                    .setAuthor(`NOTHING PLAYING YET`, emb.disc.alert)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
+            })
 
-                if (check_if_dj(client, member, newQueue.songs[0])) {
-                    return interaction.reply({
-                        embeds: [new MessageEmbed()
-                            .setTimestamp()
-                            .setColor(emb.errColor)
-                            .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
-                            .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
-                            .setFooter(client.user.username, client.user.displayAvatarURL())
-                        ],
-                        ephemeral: true
-                    });
-                }
-
-                let filters = options.getString("filters").toLowerCase().split(" ");
-                if (!filters) filters = [options.getString("filters").toLowerCase()]
-                if (filters.some(a => !FiltersSettings[a])) {
-                    return interaction.reply({
-                        embeds: [new MessageEmbed()
-                            .setColor(emb.errColor)
-                            .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.emoji.x} **You added at least one Filter, which is invalid!**`)
-                            .setDescription("**To define Multiple Filters add a SPACE (` `) in between!**")
-                            .addField("**All Valid Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
-                        ],
-                    })
-                }
-
-                let toAdded = [];
-                //add new filters
-                filters.forEach((f) => {
-                    if (!newQueue.filters.includes(f)) {
-                        toAdded.push(f)
-                    }
-                })
-                if (!toAdded || toAdded.length == 0) {
-                    return interaction.reply({
-                        embeds: [
-                            new MessageEmbed()
-                                .setColor(emb.errColor)
-                                .setFooter(client.user.username, client.user.displayAvatarURL())
-                                .setTitle(`${client.emoji.x} **You did not add a Filter, which is not in the Filters yet.**`)
-                                .addField("**All __current__ Filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
-                        ],
-                    })
-                }
-
-                await newQueue.setFilter(toAdded);
-                interaction.reply({
-                    embeds: [new MessageEmbed()
-                        .setColor(emb.color)
-                        .setTimestamp()
-                        .setTitle(`♨️ **Added ${toAdded.length} ${toAdded.length == filters.length ? "Filters" : `of ${filters.length} Filters! The Rest was already a part of the Filters!`}**`)
-                        .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
-                })
-            } catch (e) {
-                console.log(e.stack ? e.stack : e)
-                interaction.editReply({
+            if (check_if_dj(client, member, newQueue.songs[0])) {
+                return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(emb.errColor)
-                        .setAuthor(`AN ERROR OCCURED`, emb.disc.error)
-                        .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
+                        .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
+                        .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
                     ],
                     ephemeral: true
+                });
+            }
+
+            let filters = options.getString("filters").toLowerCase().split(" ");
+            if (!filters) filters = [options.getString("filters").toLowerCase()]
+            if (filters.some(a => !FiltersSettings[a])) {
+                return interaction.reply({
+                    embeds: [new MessageEmbed()
+                        .setColor(emb.errColor)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                        .setTitle(`${client.emoji.x} **You added at least one Filter, which is invalid!**`)
+                        .setDescription("**To define Multiple Filters add a SPACE (` `) in between!**")
+                        .addField("**All Valid Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
+                    ],
                 })
             }
+
+            let toAdded = [];
+            //add new filters
+            filters.forEach((f) => {
+                if (!newQueue.filters.includes(f)) {
+                    toAdded.push(f)
+                }
+            })
+            if (!toAdded || toAdded.length == 0) {
+                return interaction.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setColor(emb.errColor)
+                            .setFooter(client.user.username, client.user.displayAvatarURL())
+                            .setTitle(`${client.emoji.x} **You did not add a Filter, which is not in the Filters yet.**`)
+                            .addField("**All __current__ Filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
+                    ],
+                })
+            }
+
+            await newQueue.setFilter(toAdded);
+            interaction.reply({
+                embeds: [new MessageEmbed()
+                    .setColor(emb.color)
+                    .setTimestamp()
+                    .setTitle(`♨️ **Added ${toAdded.length} ${toAdded.length == filters.length ? "Filters" : `of ${filters.length} Filters! The Rest was already a part of the Filters!`}**`)
+                    .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
+            })
         } catch (e) {
-            console.log(String(e.stack).bgRed)
+            console.log(e.stack ? e.stack.bgRed : e.bgRed)
+            interaction.editReply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(emb.errColor)
+                    .setAuthor(`AN ERROR OCCURED`, emb.disc.error)
+                    .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
+            })
             errDM(client, e)
         }
     }

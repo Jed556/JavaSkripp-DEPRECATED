@@ -752,8 +752,13 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
     const report = new MessageEmbed()
         .setTimestamp()
         .setColor(emb.errColor)
-        .setAuthor("antiCrash.js", emb.alert)
+        .setAuthor("antiCrash.js", emb.error)
         .setFooter("Check logs for more details")
+
+    if (client.fatalError) {
+        report.setAuthor("antiCrash.js", emb.dead)
+        client.fatalError = false
+    }
 
     if (e) {
         return client.users.fetch(config.ownerID, false).then((user) => {
