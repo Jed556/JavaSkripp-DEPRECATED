@@ -64,6 +64,8 @@ module.exports = {
                 }
 
                 let volume = options.getInteger("volume")
+                let oldVolume = newQueue.volume
+
                 if (volume > 150 || volume < 0) return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
@@ -75,12 +77,22 @@ module.exports = {
                     ephemeral: true
                 })
 
+                if (volume == oldVolume) return interaction.reply({
+                    embeds: [new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(emb.errColor)
+                        .setAuthor(`VOLUME IS ALREADY SET TO ${volume}}`, emb.disc.alert)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                    ],
+                    ephemeral: true
+                })
+
                 await newQueue.setVolume(volume);
                 interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
                         .setColor(emb.color)
-                        .setAuthor(`CHANGED VOLUME TO ${volume}`, emb.disc.volume)
+                        .setAuthor(`${(oldVolume > volume) ? "INCREASED" : "DECREASED"} VOLUME TO ${volume}`, emb.disc.volume)
                         .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
                     ]
                 })

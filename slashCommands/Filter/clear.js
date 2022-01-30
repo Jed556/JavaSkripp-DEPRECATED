@@ -23,7 +23,7 @@ module.exports = {
             if (!channel) return interaction.reply({
                 embeds: [new MessageEmbed()
                     .setColor(emb.errColor)
-                    .setAuthor(`Join ${guild.me.voice.channel ? "__my__" : "a"} VoiceChannel First!`, emb.discAlert)
+                    .setAuthor(`JOIN ${guild.me.voice.channel ? "MY" : "A"} VOICE CHANNEL FIRST!`, emb.disc.alert)
                 ],
                 ephemeral: true
             })
@@ -33,7 +33,7 @@ module.exports = {
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setAuthor(`Join __my__ Voice Channel!`, emb.discAlert)
+                        .setAuthor(`JOIN MY VOICE CHANNEL!`, emb.disc.alert)
                         .setDescription(`<#${guild.me.voice.channel.id}>`)
                     ],
                     ephemeral: true
@@ -45,7 +45,8 @@ module.exports = {
                 if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
-                        .setAuthor(`Nothing playing right now`, emb.discAlert)
+                        .setAuthor(`QUEUE EMPTY`, emb.disc.alert)
+                        .setDescription(`**Nothing playing right now**`)
                     ],
                     ephemeral: true
                 })

@@ -75,8 +75,11 @@ module.exports = {
                 let seekNumber = options.getInteger("seconds")
                 if (seekNumber > newQueue.songs[0].duration || seekNumber < 0) return interaction.reply({
                     embeds: [new MessageEmbed()
+                        .setTimestamp()
                         .setColor(emb.errColor)
-                        .setTitle(`${client.emoji.x} **The Seek Position must be between \`0\` and \`${newQueue.songs[0].duration}\`!**`)
+                        .setAuthor(`POSITION EXCEEDS SONG DURATION`, emb.disc.alert)
+                        .setTitle(`**Seek position must be between 0 and ${newQueue.songs[0].duration}**`)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ],
                     ephemeral: true
                 })

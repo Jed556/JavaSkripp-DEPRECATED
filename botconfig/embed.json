@@ -54,7 +54,8 @@
         "forward": "https://i.imgur.com/8jIV4ZC.png",
         "skip": "https://i.imgur.com/l0oYRaS.png",
         "previous": "https://i.imgur.com/30dIeYm.png",
-        "jump": "",
+        "jump": "https://i.imgur.com/etAHsKp.png",
+        "clear": "https://i.imgur.com/FUAH1oj.png",
         "seek": "https://i.imgur.com/toQCtdP.png",
         "loop": {
             "song": "https://i.imgur.com/OfbPtmg.png",
@@ -71,7 +72,7 @@
             "add": "",
             "remove": ""
         },
-        "mix": "",
+        "mix": "https://i.imgur.com/12EpQJt.png",
         "list": "https://i.imgur.com/PrdAdtn.png",
         "move": "https://i.imgur.com/VsVJwM5.png",
         "grab": "https://i.imgur.com/U2bOFZq.png",
@@ -82,7 +83,7 @@
         },
         "volume": "https://i.imgur.com/DB1y2Wm.png",
         "settings": "https://i.imgur.com/3yQ3Pc9.png",
-        "dj": ""
+        "dj": "https://i.imgur.com/zPR9EXl.png"
     },
     "email": "jguiriba11@gmail.com",
     "invite": "https://tinyurl.com/JavaSkripp",

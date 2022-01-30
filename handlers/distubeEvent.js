@@ -142,6 +142,7 @@ module.exports = (client) => {
                 }
                 try {
                     var newQueue = client.distube.getQueue(queue.id)
+                    var oldLoop = newQueue.repeatMode
                     updateMusicSystem(newQueue);
                     var data = receiveQueueData(newQueue, track)
                     if (queue.textChannel.id === client.settings.get(queue.id, `music.channel`)) return;
@@ -609,7 +610,7 @@ module.exports = (client) => {
                                 await newQueue.setRepeatMode(1)
                                 i.reply({
                                     embeds: [successEmb
-                                        .setAuthor(`ENABLED SONG LOOP`, emb.disc.loop.song)
+                                        .setAuthor(`${oldLoop == 0 ? "ENABLED SONG" : "DISABLED QUEUE LOOP & ENABLED SONG"} LOOP`, emb.disc.loop.song)
                                     ]
                                 }).then(interaction => {
                                     if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
@@ -673,7 +674,7 @@ module.exports = (client) => {
                                 await newQueue.setRepeatMode(2)
                                 i.reply({
                                     embeds: [successEmb
-                                        .setAuthor(`ENABLED QUEUE LOOP`, emb.disc.loop.queue)
+                                        .setAuthor(`${oldLoop == 0 ? "ENABLED QUEUE" : "DISABLED SONG LOOP & ENABLED QUEUE"} LOOP`, emb.disc.loop.queue)
                                     ]
                                 }).then(interaction => {
                                     if (newQueue.textChannel.id === client.settings.get(newQueue.id, `music.channel`)) {
@@ -1078,108 +1079,7 @@ module.exports = (client) => {
         console.log(String(e.stack).bgRed)
         errDM(client, e)
     }
-
-    //for the music system requesting songs
-    client.on(`messageCreate`, async (message) => {
-        if (!message.guild) return;
-        client.settings.ensure(message.guild.id, {
-            prefix: config.prefix,
-            music: {
-                channel: "",
-                message: "",
-            }
-        })
-        let data = client.settings.get(message.guild.id, `music`);
-        if (!data.channel || data.channel.length < 5) return;
-        let textChannel = message.guild.channels.cache.get(data.channel) || await message.guild.channels.fetch(data.channel).catch(() => { }) || false;
-        if (!textChannel) {
-            client.settings.set(message.guild.id, "", "music.channel");
-            client.settings.set(message.guild.id, "", "music.message");
-            return;
-        }
-        if (message.channel.id != textChannel.id) return;
-        //Delete the message once it got sent into the channel, bot messages after 5 seconds, user messages instantly!
-        if (message.author.id === client.user.id) {
-            setTimeout(() => {
-                if (!message.deleted) {
-                    message.delete().catch((e) => {
-                        console.log(e)
-                    })
-                }
-            }, 3000)
-        } else {
-            if (!message.deleted) {
-                message.delete().catch((e) => {
-                    console.log(e)
-                })
-            }
-        }
-        if (message.author.bot) return;
-        var prefix = client.settings.get(message.guild.id, `prefix`);
-        const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(prefix)})\\s*`); //the prefix can be a Mention of the Bot / The defined Prefix of the Bot
-        var args, cmd;
-        if (prefixRegex.test(message.content)) {
-            //if there is a attached prefix try executing a cmd!
-            const [, matchedPrefix] = message.content.match(prefixRegex); //now define the right prefix either ping or not ping
-            args = message.content.slice(matchedPrefix.length).trim().split(/ +/); //create the arguments with sliceing of of the rightprefix length
-            cmd = args.shift().toLowerCase(); //creating the cmd argument by shifting the args by 1
-            if (cmd || cmd.length === 0) return
-
-            var command = client.commands.get(cmd); //get the command from the collection
-            if (!command) command = client.commands.get(client.aliases.get(cmd)); //if the command does not exist, try to get it by his alias
-            if (command) //if the command is now valid
-            {
-                return
-            }
-        }
-        args = message.content.split(` `);
-        const {
-            channel
-        } = message.member.voice;
-        if (!channel) return message.reply({
-            embeds: [
-                new MessageEmbed().setColor(ee.wrongcolor).setTitle(`${client.allEmojis.x} **Please join ${guild.me.voice.channel ? `__my__` : `a`} VoiceChannel First!**`)
-            ],
-        })
-        if (channel.userLimit != 0 && channel.full)
-            return message.reply({
-                embeds: [new MessageEmbed()
-                    .setColor(ee.wrongcolor)
-                    .setFooter(ee.footertext, ee.footericon)
-                    .setTitle(`${client.allEmojis.x} Your Voice Channel is full, I can't join!`)
-                ],
-            });
-        if (channel.guild.me.voice.channel && channel.guild.me.voice.channel.id != channel.id) {
-            return message.reply({
-                embeds: [new MessageEmbed()
-                    .setColor(ee.wrongcolor)
-                    .setFooter(ee.footertext, ee.footericon)
-                    .setTitle(`${client.allEmojis.x} I am already connected somewhere else`)
-                ],
-            });
-        }
-        const Text = args.join(` `) //same as in StringChoices //RETURNS STRING 
-
-        try {
-            let queue = client.distube.getQueue(message.guild.id)
-            let options = {
-                member: message.member,
-            }
-            if (!queue) options.textChannel = message.guild.channels.cache.get(message.channel.id)
-            await client.distube.play(channel, Text, options)
-
-        } catch (e) {
-            console.log(e.stack ? e.stack : e)
-            message.reply({
-                content: `${client.allEmojis.x} | Error: `,
-                embeds: [
-                    new MessageEmbed().setColor(ee.wrongcolor)
-                        .setDescription(`\`\`\`${String(e.message ? e.message : e).substr(0, 2000)}\`\`\``)
-                ],
-            })
-        }
-
-    })
+   
     //for the music system interaction buttonjs and meu
     client.on(`interactionCreate`, async (interaction) => {
         if (!interaction.isButton() && !interaction.isSelectMenu()) return;
@@ -1739,7 +1639,7 @@ module.exports = (client) => {
         let queueloop = new MessageButton().setStyle('SUCCESS').setCustomId('8').setEmoji(`🔁`).setLabel(`Queue`)
         let rewind = new MessageButton().setStyle('PRIMARY').setCustomId('9').setEmoji('⏪').setLabel(`-10 Sec`)
         let forward = new MessageButton().setStyle('PRIMARY').setCustomId('10').setEmoji('⏩').setLabel(`+10 Sec`)
-        let lyrics = new MessageButton().setStyle('PRIMARY').setCustomId('11').setEmoji('📝').setLabel(`Lyrics`).setDisabled();
+
         if (newQueue.songs.length == 0) {
             skip = skip.setDisabled();
         } else {
@@ -1786,11 +1686,3 @@ module.exports = (client) => {
         };
     }
 };
-
-function escapeRegex(str) {
-    try {
-        return str.replace(/[.*+?^${}()|[\]\\]/g, `\\$&`);
-    } catch {
-        return str
-    }
-}
