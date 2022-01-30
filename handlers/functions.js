@@ -752,7 +752,7 @@ function errDM(client, error, type, reason, promise, err, origin, monitor, e) {
     const report = new MessageEmbed()
         .setTimestamp()
         .setColor(emb.errColor)
-        .setAuthor("antiCrash.js", client.user.displayAvatarURL())
+        .setAuthor("antiCrash.js", emb.alert)
         .setFooter("Check logs for more details")
 
     if (e) {

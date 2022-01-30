@@ -90,7 +90,7 @@ module.exports = {
                         .setTimestamp()
                         .setColor(emb.color)
                         .setAuthor(`JUMPED TO SONG`, emb.disc.jump)
-                        .setDescription(`**INDEX: ${Position}**`)
+                        .setDescription(`**Index: ${Position}**`)
                         .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
                     ]
                 })

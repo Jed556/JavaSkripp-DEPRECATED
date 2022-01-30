@@ -20,6 +20,8 @@
     "loading3": "",
     "cooldown": "",
     "noPermission": "",
+    "noRole": "",
+    "invalidUser": "",
     "syntaxCheck": "Icon for syntaxCheck",
     "ping": "",
     "guilds": "",

@@ -1,14 +1,15 @@
 const config = require("../../botconfig/config.json");
 const emb = require("../../botconfig/embed.json");
 const { onCoolDown } = require("../../handlers/functions");
-const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js")
+
 module.exports = (client, interaction) => {
     if (client.maintenance && interaction.user.id != config.ownerID) {
         return interaction.reply({
             embeds: [new MessageEmbed()
                 .setTimestamp()
-                .setColor(emb.color)
-                .setTitle("UNDER MAINTENANCE")
+                .setColor(emb.errColor)
+                .setAuthor("UNDER MAINTENANCE", emb.maintenance.on)
                 .setDescription("JavaSkripp will be back ASAP!")
                 .setFooter(client.user.username, client.user.displayAvatarURL())
             ],
@@ -45,13 +46,13 @@ module.exports = (client, interaction) => {
         if (botchannels.length > 0) {
             if (!botchannels.includes(interaction.channelId) && !interaction.member.permissions.has("ADMINISTRATOR")) {
                 return interaction.reply({
-                    ephemeral: true,
-                    embeds: [new Discord.MessageEmbed()
+                    embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.emoji.x} **Executing command is restricted here!**`)
-                        .setDescription(`Execute it in:\n> ${botchannels.map(c => `<#${c}>`).join(", ")}`)
-                    ]
+                        .setAuthor(`COMMANDS ARE DISABLED IN THIS CHANNEL`, emb.alert)
+                        .setDescription(`**Execute it in:\n> ${botchannels.map(c => `<#${c}>`).join(", ")}**`)
+                    ],
+                    ephemeral: true
                 })
             }
         }
@@ -59,50 +60,57 @@ module.exports = (client, interaction) => {
         if (onCoolDown(interaction, command)) {
             const timeLeft = onCoolDown(interaction, command);
             return interaction.reply({
-                ephemeral: true,
-                embeds: [new Discord.MessageEmbed()
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
                     .setColor(emb.errColor)
-                    .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setAuthor("Cooldown")
-                    .addField("Time Left", `${(timeLeft > 1 || timeLeft < 1) ? `${timeLeft} secs` : `${timeLeft} sec`}`)
+                    .setAuthor("Cooldown", emb.cooldown)
+                    .addField("Time Left", `${timeLeft} sec${(timeLeft != 1) ? "s" : ""}`)
                     .addField("Command", command)
-                ]
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
             })
         };
 
         //if Command has specific permission return error
         if (command.memberpermissions && command.memberpermissions.length > 0 && !interaction.member.permissions.has(command.memberpermissions)) {
             return interaction.reply({
-                ephemeral: true, embeds: [new Discord.MessageEmbed()
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
                     .setColor(emb.errColor)
-                    .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setAuthor("Invalid Permission")
+                    .setAuthor("Invalid Permission", emb.noPermission)
                     .addField("Required Permissions", `${(command && command.memberpermissions) ? command.memberpermissions.map(v => `\`${v}\``).join(",") : command.memberpermissions}`)
-                ]
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
             })
         };
 
         //if Command has specific needed roles return error
         if (command.requiredroles && command.requiredroles.length > 0 && interaction.member.roles.cache.size > 0 && !interaction.member.roles.cache.some(r => command.requiredroles.includes(r.id))) {
             return interaction.reply({
-                ephemeral: true, embeds: [new Discord.MessageEmbed()
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
                     .setColor(emb.errColor)
-                    .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setAuthor("Invalid Role")
+                    .setAuthor("Invalid Role", emb.noRole)
                     .addField("Required Roles", `${(command && command.requiredroles) ? command.requiredroles.map(v => `<@&${v}>`).join(",") : command.requiredroles}`)
-                ]
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
             })
         }
 
         //if Command has specific users return error
         if (command.alloweduserids && command.alloweduserids.length > 0 && !command.alloweduserids.includes(interaction.member.id)) {
             return interaction.reply({
-                ephemeral: true, embeds: [new Discord.MessageEmbed()
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
                     .setColor(emb.errColor)
-                    .setFooter(client.user.username, client.user.displayAvatarURL())
-                    .setAuthor("Invalid User")
+                    .setAuthor("Invalid User", emb.invalidUser)
                     .addField("Allowed Users", `${(command && command.alloweduserids) ? command.alloweduserids.map(v => `<@${v}>`).join(",") : command.alloweduserids}`)
-                ]
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
+                ],
+                ephemeral: true
             })
         }
 

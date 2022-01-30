@@ -11,8 +11,8 @@ module.exports = (client, interaction) => {
             embeds: [
                 new Discord.MessageEmbed()
                     .setColor(emb.errColor)
-                    .setFooter(client.user.username, client.user.displayAvatarURL())
                     .setDescription(`**HEY! You can't execute commands in a DM.**`)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
             ]
         }), console.log(`[${interaction.user.tag}] Command: /${CategoryName} ${SubCommand}`)]
 

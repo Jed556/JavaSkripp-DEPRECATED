@@ -29,20 +29,22 @@ module.exports = async (client) => {
                 for (let file of cmd) check.push(file);
             }
         })
+        let log = new MessageEmbed()
+            .setTimestamp()
+            .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
+            .addField("🤖 Node", `\`${process.version}\``, true)
+            .addField("\u200b", `\u200b`, true)
+            .addField("💻 Platform", `\`${os.platform()}\` \`${os.arch()}\``, true)
+            .addField(`⚙ Loaded`, `\`${client.slashCommands.size}/${check.length} Commands\``, true)
+            .addField("\u200b", `\u200b`, true)
+            .setFooter(client.user.username, client.user.displayAvatarURL())
+
         if (client.slashCommands.size < check.length) {
             client.users.fetch(config.ownerID, false).then((user) => {
                 user.send({
-                    embeds: [new MessageEmbed()
-                        .setTimestamp()
+                    embeds: [log
                         .setColor(emb.errColor)
                         .setTitle(`${client.user.username} | Load Error`)
-                        .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
-                        .addField("🤖 Node", `\`${process.version}\``, true)
-                        .addField("\u200b", `\u200b`, true)
-                        .addField("💻 Platform", `\`${os.platform()}\` \`${os.arch()}\``, true)
-                        .addField(`⚙ Loaded`, `\`${client.slashCommands.size}/${check.length} Commands\``, true)
-                        .addField("\u200b", `\u200b`, true)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
             });
@@ -50,17 +52,9 @@ module.exports = async (client) => {
         } else {
             client.users.fetch(config.ownerID, false).then((user) => {
                 user.send({
-                    embeds: [new MessageEmbed()
-                        .setTimestamp()
+                    embeds: [log
                         .setColor(emb.okColor)
                         .setTitle(`${client.user.username} Online!`)
-                        .addField("👾 Discord.js", `\`v${Discord.version}\``, true)
-                        .addField("🤖 Node", `\`${process.version}\``, true)
-                        .addField("\u200b", `\u200b`, true)
-                        .addField("💻 Platform", `\`${os.platform()}\` \`${os.arch()}\``, true)
-                        .addField(`⚙ Loaded`, `\`${client.slashCommands.size} Commands\``, true)
-                        .addField("\u200b", `\u200b`, true)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 });
             });
