@@ -71,8 +71,10 @@
             "off": "https://i.imgur.com/LkiwHd8.png"
         },
         "filter": {
-            "add": "",
-            "remove": ""
+            "add": "https://i.imgur.com/r8pwNY3.png",
+            "remove": "https://i.imgur.com/JZUMYbh.png",
+            "set": "https://i.imgur.com/ErWrqSv.png",
+            "clear": "https://i.imgur.com/gIUifCM.png"
         },
         "mix": "https://i.imgur.com/12EpQJt.png",
         "list": "https://i.imgur.com/PrdAdtn.png",
@@ -80,8 +82,8 @@
         "grab": "https://i.imgur.com/U2bOFZq.png",
         "playing": "",
         "autoresume": {
-            "on": "",
-            "off": ""
+            "on": "https://i.imgur.com/5yrHWnf.png",
+            "off": "https://i.imgur.com/fyfHXBV.png"
         },
         "volume": "https://i.imgur.com/DB1y2Wm.png",
         "settings": "https://i.imgur.com/3yQ3Pc9.png",

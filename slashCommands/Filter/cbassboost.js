@@ -76,9 +76,10 @@ module.exports = {
             if (bass_gain > 20 || bass_gain < 0) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
+                        .setTimestamp()
                         .setColor(emb.errColor)
+                        .setTitle(`BASSBOOST GAIN MUST BE BETWEEN 0 AND 20`, emb.disc.alert)
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.emoji.x} **The Bassboost Gain must be between 0 and 20!**`)
                     ],
                 })
             }
@@ -94,9 +95,9 @@ module.exports = {
             await newQueue.setFilter(["custombassboost"]);
             interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(emb.color)
                     .setTimestamp()
-                    .setTitle(`♨️ **Set a Bassboost to ${bass_gain}!**`)
+                    .setColor(emb.color)
+                    .setAuthor(`BASSBOOST SET TO ${bass_gain}`, emb.disc.filter.set)
                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
             })
         } catch (e) {

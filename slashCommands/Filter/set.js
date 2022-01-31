@@ -78,10 +78,10 @@ module.exports = {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
+                        .setAuthor(`SPECIFIED FILTER IS INVALID`, emb.disc.alert)
+                        .setDescription("**Add a SPACE (` `) in between to define multiple filters**")
+                        .addField("**All Valid Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom are having there own command, please use them to define what custom amount u want*")
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.emoji.x} **You added at least one Filter, which is invalid!**`)
-                        .setDescription("**To define Multiple Filters add a SPACE (` `) in between!**")
-                        .addField("**All Valid Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom are having there own Command, please use them to define what custom amount u want!*")
                     ],
                 })
             }
@@ -108,9 +108,9 @@ module.exports = {
             await newQueue.setFilter(filters);
             interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(emb.color)
                     .setTimestamp()
-                    .setTitle(`♨️ **Set ${amount} Filters!**`)
+                    .setColor(emb.color)
+                    .setAuthor(`SET ${amount} FILTERS`, emb.disc.filter.set)
                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
             })
         } catch (e) {

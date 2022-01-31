@@ -95,9 +95,9 @@ module.exports = {
             await newQueue.setFilter(["customspeed"]);
             interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(emb.color)
                     .setTimestamp()
-                    .setTitle(`♨️ **Set the Speed to ${speed_amount}!**`)
+                    .setColor(emb.color)
+                    .setAuthor(`SPEED SET TO ${speed_amount}`, emb.disc.filter.set)
                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
             })
         } catch (e) {

@@ -74,7 +74,7 @@ module.exports = {
             await newQueue.addRelatedSong();
             await interaction.editReply({
                 embeds: [new MessageEmbed()
-                    .setAuthor(`SONG ADDED TO QUEUE`, emb.disc.song.add)
+                    .setAuthor(`RELATED SONG ADDED TO QUEUE`, emb.disc.song.add)
                     .setDescription(`Song: **${newQueue.songs[newQueue.songs.length - 1].name}**`)
                 ],
                 ephemeral: true

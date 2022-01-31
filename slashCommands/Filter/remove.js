@@ -76,19 +76,18 @@ module.exports = {
             if (!filters) filters = [options.getString("filters").toLowerCase()]
             if (filters.some(a => !FiltersSettings[a])) {
                 return interaction.reply({
-                    embeds: [
-                        new MessageEmbed()
-                            .setColor(emb.errColor)
-                            .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.emoji.x} **You added at least one Filter, which is invalid!**`)
-                            .setDescription("**To define Multiple Filters add a SPACE (` `) in between!**")
-                            .addField("**All Valid Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom are having there own Command, please use them to define what custom amount u want!*")
+                    embeds: [new MessageEmbed()
+                        .setColor(emb.errColor)
+                        .setAuthor(`SPECIFIED FILTER IS INVALID`, emb.disc.alert)
+                        .setDescription("**Add a SPACE (` `) in between to define multiple filters**")
+                        .addField("**All Valid Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom are having there own command, please use them to define what custom amount u want*")
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ],
                 })
             }
 
             let toRemove = [];
-            //add new filters    bassboost, clear    --> [clear] -> [bassboost]   
+            //add new filters    bassboost, clear    --> [clear] -> [bassboost]
             filters.forEach((f) => {
                 if (newQueue.filters.includes(f)) {
                     toRemove.push(f)
@@ -99,9 +98,9 @@ module.exports = {
                     embeds: [
                         new MessageEmbed()
                             .setColor(emb.errColor)
+                            .setAuthor(`NO FILTER SPECIFIED`, emb.disc.alert)
+                            .addField("**All __current__ filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.emoji.x} **You did not add a Filter, which is in the Filters.**`)
-                            .addField("**All __current__ Filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
                     ],
                 })
             }
@@ -109,9 +108,9 @@ module.exports = {
             await newQueue.setFilter(toRemove);
             interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(emb.color)
                     .setTimestamp()
-                    .setTitle(`♨️ **Removed ${toRemove.length} ${toRemove.length == filters.length ? "Filters" : `of ${filters.length} Filters! The Rest wasn't a part of the Filters yet!`}**`)
+                    .setColor(emb.color)
+                    .setTitle(`REMOVED ${toRemove.length} ${toRemove.length == filters.length ? "FILTERS" : `OF ${filters.length} FILTERS`}`, emb.disc.filter.remove)
                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
             })
         } catch (e) {

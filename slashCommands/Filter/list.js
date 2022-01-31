@@ -21,31 +21,31 @@ module.exports = {
             let newQueue = client.distube.getQueue(guildId);
 
             if (!newQueue || !newQueue.songs || newQueue.songs.length == 0) return interaction.reply({
-                embeds: [
-                    new MessageEmbed()
+                embeds: [new MessageEmbed()
                         .setColor(emb.color)
+                        .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own command to define a custom amount*")
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
                 ],
                 ephemeral: true
             })
 
             return interaction.reply({
-                embeds: [
-                    new MessageEmbed()
+                embeds: [new MessageEmbed()
                         .setColor(emb.color)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
+                        .addField("**All available Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own command to define a custom amount*")
                         .addField("**All __current__ Filters:**", newQueue.filters && newQueue.filters.length > 0 ? newQueue.filters.map(f => `\`${f}\``).join(", ") : `None`)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                 ],
             })
         } catch (e) {
-            console.log(e.stack ? e.stack : e)
+            console.log(e.stack ? e.stack.bgRed : e.bgRed)
             interaction.editReply({
-                content: `${client.emoji.x} | Error: `,
                 embeds: [new MessageEmbed()
+                    .setTimestamp()
                     .setColor(emb.errColor)
-                    .setDescription(`\`\`\`${e}\`\`\``)
+                    .setAuthor(`AN ERROR OCCURED`, emb.disc.error)
+                    .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
+                    .setFooter(client.user.username, client.user.displayAvatarURL())
                 ],
                 ephemeral: true
             })

@@ -78,10 +78,10 @@ module.exports = {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
+                        .setAuthor(`SPECIFIED FILTER IS INVALID`, emb.disc.alert)
+                        .setDescription("**Add a SPACE (` `) in between to define multiple filters**")
+                        .addField("**All Valid Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom are having there own command, please use them to define what custom amount u want*")
                         .setFooter(client.user.username, client.user.displayAvatarURL())
-                        .setTitle(`${client.emoji.x} **You added at least one Filter, which is invalid!**`)
-                        .setDescription("**To define Multiple Filters add a SPACE (` `) in between!**")
-                        .addField("**All Valid Filters:**", Object.keys(FiltersSettings).map(f => `\`${f}\``).join(", ") + "\n\n**Note:**\n> *All filters, starting with custom have their own Command to define a custom amount*")
                     ],
                 })
             }
@@ -98,9 +98,9 @@ module.exports = {
                     embeds: [
                         new MessageEmbed()
                             .setColor(emb.errColor)
+                            .setAuthor(`NO FILTER SPECIFIED`, emb.disc.alert)
+                            .addField("**All __current__ filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
                             .setFooter(client.user.username, client.user.displayAvatarURL())
-                            .setTitle(`${client.emoji.x} **You did not add a Filter, which is not in the Filters yet.**`)
-                            .addField("**All __current__ Filters:**", newQueue.filters.map(f => `\`${f}\``).join(", "))
                     ],
                 })
             }
@@ -108,9 +108,9 @@ module.exports = {
             await newQueue.setFilter(toAdded);
             interaction.reply({
                 embeds: [new MessageEmbed()
-                    .setColor(emb.color)
                     .setTimestamp()
-                    .setTitle(`♨️ **Added ${toAdded.length} ${toAdded.length == filters.length ? "Filters" : `of ${filters.length} Filters! The Rest was already a part of the Filters!`}**`)
+                    .setColor(emb.color)
+                    .setAuthor(`ADDED ${toRemove.length} ${toRemove.length == filters.length ? "FILTERS" : `OF ${filters.length} FILTERS`}`, emb.disc.filter.remove)
                     .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))]
             })
         } catch (e) {

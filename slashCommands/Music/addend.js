@@ -63,6 +63,16 @@ module.exports = {
             }
 
             await client.distube.play(channel, newQueue.songs[0].url)
+            interaction.reply({
+                embeds: [new MessageEmbed()
+                    .setTimestamp()
+                    .setColor(emb.color)
+                    .setAuthor(`SONG ADDED TO END`, emb.disc.song.add)
+                    .setDescription(`**Song: ${newQueue.songs[newQueue.songs.length - 1].name}**`)
+                    .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
+                ],
+                ephemeral: true
+            });
         } catch (e) {
             console.log(e.stack ? e.stack.bgRed : e.bgRed)
             interaction.editReply({
