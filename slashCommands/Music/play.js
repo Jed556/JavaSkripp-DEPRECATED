@@ -49,7 +49,7 @@ module.exports = {
                     ephemeral: true
                 });
 
-            if (newQueue.songs) {
+            try {
                 if (check_if_dj(client, member, newQueue.songs[0])) {
                     return interaction.reply({
                         embeds: [new MessageEmbed()
@@ -62,7 +62,8 @@ module.exports = {
                         ephemeral: true
                     });
                 }
-            }
+            } catch { }
+
             const Text = options.getString("song");
             //update it without a response!
             await interaction.reply({
