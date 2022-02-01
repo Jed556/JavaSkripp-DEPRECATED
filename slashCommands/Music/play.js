@@ -49,19 +49,20 @@ module.exports = {
                     ephemeral: true
                 });
 
-            if (newQueue.songs && check_if_dj(client, member, newQueue.songs[0])) {
-                return interaction.reply({
-                    embeds: [new MessageEmbed()
-                        .setTimestamp()
-                        .setColor(emb.errColor)
-                        .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
-                        .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ],
-                    ephemeral: true
-                });
+            if (newQueue.songs) {
+                if (check_if_dj(client, member, newQueue.songs[0])) {
+                    return interaction.reply({
+                        embeds: [new MessageEmbed()
+                            .setTimestamp()
+                            .setColor(emb.errColor)
+                            .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
+                            .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
+                            .setFooter(client.user.username, client.user.displayAvatarURL())
+                        ],
+                        ephemeral: true
+                    });
+                }
             }
-
             const Text = options.getString("song");
             //update it without a response!
             await interaction.reply({
