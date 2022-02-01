@@ -147,7 +147,7 @@ module.exports = (client) => {
 
                     collector.on('collect', async i => {
                         //get the channel instances from the i
-                        let { member } = i;
+                        let { member, guild } = i;
                         const { channel } = member.voice
 
                         // ---------------------------------------- GLOBAL EMBEDS ---------------------------------------- //
