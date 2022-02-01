@@ -45,11 +45,11 @@ module.exports = {
             const { guild } = member;
             const { channel } = member.voice;
 
-            if (!channel || channel.guild.me.voice.channel.id != channel.id)
+            if (!channel && channel.guild.me.voice.channel.id != channel.id)
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
-                        .setAuthor(`JOIN ${guild.me.voice.channel ? "MY" : "A"} VOICE CHANNEL FIRST!`, emb.disc.alert)
+                        .setAuthor(`JOIN ${channel.guild.me.voice.channel ? "MY" : "A"} VOICE CHANNEL FIRST!`, emb.disc.alert)
                         .setDescription(channel.id ? `**Channel: <#${channel.id}>**` : "")
                     ],
                     ephemeral: true

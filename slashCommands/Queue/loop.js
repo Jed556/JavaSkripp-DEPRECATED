@@ -34,11 +34,11 @@ module.exports = {
             const { channel } = member.voice;
             let newQueue = client.distube.getQueue(guildId);
 
-            if (!channel || channel.guild.me.voice.channel.id != channel.id)
+            if (!channel && channel.guild.me.voice.channel.id != channel.id)
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
-                        .setAuthor(`JOIN ${guild.me.voice.channel ? "MY" : "A"} VOICE CHANNEL FIRST!`, emb.disc.alert)
+                        .setAuthor(`JOIN ${channel.guild.me.voice.channel ? "MY" : "A"} VOICE CHANNEL FIRST!`, emb.disc.alert)
                         .setDescription(channel.id ? `**Channel: <#${channel.id}>**` : "")
                     ],
                     ephemeral: true
