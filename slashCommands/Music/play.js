@@ -49,7 +49,7 @@ module.exports = {
                     ephemeral: true
                 });
 
-            if (check_if_dj(client, member, newQueue.songs[0])) {
+            if (newQueue.songs && check_if_dj(client, member, newQueue.songs[0])) {
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setTimestamp()
