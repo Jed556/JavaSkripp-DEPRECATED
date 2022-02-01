@@ -9,36 +9,6 @@ const PlayerMap = new Map()
 let songEditInterval = null;
 
 module.exports = (client) => {
-
-    // ---------------------------------------- GLOBAL EMBEDS ---------------------------------------- //
-    const joinAlert = new MessageEmbed()
-        .setTimestamp()
-        .setColor(emb.errColor)
-        .setAuthor(`JOIN ${guild.me.voice.channel ? "MY" : "A"} VOICE CHANNEL FIRST!`, emb.disc.alert)
-        .setDescription(channel.id ? `**Channel: <#${channel.id}>**` : "")
-
-    const djAlert = new MessageEmbed()
-        .setTimestamp()
-        .setColor(emb.errColor)
-        .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
-        .setDescription(`**DJ-ROLES:**\n${check_if_dj(client, i.member, client.distube.getQueue(i.guild.id).songs[0])}`)
-
-    const noPLayerAlert = new MessageEmbed()
-        .setTimestamp()
-        .setColor(emb.errColor)
-        .setAuthor(`NOTHING PLAYING YET`, emb.disc.alert)
-        .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
-
-    const errorEmb = new MessageEmbed()
-        .setTimestamp()
-        .setColor(emb.errColor)
-        .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
-
-    const successEmb = new MessageEmbed()
-        .setTimestamp()
-        .setColor(emb.color)
-        .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
-
     try {
         // AUTO-RESUME-FUNCTION
         const autoconnect = async () => {
@@ -176,10 +146,39 @@ module.exports = (client) => {
                     }, 10000)
 
                     collector.on('collect', async i => {
-
                         //get the channel instances from the i
                         let { member } = i;
                         const { channel } = member.voice
+
+                        // ---------------------------------------- GLOBAL EMBEDS ---------------------------------------- //
+                        const joinAlert = new MessageEmbed()
+                            .setTimestamp()
+                            .setColor(emb.errColor)
+                            .setAuthor(`JOIN ${guild.me.voice.channel ? "MY" : "A"} VOICE CHANNEL FIRST!`, emb.disc.alert)
+                            .setDescription(channel.id ? `**Channel: <#${channel.id}>**` : "")
+
+                        const djAlert = new MessageEmbed()
+                            .setTimestamp()
+                            .setColor(emb.errColor)
+                            .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
+                            .setDescription(`**DJ-ROLES:**\n${check_if_dj(client, member, client.distube.getQueue(i.guild.id).songs[0])}`)
+
+                        const noPLayerAlert = new MessageEmbed()
+                            .setTimestamp()
+                            .setColor(emb.errColor)
+                            .setAuthor(`NOTHING PLAYING YET`, emb.disc.alert)
+                            .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
+
+                        const errorEmb = new MessageEmbed()
+                            .setTimestamp()
+                            .setColor(emb.errColor)
+                            .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
+
+                        const successEmb = new MessageEmbed()
+                            .setTimestamp()
+                            .setColor(emb.color)
+                            .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
+
 
                         if (i.customId != `10` && check_if_dj(client, i.member, client.distube.getQueue(i.guild.id).songs[0])) {
                             return i.reply({
@@ -793,15 +792,14 @@ module.exports = (client) => {
             .on(`addSong`, (queue, song) => {
                 updateMusicSystem(queue);
                 queue.textChannel.send({
-                    embeds: [
-                        new MessageEmbed()
-                            .setColor(emb.color)
-                            .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
-                            .setFooter(song.user.tag, song.user.displayAvatarURL({ dynamic: true }))
-                            .setAuthor(`SONG ADDED TO QUEUE`, emb.disc.song.add)
-                            .setDescription(`Song: [\`${song.name}\`](${song.url})  -  \`${song.formattedDuration}\``)
-                            .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - 1} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - song.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
-                            .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
+                    embeds: [new MessageEmbed()
+                        .setColor(emb.color)
+                        .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
+                        .setFooter(song.user.tag, song.user.displayAvatarURL({ dynamic: true }))
+                        .setAuthor(`SONG ADDED TO QUEUE`, emb.disc.song.add)
+                        .setDescription(`Song: [\`${song.name}\`](${song.url})  -  \`${song.formattedDuration}\``)
+                        .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - 1} song${queue.songs.length != 1 ? "s" : ""}\` - \`${(Math.floor((queue.duration - song.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
+                        .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
                     ]
                 }).then(msg => {
                     if (queue.textChannel.id === client.settings.get(queue.id, `music.channel`)) {
@@ -856,10 +854,12 @@ module.exports = (client) => {
 
             .on(`error`, (channel, e) => {
                 channel.send({
-                    embeds: [errorEmb
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
+                    embeds: [new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(emb.errColor)
                         .setAuthor(`AN ERROR OCCURED`, emb.disc.error)
                         .setDescription(`\`/info support\` for support or DM me \`${client.user.tag}\` \`\`\`${e}\`\`\``)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                     ]
                 }).catch((e) => console.log(e))
                 console.error(e)
@@ -881,7 +881,8 @@ module.exports = (client) => {
             .on(`searchNoResult`, message => message.channel.send(`No result found!`).catch((e) => console.log(e)))
 
             .on(`finishSong`, (queue, song) => {
-                var embed = new MessageEmbed().setColor(emb.color)
+                var embed = new MessageEmbed()
+                    .setColor(emb.color)
                     .setAuthor(`DASHBOARD | SONG ENDED`, emb.disc.done)
                     .setDescription(`**[${song.name}](${song.url})**`)
                     .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
@@ -919,7 +920,9 @@ module.exports = (client) => {
                     }
                     updateMusicSystem(queue, true);
                     queue.textChannel.send({
-                        embeds: [successEmb
+                        embeds: [new MessageEmbed()
+                            .setTimestamp()
+                            .setColor(emb.color)
                             .setAuthor(`LEFT THE CHANNEL`, emb.disc.alert)
                             .setDescription(`**NO MORE SONGS LEFT**`)
                             .setFooter(client.user.username, client.user.displayAvatarURL())
@@ -1078,6 +1081,7 @@ module.exports = (client) => {
         errDM(client, e)
     }
 
+
     //for the music system interaction buttonjs and meu
     client.on(`interactionCreate`, async (interaction) => {
         if (!interaction.isButton() && !interaction.isSelectMenu()) return;
@@ -1146,14 +1150,24 @@ module.exports = (client) => {
         if (interaction.isButton()) {
             if (!newQueue || !newQueue.songs || !newQueue.songs[0]) {
                 return interaction.reply({
-                    embeds: [noPLayerAlert],
+                    embeds: [new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(emb.errColor)
+                        .setAuthor(`NOTHING PLAYING YET`, emb.disc.alert)
+                        .setFooter(`Action by: ${member.user.tag}`, member.user.displayAvatarURL({ dynamic: true }))
+                    ],
                     ephemeral: true
                 })
             }
             //here i use my check_if_dj function to check if he is a dj if not then it returns true, and it shall stop!
             if (newQueue && interaction.customId != `Lyrics` && check_if_dj(client, member, newQueue.songs[0])) {
                 return interaction.reply({
-                    embeds: [djAlert],
+                    embeds: [new MessageEmbed()
+                        .setTimestamp()
+                        .setColor(emb.errColor)
+                        .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
+                        .setDescription(`**DJ-ROLES:**\n${check_if_dj(client, member, client.distube.getQueue(i.guild.id).songs[0])}`)
+                    ],
                     ephemeral: true
                 });
             }
