@@ -8,7 +8,7 @@ const playerintervals = new Map();
 const PlayerMap = new Map()
 let songEditInterval = null;
 
-module.exports = (client, interaction) => {
+module.exports = (client) => {
 
     // ---------------------------------------- GLOBAL EMBEDS ---------------------------------------- //
     const joinAlert = new MessageEmbed()
