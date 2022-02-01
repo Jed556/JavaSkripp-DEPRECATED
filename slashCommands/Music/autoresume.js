@@ -18,6 +18,7 @@ module.exports = {
                 deferred, replied, ephemeral, options, id, createdTimestamp } = interaction;
             const { guild } = member;
             const { channel } = member.voice;
+            let newQueue = client.distube.getQueue(guildId);
 
             if (!channel && channel.guild.me.voice.channel.id != channel.id)
                 return interaction.reply({
