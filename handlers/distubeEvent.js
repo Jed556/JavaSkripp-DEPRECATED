@@ -11,9 +11,6 @@ let songEditInterval = null;
 module.exports = (client, interaction) => {
 
     // ---------------------------------------- GLOBAL EMBEDS ---------------------------------------- //
-    const { member, channelId, guildId, applicationId, deferred, replied, options, } = interaction;
-    const { guild } = member;
-
     const joinAlert = new MessageEmbed()
         .setTimestamp()
         .setColor(emb.errColor)
