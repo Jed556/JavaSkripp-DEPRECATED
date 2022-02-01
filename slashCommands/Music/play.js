@@ -28,7 +28,7 @@ module.exports = {
             const { guild } = member;
             const { channel } = member.voice;
 
-            if (!channel || guild.me.voice.channel.id != channel.id)
+            if (!channel || guild.me.voice.channelId != channel.id)
                 return interaction.reply({
                     embeds: [new MessageEmbed()
                         .setColor(emb.errColor)
