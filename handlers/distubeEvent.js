@@ -1433,33 +1433,6 @@ module.exports = (client) => {
 
     // })
 
-    // async function updateMusicSystem(queue, leave = false) {
-    //     if (!queue) return;
-    //     if (client.settings.get(queue.id, `music.channel`) && client.settings.get(queue.id, `music.channel`).length > 5) {
-    //         let messageId = client.settings.get(queue.id, `music.message`);
-    //         //try to get the guild
-    //         let guild = client.guilds.cache.get(queue.id);
-    //         if (!guild) return console.log(`Update-Music-System`.brightCyan + ` - Music System - Guild not found!`)
-    //         //try to get the channel
-    //         let channel = guild.channels.cache.get(client.settings.get(queue.id, `music.channel`));
-    //         if (!channel) channel = await guild.channels.fetch(client.settings.get(queue.id, `music.channel`)).catch(() => { }) || false
-    //         if (!channel) return console.log(`Update-Music-System`.brightCyan + ` - Music System - Channel not found!`)
-    //         if (!channel.permissionsFor(channel.guild.me).has(Permissions.FLAGS.SEND_MESSAGES)) return console.log(`Music System - Missing Permissions`)
-    //         //try to get the channel
-    //         let message = channel.messages.cache.get(messageId);
-    //         if (!message) message = await channel.messages.fetch(messageId).catch(() => { }) || false;
-    //         if (!message) return console.log(`Update-Music-System`.brightCyan + ` - Music System - Message not found!`)
-    //         //edit the message so that it's right!
-    //         var data = generateQueueEmbed(client, queue.id, leave)
-    //         message.edit(data).catch((e) => {
-    //             console.log(e)
-    //         }).then(m => {
-    //             console.log(`Update-Music-System`.brightCyan + ` - Edited the message due to a User Interaction`)
-    //         })
-    //     }
-    // }
-
-
     // //For the Music Request System
     // function generateQueueEmbed(client, guildId, leave) {
     //     let guild = client.guilds.cache.get(guildId)
@@ -1614,6 +1587,7 @@ module.exports = (client) => {
     //     }
     // }
 
+
     //For normal tracks
     function receiveQueueData(newQueue, newTrack) {
         var djs = client.settings.get(newQueue.id, `djroles`);
@@ -1695,5 +1669,32 @@ module.exports = (client) => {
             embeds: [embed],
             components: [row1, row2]
         };
+    }
+
+
+    async function updateMusicSystem(queue, leave = false) {
+        if (!queue) return;
+        if (client.settings.get(queue.id, `music.channel`) && client.settings.get(queue.id, `music.channel`).length > 5) {
+            let messageId = client.settings.get(queue.id, `music.message`);
+            //try to get the guild
+            let guild = client.guilds.cache.get(queue.id);
+            if (!guild) return console.log(`Update-Music-System`.brightCyan + ` - Music System - Guild not found!`)
+            //try to get the channel
+            let channel = guild.channels.cache.get(client.settings.get(queue.id, `music.channel`));
+            if (!channel) channel = await guild.channels.fetch(client.settings.get(queue.id, `music.channel`)).catch(() => { }) || false
+            if (!channel) return console.log(`Update-Music-System`.brightCyan + ` - Music System - Channel not found!`)
+            if (!channel.permissionsFor(channel.guild.me).has(Permissions.FLAGS.SEND_MESSAGES)) return console.log(`Music System - Missing Permissions`)
+            //try to get the channel
+            let message = channel.messages.cache.get(messageId);
+            if (!message) message = await channel.messages.fetch(messageId).catch(() => { }) || false;
+            if (!message) return console.log(`Update-Music-System`.brightCyan + ` - Music System - Message not found!`)
+            //edit the message so that it's right!
+            var data = generateQueueEmbed(client, queue.id, leave)
+            message.edit(data).catch((e) => {
+                console.log(e)
+            }).then(m => {
+                console.log(`Update-Music-System`.brightCyan + ` - Edited the message due to a User Interaction`)
+            })
+        }
     }
 };
