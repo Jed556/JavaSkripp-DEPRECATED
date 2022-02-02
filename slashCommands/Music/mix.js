@@ -66,18 +66,20 @@ module.exports = {
                     ephemeral: true
                 });
 
-            if (check_if_dj(client, member, newQueue.songs[0])) {
-                return interaction.reply({
-                    embeds: [new MessageEmbed()
-                        .setTimestamp()
-                        .setColor(emb.errColor)
-                        .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
-                        .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
-                        .setFooter(client.user.username, client.user.displayAvatarURL())
-                    ],
-                    ephemeral: true
-                });
-            }
+            try {
+                if (check_if_dj(client, member, newQueue.songs[0])) {
+                    return interaction.reply({
+                        embeds: [new MessageEmbed()
+                            .setTimestamp()
+                            .setColor(emb.errColor)
+                            .setAuthor(`YOU ARE NOT A DJ OR THE SONG REQUESTER`, emb.disc.alert)
+                            .setDescription(`**DJ-ROLES:**\n> ${check_if_dj(client, member, newQueue.songs[0])}`)
+                            .setFooter(client.user.username, client.user.displayAvatarURL())
+                        ],
+                        ephemeral: true
+                    });
+                }
+            } catch { }
 
             let link = "https://www.youtube.com/playlist?list=PLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj";
             let args = [interaction.options.getString("mix")]
