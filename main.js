@@ -81,7 +81,7 @@ client.distube = new DisTube(client, {
         highWaterMark: 1024 * 1024 * 64,
         quality: "highestaudio",
         format: "audioonly",
-        liveBuffer: 60000,
+        liveBuffer: 75000,
         dlChunkSize: 1024 * 1024 * 4,
     },
     youtubeDL: true,
