@@ -78,11 +78,11 @@ client.distube = new DisTube(client, {
         // requestOptions: {
         //  agent //ONLY USE ONE IF YOU KNOW WHAT YOU DO
         // },
-        highWaterMark: 1024 * 1024 * 32,
+        highWaterMark: 1024 * 1024 * 64,
         quality: "highestaudio",
         format: "audioonly",
         liveBuffer: 60000,
-        dlChunkSize: 1024 * 1024 * 8,
+        dlChunkSize: 1024 * 1024 * 4,
     },
     youtubeDL: true,
     updateYouTubeDL: true,
