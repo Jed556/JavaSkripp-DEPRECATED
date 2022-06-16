@@ -4,6 +4,7 @@ const config = require("../../botconfig/config.json");
 const emb = require("../../botconfig/embed.json");
 const { errDM } = require("../../handlers/functions");
 const math = require("mathjs");
+const http = require("http");
 
 module.exports = {
     name: "dictionary",
@@ -27,7 +28,7 @@ module.exports = {
             let args = []
             interaction.options.data.map((x) => args.push(x.value))
 
-            let res = await request(`https://api.urbandictionary.com/v0/define?term=${args[0]}`).then(r => r.body.json().then(s => s.list)); // Searches on the urban dictionary API
+            let res = await http.request(`https://api.urbandictionary.com/v0/define?term=${args[0]}`).then(r => r.body.json().then(s => s.list)); // Searches on the urban dictionary API
 
             if (!res || !res.length) return interaction.editReply('There were no results for your search term'); // Handles no results
             res = res[0]
@@ -64,7 +65,7 @@ module.exports = {
                             { name: '👎 Downvotes', value: res.thumbs_down.toLocaleString() || 'N/A', inline: true }
                         )
                         .setTimestamp(new Date(res.written_on).getTime())
-                        .setFooter(`Written by ${res.author || "unknown"}`)
+                        .setFooter(client.user.username, client.user.displayAvatarURL())
                 ]
             }).catch(console.log)
         } catch (e) {
