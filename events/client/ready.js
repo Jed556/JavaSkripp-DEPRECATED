@@ -1,9 +1,8 @@
-//here the event starts
 const Discord = require("discord.js");
 const { MessageEmbed } = require("discord.js");
 const { change_status } = require("../../handlers/functions");
-const config = require("../../botconfig/config.json")
-const emb = require("../../botconfig/embed.json")
+const config = require("../../config/client.json")
+const emb = require("../../config/embed.json")
 const { readdirSync, lstatSync } = require("fs");
 const os = require("os");
 
@@ -23,9 +22,9 @@ module.exports = async (client) => {
                 `┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛`.bold.brightGreen)
         } catch { }
         var check = [];
-        readdirSync(`${__dirname}/../../slashCommands/`).forEach((dir) => {
-            if (lstatSync(`${__dirname}/../../slashCommands/${dir}`).isDirectory()) {
-                const cmd = readdirSync(`${__dirname}/../../slashCommands/${dir}/`).filter((file) => file.endsWith(".js"));
+        readdirSync(`${__dirname}/../../commands/`).forEach((dir) => {
+            if (lstatSync(`${__dirname}/../../commands/${dir}`).isDirectory()) {
+                const cmd = readdirSync(`${__dirname}/../../commands/${dir}/`).filter((file) => file.endsWith(".js"));
                 for (let file of cmd) check.push(file);
             }
         })

@@ -1,9 +1,10 @@
-const config = require("../../botconfig/config.json");
-const emb = require("../../botconfig/embed.json");
+const config = require("../../config/client.json");
+const emb = require("../../config/embed.json");
 const { onCoolDown } = require("../../handlers/functions");
 const { MessageEmbed } = require("discord.js")
 
 module.exports = (client, interaction) => {
+    // Return if under maintenance
     if (client.maintenance && interaction.user.id != config.ownerID) {
         return interaction.reply({
             embeds: [new MessageEmbed()
@@ -22,13 +23,11 @@ module.exports = (client, interaction) => {
     if (interaction.guildId == null) return;
 
     client.settings.ensure(interaction.guildId, {
-        prefix: config.prefix,
         defaultvolume: 100,
         defaultautoplay: false,
         defaultfilters: [`bassboost6`, `clear`],
         djroles: [],
     })
-    let prefix = client.settings.get(interaction.guildId)
     let command = false;
 
     try {
@@ -72,7 +71,7 @@ module.exports = (client, interaction) => {
             })
         };
 
-        //if Command has specific permission return error
+        // If user doesn't have the permission, return error
         if (command.memberpermissions && command.memberpermissions.length > 0 && !interaction.member.permissions.has(command.memberpermissions)) {
             return interaction.reply({
                 embeds: [new MessageEmbed()
@@ -86,7 +85,7 @@ module.exports = (client, interaction) => {
             })
         };
 
-        //if Command has specific needed roles return error
+        // If user doesn't have the role, return error
         if (command.requiredroles && command.requiredroles.length > 0 && interaction.member.roles.cache.size > 0 && !interaction.member.roles.cache.some(r => command.requiredroles.includes(r.id))) {
             return interaction.reply({
                 embeds: [new MessageEmbed()
@@ -100,7 +99,7 @@ module.exports = (client, interaction) => {
             })
         }
 
-        //if Command has specific users return error
+        //if specific users can only use the command. return error
         if (command.alloweduserids && command.alloweduserids.length > 0 && !command.alloweduserids.includes(interaction.member.id)) {
             return interaction.reply({
                 embeds: [new MessageEmbed()

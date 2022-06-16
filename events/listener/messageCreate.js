@@ -1,6 +1,6 @@
 //Import Modules
-const config = require(`../../botconfig/config.json`);
-const emb = require(`../../botconfig/embed.json`);
+const config = require(`../../config/client.json`);
+const emb = require(`../../config/embed.json`);
 const { MessageEmbed } = require(`discord.js`);
 const { getRandomInt } = require("../../handlers/functions");
 

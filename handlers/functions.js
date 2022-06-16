@@ -1,7 +1,7 @@
 const { MessageEmbed, Collection } = require("discord.js");
 const Discord = require("discord.js")
-const config = require("../botconfig/config.json");
-const emb = require("../botconfig/embed.json");
+const config = require("../config/client.json");
+const emb = require("../config/embed.json");
 
 //EXPORT ALL FUNCTIONS
 module.exports.nFormatter = nFormatter;
