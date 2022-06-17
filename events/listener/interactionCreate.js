@@ -1,6 +1,6 @@
 //Import Modules
-const config = require("../../config/client.json");
-const emb = require("../../config/embed.json");
+const config = require("../../botconfig/config.json");
+const emb = require("../../botconfig/embed.json");
 const Discord = require("discord.js");
 module.exports = (client, interaction) => {
     try {

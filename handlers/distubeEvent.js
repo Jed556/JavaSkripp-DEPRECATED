@@ -1,9 +1,9 @@
 console.log("\n" + "DISTUBE HANDLER LAUNCHED".yellow);
 const { MessageButton, MessageActionRow, MessageEmbed, Permissions, MessageSelectMenu } = require("discord.js");
 const { delay, createBar, check_if_dj, errDM, escapeRegex } = require("./functions");
-const config = require("../config/client.json");
-const emb = require("../config/embed.json");
-const settings = require("../config/distube.json");
+const config = require("../botconfig/config.json");
+const emb = require("../botconfig/embed.json");
+const settings = require("../botconfig/distube.json");
 const playerintervals = new Map();
 const PlayerMap = new Map()
 let songEditInterval = null;
